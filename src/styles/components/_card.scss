@@ -1,0 +1,102 @@
+.card {
+    background-color: $color--card;
+    padding: 1.5rem;
+    padding-top: 2rem;
+    border: 2.5px solid $color--border-highlight;
+    position: relative;
+    border-radius: $borderradius;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    z-index: 0;
+    &:before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        outline: 5px solid $color--dark;
+        border-radius: inherit;
+        pointer-events: none;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        inset: 7px;
+        outline: 7.5px solid $color--light;
+        border-radius: calc($borderradius * 0.5);
+        pointer-events: none;
+    }
+    &__title {
+        position: absolute;
+        z-index: 1;
+        top: 0%;
+        left: 50%;
+        width: 70%;
+        transform: translate(-50%, -50%);
+        background-color: $color--card;
+        padding: 0.25rem 1rem;
+        border: 2.5px solid $color--border-highlight;
+        border-radius: calc($borderradius * 0.7);
+        &:before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            outline: 2.5px solid $color--dark;
+            border-radius: inherit;
+            pointer-events: none;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            inset: 1.5px;
+            outline: 2.5px solid $color--light;
+            border-radius: calc($borderradius * 0.5);
+            pointer-events: none;
+        }
+    }
+    &--game {
+        border-radius: 0;
+        border: 6px solid #4b250b;
+        box-shadow: 0 0 0 6px #633317, 0 0 0 8px #241005,
+            inset 0 0 0 2px #241005;
+        background: linear-gradient(
+            to right,
+            #45d0e1 10%,
+            #2b86b0 10%,
+            #2b86b0 20%,
+            #45d0e1 20%,
+            #45d0e1 30%,
+            #2b86b0 30%,
+            #2b86b0 40%,
+            #45d0e1 40%,
+            #45d0e1 50%,
+            #2b86b0 50%,
+            #2b86b0 60%,
+            #45d0e1 60%,
+            #45d0e1 70%,
+            #2b86b0 70%,
+            #2b86b0 80%,
+            #45d0e1 80%,
+            #45d0e1 90%,
+            #2b86b0 90%,
+            #2b86b0 100%,
+            #45d0e1 100%
+        );
+        &:before {
+            display: none;
+        }
+        &:after {
+            display: none;
+        }
+    }
+}
+@media (max-width: $breakpoint--sm) {
+    .card {
+        &__title {
+            width: 90%;
+        }
+        padding-top: 2rem;
+    }
+}

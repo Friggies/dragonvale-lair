@@ -1,0 +1,16 @@
+.dragonParents {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    &__eggs {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+}
+
+@media (max-width: $breakpoint--sm) {
+    .dragonParents {
+        width: 50%;
+    }
+}

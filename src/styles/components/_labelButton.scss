@@ -1,0 +1,22 @@
+.labelButton {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    text-shadow: inherit;
+    letter-spacing: inherit;
+    line-height: 100%;
+    &__image {
+        transform: translateY(10px);
+        z-index: -1;
+        width: auto;
+        height: 60px;
+    }
+}

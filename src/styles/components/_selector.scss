@@ -1,0 +1,49 @@
+.selector {
+    padding: 0 1rem;
+    margin: 5px;
+    box-shadow: inset 2px 2px $color--light, inset -2px -2px $color--light,
+        inset 2px -2px $color--light, inset -2px 2px $color--light,
+        2px 2px $color--dark, -2px -2px $color--dark, 2px -2px $color--dark,
+        -2px 2px $color--dark;
+    border-radius: 1rem;
+    border: 1px solid $color--border-highlight;
+    position: relative;
+    min-width: 125px;
+    &__menu {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $color--card;
+        box-shadow: inset 2px 2px $color--light, inset -2px -2px $color--light,
+            inset 2px -2px $color--light, inset -2px 2px $color--light,
+            2px 2px $color--dark, -2px -2px $color--dark, 2px -2px $color--dark,
+            -2px 2px $color--dark;
+        padding: 0.5rem;
+        max-width: 75%;
+        border-radius: 1rem;
+        &-list {
+            height: 100px;
+        }
+    }
+    &__option {
+        cursor: pointer !important;
+        &:hover {
+            background-color: $color--light;
+            border-radius: 0.5rem;
+        }
+    }
+}
+@media (max-width: $breakpoint--sm) {
+    .selector {
+        &__menu {
+            max-width: 100%;
+            &-list {
+                height: 100px;
+            }
+        }
+        &__option {
+            padding-block: 0.25rem;
+        }
+    }
+}

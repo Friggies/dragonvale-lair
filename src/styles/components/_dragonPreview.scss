@@ -1,0 +1,32 @@
+.dragonPreview {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    &__incubation {
+        &--reduced {
+            display: none;
+        }
+        &--standard {
+            display: block;
+        }
+    }
+}
+
+.dragonGrid--reducedIncubationTimes {
+    .dragonPreview {
+        &__incubation {
+            &--reduced {
+                display: block;
+            }
+            &--standard {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: $breakpoint--sm) {
+    .dragonPreview {
+        width: 33%;
+    }
+}

@@ -1,0 +1,10 @@
+.dragonGrid {
+    width: 100%;
+    &__body {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 2rem;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+}
