@@ -260,7 +260,7 @@ export default function Home() {
                     id="loadingDialog"
                     className="dialog"
                 >
-                    <div>
+                    <div className="dialog__content">
                         <div className="lds-roller">
                             <div></div>
                             <div></div>
@@ -291,86 +291,92 @@ export default function Home() {
                             src="/xButton.png"
                         />
                     </button>
-                    <div className="row row--toColumn">
-                        <LabelInput>
-                            <abbr title="Bring Em Back">BeB</abbr>
-                            <select
-                                id="beb"
-                                className="dropdown"
-                            >
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>
-                            </select>
-                        </LabelInput>
-                        <LabelInput>
-                            Cave
-                            <select
-                                id="cave"
-                                className="dropdown"
-                            >
-                                <option value="Normal">Normal</option>
-                                <option value="Rift">Rift</option>
-                                <option value="Social">Social</option>
-                            </select>
-                        </LabelInput>
-                    </div>
-                    <div className="row row--toColumn">
-                        <LabelInput>
-                            Time
-                            <select
-                                id="time"
-                                className="dropdown"
-                            >
-                                <option value="Day">Day</option>
-                                <option value="Night">Night</option>
-                            </select>
-                        </LabelInput>
-                        <LabelInput>
-                            Weather
-                            <select
-                                id="weather"
-                                className="dropdown"
-                            >
-                                <option value="None">None</option>
-                                <option value="Bats">Bats</option>
-                                <option value="Blossoms">Blossoms</option>
-                                <option value="Butterflies">Butterflies</option>
-                                <option value="Confetti">Confetti</option>
-                                <option value="Dandelions">Dandelions</option>
-                                <option value="Sunny">Sunny</option>
-                                <option value="Fireflies">Fireflies</option>
-                                <option value="Ghosts">Ghosts</option>
-                                <option value="Leaves">Leaves</option>
-                                <option value="Rain">Rain</option>
-                                <option value="Rainbows">Rainbows</option>
-                                <option value="Shooting Stars">
-                                    Shooting Stars
-                                </option>
-                                <option value="Snow">Snow</option>
-                                <option value="Storm">Storm</option>
-                            </select>
-                        </LabelInput>
-                    </div>
-                    <div className="row row--toColumn">
-                        <LabelInput>
-                            Sort
-                            <select
-                                id="sort"
-                                className="dropdown"
-                            >
-                                <option value="Chance">Chance</option>
-                            </select>
-                        </LabelInput>
-                        <LabelInput>
-                            Already Owned
-                            <select
-                                id="own"
-                                className="dropdown"
-                            >
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                        </LabelInput>
+                    <div className="dialog__content">
+                        <div className="row row--toColumn">
+                            <LabelInput>
+                                <abbr title="Bring Em Back">BeB</abbr>
+                                <select
+                                    id="beb"
+                                    className="dropdown"
+                                >
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </LabelInput>
+                            <LabelInput>
+                                Cave
+                                <select
+                                    id="cave"
+                                    className="dropdown"
+                                >
+                                    <option value="Normal">Normal</option>
+                                    <option value="Rift">Rift</option>
+                                    <option value="Social">Social</option>
+                                </select>
+                            </LabelInput>
+                        </div>
+                        <div className="row row--toColumn">
+                            <LabelInput>
+                                Time
+                                <select
+                                    id="time"
+                                    className="dropdown"
+                                >
+                                    <option value="Day">Day</option>
+                                    <option value="Night">Night</option>
+                                </select>
+                            </LabelInput>
+                            <LabelInput>
+                                Weather
+                                <select
+                                    id="weather"
+                                    className="dropdown"
+                                >
+                                    <option value="None">None</option>
+                                    <option value="Bats">Bats</option>
+                                    <option value="Blossoms">Blossoms</option>
+                                    <option value="Butterflies">
+                                        Butterflies
+                                    </option>
+                                    <option value="Confetti">Confetti</option>
+                                    <option value="Dandelions">
+                                        Dandelions
+                                    </option>
+                                    <option value="Sunny">Sunny</option>
+                                    <option value="Fireflies">Fireflies</option>
+                                    <option value="Ghosts">Ghosts</option>
+                                    <option value="Leaves">Leaves</option>
+                                    <option value="Rain">Rain</option>
+                                    <option value="Rainbows">Rainbows</option>
+                                    <option value="Shooting Stars">
+                                        Shooting Stars
+                                    </option>
+                                    <option value="Snow">Snow</option>
+                                    <option value="Storm">Storm</option>
+                                </select>
+                            </LabelInput>
+                        </div>
+                        <div className="row row--toColumn">
+                            <LabelInput>
+                                Sort
+                                <select
+                                    id="sort"
+                                    className="dropdown"
+                                >
+                                    <option value="Chance">Chance</option>
+                                </select>
+                            </LabelInput>
+                            <LabelInput>
+                                Already Owned
+                                <select
+                                    id="own"
+                                    className="dropdown"
+                                >
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </LabelInput>
+                        </div>
                     </div>
                 </dialog>
                 <dialog
@@ -389,18 +395,22 @@ export default function Home() {
                             src="/xButton.png"
                         />
                     </button>
-                    <p>
-                        Select two dragons from the dropdowns and press
-                        "Simulate".
-                    </p>
-                    <p>
-                        You can tweak specific options if you find it necessary.
-                    </p>
-                    <p>
-                        A list of the potential dragons you can get with the
-                        selected combination of parent dragons will be
-                        generated. This list complies with the given options.
-                    </p>
+                    <div className="dialog__content">
+                        <p>
+                            Select two dragons from the dropdowns and press
+                            "Simulate".
+                        </p>
+                        <p>
+                            You can tweak specific options if you find it
+                            necessary.
+                        </p>
+                        <p>
+                            A list of the potential dragons you can get with the
+                            selected combination of parent dragons will be
+                            generated. This list complies with the given
+                            options.
+                        </p>
+                    </div>
                 </dialog>
             </main>
         </>

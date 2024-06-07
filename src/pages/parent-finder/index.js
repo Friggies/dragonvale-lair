@@ -255,7 +255,7 @@ export default function Home() {
                     id="loadingDialog"
                     className="dialog"
                 >
-                    <div>
+                    <div className="dialog__content">
                         <div className="lds-roller">
                             <div></div>
                             <div></div>
@@ -286,55 +286,57 @@ export default function Home() {
                             src="/xButton.png"
                         />
                     </button>
-                    <div className="row row--toColumn">
-                        <LabelInput>
-                            <abbr title="Bring Em Back">BeB</abbr>
-                            <select
-                                id="beb"
-                                className="dropdown"
-                            >
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>
-                            </select>
-                        </LabelInput>
-                        <LabelInput>
-                            Cave
-                            <select
-                                id="cave"
-                                className="dropdown"
-                            >
-                                <option value="Normal">Normal</option>
-                                <option value="Rift">Rift</option>
-                                <option value="Social">Social</option>
-                            </select>
-                        </LabelInput>
-                    </div>
-                    <div className="row row--toColumn">
-                        <LabelInput>
-                            Include Parent
-                            <select
-                                id="includeParent"
-                                className="dropdown"
-                            >
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>
-                            </select>
-                        </LabelInput>
-                        <LabelInput>
-                            Must Include
-                            <Select
-                                className="selector"
-                                classNamePrefix="selector"
-                                inputId="mustInclude"
-                                id="selectMustInclude"
-                                instanceId="mustInclude"
-                                type="text"
-                                required
-                                unstyled
-                                isClearable
-                                options={options}
-                            />
-                        </LabelInput>
+                    <div className="dialog__content">
+                        <div className="row row--toColumn">
+                            <LabelInput>
+                                <abbr title="Bring Em Back">BeB</abbr>
+                                <select
+                                    id="beb"
+                                    className="dropdown"
+                                >
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </LabelInput>
+                            <LabelInput>
+                                Cave
+                                <select
+                                    id="cave"
+                                    className="dropdown"
+                                >
+                                    <option value="Normal">Normal</option>
+                                    <option value="Rift">Rift</option>
+                                    <option value="Social">Social</option>
+                                </select>
+                            </LabelInput>
+                        </div>
+                        <div className="row row--toColumn">
+                            <LabelInput>
+                                Include Parent
+                                <select
+                                    id="includeParent"
+                                    className="dropdown"
+                                >
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </LabelInput>
+                            <LabelInput>
+                                Must Include
+                                <Select
+                                    className="selector"
+                                    classNamePrefix="selector"
+                                    inputId="mustInclude"
+                                    id="selectMustInclude"
+                                    instanceId="mustInclude"
+                                    type="text"
+                                    required
+                                    unstyled
+                                    isClearable
+                                    options={options}
+                                />
+                            </LabelInput>
+                        </div>
                     </div>
                 </dialog>
                 <dialog
@@ -353,24 +355,28 @@ export default function Home() {
                             src="/xButton.png"
                         />
                     </button>
-                    <p>
-                        Select a target dragon from the dropdown and press
-                        "Find".
-                    </p>
-                    <p>
-                        You can tweak specific options if you find it necessary.
-                    </p>
-                    <p>
-                        The results show a generic formula for breeding the
-                        dragon on the left. It shows the odds of breeding and
-                        cloning the target dragon on the right. The number in
-                        parenthesis is the change for cloning with both parents
-                        being the target dragon.
-                    </p>
-                    <p>
-                        It then shows a list of the potential parents for the
-                        target dragon that comply with the given options.
-                    </p>
+                    <div className="dialog__content">
+                        <p>
+                            Select a target dragon from the dropdown and press
+                            "Find".
+                        </p>
+                        <p>
+                            You can tweak specific options if you find it
+                            necessary.
+                        </p>
+                        <p>
+                            The results show a generic formula for breeding the
+                            dragon on the left. It shows the odds of breeding
+                            and cloning the target dragon on the right. The
+                            number in parenthesis is the change for cloning with
+                            both parents being the target dragon.
+                        </p>
+                        <p>
+                            It then shows a list of the potential parents for
+                            the target dragon that comply with the given
+                            options.
+                        </p>
+                    </div>
                 </dialog>
             </main>
         </>
