@@ -294,14 +294,20 @@ export default function Home() {
                     <div className="row row--toColumn">
                         <LabelInput>
                             <abbr title="Bring Em Back">BeB</abbr>
-                            <select id="beb">
+                            <select
+                                id="beb"
+                                className="dropdown"
+                            >
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option>
                             </select>
                         </LabelInput>
                         <LabelInput>
                             Cave
-                            <select id="cave">
+                            <select
+                                id="cave"
+                                className="dropdown"
+                            >
                                 <option value="Normal">Normal</option>
                                 <option value="Rift">Rift</option>
                                 <option value="Social">Social</option>
@@ -311,14 +317,20 @@ export default function Home() {
                     <div className="row row--toColumn">
                         <LabelInput>
                             Time
-                            <select id="time">
+                            <select
+                                id="time"
+                                className="dropdown"
+                            >
                                 <option value="Day">Day</option>
                                 <option value="Night">Night</option>
                             </select>
                         </LabelInput>
                         <LabelInput>
                             Weather
-                            <select id="weather">
+                            <select
+                                id="weather"
+                                className="dropdown"
+                            >
                                 <option value="None">None</option>
                                 <option value="Bats">Bats</option>
                                 <option value="Blossoms">Blossoms</option>
@@ -342,13 +354,19 @@ export default function Home() {
                     <div className="row row--toColumn">
                         <LabelInput>
                             Sort
-                            <select id="sort">
+                            <select
+                                id="sort"
+                                className="dropdown"
+                            >
                                 <option value="Chance">Chance</option>
                             </select>
                         </LabelInput>
                         <LabelInput>
                             Already Owned
-                            <select id="own">
+                            <select
+                                id="own"
+                                className="dropdown"
+                            >
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>

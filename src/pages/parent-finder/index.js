@@ -289,14 +289,20 @@ export default function Home() {
                     <div className="row row--toColumn">
                         <LabelInput>
                             <abbr title="Bring Em Back">BeB</abbr>
-                            <select id="beb">
+                            <select
+                                id="beb"
+                                className="dropdown"
+                            >
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option>
                             </select>
                         </LabelInput>
                         <LabelInput>
                             Cave
-                            <select id="cave">
+                            <select
+                                id="cave"
+                                className="dropdown"
+                            >
                                 <option value="Normal">Normal</option>
                                 <option value="Rift">Rift</option>
                                 <option value="Social">Social</option>
@@ -306,7 +312,10 @@ export default function Home() {
                     <div className="row row--toColumn">
                         <LabelInput>
                             Include Parent
-                            <select id="includeParent">
+                            <select
+                                id="includeParent"
+                                className="dropdown"
+                            >
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option>
                             </select>

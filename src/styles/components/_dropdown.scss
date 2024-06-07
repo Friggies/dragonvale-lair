@@ -1,0 +1,20 @@
+.dropdown {
+    padding: 0rem 1rem;
+    margin: 5px;
+    box-shadow: inset 2px 2px $color--light, inset -2px -2px $color--light,
+        inset 2px -2px $color--light, inset -2px 2px $color--light,
+        2px 2px $color--dark, -2px -2px $color--dark, 2px -2px $color--dark,
+        -2px 2px $color--dark;
+    border-radius: 1rem;
+    border: 1px solid $color--border-highlight;
+    position: relative;
+    min-width: 125px;
+    background-color: $color--card;
+    color: white;
+    font-family: inherit;
+    font-size: inherit;
+    text-shadow: inherit;
+    min-height: 38px;
+    text-align: center;
+    cursor: pointer;
+}
