@@ -1,5 +1,9 @@
 import { getParentData } from '@/utils/googleSheet'
 
+export const config = {
+    maxDuration: 10,
+}
+
 export default async function handler(req, res) {
     const { method } = req
 
