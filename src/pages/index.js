@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import LabelButton from './components/LabelButton'
+import LabelButton from '@/components/LabelButton'
 
 export default function Home() {
     const share = () => {

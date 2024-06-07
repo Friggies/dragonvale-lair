@@ -1,8 +1,8 @@
 import waitingTexts from '@/utils/waitingTexts'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import LabelInput from '../components/LabelInput'
-import LabelButton from '../components/LabelButton'
+import LabelInput from '@/components/LabelInput'
+import LabelButton from '@/components/LabelButton'
 import Select from 'react-select'
 import dragons from '/public/dragons.json'
 
