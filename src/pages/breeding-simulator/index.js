@@ -196,6 +196,10 @@ export default function Home() {
                                                     'LoveyDovey',
                                                     'Loveydovey'
                                                 )
+                                                .replace(
+                                                    'PrickleFluff',
+                                                    'Pricklefluff'
+                                                )
                                                 .replace(/\s\d+/g, '')}.png`}
                                         />
                                     </td>

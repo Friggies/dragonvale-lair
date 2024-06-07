@@ -35,6 +35,10 @@ export default function InformationString({ string }) {
                                         alt={img}
                                         src={`https://namethategg.com/eggs/${img
                                             .replace('LoveyDovey', 'Loveydovey')
+                                            .replace(
+                                                'PrickleFluff',
+                                                'Pricklefluff'
+                                            )
                                             .replace(/\s\d+/g, '')}.png`}
                                     />
                                 )
@@ -61,6 +65,10 @@ export default function InformationString({ string }) {
                                         alt={img}
                                         src={`https://namethategg.com/eggs/${img
                                             .replace('LoveyDovey', 'Loveydovey')
+                                            .replace(
+                                                'PrickleFluff',
+                                                'Pricklefluff'
+                                            )
                                             .replace(/\s\d+/g, '')}.png`}
                                     />
                                 )
