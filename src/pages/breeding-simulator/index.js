@@ -389,7 +389,18 @@ export default function Home() {
                             src="/xButton.png"
                         />
                     </button>
-                    <p>TODO: Write "Help" pop up.</p>
+                    <p>
+                        Select two dragons from the dropdowns and press
+                        "Simulate".
+                    </p>
+                    <p>
+                        You can tweak specific options if you find it necessary.
+                    </p>
+                    <p>
+                        A list of the potential dragons you can get with the
+                        selected combination of parent dragons will be
+                        generated. This list complies with the given options.
+                    </p>
                 </dialog>
             </main>
         </>

@@ -353,7 +353,24 @@ export default function Home() {
                             src="/xButton.png"
                         />
                     </button>
-                    <p>TODO: Write "Help" pop up.</p>
+                    <p>
+                        Select a target dragon from the dropdown and press
+                        "Find".
+                    </p>
+                    <p>
+                        You can tweak specific options if you find it necessary.
+                    </p>
+                    <p>
+                        The results show a generic formula for breeding the
+                        dragon on the left. It shows the odds of breeding and
+                        cloning the target dragon on the right. The number in
+                        parenthesis is the change for cloning with both parents
+                        being the target dragon.
+                    </p>
+                    <p>
+                        It then shows a list of the potential parents for the
+                        target dragon that comply with the given options.
+                    </p>
                 </dialog>
             </main>
         </>
