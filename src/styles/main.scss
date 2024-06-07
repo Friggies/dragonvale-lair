@@ -1,185 +1,28 @@
 @import 'abstracts/colors';
 @import 'abstracts/mixins';
 @import 'abstracts/variables';
+
+@import 'base/resets';
 @import 'base/typography';
-@import 'components/header';
+
 @import 'components/card';
+@import 'components/column';
 @import 'components/dialog';
-@import 'components/main';
-@import 'components/labelButton';
-@import 'components/labelInput';
-@import 'components/selector';
+@import 'components/downloadImage';
 @import 'components/dragonGrid';
+@import 'components/dragonParents';
 @import 'components/dragonPreview';
 @import 'components/dropdown';
-@import 'components/dragonParents';
+@import 'components/header';
+@import 'components/labelButton';
+@import 'components/labelInput';
+@import 'components/link';
+@import 'components/loadAnimation';
+@import 'components/main';
+@import 'components/row';
+@import 'components/selector';
 
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-body {
-    background-image: url('/background.webp');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    max-width: 900px;
-    width: 70%;
-    margin-inline: auto;
-    padding-block: 2rem;
-}
-@media (max-width: $breakpoint--sm) {
-    body {
-        width: 95%;
-    }
-}
-
-form {
-    width: 100%;
-}
-a {
-    color: inherit;
-    text-decoration: none;
-}
-.link {
-    text-decoration: underline;
-    color: rgb(191, 207, 232);
-    &:hover {
-        color: rgb(140, 154, 177);
-    }
-}
-.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 1rem;
-    width: 100%;
-    list-style-type: none;
-}
-@media (max-width: $breakpoint--sm) {
-    .row {
-        gap: 0;
-        justify-content: space-between;
-        &--toColumn {
-            gap: 1rem;
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-}
-.column {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 100%;
-}
-@media (max-width: $breakpoint--sm) {
-    .column {
-        &--toRow {
-            flex-direction: row;
-            align-items: center;
-            > div {
-                flex: 1;
-            }
-        }
-    }
-}
+//temporary class while Quest Matcher is under construction
 .building {
     width: 50%;
-}
-.downloadImage {
-    display: block;
-    height: 50px;
-    width: auto;
-}
-
-.lds-roller,
-.lds-roller div,
-.lds-roller div:after {
-    box-sizing: border-box;
-}
-.lds-roller {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
-}
-.lds-roller div {
-    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    transform-origin: 40px 40px;
-}
-.lds-roller div:after {
-    content: ' ';
-    display: block;
-    position: absolute;
-    width: 7.2px;
-    height: 7.2px;
-    border-radius: 50%;
-    background: currentColor;
-    margin: -3.6px 0 0 -3.6px;
-}
-.lds-roller div:nth-child(1) {
-    animation-delay: -0.036s;
-}
-.lds-roller div:nth-child(1):after {
-    top: 62.62742px;
-    left: 62.62742px;
-}
-.lds-roller div:nth-child(2) {
-    animation-delay: -0.072s;
-}
-.lds-roller div:nth-child(2):after {
-    top: 67.71281px;
-    left: 56px;
-}
-.lds-roller div:nth-child(3) {
-    animation-delay: -0.108s;
-}
-.lds-roller div:nth-child(3):after {
-    top: 70.90963px;
-    left: 48.28221px;
-}
-.lds-roller div:nth-child(4) {
-    animation-delay: -0.144s;
-}
-.lds-roller div:nth-child(4):after {
-    top: 72px;
-    left: 40px;
-}
-.lds-roller div:nth-child(5) {
-    animation-delay: -0.18s;
-}
-.lds-roller div:nth-child(5):after {
-    top: 70.90963px;
-    left: 31.71779px;
-}
-.lds-roller div:nth-child(6) {
-    animation-delay: -0.216s;
-}
-.lds-roller div:nth-child(6):after {
-    top: 67.71281px;
-    left: 24px;
-}
-.lds-roller div:nth-child(7) {
-    animation-delay: -0.252s;
-}
-.lds-roller div:nth-child(7):after {
-    top: 62.62742px;
-    left: 17.37258px;
-}
-.lds-roller div:nth-child(8) {
-    animation-delay: -0.288s;
-}
-.lds-roller div:nth-child(8):after {
-    top: 56px;
-    left: 12.28719px;
-}
-@keyframes lds-roller {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
 }

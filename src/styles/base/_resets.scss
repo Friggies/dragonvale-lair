@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+form {
+    width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    background-image: url('/background.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    max-width: 900px;
+    width: 70%;
+    margin-inline: auto;
+    padding-block: 2rem;
+}
+@media (max-width: $breakpoint--sm) {
+    body {
+        width: 95%;
+    }
+}
