@@ -1,6 +1,6 @@
 export default function LabelInput({ label, children }) {
     return (
-        <label className="column column--toRow">
+        <label className="labelInput">
             {label}
             {children}
         </label>
