@@ -29,6 +29,7 @@ export default function Home() {
             weather: document.querySelector('#weather').value,
             sort: document.querySelector('#sort').value,
             own: document.querySelector('#own').value,
+            target: selectedDragons[2]?.innerText,
         }
 
         fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/breeding-simulator', {
@@ -352,22 +353,39 @@ export default function Home() {
                         </div>
                         <div className="row row--toColumn">
                             <LabelInput>
+                                Target Dragon
+                                <Select
+                                    className="selector"
+                                    classNamePrefix="selector"
+                                    inputId="targetDragon"
+                                    id="selectTargetDragon"
+                                    instanceId="targetDragon"
+                                    type="text"
+                                    required
+                                    unstyled
+                                    isClearable
+                                    options={options}
+                                />
+                            </LabelInput>
+                            <LabelInput>
+                                Target Dragon Owned
+                                <select
+                                    id="own"
+                                    className="dropdown"
+                                >
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </LabelInput>
+                        </div>
+                        <div className="row row--toColumn">
+                            <LabelInput>
                                 Sort
                                 <select
                                     id="sort"
                                     className="dropdown"
                                 >
                                     <option value="Chance">Chance</option>
-                                </select>
-                            </LabelInput>
-                            <LabelInput>
-                                Already Owned
-                                <select
-                                    id="own"
-                                    className="dropdown"
-                                >
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
                                 </select>
                             </LabelInput>
                         </div>

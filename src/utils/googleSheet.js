@@ -54,6 +54,10 @@ async function getBreedingData(values) {
                         range: 'Breeding Sim!P3',
                         values: [[formData.own]],
                     },
+                    {
+                        range: 'Breeding Sim!Q3:R3',
+                        values: [[formData.targetDragon]],
+                    },
                 ],
             },
         })
