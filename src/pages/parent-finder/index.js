@@ -168,7 +168,7 @@ export default function Home() {
                                                 height="50"
                                                 alt={`${
                                                     row[0].split('+')[0]
-                                                } Egg`}
+                                                } Dragon Egg`}
                                                 src={`https://namethategg.com/eggs/${transformToEggName(
                                                     row[0].split('+')[0]
                                                 )}.png`}
@@ -177,7 +177,7 @@ export default function Home() {
                                                 height="50"
                                                 alt={`${
                                                     row[0].split('+')[1]
-                                                } Egg`}
+                                                } Dragon Egg`}
                                                 src={`https://namethategg.com/eggs/${transformToEggName(
                                                     row[0].split('+')[1]
                                                 )}.png`}

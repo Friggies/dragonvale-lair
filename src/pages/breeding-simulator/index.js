@@ -192,7 +192,7 @@ export default function Home() {
                                     <td>
                                         <img
                                             height="50"
-                                            alt={`${row[0]} Egg`}
+                                            alt={`${row[0]} Dragon Egg`}
                                             src={`https://namethategg.com/eggs/${transformToEggName(
                                                 row[0]
                                             )}.png`}

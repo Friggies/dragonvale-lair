@@ -34,7 +34,7 @@ export default function InformationString({ string }) {
                                     <img
                                         key={img}
                                         height="60"
-                                        alt={img}
+                                        alt={img + 'Dragon Egg'}
                                         src={`https://namethategg.com/eggs/${transformToEggName(
                                             img
                                         )}.png`}
@@ -50,7 +50,7 @@ export default function InformationString({ string }) {
                                     <img
                                         key={img}
                                         height="60"
-                                        alt={img}
+                                        alt={img + 'Element Falg'}
                                         src={`/flags/${img}.webp`}
                                     />
                                 )
@@ -60,7 +60,7 @@ export default function InformationString({ string }) {
                                     <img
                                         key={img}
                                         height="60"
-                                        alt={img}
+                                        alt={img + 'Dragon Egg'}
                                         src={`https://namethategg.com/eggs/${transformToEggName(
                                             img
                                         )}.png`}
