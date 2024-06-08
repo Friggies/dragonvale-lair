@@ -1,3 +1,5 @@
+import transformToEggName from '@/utils/transformToEggName'
+
 export default function InformationString({ string }) {
     if (!string) {
         return <p>No information available.</p>
@@ -33,13 +35,9 @@ export default function InformationString({ string }) {
                                         key={img}
                                         height="60"
                                         alt={img}
-                                        src={`https://namethategg.com/eggs/${img
-                                            .replace('LoveyDovey', 'Loveydovey')
-                                            .replace(
-                                                'PrickleFluff',
-                                                'Pricklefluff'
-                                            )
-                                            .replace(/\s\d+/g, '')}.png`}
+                                        src={`https://namethategg.com/eggs/${transformToEggName(
+                                            img
+                                        )}.png`}
                                     />
                                 )
                             } else if (
@@ -63,13 +61,9 @@ export default function InformationString({ string }) {
                                         key={img}
                                         height="60"
                                         alt={img}
-                                        src={`https://namethategg.com/eggs/${img
-                                            .replace('LoveyDovey', 'Loveydovey')
-                                            .replace(
-                                                'PrickleFluff',
-                                                'Pricklefluff'
-                                            )
-                                            .replace(/\s\d+/g, '')}.png`}
+                                        src={`https://namethategg.com/eggs/${transformToEggName(
+                                            img
+                                        )}.png`}
                                     />
                                 )
                             }
