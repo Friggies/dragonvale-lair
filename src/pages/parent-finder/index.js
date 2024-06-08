@@ -6,6 +6,7 @@ import LabelButton from '@/components/LabelButton'
 import Select from 'react-select'
 import dragons from '/public/dragons.json'
 import InformationString from '@/components/InformationString'
+import transformToEggName from '@/utils/transformToEggName'
 
 export default function Home() {
     const [data, setData] = useState([])
@@ -168,40 +169,18 @@ export default function Home() {
                                                 alt={`${
                                                     row[0].split('+')[0]
                                                 } Egg`}
-                                                src={`https://namethategg.com/eggs/${row[0]
-                                                    .split('+')[0]
-                                                    .replace(
-                                                        'LoveyDovey',
-                                                        'Loveydovey'
-                                                    )
-                                                    .replace(
-                                                        'PrickleFluff',
-                                                        'Pricklefluff'
-                                                    )
-                                                    .replace(
-                                                        /\s\d+/g,
-                                                        ''
-                                                    )}.png`}
+                                                src={`https://namethategg.com/eggs/${transformToEggName(
+                                                    row[0].split('+')[0]
+                                                )}.png`}
                                             />
                                             <img
                                                 height="50"
                                                 alt={`${
                                                     row[0].split('+')[1]
                                                 } Egg`}
-                                                src={`https://namethategg.com/eggs/${row[0]
-                                                    .split('+')[1]
-                                                    .replace(
-                                                        'LoveyDovey',
-                                                        'Loveydovey'
-                                                    )
-                                                    .replace(
-                                                        'PrickleFluff',
-                                                        'Pricklefluff'
-                                                    )
-                                                    .replace(
-                                                        /\s\d+/g,
-                                                        ''
-                                                    )}.png`}
+                                                src={`https://namethategg.com/eggs/${transformToEggName(
+                                                    row[0].split('+')[1]
+                                                )}.png`}
                                             />
                                         </td>
                                         <td>{row[0].replace('+', ' + ')}</td>
