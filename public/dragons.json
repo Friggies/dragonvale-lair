@@ -5878,5 +5878,12 @@
         "elements": "['Treasure', 'Earth', 'Metal', 'Fire']",
         "date": "May 30, 2024",
         "event": "Upheaval of the Medieval"
+    },
+    {
+        "number": 841,
+        "name": "Nimue",
+        "elements": "['Water', 'Dark', 'Air']",
+        "date": "June 6, 2024",
+        "event": "Upheaval of the Medieval"
     }
 ]
