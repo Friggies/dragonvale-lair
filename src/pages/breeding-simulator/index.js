@@ -294,7 +294,7 @@ export default function Home() {
                     <div className="dialog__content">
                         <div className="row row--toColumn">
                             <LabelInput>
-                                <abbr title="Bring Em Back">BeB</abbr>
+                                Bring Em Back
                                 <select
                                     id="beb"
                                     className="dropdown"
