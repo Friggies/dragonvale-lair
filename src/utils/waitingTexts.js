@@ -13,7 +13,7 @@ const waitingTexts = [
     'Asking Kairos to speed things up...',
     'Praising Quil for The DragonVale Compendium...',
     'Check out the DragonVale Reddit community.',
-    'Check out the DragonVale Forum community.',
+    'Check out the DragonVale Community Forum.',
     'Using data from The DragonVale Compendium.',
     'Have you tried The DragonVale Sandbox?',
     "The Blue Fire Dragon's breath is hotter!",
