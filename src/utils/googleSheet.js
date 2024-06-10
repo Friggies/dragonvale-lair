@@ -68,9 +68,20 @@ async function getBreedingData(values) {
         })
 
         let currentBreedingResults = splitArrayBreeding(response.data.values)
-        currentBreedingResults.sort(
-            (a, b) => b[1].replace('%', '') - a[1].replace('%', '')
-        )
+        const sort = formData.sort
+        if (sort === 'TimeAsc') {
+            currentBreedingResults.sort(
+                (a, b) => a[2].replaceAll(':', '') - b[2].replaceAll(':', '')
+            )
+        } else if (sort === 'TimeDesc') {
+            currentBreedingResults.sort(
+                (a, b) => b[2].replaceAll(':', '') - a[2].replaceAll(':', '')
+            )
+        } else if (sort === 'ChanceDesc') {
+            currentBreedingResults.sort(
+                (a, b) => b[1].replace('%', '') - a[1].replace('%', '')
+            )
+        }
 
         return currentBreedingResults
     } catch (error) {

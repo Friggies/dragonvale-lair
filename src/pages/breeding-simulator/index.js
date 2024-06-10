@@ -386,7 +386,15 @@ export default function Home() {
                                     id="sort"
                                     className="dropdown"
                                 >
-                                    <option value="Chance">Chance</option>
+                                    <option value="TimeAsc">
+                                        Ascending Incubation Time
+                                    </option>
+                                    <option value="TimeDesc">
+                                        Descending Incubation Time
+                                    </option>
+                                    <option value="ChanceDesc">
+                                        Descending Chance
+                                    </option>
                                 </select>
                             </LabelInput>
                         </div>
