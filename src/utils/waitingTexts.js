@@ -19,5 +19,8 @@ const waitingTexts = [
     "The Blue Fire Dragon's breath is hotter!",
     'Is it safe to hug the cute Blazing Dragon?',
     'Checking for limited dragons...',
+    'Who let the dargons out?',
+    'Sorry, I got distracted by Name That Egg.',
+    'TODO: Write something funny before release.',
 ]
 export default waitingTexts
