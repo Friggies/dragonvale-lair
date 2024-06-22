@@ -1,3 +1,5 @@
+import allDragons from '../../public/dragons.json'
+
 const { google } = require('googleapis')
 const { default: splitArrayBreeding } = require('./splitArrayBreeding')
 const { default: splitArrayParent } = require('./splitArrayParent')
@@ -146,9 +148,45 @@ async function getParentData(values) {
         currentBreedingResults = splitArrayParent(
             allBreedingResults.data.values
         )
-        currentBreedingResults.sort(
-            (a, b) => b[1].replace(/\D+/g, '') - a[1].replace(/\D+/g, '')
-        )
+
+        currentBreedingResults.forEach((result) => {
+            function getWeightForAvailability(dragon) {
+                return dragon.availability === 'LIMITED' ? 30 : 0
+            }
+            function getWeightForRarity(dragon) {
+                switch (dragon.rarity) {
+                    case 'Hybrid':
+                        return 10
+                    case 'Rare':
+                        return 20
+                    case 'Epic':
+                    case 'Galaxy':
+                        return 30
+                    default:
+                        return 0
+                }
+            }
+
+            function calculateWeight(firstDragon, secondDragon) {
+                let weight = 0
+                weight += getWeightForAvailability(firstDragon)
+                weight += getWeightForAvailability(secondDragon)
+                weight += getWeightForRarity(firstDragon)
+                weight += getWeightForRarity(secondDragon)
+                return weight
+            }
+
+            const firstDragon = allDragons.find(
+                (dragon) => dragon.name === result[0].split('+')[0]
+            )
+            const secondDragon = allDragons.find(
+                (dragon) => dragon.name === result[0].split('+')[1]
+            )
+
+            result.weight = calculateWeight(firstDragon, secondDragon)
+        })
+
+        currentBreedingResults.sort((a, b) => a.weight - b.weight)
 
         return [currentBreedingResults, informationString]
     } catch (error) {
