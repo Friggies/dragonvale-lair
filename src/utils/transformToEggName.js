@@ -5,8 +5,8 @@ function transformToEggName(string) {
     //all spaces are replaced with dashes
     string = string.replaceAll(' ', '-')
 
-    //for monolith and snowflake, remove number following a space as they have the sam egg image
-    string = string.replace(/\s\d+/g, '')
+    //for monolith and snowflake, remove number following a dash as they have the same egg image
+    string = string.replace(/-\d+/g, '')
 
     //return final string
     return string
