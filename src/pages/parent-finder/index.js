@@ -81,8 +81,7 @@ export default function Home() {
     }
 
     const options = dragons.map((dragon) => {
-        if (dragon.name.includes(', the Legendary')) return {}
-        if (dragon.name.includes('Bahamut the Benevolent')) return {}
+        if (dragon.rarity.includes('Legendary')) return {}
         return {
             value: dragon.name,
             label: dragon.name,
