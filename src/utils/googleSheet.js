@@ -128,25 +128,29 @@ async function getParentData(values) {
             },
         })
 
-        const relevantBreedingString = await sheets.spreadsheets.values.get({
-            spreadsheetId,
-            range: 'Combo Finder!A4:M5',
-        })
-        const informationString = relevantBreedingString.data.values[0][0]
+        const getUpdatedParentsData = await sheets.spreadsheets.values.batchGet(
+            {
+                spreadsheetId,
+                ranges: [
+                    'Combo Finder!A4:M5', // relevantBreedingString
+                    'Combo Finder!A8:W57', // allBreedingResults
+                ],
+            }
+        )
 
-        const allBreedingResults = await sheets.spreadsheets.values.get({
-            spreadsheetId,
-            range: 'Combo Finder!A8:W57',
-        })
+        const informationString =
+            getUpdatedParentsData.data.valueRanges[0].values[0][0]
 
         let currentBreedingResults
-        if (allBreedingResults.data.values[0][1] === undefined) {
+        if (
+            getUpdatedParentsData.data.valueRanges[1].values[0][1] === undefined
+        ) {
             currentBreedingResults = 'NODATA'
             return [currentBreedingResults, informationString]
         }
 
         currentBreedingResults = splitArrayParent(
-            allBreedingResults.data.values
+            getUpdatedParentsData.data.valueRanges[1].values
         )
 
         currentBreedingResults.forEach((result) => {
