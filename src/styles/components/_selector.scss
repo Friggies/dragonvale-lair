@@ -28,9 +28,9 @@
     }
     &__option {
         cursor: pointer !important;
-        &:hover {
-            background-color: $color--light;
+        &--is-focused {
             border-radius: 0.5rem;
+            background-color: $color--dark;
         }
     }
 }
