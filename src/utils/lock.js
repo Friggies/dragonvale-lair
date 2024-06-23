@@ -9,7 +9,9 @@ export default class Lock {
             this.locked = true
             return
         }
-        return new Promise((resolve) => this.queue.push(resolve))
+        return new Promise((resolve) => {
+            this.queue.push(resolve)
+        })
     }
 
     release() {
