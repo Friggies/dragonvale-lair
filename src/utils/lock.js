@@ -4,16 +4,15 @@ export default class Lock {
         this.queue = []
     }
 
-    async acquire() {
-        await new Promise((resolve) => setTimeout(resolve, 100))
-
+    acquire() {
         if (!this.locked) {
             this.locked = true
-            return true
+            return Promise.resolve()
+        } else {
+            return new Promise((resolve) => {
+                this.queue.push(resolve)
+            })
         }
-        return new Promise((resolve) => {
-            this.queue.push(resolve)
-        })
     }
 
     release() {
