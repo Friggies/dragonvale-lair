@@ -5,6 +5,8 @@ export default class Lock {
     }
 
     async acquire() {
+        await new Promise((resolve) => setTimeout(resolve, 100))
+
         if (!this.locked) {
             this.locked = true
             return
