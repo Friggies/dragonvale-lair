@@ -15,6 +15,7 @@ export default class Lock {
     release() {
         if (this.queue.length > 0) {
             const next = this.queue.shift()
+            console.log('Queue: ' + (this.queue.length + 1))
             next()
         } else {
             this.locked = false
