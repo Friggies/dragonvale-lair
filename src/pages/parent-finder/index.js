@@ -106,7 +106,7 @@ export default function Home() {
                 <section className="card">
                     <h1 className="card__title">Parent Finder</h1>
                     <form onSubmit={submitForm}>
-                        <div className="row row--toColumn">
+                        <div className="row">
                             <LabelInput label="Target Dragon">
                                 <Select
                                     className="selector"
