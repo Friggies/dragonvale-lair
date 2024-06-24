@@ -1,7 +1,7 @@
 import { getParentData } from '@/utils/googleSheet'
 import Lock from '@/utils/lock.js'
 
-const lock = new Lock()
+const lock = new Lock('parent_finder_lock')
 
 export const config = {
     maxDuration: 60,

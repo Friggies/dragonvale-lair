@@ -1,26 +1,27 @@
-export default class Lock {
-    constructor() {
-        this.locked = false
-        this.queue = []
+const Redis = require('ioredis')
+const redis = new Redis(process.env.KV_URL, {
+    password: process.env.KV_REST_API_TOKEN,
+    tls: {
+        rejectUnauthorized: true,
+    },
+})
+
+class Lock {
+    constructor(lockKey) {
+        this.lockKey = lockKey
     }
 
-    acquire() {
-        if (!this.locked) {
-            this.locked = true
-            return Promise.resolve()
-        } else {
-            return new Promise((resolve) => {
-                this.queue.push(resolve)
-            })
+    async acquire() {
+        while (true) {
+            const lock = await redis.set(this.lockKey, 'locked', 'NX', 'EX', 60)
+            if (lock) return
+            await new Promise((resolve) => setTimeout(resolve, 100))
         }
     }
 
-    release() {
-        if (this.queue.length > 0) {
-            const next = this.queue.shift()
-            next()
-        } else {
-            this.locked = false
-        }
+    async release() {
+        await redis.del(this.lockKey)
     }
 }
+
+module.exports = Lock

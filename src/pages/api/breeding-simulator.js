@@ -1,7 +1,7 @@
 import { getBreedingData } from '@/utils/googleSheet'
 import Lock from '@/utils/lock.js'
 
-const lock = new Lock()
+const lock = new Lock('breeding_simulator_lock')
 
 export const config = {
     maxDuration: 60,
