@@ -194,7 +194,6 @@ async function getParentData(values) {
 
         return [currentBreedingResults, informationString]
     } catch (error) {
-        console.error('Error in getParentData:', error)
         throw error
     }
 }
