@@ -16,7 +16,13 @@ export default function InformationString({ string }) {
             ? firstSection[1] + ': ' + firstSection[2]
             : firstSection[1]
 
-    const generalTipImages = generalTip.split('+')
+    let generalTipImages = generalTip.split('+')
+    if (generalTipImages[0] === '  ') {
+        generalTipImages[0] = firstSection[0]
+            .toLowerCase()
+            .replace(/^(.*?)\s.*/, '$1')
+    }
+    console.log(generalTipImages)
 
     return (
         <div className="row row--toColumn">
