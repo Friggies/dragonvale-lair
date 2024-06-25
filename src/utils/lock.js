@@ -34,27 +34,29 @@ class Lock {
                 (existingLock.locked &&
                     now - new Date(existingLock.updated_at) > this.timeout)
             ) {
-                const { data, error: upsertError } = await supabase
+                const { data, error: updateError } = await supabase
                     .from('locks')
-                    .upsert(
-                        {
-                            lock_key: this.lockKey,
-                            locked: true,
-                            updated_at: now,
-                        },
-                        { onConflict: ['lock_key'] }
-                    )
+                    .update({
+                        locked: true,
+                        updated_at: now,
+                    })
+                    .eq('lock_key', this.lockKey)
+                    .select()
 
-                if (upsertError) {
-                    console.error('Error upserting lock:', upsertError)
-                    if (upsertError.code === '23505') {
+                if (updateError) {
+                    console.error('Error upserting lock:', updateError)
+                    if (updateError?.code === '23505') {
                         console.log('Lock got taken (retrying)')
                     } else {
                         throw new Error('Error acquiring lock')
                     }
+                } else if (
+                    data[0].updated_at !==
+                    now.toISOString().replace('Z', '+00:00')
+                ) {
+                    console.log('Lock got taken (retrying)')
                 } else {
                     console.log('Lock acquired successfully')
-                    console.log(data)
                     this.isLocked = true
                     return // Lock acquired
                 }
@@ -65,7 +67,7 @@ class Lock {
             }
 
             await new Promise((resolve) =>
-                setTimeout(resolve, 250 + Math.floor(Math.random() * 251))
+                setTimeout(resolve, 333 + Math.floor(Math.random() * 1500))
             )
         }
     }
