@@ -1,10 +1,8 @@
-const Redis = require('ioredis')
-const redis = new Redis(process.env.KV_URL, {
-    password: process.env.KV_REST_API_TOKEN,
-    tls: {
-        rejectUnauthorized: true,
-    },
-})
+const { createClient } = require('@supabase/supabase-js')
+
+const supabaseUrl = process.env.SUPABASE_URL
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 class Lock {
     constructor(lockKey) {
@@ -13,14 +11,50 @@ class Lock {
 
     async acquire() {
         while (true) {
-            const lock = await redis.set(this.lockKey, 'locked', 'NX', 'EX', 60)
-            if (lock) return
-            await new Promise((resolve) => setTimeout(resolve, 100))
+            try {
+                // Check if the lock already exists
+                const { data: existingLock } = await supabase
+                    .from('locks')
+                    .select('locked')
+                    .eq('lock_key', this.lockKey)
+                    .single()
+
+                if (!existingLock) {
+                    // Try to acquire the lock by inserting the lock record
+                    const { error } = await supabase
+                        .from('locks')
+                        .insert({ lock_key: this.lockKey, locked: true })
+
+                    if (error) {
+                        // If another lock record has been inserted already
+                        if (error.code === '23505') {
+                            throw new Error('Lock got taken (retrying)')
+                        }
+                        throw new Error('Error acquiring lock')
+                    }
+                    return // Lock acquired
+                }
+            } catch (error) {
+                console.error(error)
+            }
+
+            await new Promise((resolve) => setTimeout(resolve, 250))
         }
     }
 
     async release() {
-        await redis.del(this.lockKey)
+        try {
+            const { error } = await supabase
+                .from('locks')
+                .delete()
+                .eq('lock_key', this.lockKey)
+
+            if (error) {
+                throw new Error('Error releasing lock')
+            }
+        } catch (error) {
+            console.error(error)
+        }
     }
 }
 
