@@ -45,6 +45,7 @@ export default async function addStatistic(table) {
                 throw new Error(`Could not create new ${table} statistic`)
             }
         } else {
+            console.error(error)
             throw new Error(`Could not get hits from ${table} statistics`)
         }
     } catch (error) {
