@@ -4,7 +4,7 @@ const supabaseKey = process.env.SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 class Lock {
-    constructor(lockKey, timeout = 5000, retryAttempts = 3, retryDelay = 500) {
+    constructor(lockKey, timeout = 30000, retryAttempts = 5, retryDelay = 500) {
         this.lockKey = lockKey
         this.timeout = timeout
         this.retryAttempts = retryAttempts
@@ -54,6 +54,7 @@ class Lock {
                     }
                 } else {
                     console.log('Lock acquired successfully')
+                    console.log(data)
                     this.isLocked = true
                     return // Lock acquired
                 }
@@ -64,7 +65,7 @@ class Lock {
             }
 
             await new Promise((resolve) =>
-                setTimeout(resolve, 250 + Math.floor(Math.random() * 100))
+                setTimeout(resolve, 250 + Math.floor(Math.random() * 251))
             )
         }
     }
