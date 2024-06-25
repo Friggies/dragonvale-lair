@@ -67,7 +67,7 @@ class Lock {
             }
 
             await new Promise((resolve) =>
-                setTimeout(resolve, 333 + Math.floor(Math.random() * 1500))
+                setTimeout(resolve, Math.floor(Math.random() * 2901) + 100)
             )
         }
     }
