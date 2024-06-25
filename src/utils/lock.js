@@ -5,8 +5,12 @@ const supabaseKey = process.env.SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 class Lock {
-    constructor(lockKey) {
+    constructor(lockKey, timeout = 30000, retryAttempts = 3, retryDelay = 500) {
+        // retryAttempts and retryDelay for release retries
         this.lockKey = lockKey
+        this.timeout = timeout
+        this.retryAttempts = retryAttempts
+        this.retryDelay = retryDelay
     }
 
     async acquire() {
@@ -29,7 +33,7 @@ class Lock {
                 !existingLock ||
                 !existingLock.locked ||
                 (existingLock.locked &&
-                    now - new Date(existingLock.updated_at) > 30000)
+                    now - new Date(existingLock.updated_at) > this.timeout)
             ) {
                 const { data, error: upsertError } = await supabase
                     .from('locks')
@@ -56,17 +60,17 @@ class Lock {
             }
 
             // Check if the timeout has been reached
-            if (Date.now() - startTime >= 30000) {
+            if (Date.now() - startTime >= this.timeout) {
                 throw new Error('Timeout acquiring lock')
             }
 
             await new Promise((resolve) =>
-                setTimeout(resolve, 250 + Math.floor(Math.random() * 501))
+                setTimeout(resolve, 250 + Math.floor(Math.random() * 100))
             )
         }
     }
 
-    async release() {
+    async release(attempt = 1) {
         try {
             const { error: updateError } = await supabase
                 .from('locks')
@@ -79,7 +83,17 @@ class Lock {
             }
             console.log('Lock released successfully')
         } catch (error) {
-            console.error('Error in release:', error)
+            console.error(`Error in release attempt ${attempt}:`, error)
+            if (attempt < this.retryAttempts) {
+                await new Promise((resolve) =>
+                    setTimeout(resolve, this.retryDelay)
+                )
+                return this.release(attempt + 1)
+            } else {
+                throw new Error(
+                    'Failed to release lock after multiple attempts'
+                )
+            }
         }
     }
 }
