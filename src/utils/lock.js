@@ -1,16 +1,15 @@
 const { createClient } = require('@supabase/supabase-js')
-
 const supabaseUrl = process.env.SUPABASE_URL
 const supabaseKey = process.env.SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 class Lock {
-    constructor(lockKey, timeout = 30000, retryAttempts = 3, retryDelay = 500) {
-        // retryAttempts and retryDelay for release retries
+    constructor(lockKey, timeout = 5000, retryAttempts = 3, retryDelay = 500) {
         this.lockKey = lockKey
         this.timeout = timeout
         this.retryAttempts = retryAttempts
         this.retryDelay = retryDelay
+        this.isLocked = false
     }
 
     async acquire() {
@@ -55,11 +54,11 @@ class Lock {
                     }
                 } else {
                     console.log('Lock acquired successfully')
+                    this.isLocked = true
                     return // Lock acquired
                 }
             }
 
-            // Check if the timeout has been reached
             if (Date.now() - startTime >= this.timeout) {
                 throw new Error('Timeout acquiring lock')
             }
@@ -71,6 +70,10 @@ class Lock {
     }
 
     async release(attempt = 1) {
+        if (!this.isLocked) {
+            return
+        }
+
         try {
             const { error: updateError } = await supabase
                 .from('locks')
@@ -82,6 +85,7 @@ class Lock {
                 throw new Error('Error releasing lock')
             }
             console.log('Lock released successfully')
+            this.isLocked = false
         } catch (error) {
             console.error(`Error in release attempt ${attempt}:`, error)
             if (attempt < this.retryAttempts) {
