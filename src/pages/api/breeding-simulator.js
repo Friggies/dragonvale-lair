@@ -19,7 +19,7 @@ export default async function handler(req, res) {
         } catch (error) {
             res.status(500).json({ error: 'Failed to fetch data' })
         } finally {
-            lock.release()
+            await lock.release()
             addStatistic('breeding-simulator-statistics')
         }
     } else {
