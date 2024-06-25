@@ -1,3 +1,4 @@
+import addStatistic from '@/utils/addStatistic'
 import dragons from '/public/dragons.json'
 
 export const config = {
@@ -15,6 +16,8 @@ export default async function handler(req, res) {
             res.status(200).json(dragon)
         } catch (error) {
             res.status(500).json({ error: 'Failed to fetch data' })
+        } finally {
+            addStatistic('quest-matcher-statistics')
         }
     } else {
         res.setHeader('Allow', ['POST'])
