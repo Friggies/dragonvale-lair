@@ -19,11 +19,12 @@ class Lock {
                     .eq('lock_key', this.lockKey)
                     .single()
 
-                if (!existingLock) {
+                if (!existingLock.locked) {
                     // Try to acquire the lock by inserting the lock record
                     const { error } = await supabase
                         .from('locks')
-                        .insert({ lock_key: this.lockKey, locked: true })
+                        .update({ locked: true })
+                        .eq('lock_key', this.lockKey)
 
                     if (error) {
                         // If another lock record has been inserted already
@@ -38,7 +39,9 @@ class Lock {
                 console.error(error)
             }
 
-            await new Promise((resolve) => setTimeout(resolve, 250))
+            await new Promise((resolve) =>
+                setTimeout(resolve, 250 + Math.floor(Math.random() * 100))
+            )
         }
     }
 
@@ -46,7 +49,7 @@ class Lock {
         try {
             const { error } = await supabase
                 .from('locks')
-                .delete()
+                .update({ locked: false })
                 .eq('lock_key', this.lockKey)
 
             if (error) {
