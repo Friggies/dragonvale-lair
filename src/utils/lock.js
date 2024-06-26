@@ -4,11 +4,9 @@ const supabaseKey = process.env.SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 class Lock {
-    constructor(lockKey, timeout = 30000, retryAttempts = 5, retryDelay = 500) {
+    constructor(lockKey, timeout = 55000) {
         this.lockKey = lockKey
         this.timeout = timeout
-        this.retryAttempts = retryAttempts
-        this.retryDelay = retryDelay
         this.isLocked = false
     }
 
@@ -17,13 +15,14 @@ class Lock {
 
         while (true) {
             const now = new Date()
+
             const { data: existingLock, error: selectError } = await supabase
                 .from('locks')
                 .select('locked, updated_at')
                 .eq('lock_key', this.lockKey)
                 .single()
 
-            if (selectError) {
+            if (selectError && selectError.code !== 'PGRST116') {
                 console.error('Error selecting lock:', selectError)
                 throw new Error('Error selecting lock')
             }
@@ -41,21 +40,17 @@ class Lock {
                         updated_at: now,
                     })
                     .eq('lock_key', this.lockKey)
+                    .eq('locked', existingLock ? false : null)
                     .select()
 
                 if (updateError) {
-                    console.error('Error upserting lock:', updateError)
-                    if (updateError?.code === '23505') {
+                    console.error('Error updating lock:', updateError)
+                    if (updateError.code === 'PGRST116') {
                         console.log('Lock got taken (retrying)')
                     } else {
                         throw new Error('Error acquiring lock')
                     }
-                } else if (
-                    data[0].updated_at !==
-                    now.toISOString().replace('Z', '+00:00')
-                ) {
-                    console.log('Lock got taken (retrying)')
-                } else {
+                } else if (data && data.length > 0) {
                     console.log('Lock acquired successfully')
                     this.isLocked = true
                     return // Lock acquired
@@ -63,16 +58,16 @@ class Lock {
             }
 
             if (Date.now() - startTime >= this.timeout) {
-                throw new Error('Timeout acquiring lock')
+                console.error('Timeout acquiring lock')
             }
 
             await new Promise((resolve) =>
-                setTimeout(resolve, Math.floor(Math.random() * 2901) + 100)
+                setTimeout(resolve, Math.floor(Math.random() * 1001) + 100)
             )
         }
     }
 
-    async release(attempt = 1) {
+    async release() {
         if (!this.isLocked) {
             return
         }
@@ -90,17 +85,8 @@ class Lock {
             console.log('Lock released successfully')
             this.isLocked = false
         } catch (error) {
-            console.error(`Error in release attempt ${attempt}:`, error)
-            if (attempt < this.retryAttempts) {
-                await new Promise((resolve) =>
-                    setTimeout(resolve, this.retryDelay)
-                )
-                return this.release(attempt + 1)
-            } else {
-                throw new Error(
-                    'Failed to release lock after multiple attempts'
-                )
-            }
+            console.error('Error releasing lock:', error)
+            throw new Error('Failed to release lock')
         }
     }
 }
