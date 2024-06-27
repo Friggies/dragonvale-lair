@@ -1,13 +1,24 @@
 import transformToEggName from '@/utils/transformToEggName'
+import { useState, useEffect } from 'react'
 
 export default function InformationString({ string }) {
+    const [showEggColumn, setShowEggColumn] = useState(false)
+    const [generalTipImages, setGeneralTipImages] = useState([])
+
+    useEffect(() => {
+        if (generalTipImages.some((img) => img !== '')) {
+            setShowEggColumn(true)
+        } else {
+            setShowEggColumn(false)
+        }
+    }, [generalTipImages])
+
     if (!string) {
         return <p>No information available.</p>
     }
 
     const stringSections = string.split(',')
-    let firstSection = stringSections[0]
-    firstSection = firstSection.split(':')
+    let firstSection = stringSections[0].split(':')
 
     const generalTip =
         firstSection[1].includes('[') &&
@@ -16,31 +27,27 @@ export default function InformationString({ string }) {
             ? firstSection[1] + ': ' + firstSection[2]
             : firstSection[1]
 
-    let generalTipImages = generalTip.split('+')
-    if (generalTipImages[0] === '  ') {
-        generalTipImages[0] = firstSection[0]
-            .toLowerCase()
-            .replace(/^(.*?)\s.*/, '$1')
-    }
-    console.log(generalTipImages)
+    useEffect(() => {
+        setGeneralTipImages(generalTip.split('+').map((img) => img.trim()))
+    }, [generalTip])
 
     return (
         <div className="row row--toColumn">
-            {generalTipImages.length > 0 && (
+            {showEggColumn && (
                 <div className="column">
                     <div>
-                        {generalTipImages.map((img) => {
-                            img = img.trim()
-                            if (img.includes('[')) return
-                            if (img.includes(']')) return
+                        {generalTipImages.map((img, index) => {
+                            if (img.includes('[') || img.includes(']'))
+                                return null
+
                             if (img.includes('Evolve')) {
                                 const words = img.split(' ')
                                 img = words[words.length - 1]
                                 return (
                                     <img
-                                        key={img}
+                                        key={index}
                                         height="60"
-                                        alt={img + 'Dragon Egg'}
+                                        alt={img + ' Dragon Egg'}
                                         src={`https://namethategg.com/eggs/${transformToEggName(
                                             img
                                         )}.png`}
@@ -50,23 +57,21 @@ export default function InformationString({ string }) {
                                 img[0] === img[0]?.toLowerCase() &&
                                 img !== ''
                             ) {
-                                //element
                                 img = img[0]?.toUpperCase() + img.slice(1)
                                 return (
                                     <img
-                                        key={img}
+                                        key={index}
                                         height="60"
-                                        alt={img + 'Element Falg'}
+                                        alt={img + ' Element Flag'}
                                         src={`/flags/${img}.webp`}
                                     />
                                 )
                             } else {
-                                //dragon
                                 return (
                                     <img
-                                        key={img}
+                                        key={index}
                                         height="60"
-                                        alt={img + 'Dragon Egg'}
+                                        alt={img + ' Dragon Egg'}
                                         src={`https://namethategg.com/eggs/${transformToEggName(
                                             img
                                         )}.png`}
