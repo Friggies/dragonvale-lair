@@ -17,7 +17,11 @@ export default async function handler(req, res) {
         } catch (error) {
             res.status(500).json({ error: 'Failed to fetch data' })
         } finally {
-            addStatistic('quest-matcher-statistics')
+            try {
+                addStatistic('quest-matcher-statistics')
+            } catch (statError) {
+                console.error('Error updating statistics:', statError)
+            }
         }
     } else {
         res.setHeader('Allow', ['POST'])
