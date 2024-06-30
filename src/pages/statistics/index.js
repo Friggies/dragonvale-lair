@@ -52,44 +52,56 @@ export default function Home() {
             <main className="main">
                 <section className="card">
                     <h1 className="card__title">Statistics</h1>
-                    <h2>Breeding Simulator Statistics</h2>
+                    <h2>Breeding Simulator</h2>
                     <ol className="column">
-                        {breedingSimulatorStatistics.map((stat) => {
-                            const isPlural = stat.hits !== 1 ? 's' : ''
-                            const year = stat.yearMonth.split('-')[0]
-                            const month = getMonthName(
-                                stat.yearMonth.split('-')[1]
-                            )
-                            return (
-                                <li>{`${month} ${year}: ${stat.hits} request${isPlural}`}</li>
-                            )
-                        })}
+                        {breedingSimulatorStatistics.length === 0 ? (
+                            <p>Loading...</p>
+                        ) : (
+                            breedingSimulatorStatistics.map((stat) => {
+                                const isPlural = stat.hits !== 1 ? 's' : ''
+                                const year = stat.yearMonth.split('-')[0]
+                                const month = getMonthName(
+                                    stat.yearMonth.split('-')[1]
+                                )
+                                return (
+                                    <li>{`${month} ${year}: ${stat.hits} request${isPlural}`}</li>
+                                )
+                            })
+                        )}
                     </ol>
-                    <h2>Parnet Finder Statistics</h2>
+                    <h2>Parnet Finder</h2>
                     <ol className="column">
-                        {parentFinderStatistics.map((stat) => {
-                            const isPlural = stat.hits !== 1 ? 's' : ''
-                            const year = stat.yearMonth.split('-')[0]
-                            const month = getMonthName(
-                                stat.yearMonth.split('-')[1]
-                            )
-                            return (
-                                <li>{`${month} ${year}: ${stat.hits} request${isPlural}`}</li>
-                            )
-                        })}
+                        {parentFinderStatistics.length === 0 ? (
+                            <p>Loading...</p>
+                        ) : (
+                            parentFinderStatistics.map((stat) => {
+                                const isPlural = stat.hits !== 1 ? 's' : ''
+                                const year = stat.yearMonth.split('-')[0]
+                                const month = getMonthName(
+                                    stat.yearMonth.split('-')[1]
+                                )
+                                return (
+                                    <li>{`${month} ${year}: ${stat.hits} request${isPlural}`}</li>
+                                )
+                            })
+                        )}
                     </ol>
-                    <h2>Quest Matcher Statistics</h2>
+                    <h2>Quest Matcher</h2>
                     <ol className="column">
-                        {questMatcherStatistics.map((stat) => {
-                            const isPlural = stat.hits !== 1 ? 's' : ''
-                            const year = stat.yearMonth.split('-')[0]
-                            const month = getMonthName(
-                                stat.yearMonth.split('-')[1]
-                            )
-                            return (
-                                <li>{`${month} ${year}: ${stat.hits} request${isPlural}`}</li>
-                            )
-                        })}
+                        {questMatcherStatistics.length === 0 ? (
+                            <p>Loading...</p>
+                        ) : (
+                            questMatcherStatistics.map((stat) => {
+                                const isPlural = stat.hits !== 1 ? 's' : ''
+                                const year = stat.yearMonth.split('-')[0]
+                                const month = getMonthName(
+                                    stat.yearMonth.split('-')[1]
+                                )
+                                return (
+                                    <li>{`${month} ${year}: ${stat.hits} request${isPlural}`}</li>
+                                )
+                            })
+                        )}
                     </ol>
                 </section>
             </main>
