@@ -33,6 +33,7 @@ export default async function addStatistic(table) {
             .single()
 
         if (selectError) {
+            console.log(selectError)
             if (selectError.code === 'PGRST116') {
                 console.log(
                     `No entry found for ${yearMonth}, inserting new record`
