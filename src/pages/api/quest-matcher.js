@@ -14,14 +14,9 @@ export default async function handler(req, res) {
             const quest = formData.targetQuest
             const dragon = dragons.find((dragon) => dragon.quest === quest)
             res.status(200).json(dragon)
+            addStatistic('quest-matcher-statistics')
         } catch (error) {
             res.status(500).json({ error: 'Failed to fetch data' })
-        } finally {
-            try {
-                await addStatistic('parent-finder-statistics')
-            } catch (statError) {
-                console.error('Error updating statistics:', statError)
-            }
         }
     } else {
         res.setHeader('Allow', ['POST'])
