@@ -9,14 +9,20 @@ export default async function handler(req, res) {
     const { method } = req
 
     if (method === 'POST') {
+        let dragon
         try {
             const formData = JSON.parse(req.body)
             const quest = formData.targetQuest
-            const dragon = dragons.find((dragon) => dragon.quest === quest)
-            res.status(200).json(dragon)
-            addStatistic('quest-matcher-statistics')
+            dragon = dragons.find((dragon) => dragon.quest === quest)
         } catch (error) {
             res.status(500).json({ error: 'Failed to fetch data' })
+        } finally {
+            res.status(200).json(dragon)
+            try {
+                addStatistic('quest-matcher-statistics')
+            } catch (statError) {
+                console.error('Error updating statistics:', statError)
+            }
         }
     } else {
         res.setHeader('Allow', ['POST'])
