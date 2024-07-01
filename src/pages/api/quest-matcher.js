@@ -16,6 +16,7 @@ export default async function handler(req, res) {
             const dragon = dragons.find((dragon) => dragon.quest === quest)
             res.status(200).json(dragon)
         } catch (error) {
+            console.error(error)
             res.status(500).json({ error: 'Failed to fetch data' })
         }
     } else {

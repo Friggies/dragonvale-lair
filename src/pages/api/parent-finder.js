@@ -21,15 +21,13 @@ export default async function handler(req, res) {
             data = await getParentData(req.body)
         } catch (error) {
             console.error(error)
-            res.status(500).json({ error: 'Failed to fetch data' })
             try {
                 await lock.release()
                 lockReleased = true
             } catch (releaseError) {
-                console.error(
-                    'Error releasing lock after failure:',
-                    releaseError
-                )
+                console.error(releaseError)
+            } finally {
+                res.status(500).json({ error: 'Failed to fetch data' })
             }
             return
         } finally {
@@ -37,7 +35,7 @@ export default async function handler(req, res) {
                 try {
                     await lock.release()
                 } catch (releaseError) {
-                    console.error('Error releasing lock:', releaseError)
+                    console.error(releaseError)
                 }
             }
         }
