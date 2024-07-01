@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         if (data) {
             res.status(200).json(data)
             try {
-                addStatistic('breeding-simulator-statistics')
+                await addStatistic('breeding-simulator-statistics')
             } catch (statError) {
                 console.error('Error updating statistics:', statError)
             }

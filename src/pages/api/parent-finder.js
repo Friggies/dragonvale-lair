@@ -45,7 +45,7 @@ export default async function handler(req, res) {
         if (data) {
             res.status(200).json(data)
             try {
-                addStatistic('parent-finder-statistics')
+                await addStatistic('parent-finder-statistics')
             } catch (statError) {
                 console.error('Error updating statistics:', statError)
             }
