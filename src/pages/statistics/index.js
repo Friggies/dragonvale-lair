@@ -18,14 +18,17 @@ export default function Home() {
         let { data: breedingSimulatorStatistics } = await supabase
             .from('breeding-simulator-statistics')
             .select('*')
+            .order('yearMonth', { ascending: false })
 
         let { data: parentFinderStatistics } = await supabase
             .from('parent-finder-statistics')
             .select('*')
+            .order('yearMonth', { ascending: false })
 
         let { data: questMatcherStatistics } = await supabase
             .from('quest-matcher-statistics')
             .select('*')
+            .order('yearMonth', { ascending: false })
 
         setBreedingSimulatorStatistics(breedingSimulatorStatistics)
         setParentFinderStatistics(parentFinderStatistics)
@@ -58,13 +61,13 @@ export default function Home() {
                             <p>Loading...</p>
                         ) : (
                             breedingSimulatorStatistics.map((stat) => {
-                                const isPlural = stat.hits !== 1 ? 's' : ''
-                                const year = stat.yearMonth.split('-')[0]
-                                const month = getMonthName(
-                                    stat.yearMonth.split('-')[1]
-                                )
+                                const hits = stat.hits - 1
+                                const isPlural = hits !== 1 ? 's' : ''
+                                const [year, month] = stat.yearMonth.split('-')
                                 return (
-                                    <li>{`${month} ${year}: ${stat.hits} request${isPlural}`}</li>
+                                    <li>{`${getMonthName(
+                                        month
+                                    )} ${year}: ${hits} request${isPlural}`}</li>
                                 )
                             })
                         )}
@@ -75,13 +78,13 @@ export default function Home() {
                             <p>Loading...</p>
                         ) : (
                             parentFinderStatistics.map((stat) => {
-                                const isPlural = stat.hits !== 1 ? 's' : ''
-                                const year = stat.yearMonth.split('-')[0]
-                                const month = getMonthName(
-                                    stat.yearMonth.split('-')[1]
-                                )
+                                const hits = stat.hits - 1
+                                const isPlural = hits !== 1 ? 's' : ''
+                                const [year, month] = stat.yearMonth.split('-')
                                 return (
-                                    <li>{`${month} ${year}: ${stat.hits} request${isPlural}`}</li>
+                                    <li>{`${getMonthName(
+                                        month
+                                    )} ${year}: ${hits} request${isPlural}`}</li>
                                 )
                             })
                         )}
@@ -92,13 +95,13 @@ export default function Home() {
                             <p>Loading...</p>
                         ) : (
                             questMatcherStatistics.map((stat) => {
-                                const isPlural = stat.hits !== 1 ? 's' : ''
-                                const year = stat.yearMonth.split('-')[0]
-                                const month = getMonthName(
-                                    stat.yearMonth.split('-')[1]
-                                )
+                                const hits = stat.hits - 1
+                                const isPlural = hits !== 1 ? 's' : ''
+                                const [year, month] = stat.yearMonth.split('-')
                                 return (
-                                    <li>{`${month} ${year}: ${stat.hits} request${isPlural}`}</li>
+                                    <li>{`${getMonthName(
+                                        month
+                                    )} ${year}: ${hits} request${isPlural}`}</li>
                                 )
                             })
                         )}
