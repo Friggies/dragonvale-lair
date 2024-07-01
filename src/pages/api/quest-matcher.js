@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 
     if (method === 'POST') {
         try {
-            addStatistic('quest-matcher-statistics')
+            await addStatistic('quest-matcher-statistics')
             const formData = JSON.parse(req.body)
             const quest = formData.targetQuest
             const dragon = dragons.find((dragon) => dragon.quest === quest)

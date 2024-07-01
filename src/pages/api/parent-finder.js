@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         let lockReleased = false
 
         try {
-            addStatistic('parent-finder-statistics')
+            await addStatistic('parent-finder-statistics')
             await lock.acquire()
             data = await getParentData(req.body)
         } catch (error) {

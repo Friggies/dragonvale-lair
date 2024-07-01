@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         let lockReleased = false
 
         try {
-            addStatistic('breeding-simulator-statistics')
+            await addStatistic('breeding-simulator-statistics')
             await lock.acquire()
             data = await getBreedingData(req.body)
         } catch (error) {
