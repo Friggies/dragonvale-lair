@@ -16,6 +16,7 @@ export default async function handler(req, res) {
         let lockReleased = false
 
         try {
+            addStatistic('parent-finder-statistics')
             await lock.acquire()
             data = await getParentData(req.body)
         } catch (error) {
@@ -41,14 +42,10 @@ export default async function handler(req, res) {
             }
         }
 
-        // If data is retrieved successfully, send the response and update statistics
         if (data) {
             res.status(200).json(data)
-            try {
-                await addStatistic('parent-finder-statistics')
-            } catch (statError) {
-                console.error('Error updating statistics:', statError)
-            }
+        } else {
+            res.status(500).json({ error: 'Failed to fetch data' })
         }
     } else {
         res.setHeader('Allow', ['POST'])

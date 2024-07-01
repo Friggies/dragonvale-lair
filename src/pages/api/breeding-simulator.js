@@ -16,6 +16,7 @@ export default async function handler(req, res) {
         let lockReleased = false
 
         try {
+            addStatistic('breeding-simulator-statistics')
             await lock.acquire()
             data = await getBreedingData(req.body)
         } catch (error) {
@@ -42,14 +43,10 @@ export default async function handler(req, res) {
             }
         }
 
-        // If data is retrieved successfully, send the response and update statistics
         if (data) {
             res.status(200).json(data)
-            try {
-                await addStatistic('breeding-simulator-statistics')
-            } catch (statError) {
-                console.error('Error updating statistics:', statError)
-            }
+        } else {
+            res.status(500).json({ error: 'Failed to fetch data' })
         }
     } else {
         res.setHeader('Allow', ['POST'])
