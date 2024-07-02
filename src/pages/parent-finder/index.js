@@ -82,6 +82,7 @@ export default function Home() {
 
     const options = dragons.map((dragon) => {
         if (dragon.rarity.includes('Legendary')) return {}
+        if (dragon.rarity.includes('Mythic')) return {}
         return {
             value: dragon.name,
             label: dragon.name,
