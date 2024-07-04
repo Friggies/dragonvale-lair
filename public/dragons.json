@@ -1,6 +1,42 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 845,
+        "name": "Kelpie",
+        "elements": ["Water", "Plant", "Earth"],
+        "released": "July 4, 2024",
+        "commemoration": "Deepest Depths",
+        "breedingTime": "13 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 844,
+        "name": "Shelly",
+        "elements": ["Water", "Earth", "Metal"],
+        "released": "July 4, 2024",
+        "commemoration": "Deepest Depths",
+        "breedingTime": "12 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 843,
+        "name": "Redfrill",
+        "elements": ["Water", "Fire", "Dark"],
+        "released": "July 4, 2024",
+        "commemoration": "Deepest Depths",
+        "breedingTime": "14 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Shape of Armor",
         "rarity": "Epic",
         "number": 842,
