@@ -301,16 +301,6 @@ export default function Home() {
                         </div>
                         <div className="row row--toColumn">
                             <LabelInput>
-                                Include Parent
-                                <select
-                                    id="includeParent"
-                                    className="dropdown"
-                                >
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
-                                </select>
-                            </LabelInput>
-                            <LabelInput>
                                 Must Include
                                 <Select
                                     className="selector"
@@ -324,6 +314,16 @@ export default function Home() {
                                     isClearable
                                     options={options}
                                 />
+                            </LabelInput>
+                            <LabelInput>
+                                Include Parent
+                                <select
+                                    id="includeParent"
+                                    className="dropdown"
+                                >
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
                             </LabelInput>
                         </div>
                     </div>
