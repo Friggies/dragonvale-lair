@@ -155,6 +155,7 @@ async function getParentData(values) {
 
         currentBreedingResults.forEach((result) => {
             function getWeightForAvailability(dragon) {
+                console.log(dragon)
                 return dragon.availability === 'LIMITED' ? 30 : 0
             }
             function getWeightForRarity(dragon) {
