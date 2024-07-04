@@ -288,19 +288,6 @@ export default function Home() {
                                 </select>
                             </LabelInput>
                             <LabelInput>
-                                Cave
-                                <select
-                                    id="cave"
-                                    className="dropdown"
-                                >
-                                    <option value="Normal">Normal</option>
-                                    <option value="Rift">Rift</option>
-                                    <option value="Social">Social</option>
-                                </select>
-                            </LabelInput>
-                        </div>
-                        <div className="row row--toColumn">
-                            <LabelInput>
                                 Must Include
                                 <Select
                                     className="selector"
@@ -314,6 +301,19 @@ export default function Home() {
                                     isClearable
                                     options={options}
                                 />
+                            </LabelInput>
+                        </div>
+                        <div className="row row--toColumn">
+                            <LabelInput>
+                                Cave
+                                <select
+                                    id="cave"
+                                    className="dropdown"
+                                >
+                                    <option value="Normal">Normal</option>
+                                    <option value="Rift">Rift</option>
+                                    <option value="Social">Social</option>
+                                </select>
                             </LabelInput>
                             <LabelInput>
                                 Include Parent
