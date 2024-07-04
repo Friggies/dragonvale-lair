@@ -155,10 +155,10 @@ async function getParentData(values) {
 
         currentBreedingResults.forEach((result) => {
             function getWeightForAvailability(dragon) {
-                return dragon.availability === 'LIMITED' ? 30 : 0
+                return dragon?.availability === 'LIMITED' ? 30 : 0
             }
             function getWeightForRarity(dragon) {
-                switch (dragon.rarity) {
+                switch (dragon?.rarity) {
                     case 'Hybrid':
                         return 10
                     case 'Rare':
@@ -181,10 +181,10 @@ async function getParentData(values) {
             }
 
             const firstDragon = allDragons.find(
-                (dragon) => dragon?.name === result[0].split('+')[0]
+                (dragon) => dragon.name === result[0].split('+')[0]
             )
             const secondDragon = allDragons.find(
-                (dragon) => dragon?.name === result[0].split('+')[1]
+                (dragon) => dragon.name === result[0].split('+')[1]
             )
 
             result.weight = calculateWeight(firstDragon, secondDragon)
