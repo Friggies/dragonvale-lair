@@ -18,8 +18,7 @@ const waitingTexts = [
     'Have you tried The DragonVale Sandbox?',
     "The Blue Fire Dragon's breath is hotter!",
     'Is it safe to hug the cute Blazing Dragon?',
-    'Checking for limited dragons...',
-    'Who let the dargons out?',
+    'The Pollen Dragon turned me into a frog!',
     'Sorry, I got distracted by Name That Egg.',
     'TODO: Write something funny before release.',
 ]
