@@ -1,7 +1,7 @@
 [
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Hold on Tight",
         "rarity": "Rare",
         "number": 845,
         "name": "Kelpie",
@@ -9,11 +9,14 @@
         "released": "July 4, 2024",
         "commemoration": "Deepest Depths",
         "breedingTime": "13 H",
-        "income": []
+        "income": [
+            17, 27, 38, 48, 58, 69, 79, 89, 99, 110, 120, 130, 141, 151, 161,
+            171, 182, 192, 202, 213
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Shelly Belly",
         "rarity": "Rare",
         "number": 844,
         "name": "Shelly",
@@ -21,11 +24,14 @@
         "released": "July 4, 2024",
         "commemoration": "Deepest Depths",
         "breedingTime": "12 H",
-        "income": []
+        "income": [
+            15, 23, 32, 41, 50, 59, 67, 76, 85, 94, 102, 111, 120, 129, 138,
+            146, 155, 164, 173, 181
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Stink of Ink",
         "rarity": "Rare",
         "number": 843,
         "name": "Redfrill",
@@ -33,7 +39,10 @@
         "released": "July 4, 2024",
         "commemoration": "Deepest Depths",
         "breedingTime": "14 H",
-        "income": []
+        "income": [
+            17, 27, 37, 47, 57, 67, 77, 87, 97, 107, 117, 127, 137, 147, 157,
+            167, 177, 187, 197, 207
+        ]
     },
     {
         "availability": "LIMITED",
