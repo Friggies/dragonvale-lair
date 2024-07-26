@@ -1,6 +1,21 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Shellfish Grin",
+        "rarity": "Epic",
+        "number": 848,
+        "name": "Grin",
+        "elements": ["Aura", "Apocalypse", "Water", "Dark"],
+        "released": "July 25, 2024",
+        "commemoration": "Deepest Depths",
+        "breedingTime": "20 H",
+        "income": [
+            26, 42, 57, 73, 89, 104, 120, 136, 151, 167, 183, 198, 214, 230,
+            245, 261, 277, 292, 308, 323
+        ]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Body Plan Dragon",
         "rarity": "Rare",
         "number": 847,
