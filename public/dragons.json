@@ -1,6 +1,18 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 849,
+        "name": "Leviathan",
+        "elements": [],
+        "released": "August 1, 2024",
+        "commemoration": "Deepest Depths",
+        "breedingTime": "",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Shellfish Grin",
         "rarity": "Epic",
         "number": 848,
