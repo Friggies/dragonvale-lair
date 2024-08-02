@@ -72,7 +72,7 @@ export default function Home() {
                             })
                         )}
                     </ol>
-                    <h2>Parnet Finder</h2>
+                    <h2>Parent Finder</h2>
                     <ol className="column">
                         {parentFinderStatistics.length === 0 ? (
                             <p>Loading...</p>
