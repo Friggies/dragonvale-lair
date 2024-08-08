@@ -1,15 +1,30 @@
 [
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "",
         "rarity": "Epic",
-        "number": 849,
-        "name": "Leviathan",
+        "number": 850,
+        "name": "Aquatech",
         "elements": [],
-        "released": "August 1, 2024",
+        "released": "",
         "commemoration": "Deepest Depths",
         "breedingTime": "",
         "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Ghost Noodle",
+        "rarity": "Epic",
+        "number": 849,
+        "name": "Leviathan",
+        "elements": ["Apocalypse", "Water", "Cold", "Dark"],
+        "released": "August 1, 2024",
+        "commemoration": "Deepest Depths",
+        "breedingTime": "23 H",
+        "income": [
+            32, 51, 70, 89, 107, 126, 146, 165, 184, 203, 221, 240, 259, 278,
+            297, 316, 335, 354, 373, 392
+        ]
     },
     {
         "availability": "LIMITED",
