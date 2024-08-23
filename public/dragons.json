@@ -1,15 +1,66 @@
 [
     {
         "availability": "LIMITED",
-        "quest": "",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 854,
+        "name": "Treebark",
+        "elements": ["Earth", "Plant", "Metal"],
+        "released": "August 22, 2024",
+        "commemoration": "Summerthings Magical II",
+        "breedingTime": "16 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 853,
+        "name": "Hex",
+        "elements": ["Apocalypse", "Plant", "Water"],
+        "released": "August 22, 2024",
+        "commemoration": "Summerthings Magical II",
+        "breedingTime": "18 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 852,
+        "name": "Moppey",
+        "elements": ["Water", "Dark", "Air"],
+        "released": "August 22, 2024",
+        "commemoration": "Summerthings Magical II",
+        "breedingTime": "14 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 851,
+        "name": "Ogre",
+        "elements": ["Plant", "Dark", "Fire", "Water"],
+        "released": "August 22, 2024",
+        "commemoration": "Summerthings Magical II",
+        "breedingTime": "12 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Rebooting",
         "rarity": "Epic",
         "number": 850,
         "name": "Aquatech",
-        "elements": [],
-        "released": "",
+        "elements": ["Treasure", "Water", "Metal", "Air"],
+        "released": "August 8, 2024",
         "commemoration": "Deepest Depths",
-        "breedingTime": "",
-        "income": []
+        "breedingTime": "24 H",
+        "income": [
+            32, 51, 69, 89, 107, 126, 145, 164, 183, 202, 221, 240, 259, 278,
+            297, 316, 335, 354, 373, 392
+        ]
     },
     {
         "availability": "LIMITED",
