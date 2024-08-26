@@ -94,6 +94,9 @@ export default function Home() {
                         experience, please obtain the game from authorized
                         sources.
                     </p>
+                    <p>
+                        <strong>Download DragonVale:</strong>
+                    </p>
                     <div className="row row--toColumn">
                         <a
                             href="https://apps.apple.com/us/app/dragonvale/id440045374"
