@@ -3,6 +3,21 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 855,
+        "name": "Feiya",
+        "elements": ["Light", "Lightning", "Plant"],
+        "released": "August 29, 2024",
+        "commemoration": "Summerthings Magical II",
+        "breedingTime": "16 H",
+        "income": [
+            21, 34, 47, 60, 73, 86, 99, 111, 124, 137, 150, 163, 176, 189, 201,
+            214, 227, 240, 253, 266
+        ]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 854,
         "name": "Treebark",
         "elements": ["Earth", "Plant", "Metal"],
@@ -21,11 +36,14 @@
         "released": "August 22, 2024",
         "commemoration": "Summerthings Magical II",
         "breedingTime": "18 H",
-        "income": []
+        "income": [
+            30, 48, 66, 84, 102, 120, 138, 156, 174, 192, 210, 228, 246, 264,
+            282, 300, 318, 336, 354, 372
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Mop the Joke",
         "rarity": "Rare",
         "number": 852,
         "name": "Moppey",
@@ -37,7 +55,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "It's All Ogre",
         "rarity": "Rare",
         "number": 851,
         "name": "Ogre",
@@ -45,7 +63,10 @@
         "released": "August 22, 2024",
         "commemoration": "Summerthings Magical II",
         "breedingTime": "12 H",
-        "income": []
+        "income": [
+            17, 27, 38, 48, 58, 69, 79, 89, 99, 110, 120, 130, 141, 151, 161,
+            171, 182, 192, 202, 213
+        ]
     },
     {
         "availability": "LIMITED",
