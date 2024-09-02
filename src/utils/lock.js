@@ -52,7 +52,11 @@ class Lock {
                     } else {
                         throw new Error('Error acquiring lock')
                     }
-                } else if (data && data.length > 0) {
+                } else if (
+                    data &&
+                    new Date(data[0].updated_at).getTime() ===
+                        new Date(now).getTime()
+                ) {
                     console.log('Lock acquired successfully')
                     this.isLocked = true
                     return // Lock acquired
@@ -64,7 +68,10 @@ class Lock {
             }
 
             await new Promise((resolve) =>
-                setTimeout(resolve, Math.floor(Math.random() * 1001) + 100)
+                setTimeout(
+                    resolve,
+                    Math.floor(Math.random() * (3000 - 500 + 1)) + 500
+                )
             )
         }
     }
