@@ -51,7 +51,7 @@ class Lock {
                     .select('locked, updated_at, request_id')
                     .eq('lock_key', this.lockKey)
 
-                if (updateError || data[0].request_id !== requestID) {
+                if (updateError) {
                     console.error('Error updating lock:', updateError)
                     if (updateError.code === 'PGRST116') {
                         console.log('Lock got taken (retrying)')
@@ -61,7 +61,8 @@ class Lock {
                 } else if (
                     data &&
                     new Date(data[0].updated_at).getTime() ===
-                        new Date(now).getTime()
+                        new Date(now).getTime() &&
+                    data[0].request_id === requestID
                 ) {
                     console.log('Lock acquired successfully')
                     this.isLocked = true
