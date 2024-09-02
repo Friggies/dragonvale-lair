@@ -20,6 +20,7 @@ class Lock {
 
         while (true) {
             const now = new Date()
+            const requestID = Math.floor(Math.random() * 10000)
 
             const { data: existingLock, error: selectError } = await supabase
                 .from('locks')
@@ -41,11 +42,12 @@ class Lock {
                     .update({
                         locked: true,
                         updated_at: now,
+                        request_id: requestID,
                     })
                     .eq('lock_key', this.lockKey)
                     .select()
 
-                if (updateError) {
+                if (updateError || data[0].request_id !== requestID) {
                     console.error('Error updating lock:', updateError)
                     if (updateError.code === 'PGRST116') {
                         console.log('Lock got taken (retrying)')
@@ -70,7 +72,7 @@ class Lock {
             await new Promise((resolve) =>
                 setTimeout(
                     resolve,
-                    Math.floor(Math.random() * (3000 - 500 + 1)) + 500
+                    Math.floor(Math.random() * (1000 - 500 + 1)) + 500
                 )
             )
         }
