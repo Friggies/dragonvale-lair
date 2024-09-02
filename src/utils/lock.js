@@ -37,7 +37,7 @@ class Lock {
                 !existingLock.locked ||
                 new Date(now) - new Date(existingLock.updated_at) > this.timeout
             ) {
-                const { data, error: updateError } = await supabase
+                const { error: updateError } = await supabase
                     .from('locks')
                     .update({
                         locked: true,
@@ -45,7 +45,11 @@ class Lock {
                         request_id: requestID,
                     })
                     .eq('lock_key', this.lockKey)
-                    .select()
+
+                const { data } = await supabase
+                    .from('locks')
+                    .select('locked, updated_at, request_id')
+                    .eq('lock_key', this.lockKey)
 
                 if (updateError || data[0].request_id !== requestID) {
                     console.error('Error updating lock:', updateError)
