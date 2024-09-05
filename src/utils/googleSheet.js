@@ -190,8 +190,17 @@ async function getParentData(values) {
             result.weight = calculateWeight(firstDragon, secondDragon)
         })
 
-        currentBreedingResults.sort((a, b) => a.weight - b.weight)
+        console.log(currentBreedingResults)
+        currentBreedingResults.sort((a, b) => {
+            const percentageA = parseFloat(a[1])
+            const percentageB = parseFloat(b[1])
 
+            if (percentageA !== percentageB) {
+                return percentageB - percentageA
+            } else {
+                return a[2] - b[2]
+            }
+        })
         return [currentBreedingResults, informationString]
     } catch (error) {
         throw error
