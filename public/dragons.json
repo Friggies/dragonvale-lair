@@ -2,6 +2,18 @@
     {
         "availability": "LIMITED",
         "quest": "N/A",
+        "rarity": "Epic",
+        "number": 856,
+        "name": "Quamera",
+        "elements": ["Olympus"],
+        "released": "September 5, 2024",
+        "commemoration": "Summerthings Magical II",
+        "breedingTime": "18 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
         "rarity": "Rare",
         "number": 855,
         "name": "Feiya",
