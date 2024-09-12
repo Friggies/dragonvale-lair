@@ -2,6 +2,18 @@
     {
         "availability": "LIMITED",
         "quest": "N/A",
+        "rarity": "Rare",
+        "number": 857,
+        "name": "Nottub",
+        "elements": ["Plant", "Lightning", "Earth"],
+        "released": "September 12, 2024",
+        "commemoration": "Summerthings Magical II",
+        "breedingTime": "17 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
         "rarity": "Epic",
         "number": 856,
         "name": "Quamera",
