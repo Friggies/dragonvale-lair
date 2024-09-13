@@ -3,6 +3,18 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 858,
+        "name": "Doily",
+        "elements": ["Light", "Lightning", "Cold", "Air"],
+        "released": "September 13, 2024",
+        "commemoration": "Summerthings Magical II",
+        "breedingTime": "13 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 857,
         "name": "Nottub",
         "elements": ["Plant", "Lightning", "Earth"],
