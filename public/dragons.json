@@ -3,6 +3,18 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 859,
+        "name": "Spelldome",
+        "elements": ["Dark", "Metal", "Lightning"],
+        "released": "September 19, 2024",
+        "commemoration": "Summerthings Magical II",
+        "breedingTime": "20 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 858,
         "name": "Doily",
         "elements": ["Light", "Lightning", "Cold", "Air"],
