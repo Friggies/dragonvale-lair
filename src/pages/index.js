@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import LabelButton from '@/components/LabelButton'
-import AnniversaryDisclaimer from '@/components/AnniversaryDisclaimer'
 
 export default function Home() {
     const share = () => {
@@ -41,7 +40,6 @@ export default function Home() {
                 />
             </Head>
             <main className="main">
-                <AnniversaryDisclaimer />
                 <section className="card">
                     <h1 className="card__title">Information</h1>
                     <p>

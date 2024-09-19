@@ -7,7 +7,6 @@ import Select from 'react-select'
 import dragons from '/public/dragons.json'
 import InformationString from '@/components/InformationString'
 import transformToEggName from '@/utils/transformToEggName'
-import AnniversaryDisclaimer from '@/components/AnniversaryDisclaimer'
 
 export default function Home() {
     const [data, setData] = useState([])
@@ -201,7 +200,6 @@ export default function Home() {
                         </tbody>
                     </table>
                 </section>
-                <AnniversaryDisclaimer />
                 <section className="card">
                     <h2 className="card__title">Information</h2>
                     <p>
