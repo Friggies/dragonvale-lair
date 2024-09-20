@@ -9,11 +9,14 @@
         "released": "September 19, 2024",
         "commemoration": "Summerthings Magical II",
         "breedingTime": "20 H",
-        "income": []
+        "income": [
+            30, 48, 66, 84, 102, 120, 138, 156, 174, 192, 210, 228, 246, 264,
+            282, 300, 318, 336, 354, 372
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Lace to the Finish!",
         "rarity": "Rare",
         "number": 858,
         "name": "Doily",
@@ -21,11 +24,14 @@
         "released": "September 13, 2024",
         "commemoration": "Summerthings Magical II",
         "breedingTime": "13 H",
-        "income": []
+        "income": [
+            46, 74, 102, 129, 157, 185, 212, 240, 268, 295, 323, 351, 378, 406,
+            434, 462, 489, 517, 545, 572
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Out of Time",
         "rarity": "Rare",
         "number": 857,
         "name": "Nottub",
@@ -33,11 +39,14 @@
         "released": "September 12, 2024",
         "commemoration": "Summerthings Magical II",
         "breedingTime": "17 H",
-        "income": []
+        "income": [
+            20, 32, 44, 56, 68, 80, 92, 104, 116, 128, 140, 152, 164, 176, 188,
+            200, 212, 224, 236, 248
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Four in One",
         "rarity": "Epic",
         "number": 856,
         "name": "Quamera",
@@ -45,11 +54,14 @@
         "released": "September 5, 2024",
         "commemoration": "Summerthings Magical II",
         "breedingTime": "18 H",
-        "income": []
+        "income": [
+            35, 56, 78, 99, 120, 141, 162, 184, 205, 226, 247, 268, 289, 311,
+            332, 353, 374, 395, 416, 438
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Fairy You",
         "rarity": "Rare",
         "number": 855,
         "name": "Feiya",
@@ -64,7 +76,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "No Barking",
         "rarity": "Rare",
         "number": 854,
         "name": "Treebark",
@@ -72,11 +84,14 @@
         "released": "August 22, 2024",
         "commemoration": "Summerthings Magical II",
         "breedingTime": "16 H",
-        "income": []
+        "income": [
+            35, 56, 78, 99, 120, 141, 162, 184, 205, 226, 247, 268, 289, 311,
+            332, 353, 374, 395, 416, 438
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Bad Juju",
         "rarity": "Epic",
         "number": 853,
         "name": "Hex",
@@ -99,7 +114,10 @@
         "released": "August 22, 2024",
         "commemoration": "Summerthings Magical II",
         "breedingTime": "14 H",
-        "income": []
+        "income": [
+            15, 24, 33, 42, 51, 60, 69, 78, 87, 96, 105, 114, 123, 132, 141,
+            150, 159, 168, 177, 186
+        ]
     },
     {
         "availability": "LIMITED",
