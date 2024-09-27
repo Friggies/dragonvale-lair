@@ -3,6 +3,18 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 860,
+        "name": "Alchemy",
+        "elements": ["Aura", "Water", "Metal", "Light"],
+        "released": "September 26, 2024",
+        "commemoration": "Summerthings Magical II",
+        "breedingTime": "23 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 859,
         "name": "Spelldome",
         "elements": ["Dark", "Metal", "Lightning"],
