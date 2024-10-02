@@ -3,13 +3,31 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 861,
+        "name": "Polarus",
+        "elements": ["Metal", "Lightning", "Earth", "Fire"],
+        "released": "October 1, 2024",
+        "commemoration": "Summerthings Magical II",
+        "breedingTime": "15 H",
+        "income": [
+            30, 48, 66, 84, 102, 120, 138, 156, 174, 192, 210, 228, 246, 264,
+            282, 300, 318, 336, 354, 372
+        ]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 860,
         "name": "Alchemy",
         "elements": ["Aura", "Water", "Metal", "Light"],
         "released": "September 26, 2024",
         "commemoration": "Summerthings Magical II",
         "breedingTime": "23 H",
-        "income": []
+        "income": [
+            33, 53, 73, 93, 113, 133, 153, 173, 193, 213, 233, 253, 273, 293,
+            313, 333, 353, 373, 393, 413
+        ]
     },
     {
         "availability": "LIMITED",
