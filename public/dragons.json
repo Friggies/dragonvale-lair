@@ -3,6 +3,18 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 862,
+        "name": "Jiaolong",
+        "elements": ["Lightning", "Air", "Plant", "Light"],
+        "released": "October 10, 2024",
+        "commemoration": "Year of the Dragon",
+        "breedingTime": "24 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 861,
         "name": "Polarus",
         "elements": ["Metal", "Lightning", "Earth", "Fire"],
