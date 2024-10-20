@@ -1,7 +1,61 @@
 [
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Pun-king",
+        "rarity": "Rare",
+        "number": 866,
+        "name": "Drack-o-Lantern",
+        "elements": ["Dark", "Earth", "Plant", "Fire"],
+        "released": "October 17, 2024",
+        "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
+        "breedingTime": "18 H",
+        "income": [
+            23, 37, 51, 65, 78, 92, 106, 120, 134, 148, 162, 175, 189, 203, 217,
+            231, 245, 258, 272, 286
+        ]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Where Wolf?",
+        "rarity": "Epic",
+        "number": 865,
+        "name": "Awoo",
+        "elements": ["Moon", "Dark", "Cold"],
+        "released": "October 10, 2024",
+        "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
+        "breedingTime": "20 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Boo-gie",
+        "rarity": "Rare",
+        "number": 864,
+        "name": "Spooker",
+        "elements": ["Dark", "Air", "Fire"],
+        "released": "October 10, 2024",
+        "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
+        "breedingTime": "14 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Screechy",
+        "rarity": "Rare",
+        "number": 863,
+        "name": "Dragpir",
+        "elements": ["Dark", "Earth", "Cold"],
+        "released": "October 10, 2024",
+        "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
+        "breedingTime": "16 H",
+        "income": [
+            21, 34, 47, 60, 73, 86, 99, 111, 123, 137, 150, 163, 176, 189, 201,
+            214, 227, 240, 253, 266
+        ]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Year of the other Dragon",
         "rarity": "Rare",
         "number": 862,
         "name": "Jiaolong",
@@ -13,7 +67,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Polar Opposites",
         "rarity": "Rare",
         "number": 861,
         "name": "Polarus",
@@ -28,7 +82,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Click-Clack",
         "rarity": "Rare",
         "number": 860,
         "name": "Alchemy",
@@ -43,7 +97,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Magical Barriers",
         "rarity": "Rare",
         "number": 859,
         "name": "Spelldome",
