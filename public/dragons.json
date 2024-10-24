@@ -1,6 +1,18 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 867,
+        "name": "Candycorn",
+        "elements": ["Hidden", "Light", "Plant"],
+        "released": "October 24, 2024",
+        "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
+        "breedingTime": "23 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Pun-king",
         "rarity": "Rare",
         "number": 866,
