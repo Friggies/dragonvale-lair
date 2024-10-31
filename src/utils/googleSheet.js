@@ -170,6 +170,9 @@ async function getParentData(values) {
                         return 0
                 }
             }
+            function getWeightForElements(dragon) {
+                return dragon?.elements.length || 0
+            }
 
             function calculateWeight(firstDragon, secondDragon) {
                 let weight = 0
@@ -177,6 +180,8 @@ async function getParentData(values) {
                 weight += getWeightForAvailability(secondDragon)
                 weight += getWeightForRarity(firstDragon)
                 weight += getWeightForRarity(secondDragon)
+                weight += getWeightForElements(firstDragon)
+                weight += getWeightForElements(secondDragon)
                 return weight
             }
 
@@ -190,17 +195,17 @@ async function getParentData(values) {
             result.weight = calculateWeight(firstDragon, secondDragon)
         })
 
-        console.log(currentBreedingResults)
-        currentBreedingResults.sort((a, b) => {
+        currentBreedingResults = currentBreedingResults.sort((a, b) => {
             const percentageA = parseFloat(a[1])
             const percentageB = parseFloat(b[1])
 
             if (percentageA !== percentageB) {
                 return percentageB - percentageA
             } else {
-                return a[2] - b[2]
+                return a.weight - b.weight
             }
         })
+
         return [currentBreedingResults, informationString]
     } catch (error) {
         throw error
