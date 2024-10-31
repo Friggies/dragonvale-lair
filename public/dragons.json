@@ -3,6 +3,18 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 868,
+        "name": "Yaga",
+        "elements": ["Dark", "Plant", "Cold", "Earth"],
+        "released": "October 31, 2024",
+        "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
+        "breedingTime": "17 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 867,
         "name": "Candycorn",
         "elements": ["Hidden", "Light", "Plant"],
