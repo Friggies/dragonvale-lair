@@ -3,6 +3,18 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 869,
+        "name": "Bruntal",
+        "elements": ["Dark", "Lightning", "Plant", "Fire"],
+        "released": "November 7, 2024",
+        "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
+        "breedingTime": "20 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 868,
         "name": "Yaga",
         "elements": ["Dark", "Plant", "Cold", "Earth"],
