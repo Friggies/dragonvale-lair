@@ -1,7 +1,22 @@
 [
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Uncovered Evil",
+        "rarity": "Epic",
+        "number": 870,
+        "name": "Dracomancy",
+        "elements": ["Apocalypse"],
+        "released": "November 14, 2024",
+        "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
+        "breedingTime": "21 H",
+        "income": [
+            9, 14, 19, 24, 29, 34, 39, 45, 50, 55, 60, 65, 70, 75, 81, 86, 91,
+            96, 101, 106
+        ]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Brutal Stuff",
         "rarity": "Rare",
         "number": 869,
         "name": "Bruntal",
@@ -9,11 +24,14 @@
         "released": "November 7, 2024",
         "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
         "breedingTime": "20 H",
-        "income": []
+        "income": [
+            21, 34, 47, 60, 73, 86, 99, 111, 124, 137, 150, 163, 176, 189, 201,
+            214, 227, 240, 253, 266
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Baba",
         "rarity": "Rare",
         "number": 868,
         "name": "Yaga",
@@ -21,11 +39,14 @@
         "released": "October 31, 2024",
         "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
         "breedingTime": "17 H",
-        "income": []
+        "income": [
+            27, 44, 60, 76, 93, 109, 125, 142, 158, 175, 191, 207, 224, 240,
+            256, 273, 289, 305, 322, 338
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Corn-ivore",
         "rarity": "Rare",
         "number": 867,
         "name": "Candycorn",
@@ -33,7 +54,10 @@
         "released": "October 24, 2024",
         "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
         "breedingTime": "23 H",
-        "income": []
+        "income": [
+            30, 48, 66, 84, 102, 120, 138, 156, 174, 192, 210, 228, 246, 264,
+            282, 300, 318, 336, 354, 372
+        ]
     },
     {
         "availability": "LIMITED",
