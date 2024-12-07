@@ -1,10 +1,76 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 875,
+        "name": "Lavaloch",
+        "elements": ["Fire", "Earth", "Cold"],
+        "released": "December 5, 2024",
+        "commemoration": "Warmth of Winter",
+        "breedingTime": "17 H",
+        "income": [
+            30, 48, 66, 84, 102, 120, 138, 156, 174, 192, 210, 228, 246, 264,
+            282, 300, 318, 336, 354, 372
+        ]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 874,
+        "name": "Tectonic",
+        "elements": ["Hidden", "Earth", "Plant"],
+        "released": "December 5, 2024",
+        "commemoration": "Warmth of Winter",
+        "breedingTime": "13 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 873,
+        "name": "Eaves",
+        "elements": ["Cold", "Water", "Dark", "Air"],
+        "released": "December 5, 2024",
+        "commemoration": "Warmth of Winter",
+        "breedingTime": "12 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 872,
+        "name": "Gingerbread",
+        "elements": ["Ornamental", "Cold"],
+        "released": "December 5, 2024",
+        "commemoration": "Warmth of Winter",
+        "breedingTime": "14 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Evil Reborn",
+        "rarity": "Epic",
+        "number": 871,
+        "name": "Dracomancy 4",
+        "elements": ["Apocalypse"],
+        "released": "November 14, 2024",
+        "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
+        "breedingTime": "21 H",
+        "income": [
+            48, 77, 106, 134, 163, 192, 221, 250, 278, 307, 336, 365, 394, 422,
+            451, 480, 509, 538, 566, 595
+        ]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Uncovered Evil",
         "rarity": "Epic",
         "number": 870,
-        "name": "Dracomancy",
+        "name": "Dracomancy 1",
         "elements": ["Apocalypse"],
         "released": "November 14, 2024",
         "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
@@ -12,6 +78,36 @@
         "income": [
             9, 14, 19, 24, 29, 34, 39, 45, 50, 55, 60, 65, 70, 75, 81, 86, 91,
             96, 101, 106
+        ]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Uncovered Evil",
+        "rarity": "Epic",
+        "number": 870,
+        "name": "Dracomancy 2",
+        "elements": ["Apocalypse"],
+        "released": "November 14, 2024",
+        "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
+        "breedingTime": "21 H",
+        "income": [
+            11, 17, 24, 31, 37, 44, 50, 57, 63, 70, 76, 83, 89, 96, 103, 109,
+            116, 122, 129, 135
+        ]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 870,
+        "name": "Dracomancy 3",
+        "elements": ["Apocalypse"],
+        "released": "November 14, 2024",
+        "commemoration": "Whitbee's Candy Bash XI: Nights of Frights",
+        "breedingTime": "21 H",
+        "income": [
+            17, 27, 38, 48, 58, 69, 79, 89, 99, 110, 120, 130, 141, 151, 161,
+            171, 182, 192, 202, 213
         ]
     },
     {
