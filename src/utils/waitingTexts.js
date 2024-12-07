@@ -21,5 +21,9 @@ const waitingTexts = [
     'The Pollen Dragon turned me into a frog!',
     'Sorry, I got distracted by Name That Egg.',
     'TODO: Write something funny before release.',
+    'My yellow trees are turning green!',
+    'Can i eat the Gingerbread Dragon yet?',
+    'Waiting for holidays...',
+    'Presents are great, but Gift Dragons are better.',
 ]
 export default waitingTexts
