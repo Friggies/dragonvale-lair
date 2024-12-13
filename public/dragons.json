@@ -3,6 +3,21 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 876,
+        "name": "Iceclaw",
+        "elements": ["Cold", "Fire", "Earth"],
+        "released": "December 12, 2024",
+        "commemoration": "Warmth of Winter",
+        "breedingTime": "16 H",
+        "income": [
+            23, 37, 51, 65, 78, 92, 106, 120, 134, 148, 162, 175, 189, 203, 217,
+            231, 245, 258, 272, 286
+        ]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 875,
         "name": "Lavaloch",
         "elements": ["Fire", "Earth", "Cold"],
