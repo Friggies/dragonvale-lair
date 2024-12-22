@@ -3,6 +3,18 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 877,
+        "name": "Flamegobbler",
+        "elements": ["Fire", "Earth", "Light"],
+        "released": "December 19, 2024",
+        "commemoration": "Warmth of Winter",
+        "breedingTime": "17 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 876,
         "name": "Iceclaw",
         "elements": ["Cold", "Fire", "Earth"],
