@@ -2,6 +2,30 @@
     {
         "availability": "LIMITED",
         "quest": "N/A",
+        "rarity": "Epic",
+        "number": 879,
+        "name": "Aquadruple Leap Year",
+        "elements": ["Rainbow", "Water", "Dark"],
+        "released": "December 27, 2024",
+        "commemoration": "Leap Year",
+        "breedingTime": "20 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 878,
+        "name": "Pyros & Glacius",
+        "elements": ["Fire", "Cold", "Earth", "Metal"],
+        "released": "December 26, 2024",
+        "commemoration": "Warmth of Winter",
+        "breedingTime": "19 H",
+        "income": []
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
         "rarity": "Rare",
         "number": 877,
         "name": "Flamegobbler",
