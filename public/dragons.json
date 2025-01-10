@@ -3,17 +3,50 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Epic",
+        "number": 881,
+        "name": "Volcano",
+        "elements": ["Apocalypse", "Fire", "Earth"],
+        "released": "January 9, 2025",
+        "commemoration": "Warmth of Winter",
+        "breedingTime": "23 H",
+        "income": [
+            38, 60, 83, 105, 128, 150, 172, 195, 218, 240, 263, 285, 307, 330,
+            352, 375, 398, 420, 443, 465
+        ]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Core Strength",
+        "rarity": "Rare",
+        "number": 880,
+        "name": "Earthcore",
+        "elements": ["Earth", "Fire", "Lightning"],
+        "released": "January 2, 2025",
+        "commemoration": "Warmth of Winter",
+        "breedingTime": "20 H",
+        "income": [
+            30, 48, 66, 84, 102, 120, 138, 156, 174, 192, 210, 228, 246, 264,
+            282, 300, 318, 336, 354, 372
+        ]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Ocean Spirit",
+        "rarity": "Epic",
         "number": 879,
         "name": "Aquadruple Leap Year",
         "elements": ["Rainbow", "Water", "Dark"],
         "released": "December 27, 2024",
         "commemoration": "Leap Year",
         "breedingTime": "20 H",
-        "income": []
+        "income": [
+            50, 80, 110, 140, 170, 200, 230, 260, 290, 320, 350, 380, 410, 440,
+            470, 500, 530, 560, 590, 620
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Ice and Fire",
         "rarity": "Rare",
         "number": 878,
         "name": "Pyros & Glacius",
@@ -21,11 +54,14 @@
         "released": "December 26, 2024",
         "commemoration": "Warmth of Winter",
         "breedingTime": "19 H",
-        "income": []
+        "income": [
+            27, 44, 60, 76, 93, 109, 125, 142, 158, 175, 191, 207, 224, 240,
+            256, 273, 289, 305, 322, 338
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Up to 1200° C",
         "rarity": "Rare",
         "number": 877,
         "name": "Flamegobbler",
@@ -37,7 +73,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Give 'em Hail",
         "rarity": "Rare",
         "number": 876,
         "name": "Iceclaw",
@@ -52,7 +88,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Firestorm",
         "rarity": "Rare",
         "number": 875,
         "name": "Lavaloch",
@@ -67,7 +103,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Rock Your World",
         "rarity": "Epic",
         "number": 874,
         "name": "Tectonic",
@@ -75,11 +111,14 @@
         "released": "December 5, 2024",
         "commemoration": "Warmth of Winter",
         "breedingTime": "13 H",
-        "income": []
+        "income": [
+            33, 53, 73, 93, 113, 133, 153, 173, 193, 213, 233, 253, 273, 293,
+            313, 333, 353, 373, 393, 413
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Sooty",
         "rarity": "Rare",
         "number": 873,
         "name": "Eaves",
@@ -87,11 +126,14 @@
         "released": "December 5, 2024",
         "commemoration": "Warmth of Winter",
         "breedingTime": "12 H",
-        "income": []
+        "income": [
+            19, 30, 41, 52, 64, 75, 86, 98, 109, 120, 131, 143, 154, 165, 176,
+            188, 199, 210, 221, 233
+        ]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Bake It",
         "rarity": "Epic",
         "number": 872,
         "name": "Gingerbread",
@@ -99,7 +141,10 @@
         "released": "December 5, 2024",
         "commemoration": "Warmth of Winter",
         "breedingTime": "14 H",
-        "income": []
+        "income": [
+            27, 44, 60, 76, 93, 109, 125, 142, 158, 175, 191, 207, 224, 240,
+            256, 273, 289, 305, 322, 338
+        ]
     },
     {
         "availability": "LIMITED",
