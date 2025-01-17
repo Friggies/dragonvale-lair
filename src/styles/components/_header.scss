@@ -8,14 +8,17 @@
     }
     &__list {
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         gap: 1rem;
+        row-gap: 0rem;
         list-style-type: none;
         z-index: 1;
+        flex-wrap: wrap;
     }
 }
 @media (max-width: $breakpoint--sm) {
     .header {
+        padding: 1.5rem 0.5rem;
         &__title {
             font-size: 1.5em;
         }

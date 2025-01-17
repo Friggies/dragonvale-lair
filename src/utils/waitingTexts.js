@@ -25,5 +25,7 @@ const waitingTexts = [
     'Waiting for holidays...',
     'Presents are great, but Gift Dragons are better.',
     'The Dargon Dragon might appear unexpectedly...',
+    'Working on new features...',
+    'Looking for improvement suggestions...',
 ]
 export default waitingTexts

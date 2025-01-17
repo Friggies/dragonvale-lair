@@ -38,6 +38,20 @@ export default function Header() {
                         imageName="eggButton"
                     />
                 </li>
+                <li>
+                    <LabelButton
+                        label="Dragonarium"
+                        link="/dragonarium"
+                        imageName="dragonariumButton"
+                    />
+                </li>
+                <li>
+                    <LabelButton
+                        label="DC Farming"
+                        link="/farming"
+                        imageName="farmingButton"
+                    />
+                </li>
             </ul>
         </header>
     )

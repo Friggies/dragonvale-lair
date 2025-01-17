@@ -26,5 +26,6 @@ body {
 @media (max-width: $breakpoint--sm) {
     body {
         width: 95%;
+        padding-block: 0rem;
     }
 }
