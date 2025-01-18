@@ -69,7 +69,7 @@ export default function Home() {
                     </p>
                     <div className="table-wrapper">
                         <div>
-                            <table>
+                            <table className="farmingTable">
                                 <thead>
                                     <tr>
                                         <th>Dragon</th>
