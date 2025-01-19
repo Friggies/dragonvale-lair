@@ -61,7 +61,7 @@ export default function Document() {
                     <img
                         src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true"
                         alt=""
-                        referrerpolicy="no-referrer-when-downgrade"
+                        referrerPolicy="no-referrer-when-downgrade"
                     />
                 </noscript>
             </body>

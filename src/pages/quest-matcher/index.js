@@ -111,6 +111,7 @@ export default function Home() {
                     ) : (
                         <>
                             <img
+                                loading="lazy"
                                 height="50"
                                 alt={`${data.name} Dragon Egg`}
                                 src={`https://namethategg.com/eggs/${transformToEggName(

@@ -175,6 +175,7 @@ export default function Home() {
                                     >
                                         <td className="dragonParents__eggs">
                                             <img
+                                                loading="lazy"
                                                 height="50"
                                                 alt={`${
                                                     row[0].split('+')[0]
@@ -184,6 +185,7 @@ export default function Home() {
                                                 )}.png`}
                                             />
                                             <img
+                                                loading="lazy"
                                                 height="50"
                                                 alt={`${
                                                     row[0].split('+')[1]

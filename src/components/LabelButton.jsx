@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function LabelButton({
     label,
     link,
@@ -26,7 +28,7 @@ export default function LabelButton({
         )
     }
     return (
-        <a
+        <Link
             href={link}
             className="labelButton"
         >
@@ -38,6 +40,6 @@ export default function LabelButton({
                 src={imageName + '.webp'}
                 alt=""
             />
-        </a>
+        </Link>
     )
 }

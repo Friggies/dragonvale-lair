@@ -45,6 +45,7 @@ export default function InformationString({ string }) {
                                 img = words[words.length - 1]
                                 return (
                                     <img
+                                        loading="lazy"
                                         key={index}
                                         height="60"
                                         alt={img + ' Dragon Egg'}
@@ -69,6 +70,7 @@ export default function InformationString({ string }) {
                             } else {
                                 return (
                                     <img
+                                        loading="lazy"
                                         key={index}
                                         height="60"
                                         alt={img + ' Dragon Egg'}

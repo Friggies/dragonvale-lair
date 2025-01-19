@@ -203,6 +203,7 @@ export default function Home() {
                                 >
                                     <td>
                                         <img
+                                            loading="lazy"
                                             height="50"
                                             alt={`${row[0]} Dragon Egg`}
                                             src={`https://namethategg.com/eggs/${transformToEggName(

@@ -1,30 +1,58 @@
 import Head from 'next/head'
 import dragons from '/public/dragons.json'
+import regularElements from '/public/regularElements'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
-    const allDragons = dragons.filter((dragon) => {
-        if (dragon.rarity.includes('Legendary')) return false
-        if (dragon.rarity.includes('Mythic')) return false
-        if (dragon.rarity.includes('Gemstone')) return false
-        if (!Array.isArray(dragon.income)) return false
-        if (dragon.income.length === 0) return false
-        if (typeof dragon.income[0] === 'string') return false
-        return true
+    const [activeElements, setActiveElements] = useState({})
+    const [generators, setGenerators] = useState({
+        Air: 0,
+        Water: 0,
+        Cold: 0,
+        Lightning: 0,
+        Plant: 0,
+        Fire: 0,
     })
-    allDragons.sort((a, b) => b.income[0] - a.income[0])
+    const [test, setTest] = useState([])
+
+    useEffect(() => {
+        const allDragons = dragons.filter((dragon) => {
+            if (dragon.rarity.includes('Legendary')) return false
+            if (dragon.rarity.includes('Mythic')) return false
+            if (dragon.rarity.includes('Gemstone')) return false
+            if (!Array.isArray(dragon.income)) return false
+            if (dragon.income.length === 0) return false
+            if (typeof dragon.income[0] === 'string') return false
+            return true
+        })
+        allDragons.sort((a, b) => b.income[0] - a.income[0])
+        setTest(allDragons)
+    }, [])
 
     const calculateLevelForCap = (cap, dragon) => {
         const maxLevel = dragon.rarity === 'Primary' ? 21 : 20
-        const elementBoosts = 0
-        const generatorBoosts = 0
+
+        const elementBoosts = dragon.elements.reduce(
+            (count, element) => count + (activeElements[element] ? 1 : 0),
+            0
+        )
+
+        const generatorBoosts = dragon.elements.reduce(
+            (totalBoost, element) =>
+                totalBoost + (generators[element] || 0) * 0.02,
+            0
+        )
+
         const s = 6000 / dragon.income[0]
-        const boost = 1 + 0.3 * elementBoosts + 0.02 * generatorBoosts
+        const boost = 1 + 0.3 * elementBoosts + generatorBoosts
 
         for (let level = 1; level <= maxLevel; level++) {
             const income = Math.floor(
                 6000 / Math.floor(Math.floor(s / (0.6 * level + 0.4)) / boost)
             )
-
+            if (level === 1) {
+                dragon.incomeWithBoosts = income
+            }
             if (income === cap) {
                 return level
             }
@@ -36,6 +64,26 @@ export default function Home() {
     const roundingCaps = [
         500, 545, 600, 666, 750, 857, 1000, 1200, 1500, 2000, 3000, 6000,
     ]
+
+    const toggleElement = (element) => {
+        setActiveElements((prev) => ({
+            ...prev,
+            [element]: !prev[element],
+        }))
+    }
+
+    const updateGeneratorCount = (element, count) => {
+        setGenerators((prev) => ({
+            ...prev,
+            [element]: count,
+        }))
+    }
+
+    useEffect(() => {
+        setTest((prev) =>
+            [...prev].sort((a, b) => b.incomeWithBoosts - a.incomeWithBoosts)
+        )
+    }, [activeElements, generators])
 
     return (
         <>
@@ -51,48 +99,96 @@ export default function Home() {
                 />
             </Head>
             <main className="main">
-                <section className="card">
+                <section className="card farming">
                     <h1 className="card__title">Levels for DC roundings</h1>
                     <p>
                         An overview of what levels are needed to reach
-                        DragonCash earning rate roundings for each dragon. I am
-                        currently working on adding element boosts and
-                        generators. See{' '}
-                        <a
-                            href="https://www.reddit.com/r/dragonvale/comments/1dmie9g/a_revised_guide_to_dc_farming_v3_with_improved/"
-                            target="_blank"
-                            className="link"
-                        >
-                            this
-                        </a>{' '}
-                        Reddit post for more information.
+                        DragonCash earning rate roundings for each dragon.
                     </p>
+                    <h2>Active boosts</h2>
+                    <ul className="farming__list">
+                        {regularElements.map((element) => (
+                            <li key={element}>
+                                <button
+                                    className={'farming__element'}
+                                    onClick={() => toggleElement(element)}
+                                >
+                                    <img
+                                        src={`/elementIcons/${
+                                            element +
+                                            (activeElements[element]
+                                                ? '_1'
+                                                : '_0')
+                                        }.webp`}
+                                        alt={`${element} element boost`}
+                                    />
+                                </button>
+                            </li>
+                        ))}
+                        <li>
+                            <button
+                                className={'farming__element'}
+                                onClick={() => toggleElement('Monolith')}
+                            >
+                                <img
+                                    src={`/elementIcons/Monolith${
+                                        activeElements['Monolith'] ? '_1' : '_0'
+                                    }.webp`}
+                                    alt="Monolith element boost"
+                                />
+                            </button>
+                        </li>
+                    </ul>
+                    <h2>Active generators</h2>
+                    <ul className="farming__list">
+                        {Object.keys(generators).map((element) => (
+                            <li
+                                key={element}
+                                className="farming__generator-wrapper"
+                            >
+                                <label className="farming__generator">
+                                    {element} Generators:
+                                    <input
+                                        className="selector farming__selector"
+                                        type="number"
+                                        inputmode="numeric"
+                                        value={generators[element]}
+                                        min="0"
+                                        onFocus={(e) => e.target.select()}
+                                        onChange={(e) =>
+                                            updateGeneratorCount(
+                                                element,
+                                                parseInt(e.target.value) || 0
+                                            )
+                                        }
+                                    />
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
                     <div className="table-wrapper">
                         <div>
                             <table className="farmingTable">
                                 <thead>
                                     <tr>
+                                        <th>
+                                            <abbr title="Boosted lvl. 1 earning rate">
+                                                Base
+                                            </abbr>
+                                        </th>
                                         <th>Dragon</th>
-                                        <th>500</th>
-                                        <th>545</th>
-                                        <th>600</th>
-                                        <th>666</th>
-                                        <th>750</th>
-                                        <th>857</th>
-                                        <th>1k</th>
-                                        <th>1.2k</th>
-                                        <th>1.5k</th>
-                                        <th>2k</th>
-                                        <th>3k</th>
-                                        <th>6k</th>
+                                        {roundingCaps.map((cap) => (
+                                            <th key={cap}>{cap}</th>
+                                        ))}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {allDragons.map((dragon) => (
-                                        <tr>
+                                    {test.map((dragon) => (
+                                        <tr key={dragon.name}>
+                                            <td>{dragon.incomeWithBoosts}</td>
                                             <td>{dragon.name}</td>
                                             {roundingCaps.map((cap) => (
-                                                <td>
+                                                <td key={cap}>
                                                     {calculateLevelForCap(
                                                         cap,
                                                         dragon
@@ -105,6 +201,10 @@ export default function Home() {
                             </table>
                         </div>
                     </div>
+                </section>
+                <section className="card">
+                    <h2 className="card__title">Information</h2>
+                    <p>No information yet...</p>
                 </section>
             </main>
         </>

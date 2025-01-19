@@ -11,7 +11,7 @@
     border-spacing: 0;
     th,
     td {
-        padding: 2px 0;
+        padding: 2px;
         &:first-of-type {
             padding-left: 5px;
         }
@@ -31,10 +31,10 @@
 }
 
 @media (max-width: $breakpoint--sm) {
-    table {
+    .farmingTable {
         th,
         td {
-            padding: 5px;
+            padding: 0px 5px;
         }
     }
 }

@@ -5,13 +5,34 @@
     touch-action: manipulation;
     text-shadow: inherit;
     cursor: pointer;
-    padding: 0.25rem 3rem;
+    padding: 0.25rem 1rem;
     width: 100%;
+    min-width: 20%;
     width: fit-content;
     border: 0;
     border-radius: 0.8rem 0.8rem 0.4rem 0.4rem;
-    background-color: #36dc23;
     text-decoration: none;
+    background-color: #36dc23;
     box-shadow: inset 0 -3px #2bb01c, inset 2px 0 #2bb01c, inset -2px 0 #2bb01c,
         1px 1px #000, -1px -1px #000;
+
+    &--gray {
+        background-color: #babfc5;
+        box-shadow: inset 0 -3px #959ba1, inset 2px 0 #959ba1,
+            inset -2px 0 #959ba1, 1px 1px #000, -1px -1px #000;
+    }
+    &--red {
+        background-color: #dc2323;
+        box-shadow: inset 0 -3px #a21414, inset 2px 0 #a21414,
+            inset -2px 0 #a21414, 1px 1px #000, -1px -1px #000;
+    }
+}
+@media (max-width: $breakpoint--sm) {
+    .button {
+        padding-inline: 0;
+        width: 30%;
+        &--wide {
+            width: 100%;
+        }
+    }
 }

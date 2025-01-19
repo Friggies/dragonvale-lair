@@ -1,0 +1,37 @@
+.farming {
+    &__list {
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.25rem;
+    }
+    &__element {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    &__generator {
+        display: flex;
+        flex-direction: column;
+        &-wrapper {
+            width: calc(50% - 0.125rem);
+            max-width: 200px;
+        }
+    }
+    &__selector {
+        background-color: transparent;
+        font-family: inherit;
+        color: inherit;
+        text-shadow: inherit;
+        padding: 0.5rem 1rem;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: $breakpoint--sm) {
+    .farming {
+        padding-inline: 0.75rem;
+    }
+}
