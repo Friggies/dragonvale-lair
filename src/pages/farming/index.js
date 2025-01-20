@@ -105,7 +105,7 @@ export default function Home() {
                         An overview of what levels are needed to reach
                         DragonCash earning rate roundings for each dragon.
                     </p>
-                    <h2>Active boosts</h2>
+                    <h2>Active boosts & generators</h2>
                     <ul className="farming__list">
                         {regularElements.map((element) => (
                             <li key={element}>
@@ -139,7 +139,6 @@ export default function Home() {
                             </button>
                         </li>
                     </ul>
-                    <h2>Active generators</h2>
                     <ul className="farming__list">
                         {Object.keys(generators).map((element) => (
                             <li
@@ -148,20 +147,48 @@ export default function Home() {
                             >
                                 <label className="farming__generator">
                                     {element} Generators:
-                                    <input
-                                        className="selector farming__selector"
-                                        type="number"
-                                        inputmode="numeric"
-                                        value={generators[element]}
-                                        min="0"
-                                        onFocus={(e) => e.target.select()}
-                                        onChange={(e) =>
-                                            updateGeneratorCount(
-                                                element,
-                                                parseInt(e.target.value) || 0
-                                            )
-                                        }
-                                    />
+                                    <div className="selector farming__selector-wrapper">
+                                        <button
+                                            onClick={() =>
+                                                updateGeneratorCount(
+                                                    element,
+                                                    Math.max(
+                                                        0,
+                                                        generators[element] - 1
+                                                    )
+                                                )
+                                            }
+                                            className="farming__generator-button farming__generator-button--left"
+                                        >
+                                            -
+                                        </button>
+                                        <input
+                                            className="farming__selector"
+                                            type="number"
+                                            inputMode="numeric"
+                                            value={generators[element]}
+                                            min="0"
+                                            onFocus={(e) => e.target.select()}
+                                            onChange={(e) =>
+                                                updateGeneratorCount(
+                                                    element,
+                                                    parseInt(e.target.value) ||
+                                                        0
+                                                )
+                                            }
+                                        />
+                                        <button
+                                            onClick={() =>
+                                                updateGeneratorCount(
+                                                    element,
+                                                    generators[element] + 1
+                                                )
+                                            }
+                                            className="farming__generator-button"
+                                        >
+                                            +
+                                        </button>
+                                    </div>
                                 </label>
                             </li>
                         ))}

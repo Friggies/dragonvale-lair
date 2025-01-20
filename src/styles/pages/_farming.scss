@@ -15,9 +15,33 @@
     &__generator {
         display: flex;
         flex-direction: column;
+        position: relative;
         &-wrapper {
             width: calc(50% - 0.125rem);
             max-width: 200px;
+        }
+        &-button {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            border: none;
+            height: 100%;
+            width: 20%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            font-family: inherit;
+            text-shadow: inherit;
+            color: inherit;
+            font-size: 2rem;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            line-height: 0;
+            touch-action: manipulation;
+            &--left {
+                left: 0;
+                right: auto;
+            }
         }
     }
     &__selector {
@@ -27,11 +51,25 @@
         text-shadow: inherit;
         padding: 0.5rem 1rem;
         font-size: 18px;
+        text-align: center;
+        border: none;
+        width: 70%;
+        &-wrapper {
+            overflow: hidden;
+        }
     }
 }
 
 @media (max-width: $breakpoint--sm) {
     .farming {
         padding-inline: 0.75rem;
+        &__generator {
+            &-button {
+                width: 30%;
+            }
+        }
+        &__selector {
+            width: 80%;
+        }
     }
 }
