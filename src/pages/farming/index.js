@@ -26,6 +26,7 @@ export default function Home() {
             return true
         })
         allDragons.sort((a, b) => b.income[0] - a.income[0])
+        allDragons.map((dragon) => (dragon.incomeWithBoosts = dragon.income[0]))
         setTest(allDragons)
     }, [])
 

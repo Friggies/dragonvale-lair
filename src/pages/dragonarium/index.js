@@ -214,83 +214,73 @@ export default function Home() {
                 />
             </Head>
             <main className="main">
-                {true ? (
-                    <section className="card">
-                        <h1 className="card__title">Under construction</h1>
-                        <img
-                            className="building"
-                            src="/building.webp"
+                <section className="card dragonarium">
+                    <h1 className="card__title">Your Dragonarium</h1>
+                    <div className="dragonarium__info">
+                        <LabelButton
+                            label="Options"
+                            imageName="gearButton"
+                            tag="button"
+                            type="button"
+                            onClick={toggleOptionsDialog}
                         />
-                    </section>
-                ) : (
-                    <section className="card dragonarium">
-                        <h1 className="card__title">Your Dragonarium</h1>
-                        <div className="dragonarium__info">
-                            <LabelButton
-                                label="Options"
-                                imageName="gearButton"
-                                tag="button"
-                                type="button"
-                                onClick={toggleOptionsDialog}
-                            />
-                            <LabelButton
-                                label="Help"
-                                imageName="questionmarkButton"
-                                tag="button"
-                                type="button"
-                                onClick={toggleHelpDialog}
-                            />
-                        </div>
-                        <div className="dragonarium__column">
-                            <h2>Missing {missingDragons.length}</h2>
-                            <ul className="dragonarium__list">
-                                {missingDragons.map((dragon) => (
-                                    <li
-                                        className={
-                                            dragon.userCanBreed
-                                                ? 'dragonarium__dragon dragonarium__dragon--breedable'
-                                                : 'dragonarium__dragon'
-                                        }
-                                        key={dragon.name}
-                                        onClick={() => addDragon(dragon)}
-                                    >
-                                        <img
-                                            loading="lazy"
-                                            height="50"
-                                            alt={`${dragon.name} Dragon Egg`}
-                                            src={`https://namethategg.com/eggs/${transformToEggName(
-                                                dragon.name
-                                            )}.png`}
-                                        />
-                                        {dragon.name}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className="dragonarium__column">
-                            <h2>Acquired {userDragons.length}</h2>
-                            <ul className="dragonarium__list">
-                                {userDragons.map((dragon) => (
-                                    <li
-                                        className="dragonarium__dragon"
-                                        key={dragon.name}
-                                        onClick={() => removeDragon(dragon)}
-                                    >
-                                        <img
-                                            loading="lazy"
-                                            height="50"
-                                            alt={`${dragon.name} Dragon Egg`}
-                                            src={`https://namethategg.com/eggs/${transformToEggName(
-                                                dragon.name
-                                            )}.png`}
-                                        />
-                                        {dragon.name}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </section>
-                )}
+                        <LabelButton
+                            label="Help"
+                            imageName="questionmarkButton"
+                            tag="button"
+                            type="button"
+                            onClick={toggleHelpDialog}
+                        />
+                    </div>
+                    <div className="dragonarium__column">
+                        <h2>Missing {missingDragons.length}</h2>
+                        <ul className="dragonarium__list">
+                            {missingDragons.map((dragon) => (
+                                <li
+                                    className={
+                                        dragon.userCanBreed
+                                            ? 'dragonarium__dragon dragonarium__dragon--breedable'
+                                            : 'dragonarium__dragon'
+                                    }
+                                    key={dragon.name}
+                                    onClick={() => addDragon(dragon)}
+                                >
+                                    <img
+                                        loading="lazy"
+                                        height="50"
+                                        alt={`${dragon.name} Dragon Egg`}
+                                        src={`https://namethategg.com/eggs/${transformToEggName(
+                                            dragon.name
+                                        )}.png`}
+                                    />
+                                    {dragon.name}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="dragonarium__column">
+                        <h2>Acquired {userDragons.length}</h2>
+                        <ul className="dragonarium__list">
+                            {userDragons.map((dragon) => (
+                                <li
+                                    className="dragonarium__dragon"
+                                    key={dragon.name}
+                                    onClick={() => removeDragon(dragon)}
+                                >
+                                    <img
+                                        loading="lazy"
+                                        height="50"
+                                        alt={`${dragon.name} Dragon Egg`}
+                                        src={`https://namethategg.com/eggs/${transformToEggName(
+                                            dragon.name
+                                        )}.png`}
+                                    />
+                                    {dragon.name}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
                 <section className="card">
                     <h2 className="card__title">Information</h2>
                     <p>No information yet...</p>
@@ -389,7 +379,9 @@ export default function Home() {
                             src="/xButton.png"
                         />
                     </button>
-                    <div className="dialog__content"></div>
+                    <div className="dialog__content">
+                        <p>No help yet...</p>
+                    </div>
                 </dialog>
             </main>
         </>
