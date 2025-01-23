@@ -44,7 +44,7 @@ export default function Home() {
             0
         )
 
-        const s = 6000 / dragon.income[0]
+        const s = Math.floor(6000 / dragon.income[0])
         const boost = 1 + 0.3 * elementBoosts + generatorBoosts
 
         for (let level = 1; level <= maxLevel; level++) {
