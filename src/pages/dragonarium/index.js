@@ -15,6 +15,8 @@ export default function Home() {
     const [userDragons, setUserDragons] = useState([])
     const [missingDragons, setMissingDragons] = useState(allDragons)
     const [isLoaded, setIsLoaded] = useState(false)
+    const [userDragonsSearch, setUserDragonsSearch] = useState('')
+    const [missingDragonsSearch, setMissingDragonsSearch] = useState('')
 
     const epicElements = [
         'Apocalypse',
@@ -67,8 +69,17 @@ export default function Home() {
         }
     }, [userDragons, isLoaded]) // Run only after the initial load and when the dragons change
 
+    const collator = new Intl.Collator('en', {
+        numeric: true,
+        sensitivity: 'base',
+    })
     const addDragon = (dragon) => {
-        setUserDragons((prev) => [dragon, ...prev])
+        setUserDragons((prev) =>
+            [dragon, ...prev].sort((a, b) => {
+                return collator.compare(a.name, b.name)
+            })
+        )
+
         setMissingDragons((prev) => prev.filter((d) => d.name !== dragon.name))
     }
 
@@ -164,7 +175,11 @@ export default function Home() {
             )
         }
 
-        setUserDragons((prev) => [...dragonsToAdd, ...prev])
+        setUserDragons((prev) =>
+            [...dragonsToAdd, ...prev].sort((a, b) => {
+                return collator.compare(a.name, b.name)
+            })
+        )
         setMissingDragons((prev) =>
             prev.filter(
                 (dragon) =>
@@ -189,7 +204,11 @@ export default function Home() {
             )
         }
 
-        setUserDragons((prev) => [...dragonsToAdd, ...prev])
+        setUserDragons((prev) =>
+            [...dragonsToAdd, ...prev].sort((a, b) => {
+                return collator.compare(a.name, b.name)
+            })
+        )
         setMissingDragons((prev) =>
             prev.filter(
                 (dragon) =>
@@ -199,6 +218,46 @@ export default function Home() {
             )
         )
     }
+
+    useEffect(() => {
+        if (missingDragonsSearch === '') {
+            setMissingDragons((prev) =>
+                prev.map((dragon) => ({
+                    ...dragon,
+                    hiddenBySearch: false,
+                }))
+            )
+        } else {
+            setMissingDragons((prev) =>
+                prev.map((dragon) => ({
+                    ...dragon,
+                    hiddenBySearch: !dragon.name
+                        .toLowerCase()
+                        .includes(missingDragonsSearch.toLowerCase()),
+                }))
+            )
+        }
+    }, [missingDragonsSearch])
+
+    useEffect(() => {
+        if (userDragonsSearch === '') {
+            setUserDragons((prev) =>
+                prev.map((dragon) => ({
+                    ...dragon,
+                    hiddenBySearch: false,
+                }))
+            )
+        } else {
+            setUserDragons((prev) =>
+                prev.map((dragon) => ({
+                    ...dragon,
+                    hiddenBySearch: !dragon.name
+                        .toLowerCase()
+                        .includes(userDragonsSearch.toLowerCase()),
+                }))
+            )
+        }
+    }, [userDragonsSearch])
 
     return (
         <>
@@ -234,14 +293,27 @@ export default function Home() {
                     </div>
                     <div className="dragonarium__column">
                         <h2>Missing {missingDragons.length}</h2>
+                        <div className="selector">
+                            <input
+                                className="dragonarium__search"
+                                value={missingDragonsSearch}
+                                onChange={(event) => {
+                                    setMissingDragonsSearch(event.target.value)
+                                }}
+                                type="text"
+                                placeholder="Search..."
+                            />
+                        </div>
                         <ul className="dragonarium__list">
                             {missingDragons.map((dragon) => (
                                 <li
-                                    className={
-                                        dragon.userCanBreed
-                                            ? 'dragonarium__dragon dragonarium__dragon--breedable'
-                                            : 'dragonarium__dragon'
-                                    }
+                                    className={`dragonarium__dragon ${
+                                        dragon.userCanBreed &&
+                                        'dragonarium__dragon--breedable'
+                                    } ${
+                                        dragon.hiddenBySearch &&
+                                        'dragonarium__dragon--hidden'
+                                    }`}
                                     key={dragon.name}
                                     onClick={() => addDragon(dragon)}
                                 >
@@ -260,10 +332,25 @@ export default function Home() {
                     </div>
                     <div className="dragonarium__column">
                         <h2>Acquired {userDragons.length}</h2>
+                        <div className="selector">
+                            <input
+                                className="dragonarium__search"
+                                value={userDragonsSearch}
+                                onChange={(event) => {
+                                    setUserDragonsSearch(event.target.value)
+                                }}
+                                type="text"
+                                placeholder="Search..."
+                            />
+                        </div>
+
                         <ul className="dragonarium__list">
                             {userDragons.map((dragon) => (
                                 <li
-                                    className="dragonarium__dragon"
+                                    className={`dragonarium__dragon ${
+                                        dragon.hiddenBySearch &&
+                                        'dragonarium__dragon--hidden'
+                                    }`}
                                     key={dragon.name}
                                     onClick={() => removeDragon(dragon)}
                                 >
