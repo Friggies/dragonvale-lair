@@ -38,19 +38,30 @@ export default function Home() {
             0
         )
 
-        const generatorBoosts = dragon.elements.reduce(
-            (totalBoost, element) =>
-                totalBoost + (generators[element] || 0) * 0.02,
-            0
-        )
+        const generatorBoosts =
+            Math.round(
+                dragon.elements.reduce(
+                    (totalBoost, element) =>
+                        totalBoost + (generators[element] || 0) * 0.02,
+                    0
+                ) * 1e12
+            ) / 1e12
 
         const s = Math.floor(6000 / dragon.income[0])
-        const boost = 1 + 0.3 * elementBoosts + generatorBoosts
+        const boost =
+            Math.round((1 + 0.3 * elementBoosts + generatorBoosts) * 1e12) /
+            1e12
 
         for (let level = 1; level <= maxLevel; level++) {
             const income = Math.floor(
-                6000 / Math.floor(Math.floor(s / (0.6 * level + 0.4)) / boost)
+                6000 /
+                    Math.floor(
+                        Math.floor(
+                            Math.round((s / (0.6 * level + 0.4)) * 1e12) / 1e12
+                        ) / boost
+                    )
             )
+
             if (level === 1) {
                 dragon.incomeWithBoosts = income
             }
