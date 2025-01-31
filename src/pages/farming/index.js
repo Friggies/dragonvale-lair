@@ -47,7 +47,7 @@ export default function Home() {
                 ) * 1e12
             ) / 1e12
 
-        const s = 6000 / dragon.income[0]
+        const s = Math.round(6000 / dragon.income[0])
         const boost =
             Math.round((1 + 0.3 * elementBoosts + generatorBoosts) * 1e12) /
             1e12
