@@ -14,22 +14,9 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "Lotus Pose",
-        "rarity": "Epic",
-        "number": 884,
-        "name": "Hasu",
-        "elements": ["Aura", "Water", "Plant"],
-        "released": "January 23, 2025",
-        "commemoration": "Valentides",
-        "breedingTime": "16 H",
-        "income": [21],
-        "combo": ["Begonia", "plant"]
-    },
-    {
-        "availability": "LIMITED",
         "quest": "Slurp...",
         "rarity": "Rare",
-        "number": 883,
+        "number": 884,
         "name": "Smoothie",
         "elements": ["Water", "Plant", "Cold"],
         "released": "January 23, 2025",
@@ -37,6 +24,19 @@
         "breedingTime": "14 H",
         "income": [20],
         "combo": ["water", "plant", "cold"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Lotus Pose",
+        "rarity": "Epic",
+        "number": 883,
+        "name": "Hasu",
+        "elements": ["Aura", "Water", "Plant"],
+        "released": "January 23, 2025",
+        "commemoration": "Valentides",
+        "breedingTime": "16 H",
+        "income": [21],
+        "combo": ["Begonia", "plant"]
     },
     {
         "availability": "LIMITED",
