@@ -216,6 +216,7 @@ export default function Home() {
                                             </abbr>
                                         </th>
                                         <th>Dragon</th>
+                                        <th>Elements</th>
                                         {roundingCaps.map((cap) => (
                                             <th key={cap}>{cap}</th>
                                         ))}
@@ -226,6 +227,22 @@ export default function Home() {
                                         <tr key={dragon.name}>
                                             <td>{dragon.incomeWithBoosts}</td>
                                             <td>{dragon.name}</td>
+                                            <td className="farmingTable__elements">
+                                                {dragon.elements.map(
+                                                    (element) => {
+                                                        if (element === 'Rift')
+                                                            return
+                                                        return (
+                                                            <img
+                                                                key={element}
+                                                                className="farming__dragonElement"
+                                                                src={`/elementIcons/${element}_1.webp`}
+                                                                alt={element}
+                                                            />
+                                                        )
+                                                    }
+                                                )}
+                                            </td>
                                             {roundingCaps.map((cap) => (
                                                 <td key={cap}>
                                                     {calculateLevelForCap(

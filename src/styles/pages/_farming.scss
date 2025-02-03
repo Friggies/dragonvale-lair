@@ -58,6 +58,9 @@
             overflow: hidden;
         }
     }
+    &__dragonElement {
+        width: 20px;
+    }
 }
 
 @media (max-width: $breakpoint--sm) {
