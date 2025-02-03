@@ -370,7 +370,34 @@ export default function Home() {
                 </section>
                 <section className="card">
                     <h2 className="card__title">Information</h2>
-                    <p>No information yet...</p>
+                    <p>
+                        The Dragonarium makes managing your DragonVale
+                        collection easier and more organized. This tool helps
+                        you keep track of the dragons you have already acquired
+                        and identifies which dragons you can currently breed.
+                    </p>
+
+                    <p>
+                        Simply add your collected dragons to the "Acquired"
+                        section. The "Missing" section will then automatically
+                        update, sorting and highlighting in green the dragons
+                        you can breed with your existing collection. This
+                        ensures you always know which dragons are within reach.
+                    </p>
+                    <p>
+                        The data is saved in the browser's local storage.
+                        Therefore, the data will be "stored" even if you
+                        close/refresh the tab or restart the computer. The only
+                        way to lose the data, as far as I'm aware, is if you
+                        clear your cookies or switch to another browser. This
+                        way of storage also means it is unfortunately impossible
+                        to share data between browsers or devices
+                        (desktop/mobile).
+                    </p>
+                    <p>
+                        Click on the "Help" button for detailed instructions on
+                        how to use the DragonVale Dragonarium effectively.
+                    </p>
                 </section>
                 <dialog
                     id="optionsDialog"
@@ -467,7 +494,19 @@ export default function Home() {
                         />
                     </button>
                     <div className="dialog__content">
-                        <p>No help yet...</p>
+                        <p>
+                            To toggle an egg between the missing and the
+                            acquired section, simply click it.
+                        </p>
+                        <p>
+                            If you want to move multiple eggs, open the options
+                            menu and press either the add buttons, the remove
+                            button or the elements to add dragons by element.
+                        </p>
+                        <p>
+                            If you need to add or remove a specific dragon from
+                            a pist, you can use the search functionality.
+                        </p>
                     </div>
                 </dialog>
             </main>

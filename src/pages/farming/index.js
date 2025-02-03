@@ -260,7 +260,32 @@ export default function Home() {
                 </section>
                 <section className="card">
                     <h2 className="card__title">Information</h2>
-                    <p>No information yet...</p>
+                    <p>
+                        DC Farming makes managing your DragonVale park more
+                        efficient and profitable. The DC Farming tool helps you
+                        identify the optimal dragon levels needed to maximize
+                        your DragonCash (DC) earnings.
+                    </p>
+
+                    <p>
+                        Select your active boosts and generators in the "Active
+                        Boosts & Generators" section. The DC Farming tool will
+                        then dynamically update the table to show the specific
+                        levels each dragon needs to reach key earning rate
+                        roundings.
+                    </p>
+
+                    <p>
+                        For detailed strategies and advanced tips, visit the{' '}
+                        <a
+                            className="link"
+                            href="https://dragonvale-tips.proboards.com/thread/1411/dc-farming-guide"
+                        >
+                            DC Farming Guide
+                        </a>
+                        . This community resource offers more information to
+                        help you make the most out of your DC Farm.
+                    </p>
                 </section>
             </main>
         </>
