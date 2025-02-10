@@ -1,6 +1,4 @@
 const currentlyAvailable = [
-    'Jiaolong',
-    'Panlong',
     'Barite',
     'Jet',
     'Winter',
@@ -27,6 +25,7 @@ const currentlyAvailable = [
     'Ghostly Decay',
     'Ghostly Nosferatu',
     'Ghostly Oni',
+    'Waapawaapa',
     'Maracas',
     'Love',
     'Rose',

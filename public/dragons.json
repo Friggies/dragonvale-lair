@@ -1,6 +1,19 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Rock the Boat",
+        "rarity": "Rare",
+        "number": 886,
+        "name": "Waapawaapa",
+        "elements": ["Water", "Plant", "Earth"],
+        "released": "February 6, 2025",
+        "commemoration": "Valentides",
+        "breedingTime": "18 H",
+        "income": [33],
+        "combo": ["Hakahaka", "Canna"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Shake It!",
         "rarity": "Epic",
         "number": 885,
