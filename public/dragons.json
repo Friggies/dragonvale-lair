@@ -1,6 +1,32 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 888,
+        "name": "Hollow",
+        "elements": ["Olympus"],
+        "released": "February 13, 2025",
+        "commemoration": "Valentides",
+        "breedingTime": "20 H",
+        "income": [43],
+        "combo": ["plant", "earth", "metal"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 887,
+        "name": "Shy",
+        "elements": ["Aura", "Cold", "Fire", "Light"],
+        "released": "February 13, 2025",
+        "commemoration": "Valentides",
+        "breedingTime": "21 H",
+        "income": [40],
+        "combo": ["fire", "cold", "light"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Rock the Boat",
         "rarity": "Rare",
         "number": 886,
