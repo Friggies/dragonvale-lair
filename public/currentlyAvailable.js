@@ -25,8 +25,6 @@ const currentlyAvailable = [
     'Ghostly Decay',
     'Ghostly Nosferatu',
     'Ghostly Oni',
-    'Waapawaapa',
-    'Maracas',
     'Love',
     'Rose',
     'Rosebud',
