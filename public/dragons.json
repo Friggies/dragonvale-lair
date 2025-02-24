@@ -1,6 +1,19 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Flight of Whales",
+        "rarity": "Rare",
+        "number": 889,
+        "name": "Koholahola",
+        "elements": ["Water", "Cold", "Dark", "Light"],
+        "released": "February 20, 2025",
+        "commemoration": "Valentides",
+        "breedingTime": "19 H",
+        "income": [24],
+        "combo": ["Manomano", "Mylio"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Epic",
         "number": 888,
