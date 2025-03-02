@@ -1,6 +1,22 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Birds of a Feather",
+        "rarity": "Rare",
+        "number": 890,
+        "name": "Flamindos",
+        "elements": ["Air", "Water", "Dark"],
+        "released": "February 27, 2025",
+        "commemoration": "Valentides",
+        "breedingTime": "20 H",
+        "income": [
+            30, 48, 66, 84, 102, 120, 138, 156, 174, 192, 210, 228, 246, 264,
+            282, 300, 318, 336, 354, 372
+        ],
+        "combo": ["Razzle", "water", "air"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Flight of Whales",
         "rarity": "Rare",
         "number": 889,

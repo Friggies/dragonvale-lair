@@ -1,6 +1,7 @@
 const currentlyAvailable = [
-    'Barite',
-    'Jet',
+    'Okenite',
+    'Aquamarine',
+    'Lapis',
     'Winter',
     'Ghostly Kringle',
     'Ghostly Krampus',
