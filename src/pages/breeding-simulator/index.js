@@ -267,9 +267,10 @@ export default function Home() {
                     <p>
                         You can switch between the breeding caves to correctly
                         show your incubation time. The upgraded cave reduces
-                        incubation by 20%. Additional options like Bring Em
-                        Back, Weather, and Time are available under the
-                        "Options" menu to fine-tune your breeding conditions.
+                        incubation by 20% and the runic cave reduces incubation
+                        time by 75%. Additional options like Bring Em Back,
+                        Weather, and Time are available under the "Options" menu
+                        to fine-tune your breeding conditions.
                     </p>
                     <p>
                         Simulate breedings with the DragonVale Breeding

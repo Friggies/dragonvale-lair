@@ -189,8 +189,8 @@ export default function Home() {
                             <LabelButton
                                 label={
                                     showUserCombos
-                                        ? 'Your combos'
-                                        : 'All combos'
+                                        ? 'Your Combos'
+                                        : 'All Combos'
                                 }
                                 imageName={
                                     showUserCombos
@@ -255,7 +255,7 @@ export default function Home() {
                         <p>
                             <em>
                                 Some combinations might be missing even if you
-                                own both dragons
+                                own both parent dragons dragons.
                             </em>
                         </p>
                     )}
@@ -287,6 +287,23 @@ export default function Home() {
                         and whether the parents can be the same as the target
                         dragon. You can also specify if one of the parents must
                         be a particular dragon, allowing for precise results.
+                    </p>
+                    <p>
+                        It is also possible to show only combinations that you
+                        have yourself. Press the "All Combos" button and toggle
+                        it to "Your Combos". The results are filtered with the
+                        data from your{' '}
+                        <a
+                            className="link"
+                            href="/dragonarium"
+                        >
+                            Dragonarium
+                        </a>
+                        . The Compendium has a limit on how many combos it
+                        returns, so it might not return combos that you have,
+                        and it might look like you don't have any possible
+                        combinations for the target dragon, even though you
+                        have.
                     </p>
                     <p>
                         Using the Parent Finder in DragonVale is a great way to

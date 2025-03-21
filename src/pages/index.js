@@ -63,7 +63,17 @@ export default function Home() {
                         >
                             DragonVale Sandbox
                         </a>
-                        .
+                        . Also a special thanks to the handy{' '}
+                        <a
+                            href="https://dragonvale.fandom.com/wiki/DragonVale_Wiki"
+                            target="_blank"
+                            className="link"
+                        >
+                            DragonVale Wiki
+                        </a>{' '}
+                        for well-structured documentation and for all the
+                        website graphics that I blatantly steal and reuse on
+                        this website.
                     </p>
                     <p>
                         Use the buttons at the top of every page to navigate

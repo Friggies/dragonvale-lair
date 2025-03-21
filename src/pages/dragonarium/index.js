@@ -376,13 +376,27 @@ export default function Home() {
                         you keep track of the dragons you have already acquired
                         and identifies which dragons you can currently breed.
                     </p>
-
                     <p>
                         Simply add your collected dragons to the "Acquired"
                         section. The "Missing" section will then automatically
                         update, sorting and highlighting in green the dragons
                         you can breed with your existing collection. This
                         ensures you always know which dragons are within reach.
+                    </p>
+                    <p>
+                        This data is also used on the{' '}
+                        <a
+                            className="link"
+                            href="/parent-finder"
+                        >
+                            Parent Finder
+                        </a>{' '}
+                        if you toggle "All Combos" to "Your Combos". The
+                        Compendium has a limit on how many combos it returns, so
+                        it might not return combos that you have, and therefore
+                        it might look like you don't have any possible
+                        combinations for the target dragon, even though you
+                        have.
                     </p>
                     <p>
                         The data is saved in the browser's local storage.
@@ -507,7 +521,12 @@ export default function Home() {
                         </p>
                         <p>
                             If you need to add or remove a specific dragon from
-                            a pist, you can use the search functionality.
+                            a list, you can use the search functionality.
+                        </p>
+                        <p>
+                            The eggs in the missing category that has green
+                            names are ones you could breed with your current
+                            acquired dragons.
                         </p>
                     </div>
                 </dialog>
