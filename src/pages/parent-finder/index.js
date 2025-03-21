@@ -13,6 +13,8 @@ export default function Home() {
     const [informationString, setInformationString] = useState('')
     const [loading, setLoading] = useState(false)
     const [loadingText, setLoadingText] = useState('')
+    const [userDragons, setUserDragons] = useState([])
+    const [showUserCombos, setShowUserCombos] = useState(false) // Toggle state
 
     const submitForm = (e) => {
         e.preventDefault()
@@ -50,6 +52,16 @@ export default function Home() {
     }
 
     useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedDragons = localStorage.getItem('userDragons')
+            if (storedDragons) {
+                const userDragonsList = JSON.parse(storedDragons)
+                setUserDragons(userDragonsList)
+            }
+        }
+    }, [])
+
+    useEffect(() => {
         const dialog = document.querySelector('#loadingDialog')
         if (loading === true) {
             dialog.showModal()
@@ -80,6 +92,11 @@ export default function Home() {
         }
     }
 
+    // Toggle between all combos and user-only combos
+    const toggleComboView = () => {
+        setShowUserCombos((prev) => !prev)
+    }
+
     const options = dragons.map((dragon) => {
         if (dragon.rarity.includes('Legendary')) return {}
         if (dragon.rarity.includes('Mythic')) return {}
@@ -97,6 +114,24 @@ export default function Home() {
         }
         return 0
     })
+
+    // Filter data if showUserCombos is true
+    const filteredData =
+        data !== 'NODATA' && Array.isArray(data)
+            ? showUserCombos
+                ? data.filter((row) => {
+                      // row[0] is a string like "dragonName1+dragonName2"
+                      const [parent1, parent2] = row[0].split('+')
+                      const ownedParent1 = userDragons.some(
+                          (dragon) => dragon.name === parent1
+                      )
+                      const ownedParent2 = userDragons.some(
+                          (dragon) => dragon.name === parent2
+                      )
+                      return ownedParent1 && ownedParent2
+                  })
+                : data
+            : []
 
     return (
         <>
@@ -151,6 +186,21 @@ export default function Home() {
                                 type="button"
                                 onClick={toggleHelpDialog}
                             />
+                            <LabelButton
+                                label={
+                                    showUserCombos
+                                        ? 'Your combos'
+                                        : 'All combos'
+                                }
+                                imageName={
+                                    showUserCombos
+                                        ? 'dragonariumButton'
+                                        : 'dragonsButton'
+                                }
+                                tag="button"
+                                type="button"
+                                onClick={toggleComboView}
+                            />
                         </div>
                     </form>
                     {data.length === 0 ? (
@@ -168,7 +218,7 @@ export default function Home() {
                     <table className="dragonGrid">
                         <tbody className="dragonGrid__body">
                             {data !== 'NODATA' &&
-                                data.map((row, index) => (
+                                filteredData.map((row, index) => (
                                     <tr
                                         key={index}
                                         className="dragonParents"
@@ -201,6 +251,14 @@ export default function Home() {
                                 ))}
                         </tbody>
                     </table>
+                    {showUserCombos && (
+                        <p>
+                            <em>
+                                Some combinations might be missing even if you
+                                own both dragons
+                            </em>
+                        </p>
+                    )}
                 </section>
                 <section className="card">
                     <h2 className="card__title">Information</h2>
@@ -359,7 +417,7 @@ export default function Home() {
                             The results show a generic formula for breeding the
                             dragon on the left. It shows the odds of breeding
                             and cloning the target dragon on the right. The
-                            number in parenthesis is the change for cloning with
+                            number in parenthesis is the chance for cloning with
                             both parents being the target dragon.
                         </p>
                         <p>

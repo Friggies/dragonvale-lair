@@ -25,12 +25,15 @@
         "released": "February 20, 2025",
         "commemoration": "Valentides",
         "breedingTime": "19 H",
-        "income": [24],
+        "income": [
+            24, 38, 53, 67, 82, 96, 110, 125, 139, 154, 168, 182, 197, 211, 226,
+            240, 254, 269, 283, 298
+        ],
         "combo": ["Manomano", "Mylio"]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "No Grease Here",
         "rarity": "Epic",
         "number": 888,
         "name": "Hollow",
@@ -38,12 +41,15 @@
         "released": "February 13, 2025",
         "commemoration": "Valentides",
         "breedingTime": "20 H",
-        "income": [43],
+        "income": [
+            43, 69, 94, 120, 146, 171, 197, 223, 249, 274, 300, 326, 351, 377,
+            403, 429, 454, 480, 506, 531
+        ],
         "combo": ["plant", "earth", "metal"]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Cancelled Plans",
         "rarity": "Epic",
         "number": 887,
         "name": "Shy",
@@ -51,7 +57,10 @@
         "released": "February 13, 2025",
         "commemoration": "Valentides",
         "breedingTime": "21 H",
-        "income": [40],
+        "income": [
+            40, 64, 88, 112, 136, 160, 184, 208, 232, 256, 280, 304, 328, 352,
+            376, 400, 424, 448, 472, 496
+        ],
         "combo": ["fire", "cold", "light"]
     },
     {
@@ -64,7 +73,10 @@
         "released": "February 6, 2025",
         "commemoration": "Valentides",
         "breedingTime": "18 H",
-        "income": [33],
+        "income": [
+            33, 53, 73, 93, 113, 133, 153, 173, 193, 213, 233, 253, 273, 293,
+            313, 333, 353, 373, 393, 413
+        ],
         "combo": ["Hakahaka", "Canna"]
     },
     {
@@ -77,7 +89,10 @@
         "released": "January 30, 2025",
         "commemoration": "Valentides",
         "breedingTime": "22 H",
-        "income": [38],
+        "income": [
+            38, 60, 83, 105, 127, 150, 173, 195, 217, 240, 263, 285, 308, 330,
+            353, 375, 398, 420, 443, 465
+        ],
         "combo": ["Sweetheart", "melody"]
     },
     {
@@ -90,7 +105,10 @@
         "released": "January 23, 2025",
         "commemoration": "Valentides",
         "breedingTime": "14 H",
-        "income": [20],
+        "income": [
+            20, 32, 44, 56, 68, 80, 92, 104, 116, 128, 140, 152, 164, 176, 188,
+            200, 212, 224, 236, 248
+        ],
         "combo": ["water", "plant", "cold"]
     },
     {
@@ -103,7 +121,10 @@
         "released": "January 23, 2025",
         "commemoration": "Valentides",
         "breedingTime": "16 H",
-        "income": [21],
+        "income": [
+            21, 34, 47, 60, 73, 86, 99, 111, 124, 137, 150, 163, 176, 189, 201,
+            214, 227, 240, 253, 266
+        ],
         "combo": ["Begonia", "plant"]
     },
     {
@@ -116,7 +137,10 @@
         "released": "January 23, 2025",
         "commemoration": "Valentides",
         "breedingTime": "13 H",
-        "income": [30],
+        "income": [
+            30, 48, 66, 84, 102, 120, 138, 156, 174, 192, 210, 228, 246, 264,
+            282, 300, 318, 336, 354, 372
+        ],
         "combo": ["Bellflower", "water"]
     },
     {

@@ -11,7 +11,7 @@ export default function Home() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const [loadingText, setLoadingText] = useState('')
-    const [standardIncubation, setStandardIncubation] = useState(true)
+    const [incubationMode, setIncubationMode] = useState('standard')
 
     const submitForm = (e) => {
         e.preventDefault()
@@ -78,11 +78,10 @@ export default function Home() {
         }
     }
     const toggleIncubationTime = () => {
-        document
-            .querySelector('.dragonGrid')
-            .classList.toggle('dragonGrid--reducedIncubationTimes')
-        setStandardIncubation((prev) => {
-            return !prev
+        setIncubationMode((prevMode) => {
+            if (prevMode === 'standard') return 'reduced'
+            if (prevMode === 'reduced') return 'runic'
+            return 'standard' // Cycle back to standard
         })
     }
 
@@ -105,6 +104,23 @@ export default function Home() {
         }
         return 0
     })
+
+    function reduceTimeToRunic(timeStr) {
+        let [hours, minutes, seconds] = timeStr.split(':').map(Number)
+        let totalSeconds = hours * 3600 + minutes * 60 + seconds
+
+        let reducedSeconds = Math.floor(totalSeconds * (25 / 100))
+
+        let newHours = Math.floor(reducedSeconds / 3600)
+        let newMinutes = Math.floor((reducedSeconds % 3600) / 60)
+        let newSeconds = reducedSeconds % 60
+
+        return [
+            newHours, // Don't pad hours
+            String(newMinutes).padStart(2, '0'), // Ensure 2-digit minutes
+            String(newSeconds).padStart(2, '0'), // Ensure 2-digit seconds
+        ].join(':')
+    }
 
     return (
         <>
@@ -176,14 +192,18 @@ export default function Home() {
                             />
                             <LabelButton
                                 label={
-                                    standardIncubation
+                                    incubationMode === 'standard'
                                         ? 'Standard Cave'
-                                        : 'Upgraded Cave'
+                                        : incubationMode === 'reduced'
+                                        ? 'Upgraded Cave'
+                                        : 'Runic Cave'
                                 }
                                 imageName={
-                                    standardIncubation
+                                    incubationMode === 'standard'
                                         ? 'breedingCave'
-                                        : 'enhancedBreedingCave'
+                                        : incubationMode === 'reduced'
+                                        ? 'enhancedBreedingCave'
+                                        : 'runicBreedingCave'
                                 }
                                 tag="button"
                                 type="button"
@@ -213,11 +233,12 @@ export default function Home() {
                                     </td>
                                     <td>{row[0]}</td>
                                     <td>{row[1]}</td>
-                                    <td className="dragonPreview__incubation dragonPreview__incubation--standard">
-                                        {row[2]}
-                                    </td>
-                                    <td className="dragonPreview__incubation dragonPreview__incubation--reduced">
-                                        {row[3]}
+                                    <td className="dragonPreview__incubation">
+                                        {incubationMode === 'standard'
+                                            ? row[2]
+                                            : incubationMode === 'reduced'
+                                            ? row[3]
+                                            : reduceTimeToRunic(row[2])}
                                     </td>
                                 </tr>
                             ))}

@@ -447,6 +447,7 @@ export default function Home() {
                         <div className="dragonarium__element-section">
                             {regularElements.map((element) => (
                                 <button
+                                    key={element}
                                     className="dragonarium__element"
                                     onClick={() => addPermanentDragons(element)}
                                 >
@@ -466,6 +467,7 @@ export default function Home() {
                         <div className="dragonarium__element-section">
                             {epicElements.map((element) => (
                                 <button
+                                    key={element}
                                     className="dragonarium__element"
                                     onClick={() => addEpicDragons(element)}
                                 >
