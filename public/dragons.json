@@ -1,6 +1,58 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 894,
+        "name": "Jiggly",
+        "elements": ["Water", "Plant", "Cold"],
+        "released": "March 27, 2025",
+        "commemoration": "Kaleni in Candy Land",
+        "breedingTime": "14 H",
+        "income": [26],
+        "combo": ["Ooze", "plant", "cold"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Lollipop'n'roll",
+        "rarity": "Rare",
+        "number": 893,
+        "name": "Swirly",
+        "elements": ["Plant", "Earth", "Fire"],
+        "released": "March 20, 2025",
+        "commemoration": "Kaleni in Candy Land",
+        "breedingTime": "16 H",
+        "income": [24],
+        "combo": ["Cotton", "fire"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Sour Hour",
+        "rarity": "Rare",
+        "number": 892,
+        "name": "Sourtail",
+        "elements": ["Fire", "Plant"],
+        "released": "March 20, 2025",
+        "commemoration": "Kaleni in Candy Land",
+        "breedingTime": "17 H",
+        "income": [21],
+        "combo": ["Swallowtail", "fire", "plant"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "King of Flan",
+        "rarity": "Rare",
+        "number": 891,
+        "name": "Caramelo",
+        "elements": ["Fire", "Water", "Light"],
+        "released": "March 20, 2025",
+        "commemoration": "Kaleni in Candy Land",
+        "breedingTime": "14 H",
+        "income": [20],
+        "combo": ["fire", "water", "light"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Birds of a Feather",
         "rarity": "Rare",
         "number": 890,

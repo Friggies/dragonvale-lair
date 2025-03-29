@@ -1,6 +1,4 @@
 const currentlyAvailable = [
-    'Hooded',
-    'Aquamarine',
     'Quartz',
     'Lapis',
     'Spring',
