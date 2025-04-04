@@ -3,6 +3,38 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 896,
+        "name": "Cupcake",
+        "elements": ["Fire", "Metal", "Earth"],
+        "released": "April 3, 2025",
+        "commemoration": "Kaleni in Candy Land",
+        "breedingTime": "18 H",
+        "income": [
+            25, 40, 55, 70, 85, 100, 115, 130, 145, 160, 175, 190, 205, 220,
+            235, 250, 265, 280, 295, 310
+        ],
+        "combo": ["Forge", "fire", "earth"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Inconspicuous",
+        "rarity": "Rare",
+        "number": 895,
+        "name": "Legit",
+        "elements": ["Plant", "Water", "Earth"],
+        "released": "April 1, 2025",
+        "commemoration": "April Fool's Day",
+        "breedingTime": "12 H",
+        "income": [
+            25, 40, 55, 70, 85, 100, 115, 130, 145, 160, 175, 190, 205, 220,
+            235, 250, 265, 280, 295, 310
+        ],
+        "combo": ["plant", "water", "earth"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 894,
         "name": "Jiggly",
         "elements": ["Water", "Plant", "Cold"],
