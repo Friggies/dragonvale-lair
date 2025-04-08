@@ -2,9 +2,9 @@ import ShareButton from '@/components/ShareButton/ShareButton'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'The DragonVale Lair Statistics',
+    title: 'The DragonVale Lair - Optimize your DragonVale experience',
     description:
-        'Statistics for The DragonVale Lair. Watch how many monthly requests each endpoint has received since the launch of The DragonVale Lair.',
+        'The DragonVale Lair helps you to freely optimize your Dragonvale gameplay experience by allowing you to simulate breedings, find parent dragons and match quests with dragons.',
 }
 
 export default function Index() {
