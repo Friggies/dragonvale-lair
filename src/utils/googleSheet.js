@@ -211,4 +211,4 @@ export async function getParentData(values) {
     }
 }
 
-module.exports = { getBreedingData, getParentData }
+export { getBreedingData, getParentData }

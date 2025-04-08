@@ -9,8 +9,6 @@ export const config = {
 }
 
 export default async function handler(req, res) {
-    console.log(req)
-
     const { method } = req
 
     if (method === 'POST') {
