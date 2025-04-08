@@ -1,5 +1,6 @@
 import ShareButton from '@/components/ShareButton/ShareButton'
 import { Metadata } from 'next'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
     title: 'The DragonVale Lair - Optimize your DragonVale experience',
@@ -74,10 +75,11 @@ export default function Index() {
                         target="_blank"
                         aria-label="Get DragonVale from App Store"
                     >
-                        <img
+                        <Image
                             className="downloadImage"
                             height="100"
-                            src="/appleStoreButton.png"
+                            width="332"
+                            src="/buttons/appleStoreButton.png"
                             alt=""
                         />
                     </a>
@@ -86,12 +88,14 @@ export default function Index() {
                         target="_blank"
                         aria-label="Get DragonVale from Google Play"
                     >
-                        <img
+                        <Image
                             className="downloadImage"
                             height="100"
-                            src="/googlePlayButton.webp"
+                            width="340"
+                            src="/buttons/googlePlayButton.webp"
                             alt=""
                         />
+                        <img />
                     </a>
                 </div>
             </section>
