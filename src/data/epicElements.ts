@@ -1,0 +1,23 @@
+const epicElements = [
+    'Apocalypse',
+    'Aura',
+    'Chrysalis',
+    'Crystalline',
+    'Dream',
+    'Galaxy',
+    'Gemstone',
+    'Hidden',
+    'Melody',
+    'Monolith',
+    'Moon',
+    'Olympus',
+    'Ornamental',
+    'Rainbow',
+    'Seasonal',
+    'Snowflake',
+    'Sun',
+    'Surface',
+    'Treasure',
+    'Zodiac',
+]
+export default epicElements

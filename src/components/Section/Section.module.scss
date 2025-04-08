@@ -1,17 +1,21 @@
-.card {
-    background-color: $color--card;
-    padding: 1.5rem;
-    padding-top: 2rem;
-    border: 2.5px solid $color--border-highlight;
-    position: relative;
-    border-radius: $borderradius;
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    z-index: 0;
+@use '../../styles/abstracts' as *;
+
+.section {
+    & {
+        background-color: $color--card;
+        padding: 1.5rem;
+        padding-top: 2rem;
+        border: 2.5px solid $color--border-highlight;
+        position: relative;
+        border-radius: $borderradius;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        z-index: 0;
+    }
     &:before {
         content: '';
         position: absolute;
@@ -25,7 +29,7 @@
         position: absolute;
         inset: 7px;
         outline: 7.5px solid $color--light;
-        border-radius: calc($borderradius * 0.5);
+        border-radius: calc($borderradius * 0.4);
         pointer-events: none;
     }
     &__title {
@@ -93,11 +97,13 @@
     }
 }
 @media (max-width: $breakpoint--sm) {
-    .card {
+    .section {
+        & {
+            padding-top: 2rem;
+            margin-top: 0rem;
+        }
         &__title {
             width: 90%;
         }
-        padding-top: 2rem;
-        margin-top: 0rem;
     }
 }

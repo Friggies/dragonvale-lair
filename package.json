@@ -1,20 +1,23 @@
 {
-  "name": "dv-breeding-simulator",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.43.6",
-    "googleapis": "^137.1.0",
-    "next": "14.2.3",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-select": "^5.8.0",
-    "sass": "^1.77.4"
-  }
+    "name": "dv-breeding-simulator",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev --turbopack",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@supabase/supabase-js": "^2.49.3",
+        "googleapis": "^148.0.0",
+        "next": "^15.2.4",
+        "react": "^19",
+        "react-dom": "^19",
+        "react-select": "^5.10.1",
+        "sass": "^1.86.0"
+    },
+    "devDependencies": {
+        "typescript": "5.8.2"
+    }
 }

@@ -1,23 +1,18 @@
 import addStatistic from '@/utils/addStatistic'
-import dragons from '/public/dragons.json'
 
 export const config = {
-    maxDuration: 20,
+    maxDuration: 1,
 }
 
-export default async function handler(req, res) {
+export default function handler(req, res) {
     const { method } = req
 
     if (method === 'POST') {
         try {
-            await addStatistic('quest-matcher-statistics')
-            const formData = JSON.parse(req.body)
-            const quest = formData.targetQuest
-            const dragon = dragons.find((dragon) => dragon.quest === quest)
-            res.status(200).json(dragon)
+            addStatistic('quest-matcher-statistics')
+            res.status(200).json({ error: false })
         } catch (error) {
-            console.error(error)
-            res.status(500).json({ error: 'Failed to fetch data' })
+            res.status(500).json({ error: true })
         }
     } else {
         res.setHeader('Allow', ['POST'])

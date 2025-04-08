@@ -65,7 +65,7 @@
 
 @media (max-width: $breakpoint--sm) {
     .farming {
-        padding-inline: 0.75rem;
+        padding-inline: 0.75rem !important;
         &__generator {
             &-button {
                 width: 30%;

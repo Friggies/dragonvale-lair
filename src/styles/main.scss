@@ -27,7 +27,50 @@
 @import 'pages/dragonarium';
 @import 'pages/farming';
 
-//temporary class while Quest Matcher is under construction
-.building {
-    width: 50%;
+.mobileNavigation {
+    position: fixed;
+    padding-bottom: 0.5rem;
+    padding-inline: 0.5rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: linear-gradient(transparent 25%, rgba(0, 0, 0, 0.75) 75%);
+    &__list {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
 }
+@media (min-width: $breakpoint--sm) {
+    .mobileNavigation {
+        display: none;
+    }
+}
+
+/*
+    background-color: $color--card;
+    border-top: 3px solid $color--border-highlight;
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -7.5px;
+        height: 5px;
+        background-color: $color--dark;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 7.5px;
+        background-color: $color--light;
+    }
+*/

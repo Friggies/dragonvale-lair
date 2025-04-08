@@ -20,4 +20,22 @@
         width: auto;
         height: 60px;
     }
+    &--small {
+        font-size: 14px;
+        max-width: 70px;
+        .labelButton__image {
+            height: 50px;
+            width: auto;
+        }
+    }
+}
+@media (min-width: 370px) {
+    .labelButton {
+        &--small {
+            .labelButton__image {
+                height: 60px;
+                width: auto;
+            }
+        }
+    }
 }

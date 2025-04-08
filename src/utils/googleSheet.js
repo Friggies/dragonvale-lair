@@ -1,8 +1,7 @@
-import allDragons from '../../public/dragons.json'
-
-const { google } = require('googleapis')
-const { default: splitArrayBreeding } = require('./splitArrayBreeding')
-const { default: splitArrayParent } = require('./splitArrayParent')
+import allDragons from '@/data/dragons.json'
+import { google } from 'googleapis'
+import splitArrayBreeding from './splitArrayBreeding'
+import splitArrayParent from './splitArrayParent'
 
 const private_key = process.env.PRIVATE_KEY.replace(/\\n/g, '\n')
 const client_email = process.env.PRIVATE_EMAIL
@@ -17,7 +16,7 @@ const auth = new google.auth.GoogleAuth({
 
 const spreadsheetId = '1846qGyqVIzrJE2RFSWeBYJ2hkdZp_RulqQ-B-7odA34'
 
-async function getBreedingData(values) {
+export async function getBreedingData(values) {
     try {
         const formData = JSON.parse(values)
         const authClient = await auth.getClient()
@@ -91,7 +90,7 @@ async function getBreedingData(values) {
     }
 }
 
-async function getParentData(values) {
+export async function getParentData(values) {
     try {
         const formData = JSON.parse(values)
         const authClient = await auth.getClient()
