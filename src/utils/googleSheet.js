@@ -210,5 +210,3 @@ export async function getParentData(values) {
         throw error
     }
 }
-
-export { getBreedingData, getParentData }
