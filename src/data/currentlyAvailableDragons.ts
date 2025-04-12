@@ -1,5 +1,4 @@
 const currentlyAvailable = [
-    'Quartz',
     'Diamond',
     'Lapis',
     'Spring',

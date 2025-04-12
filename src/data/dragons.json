@@ -3,6 +3,22 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 897,
+        "name": "Bakey",
+        "elements": ["Light", "Dark", "Cold"],
+        "released": "April 10, 2025",
+        "commemoration": "Kaleni in Candy Land",
+        "breedingTime": "16 H",
+        "income": [
+            23, 37, 51, 65, 78, 92, 106, 120, 134, 148, 162, 175, 189, 203, 217,
+            231, 245, 258, 272, 286
+        ],
+        "combo": ["Cyclone", "Clairvoyant"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 896,
         "name": "Cupcake",
         "elements": ["Fire", "Metal", "Earth"],
