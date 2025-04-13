@@ -1,20 +1,22 @@
 import { Metadata } from 'next'
 import Section from '@/components/Section/Section'
+import dragons from '@/data/dragons.json'
+import Tool from './Tool'
 
 export const metadata: Metadata = {
-    title: 'Name That Egg - The DragonVale Lair',
+    title: 'Eggy Hatchy - The DragonVale Lair',
     description: '',
 }
 
-export default function NameThatEgg() {
+export default function EggyHatchy() {
     return (
         <main className="main">
             <Section
-                title="Name That Egg"
+                title="EggyHatchy"
                 className="game"
                 isH1
             >
-                <div />
+                <Tool dragons={dragons} />
             </Section>
             <Section title="Information">
                 <p></p>
