@@ -2,6 +2,7 @@ import dragons from '@/data/dragons.json'
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import Dragon from '@/types/dragon'
+import breedDragon from '@/utils/fakeBreeding'
 
 const supabaseUrl = process.env.SUPABASE_URL!
 const supabaseKey = process.env.SUPABASE_KEY!
@@ -11,6 +12,11 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
         persistSession: false,
     },
 })
+
+const allDragons = dragons.filter(
+    (dragon) =>
+        dragon.rarity.includes('Primary') || dragon.rarity.includes('Hybrid')
+)
 
 // ---- Interfaces (matching front-end definitions) ----
 
@@ -33,9 +39,9 @@ function createDefaultBoard(): Board {
     const boardSize = 5
     const randomEgg = (): Egg => {
         const dragon: Dragon =
-            dragons[Math.floor(Math.random() * dragons.length)]
-        const level = Math.floor(Math.random() * 3) + 1 // 1 to 3
-        const income = 1
+            allDragons[Math.floor(Math.random() * allDragons.length)]
+        const level = 1
+        const income = Math.floor(Math.random() * 3) + 1 // 1 to 3
         return {
             name: dragon.name,
             level,
@@ -57,6 +63,7 @@ function fakeBreedingMerge(
     twinTriggered: boolean,
     extraTriggered: boolean
 ): Egg & { points: number } {
+    const newEgg = breedDragon(egg1.name, egg2.name)
     const bonus = egg1.name === egg2.name ? 1 : 0
     const newLevel = egg1.level + egg2.level + bonus
     const newBasePoints = Math.floor(Math.random() * 101) // 0 to 100
@@ -68,7 +75,7 @@ function fakeBreedingMerge(
         points *= 2
     }
     return {
-        name: `${egg1.name}-${egg2.name}`,
+        name: newEgg!.name,
         level: newLevel,
         basePoints: newBasePoints,
         twin: twinTriggered,

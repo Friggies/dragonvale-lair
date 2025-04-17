@@ -1,5 +1,5 @@
 'use client'
-
+import transformToEggName from '@/utils/transformToEggName'
 import React, { useState } from 'react'
 
 // ---- Types and Fake Breeding Logic ----
@@ -201,12 +201,10 @@ const Tool: React.FC = () => {
 
     return (
         <div>
-            <h2>Eggy Hatchy Game Board</h2>
             <div
                 style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(5, 80px)',
-                    gap: '10px',
                 }}
             >
                 {board.map((row, rIdx) =>
@@ -214,30 +212,60 @@ const Tool: React.FC = () => {
                         <div
                             key={`${rIdx}-${cIdx}`}
                             style={{
-                                border:
+                                outline:
                                     selected?.row === rIdx &&
                                     selected?.col === cIdx
-                                        ? '3px solid blue'
-                                        : '1px solid gray',
+                                        ? '2px solid blue'
+                                        : '2px solid transparent',
+                                outlineOffset: '-2px',
                                 height: '80px',
                                 width: '80px',
                                 position: 'relative',
-                                padding: '4px',
-                                backgroundColor: cell.egg ? '#fefbd8' : '#eee',
+                                display: 'grid',
+                                placeItems: 'center',
+                                backgroundColor: cell.egg?.twin
+                                    ? '#90EE90'
+                                    : 'transparent',
+                                cursor: 'pointer',
                             }}
                             onClick={() => handleCellClick(rIdx, cIdx)}
                         >
                             {cell.egg ? (
                                 <>
-                                    <div>{cell.egg.name}</div>
-                                    <div>Lv: {cell.egg.level}</div>
-                                    <div>BP: {cell.egg.basePoints}</div>
+                                    <img
+                                        loading="lazy"
+                                        height="50"
+                                        alt={`${cell.egg.name} Dragon Egg`}
+                                        src={`https://namethategg.com/eggs/${transformToEggName(
+                                            cell.egg.name
+                                        )}.png`}
+                                    />
+                                    <div
+                                        style={{
+                                            width: '20px',
+                                            height: '20px',
+                                            position: 'absolute',
+                                            top: '10px',
+                                            right: '10px',
+                                            display: 'grid',
+                                            placeItems: 'center',
+                                            lineHeight: '0',
+                                            backgroundColor: '#e1e1e1',
+                                            border: '2px solid #8e8f8b',
+                                            borderRadius: '50%',
+                                            fontSize: '14px',
+                                            color: 'black',
+                                            textShadow: 'none',
+                                        }}
+                                    >
+                                        {cell.egg.level}
+                                    </div>
                                     {cell.egg.twin && (
                                         <div style={{ color: 'red' }}>Twin</div>
                                     )}
                                 </>
                             ) : (
-                                <div style={{ color: '#888' }}>Empty</div>
+                                <div />
                             )}
                             {cell.createsTwin && (
                                 <div

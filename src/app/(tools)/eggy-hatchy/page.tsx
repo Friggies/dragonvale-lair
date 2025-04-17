@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import Section from '@/components/Section/Section'
-import dragons from '@/data/dragons.json'
 import Tool from './Tool'
 
 export const metadata: Metadata = {
@@ -12,11 +11,11 @@ export default function EggyHatchy() {
     return (
         <main className="main">
             <Section
-                title="EggyHatchy"
+                title="Eggy Hatchy"
                 className="game"
                 isH1
             >
-                <p></p>
+                <div />
             </Section>
             <Section title="Information">
                 <p></p>
