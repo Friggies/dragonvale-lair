@@ -33,10 +33,15 @@ interface Cell {
     extraPoints?: boolean
 }
 
+interface Bank {
+    goals: object[]
+    eggs: Egg[]
+}
+
 type Board = Cell[][]
 
 function createDefaultBoard(): Board {
-    const boardSize = 5
+    const boardSize = 4
     const randomEgg = (): Egg => {
         const dragon: Dragon =
             allDragons[Math.floor(Math.random() * allDragons.length)]
@@ -95,7 +100,10 @@ export async function POST(request: Request) {
             .insert({
                 friend_id: friendId,
                 board: defaultBoard,
-                bank: [],
+                bank: {
+                    goals: [],
+                    eggs: [],
+                },
             })
             .select()
             .single()
@@ -123,7 +131,6 @@ export async function POST(request: Request) {
         }
 
         let board: Board = game.board
-        let bank: any[] = game.bank || []
 
         // Merge Action
         const { row: sRow, col: sCol } = source
@@ -197,7 +204,7 @@ export async function POST(request: Request) {
 
         const { error: updateError } = await supabase
             .from('eggy_hatchy_games')
-            .update({ board, bank })
+            .update({ board })
             .eq('id', gameId)
 
         if (updateError) {
@@ -206,7 +213,7 @@ export async function POST(request: Request) {
                 { status: 500 }
             )
         }
-        return NextResponse.json({ board, bank, newEgg })
+        return NextResponse.json({ board, newEgg })
     } else if (action === 'bank') {
         // Banking action: remove egg from a cell and add it to the bank.
         const { data: game, error: fetchError } = await supabase
@@ -223,7 +230,7 @@ export async function POST(request: Request) {
         }
 
         let board: Board = game.board
-        let bank: any[] = game.bank || []
+        let bank: Bank = game.bank || []
         const { row, col } = source
 
         if (!board[row][col].egg) {
@@ -235,7 +242,7 @@ export async function POST(request: Request) {
 
         const eggToBank = board[row][col].egg
         board[row][col].egg = null
-        bank.push(eggToBank)
+        bank.eggs.push(eggToBank)
 
         const { error: updateError } = await supabase
             .from('eggy_hatchy_games')
