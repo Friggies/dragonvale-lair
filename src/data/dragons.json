@@ -2,6 +2,19 @@
     {
         "availability": "LIMITED",
         "quest": "N/A",
+        "rarity": "Epic",
+        "number": 898,
+        "name": "Mimicake",
+        "elements": ["Hidden", "Lightning", "Plant"],
+        "released": "April 17, 2025",
+        "commemoration": "Kaleni in Candy Land",
+        "breedingTime": "21 H",
+        "income": [32],
+        "combo": ["Ivy", "hidden"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
         "rarity": "Rare",
         "number": 897,
         "name": "Bakey",
