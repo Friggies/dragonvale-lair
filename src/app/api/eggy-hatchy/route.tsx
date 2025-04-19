@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import Dragon from '@/types/dragon'
 import breedDragon from '@/utils/fakeBreeding'
+import regularElements from '@/data/regularElements'
 
 const supabaseUrl = process.env.SUPABASE_URL!
 const supabaseKey = process.env.SUPABASE_KEY!
@@ -23,8 +24,15 @@ const allDragons = dragons.filter(
 interface Egg {
     name: string
     level: number
-    basePoints: number
+    points: number
+    elements: string[]
     twin?: boolean
+}
+
+interface Goal {
+    element: string
+    level: number
+    amount: number
 }
 
 interface Cell {
@@ -34,24 +42,45 @@ interface Cell {
 }
 
 interface Bank {
-    goals: object[]
+    goals: Goal[]
     eggs: Egg[]
 }
 
 type Board = Cell[][]
 
-function createDefaultBoard(): Board {
+function createDefaultBoard(gameElement: string): Board {
     const boardSize = 4
     const randomEgg = (): Egg => {
         const elementDragons = allDragons.filter((dragon) =>
-            dragon.elements.includes('Fire')
+            dragon.elements.includes(gameElement)
         )
+
+        const fromElementList = Math.random() < 0.5 // 50% chance
+
+        const dragonList = fromElementList ? elementDragons : allDragons
+
         const dragon: Dragon =
-            elementDragons[Math.floor(Math.random() * elementDragons.length)]
+            dragonList[Math.floor(Math.random() * dragonList.length)]
+
+        let points = dragon.income![0]
+        let { rarity } = dragon
+        if (rarity === 'Hybrid') {
+            points *= 5
+        } else if (rarity === 'Rare') {
+            points *= 50
+        } else if (rarity === 'Gemstone' || rarity === 'Galaxy') {
+            points *= 100
+        } else if (rarity === 'Epic') {
+            points *= 500
+        }
+        points = Math.floor(points)
+
         return {
             name: dragon.name,
             level: 1,
-            basePoints: dragon.income![0],
+            elements: dragon.elements,
+            points,
+            twin: false,
         }
     }
 
@@ -62,6 +91,23 @@ function createDefaultBoard(): Board {
     )
 }
 
+function createDefaultGoals(gameElement: string) {
+    return [
+        {
+            element: gameElement,
+            level: Math.floor(Math.random() * 2) + 4,
+            amount: Math.floor(Math.random() * 2) + 2,
+        },
+        {
+            element: regularElements.filter((e) => e !== gameElement)[
+                Math.floor(Math.random() * (regularElements.length - 1))
+            ],
+            level: Math.floor(Math.random() * 2) + 2,
+            amount: Math.floor(Math.random() * 2) + 1,
+        },
+    ]
+}
+
 // ---- Modified Fake Breeding Function ----
 function fakeBreedingMerge(
     egg1: Egg,
@@ -69,23 +115,43 @@ function fakeBreedingMerge(
     twinTriggered: boolean,
     extraTriggered: boolean
 ): Egg & { points: number } {
-    const newEgg = breedDragon(egg1.name, egg2.name)
-    const bonus = egg1.name === egg2.name ? 1 : 0
-    const newLevel = egg1.level + egg2.level + bonus
-    const newBasePoints = Math.floor(Math.random() * 101) // 0 to 100
-    let points = newBasePoints * newLevel
+    const newEgg = breedDragon(egg1.name, egg2.name)!
+
+    let isTwin = twinTriggered || egg1.twin || egg2.twin
+
     if (extraTriggered) {
-        points += newBasePoints * 1.5
+        //dubble level
     }
-    if (twinTriggered) {
-        points *= 2
+    const bonus = egg1.name === egg2.name ? 1 : 0
+
+    const newLevel =
+        (extraTriggered
+            ? (egg1.level + egg2.level) * 2
+            : egg1.level + egg2.level) + bonus
+
+    let points = newEgg.income![0]
+
+    let { rarity } = newEgg
+    if (rarity === 'Hybrid') {
+        points *= 5
+    } else if (rarity === 'Rare') {
+        points *= 50
+    } else if (rarity === 'Gemstone' || rarity === 'Galaxy') {
+        points *= 100
+    } else if (rarity === 'Epic') {
+        points *= 500
     }
+
+    points = points * Math.pow(1.2, newLevel - 1)
+    if (isTwin) points = points * 2
+    points = Math.floor(points)
+
     return {
         name: newEgg!.name,
         level: newLevel,
-        basePoints: newBasePoints,
-        twin: twinTriggered,
         points,
+        elements: newEgg!.elements,
+        twin: isTwin,
     }
 }
 
@@ -94,15 +160,15 @@ export async function POST(request: Request) {
     const { action, friendId, gameId, source, target } = await request.json()
 
     if (action === 'create') {
-        // Always create a new game when the user presses PLAY.
-        const defaultBoard = createDefaultBoard()
+        const gameElement =
+            regularElements[Math.floor(Math.random() * regularElements.length)]
         const { data: newGame, error: createError } = await supabase
             .from('eggy_hatchy_games')
             .insert({
                 friend_id: friendId,
-                board: defaultBoard,
+                board: createDefaultBoard(gameElement),
                 bank: {
-                    goals: [],
+                    goals: createDefaultGoals(gameElement),
                     eggs: [],
                 },
             })
@@ -196,12 +262,43 @@ export async function POST(request: Request) {
             extraTriggered
         )
 
+        // If twin was triggered, clear it from every merge cell that had it
+        if (twinTriggered) {
+            mergeCells.forEach(({ row, col }) => {
+                if (board[row][col].createsTwin) {
+                    delete board[row][col].createsTwin
+                }
+            })
+        }
+
+        // If extraPoints was triggered, clear it from every merge cell that had it
+        if (extraTriggered) {
+            mergeCells.forEach(({ row, col }) => {
+                if (board[row][col].extraPoints) {
+                    delete board[row][col].extraPoints
+                }
+            })
+        }
+
         // Remove eggs along merge path.
         mergeCells.forEach(({ row, col }) => {
             board[row][col].egg = null
         })
         // Place new egg in target cell.
         board[tRow][tCol].egg = newEgg
+
+        // Pick one of the mergeCells at random, 10% chance to add a trigger:
+        if (Math.random() < 0.1) {
+            // Choose a random cell from the path
+            const chosen =
+                mergeCells[Math.floor(Math.random() * mergeCells.length)]
+            // Decide whether it’s a twin trigger or an extra-points trigger
+            if (Math.random() < 0.5) {
+                board[chosen.row][chosen.col].createsTwin = true
+            } else {
+                board[chosen.row][chosen.col].extraPoints = true
+            }
+        }
 
         const { error: updateError } = await supabase
             .from('eggy_hatchy_games')

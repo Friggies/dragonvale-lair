@@ -3,6 +3,11 @@
     width: 100%;
     gap: 2rem;
 }
+@media (max-width: 600px) {
+    .row {
+        flex-direction: column;
+    }
+}
 .column {
     flex: 1;
     display: flex;
@@ -47,6 +52,11 @@
         transform: rotate(180deg);
     }
 }
+@media (max-width: 600px) {
+    .paper {
+        padding: 1rem 0;
+    }
+}
 
 .grid {
     display: grid;
@@ -80,8 +90,42 @@
     flex-direction: column;
     gap: 1rem;
     height: 300px;
-    overflow-y: auto;
+    overflow: auto;
     scrollbar-width: thin;
+}
+@media (max-width: 600px) {
+    .board {
+        flex-direction: row;
+        height: auto;
+    }
+}
+
+.goal {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 100px;
+    &Text {
+        width: 100%;
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+        font-size: 14px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 1px solid #5f5f61;
+    }
+    &:not(:last-of-type) {
+        padding-bottom: 1rem;
+    }
+}
+@media (max-width: 600px) {
+    .goal {
+        &:not(:last-of-type) {
+            padding-bottom: 0;
+        }
+    }
 }
 
 .infobar {
@@ -112,5 +156,41 @@
         background-color: #878787;
         box-shadow: inset 0 -6px #5f5f61, inset 4px 0 #5f5f61,
             inset -4px 0 #5f5f61, 1px 1px #000, -1px -1px #000;
+    }
+}
+
+.cell {
+    outline-offset: -2px;
+    position: relative;
+    padding: 0.5rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    position: relative;
+    &:has(> img) {
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0.25rem;
+            left: 1rem;
+            right: 1rem;
+            height: 0.75rem;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 80%;
+            z-index: 0;
+        }
+    }
+}
+@media (max-width: 600px) {
+    .cell {
+        padding: 0rem;
+        &:has(> img) {
+            &::after {
+                bottom: 0.1rem;
+                left: 0.75rem;
+                right: 0.75rem;
+                height: 1rem;
+            }
+        }
     }
 }

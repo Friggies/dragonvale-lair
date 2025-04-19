@@ -8,17 +8,15 @@ import styles from './Tool.module.scss'
 export interface Egg {
     name: string
     level: number
-    basePoints: number
+    points: number
+    elements: string[]
     twin?: boolean
 }
 
 export interface Goal {
-    points: number
-    eggs?: {
-        element: string
-        level: number
-        amount: number
-    }[]
+    element: string
+    level: number
+    amount: number
 }
 
 export interface Cell {
@@ -32,26 +30,6 @@ export type Board = Cell[][]
 interface Bank {
     goals: Goal[]
     eggs: Egg[]
-}
-
-export function fakeBreedingMerge(
-    egg1: Egg,
-    egg2: Egg,
-    twinTriggered: boolean,
-    extraTriggered: boolean
-): Egg {
-    const bonus = egg1.name === egg2.name ? 1 : 0
-    const newLevel = egg1.level + egg2.level + bonus
-    const newBasePoints = Math.floor(Math.random() * 101)
-    let points = newBasePoints * newLevel
-    if (extraTriggered) points += newBasePoints * 1.5
-    if (twinTriggered) points *= 2
-    return {
-        name: `${egg1.name}-${egg2.name}`,
-        level: newLevel,
-        basePoints: newBasePoints,
-        twin: twinTriggered,
-    }
 }
 
 // ---- Main Game Component ----
@@ -187,7 +165,7 @@ const Tool: React.FC = () => {
     useEffect(() => {
         let points = 0
         bank?.eggs.forEach((egg) => {
-            points += egg.basePoints
+            points += egg.points
         })
         console.log(points)
         setCurrentGamePoints(points)
@@ -220,7 +198,46 @@ const Tool: React.FC = () => {
                 <div className={styles.board}>
                     {bank &&
                         bank.goals.map((goal, index) => (
-                            <li key={index}>{goal.points}</li>
+                            <li
+                                key={index}
+                                className={styles.goal}
+                            >
+                                <p className={styles.goalText}>
+                                    {
+                                        bank.eggs.filter(
+                                            (egg) =>
+                                                egg.level >= goal.level &&
+                                                egg.elements.includes(
+                                                    goal.element
+                                                )
+                                        ).length
+                                    }{' '}
+                                    / {goal.amount} Eggs
+                                </p>
+                                <img
+                                    height="50"
+                                    alt={goal.element + ' Element Flag'}
+                                    src={`/flags/${goal.element}.webp`}
+                                />
+                                <div
+                                    style={{
+                                        width: '20px',
+                                        height: '20px',
+                                        display: 'grid',
+                                        placeItems: 'center',
+                                        lineHeight: '0',
+                                        backgroundColor: '#e1e1e1',
+                                        border: '2px solid #8e8f8b',
+                                        borderRadius: '50%',
+                                        fontSize: '14px',
+                                        color: 'black',
+                                        textShadow: 'none',
+                                        userSelect: 'none',
+                                    }}
+                                >
+                                    {goal.level}
+                                </div>
+                            </li>
                         ))}
                 </div>
             </div>
@@ -231,21 +248,19 @@ const Tool: React.FC = () => {
                             row.map((cell, cIdx) => (
                                 <div
                                     key={`${rIdx}-${cIdx}`}
+                                    className={styles.cell}
                                     style={{
                                         outline:
                                             selected?.row === rIdx &&
                                             selected?.col === cIdx
                                                 ? '2px solid #2e679a'
                                                 : '2px solid transparent',
-                                        outlineOffset: '-2px',
-                                        position: 'relative',
-                                        padding: '.5rem',
-                                        aspectRatio: '1',
-                                        display: 'grid',
-                                        placeItems: 'center',
-                                        backgroundColor: cell.egg?.twin
-                                            ? '#90EE90'
+                                        background: cell.egg?.twin
+                                            ? 'radial-gradient(circle,rgb(0, 136, 255) 30%, transparent 70%)'
                                             : 'transparent',
+                                        cursor: cell.egg
+                                            ? 'pointer'
+                                            : 'not-allowed',
                                     }}
                                     onClick={() => handleCellClick(rIdx, cIdx)}
                                 >
@@ -259,7 +274,7 @@ const Tool: React.FC = () => {
                                                     cell.egg.name
                                                 )}.png`}
                                                 style={{
-                                                    cursor: 'pointer',
+                                                    zIndex: 1,
                                                 }}
                                             />
                                             <div
@@ -279,15 +294,11 @@ const Tool: React.FC = () => {
                                                     color: 'black',
                                                     textShadow: 'none',
                                                     userSelect: 'none',
+                                                    zIndex: 1,
                                                 }}
                                             >
                                                 {cell.egg.level}
                                             </div>
-                                            {cell.egg.twin && (
-                                                <div style={{ color: 'red' }}>
-                                                    Twin
-                                                </div>
-                                            )}
                                         </>
                                     ) : (
                                         <div aria-label="No egg" />
@@ -296,24 +307,34 @@ const Tool: React.FC = () => {
                                         <div
                                             style={{
                                                 position: 'absolute',
-                                                top: 0,
-                                                right: 0,
-                                                fontSize: '10px',
+                                                top: '50%',
+                                                left: '50%',
+                                                transform:
+                                                    'translate(-50%, -50%)',
                                             }}
                                         >
-                                            CT
+                                            <img
+                                                alt="Creates twin"
+                                                src="/eggyHatchy/twin.png"
+                                                height="30"
+                                            />
                                         </div>
                                     )}
                                     {cell.extraPoints && (
                                         <div
                                             style={{
                                                 position: 'absolute',
-                                                bottom: 0,
-                                                right: 0,
-                                                fontSize: '10px',
+                                                top: '50%',
+                                                left: '50%',
+                                                transform:
+                                                    'translate(-50%, -50%)',
                                             }}
                                         >
-                                            EP
+                                            <img
+                                                alt="Extra Points"
+                                                src="/eggyHatchy/food.png"
+                                                height="30"
+                                            />
                                         </div>
                                     )}
                                 </div>
@@ -323,38 +344,20 @@ const Tool: React.FC = () => {
                 </div>
                 {selected && (
                     <div className={styles.infobar}>
-                        <img
-                            loading="lazy"
-                            height="50"
-                            alt={`${
-                                board[selected.row][selected.col].egg?.name
-                            } Dragon Egg`}
-                            src={`https://namethategg.com/eggs/${transformToEggName(
-                                board[selected.row][selected.col].egg?.name
-                            )}.png`}
-                            style={{
-                                cursor: 'pointer',
-                            }}
-                        />
-                        <div
-                            style={{
-                                width: '20px',
-                                height: '20px',
-                                display: 'grid',
-                                placeItems: 'center',
-                                lineHeight: '0',
-                                backgroundColor: '#e1e1e1',
-                                border: '2px solid #8e8f8b',
-                                borderRadius: '50%',
-                                fontSize: '14px',
-                                color: 'black',
-                                textShadow: 'none',
-                                userSelect: 'none',
-                            }}
-                        >
-                            {board[selected.row][selected.col].egg?.level}
+                        <div>
+                            {board[selected.row][
+                                selected.col
+                            ].egg?.elements.map((element) => (
+                                <img
+                                    key={element}
+                                    height="50"
+                                    alt={element + ' Element Flag'}
+                                    src={`/flags/${element}.webp`}
+                                />
+                            ))}
                         </div>
-                        {board[selected.row][selected.col].egg?.basePoints}
+
+                        {board[selected.row][selected.col].egg?.points}
                         {' Points'}
                     </div>
                 )}
@@ -362,7 +365,7 @@ const Tool: React.FC = () => {
             <div className={styles.column}>
                 <h2>{currentGamePoints} Points</h2>
                 <div className={styles.board}>
-                    {bank &&
+                    {bank?.eggs.length ? (
                         bank.eggs.map((egg, index) => (
                             <li key={index}>
                                 <img
@@ -373,9 +376,12 @@ const Tool: React.FC = () => {
                                         egg.name
                                     )}.png`}
                                 />
-                                {egg.basePoints}
+                                {egg.points}
                             </li>
-                        ))}
+                        ))
+                    ) : (
+                        <p>No eggs banked</p>
+                    )}
                 </div>
                 <button
                     className={styles.bankButton}
