@@ -15,7 +15,7 @@ export default function EggyHatchy() {
                 className="game"
                 isH1
             >
-                <div />
+                <Tool />
             </Section>
             <Section title="Information">
                 <p></p>
