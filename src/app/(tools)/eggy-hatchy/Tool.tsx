@@ -1,6 +1,7 @@
 'use client'
 import transformToEggName from '@/utils/transformToEggName'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import styles from './Tool.module.scss'
 
 // ---- Types and Fake Breeding Logic ----
 
@@ -60,13 +61,10 @@ const Tool: React.FC = () => {
     const [gameId, setGameId] = useState<string | null>(null)
     const [board, setBoard] = useState<Board | null>(null)
     const [bank, setBank] = useState<Bank | null>(null)
+    const [currentGamePoints, setCurrentGamePoints] = useState<number>(0)
     const [selected, setSelected] = useState<{
         row: number
         col: number
-    } | null>(null)
-    const [previewRange, setPreviewRange] = useState<{
-        min: number
-        max: number
     } | null>(null)
     const [loading, setLoading] = useState(false)
 
@@ -94,7 +92,6 @@ const Tool: React.FC = () => {
     const handleCellClick = (row: number, col: number) => {
         if (!board || !board[row][col].egg) {
             setSelected(null)
-            setPreviewRange(null)
             return
         }
 
@@ -105,13 +102,11 @@ const Tool: React.FC = () => {
 
         if (selected.row === row && selected.col === col) {
             setSelected(null)
-            setPreviewRange(null)
             return
         }
 
         if (selected.row !== row && selected.col !== col) {
             setSelected(null)
-            setPreviewRange(null)
             return
         }
 
@@ -133,42 +128,11 @@ const Tool: React.FC = () => {
             if (board[r][c].egg) {
                 alert('Illegal merge: Egg in between.')
                 setSelected(null)
-                setPreviewRange(null)
                 return
             }
         }
 
-        let twinTriggered = false
-        let extraTriggered = false
-        mergeCells.forEach(({ row: r, col: c }) => {
-            const cell = board[r][c]
-            if (cell.createsTwin) twinTriggered = true
-            if (cell.extraPoints) extraTriggered = true
-        })
-
-        const egg1 = board[selected.row][selected.col].egg!
-        const egg2 = board[row][col].egg!
-        const newEgg = fakeBreedingMerge(
-            egg1,
-            egg2,
-            twinTriggered,
-            extraTriggered
-        )
-
-        const preview = {
-            min: newEgg.basePoints * newEgg.level,
-            max:
-                (newEgg.basePoints * newEgg.level + newEgg.basePoints * 1.5) *
-                (newEgg.twin ? 2 : 1),
-        }
-
-        setPreviewRange(preview)
-
-        if (
-            window.confirm(
-                `Merge eggs? Preview points range: ${preview.min} to ${preview.max}`
-            )
-        ) {
+        if (window.confirm(`Merge eggs?`)) {
             fetch('/api/eggy-hatchy', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -182,7 +146,6 @@ const Tool: React.FC = () => {
                 .then((res) => res.json())
                 .then((data) => {
                     setBoard(data.board)
-                    setPreviewRange(null)
                     setSelected(null)
                 })
                 .catch((err) => {
@@ -191,7 +154,6 @@ const Tool: React.FC = () => {
                 })
         } else {
             setSelected(null)
-            setPreviewRange(null)
         }
     }
 
@@ -222,6 +184,15 @@ const Tool: React.FC = () => {
         }
     }
 
+    useEffect(() => {
+        let points = 0
+        bank?.eggs.forEach((egg) => {
+            points += egg.basePoints
+        })
+        console.log(points)
+        setCurrentGamePoints(points)
+    }, [bank])
+
     if (!board) {
         return (
             <div>
@@ -243,156 +214,178 @@ const Tool: React.FC = () => {
     }
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                width: '100%',
-            }}
-        >
-            <div>
+        <div className={styles.row}>
+            <div className={styles.column}>
                 <h2>Goals</h2>
-                {bank &&
-                    bank.goals.map((goal, index) => (
-                        <li key={index}>{goal.points}</li>
-                    ))}
-            </div>
-            <div
-                style={{
-                    flex: 1,
-                    display: 'grid',
-                    placeItems: 'center',
-                }}
-            >
-                {previewRange && (
-                    <div>
-                        Preview: Points range between {previewRange.min} and{' '}
-                        {previewRange.max}
-                    </div>
-                )}
-                <div
-                    style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(4, 1fr)',
-                    }}
-                >
-                    {board.map((row, rIdx) =>
-                        row.map((cell, cIdx) => (
-                            <div
-                                key={`${rIdx}-${cIdx}`}
-                                style={{
-                                    outline:
-                                        selected?.row === rIdx &&
-                                        selected?.col === cIdx
-                                            ? '2px solid blue'
-                                            : '2px solid transparent',
-                                    outlineOffset: '-2px',
-                                    position: 'relative',
-                                    padding: '.5rem',
-                                    aspectRatio: '1',
-                                    display: 'grid',
-                                    placeItems: 'center',
-                                    backgroundColor: cell.egg?.twin
-                                        ? '#90EE90'
-                                        : 'transparent',
-                                }}
-                                onClick={() => handleCellClick(rIdx, cIdx)}
-                            >
-                                {cell.egg ? (
-                                    <>
-                                        <img
-                                            loading="lazy"
-                                            height="50"
-                                            alt={`${cell.egg.name} Dragon Egg`}
-                                            src={`https://namethategg.com/eggs/${transformToEggName(
-                                                cell.egg.name
-                                            )}.png`}
-                                            style={{
-                                                cursor: 'pointer',
-                                            }}
-                                        />
-                                        <div
-                                            style={{
-                                                width: '20px',
-                                                height: '20px',
-                                                position: 'absolute',
-                                                top: '10px',
-                                                right: '10px',
-                                                display: 'grid',
-                                                placeItems: 'center',
-                                                lineHeight: '0',
-                                                backgroundColor: '#e1e1e1',
-                                                border: '2px solid #8e8f8b',
-                                                borderRadius: '50%',
-                                                fontSize: '14px',
-                                                color: 'black',
-                                                textShadow: 'none',
-                                            }}
-                                        >
-                                            {cell.egg.level}
-                                        </div>
-                                        {cell.egg.twin && (
-                                            <div style={{ color: 'red' }}>
-                                                Twin
-                                            </div>
-                                        )}
-                                    </>
-                                ) : (
-                                    <div />
-                                )}
-                                {cell.createsTwin && (
-                                    <div
-                                        style={{
-                                            position: 'absolute',
-                                            top: 0,
-                                            right: 0,
-                                            fontSize: '10px',
-                                        }}
-                                    >
-                                        CT
-                                    </div>
-                                )}
-                                {cell.extraPoints && (
-                                    <div
-                                        style={{
-                                            position: 'absolute',
-                                            bottom: 0,
-                                            right: 0,
-                                            fontSize: '10px',
-                                        }}
-                                    >
-                                        EP
-                                    </div>
-                                )}
-                            </div>
-                        ))
-                    )}
+                <div className={styles.board}>
+                    {bank &&
+                        bank.goals.map((goal, index) => (
+                            <li key={index}>{goal.points}</li>
+                        ))}
                 </div>
             </div>
-            <div>
-                <h2>Bank</h2>
-                {bank &&
-                    bank.eggs.map((egg, index) => (
-                        <li key={index}>
-                            <img
-                                loading="lazy"
-                                height="50"
-                                alt={`${egg.name} Dragon Egg`}
-                                src={`https://namethategg.com/eggs/${transformToEggName(
-                                    egg.name
-                                )}.png`}
-                            />
-                            {egg.basePoints}
-                        </li>
-                    ))}
+            <div className={styles.column + ' ' + styles.columnLarge}>
+                <div className={styles.paper}>
+                    <div className={styles.grid}>
+                        {board.map((row, rIdx) =>
+                            row.map((cell, cIdx) => (
+                                <div
+                                    key={`${rIdx}-${cIdx}`}
+                                    style={{
+                                        outline:
+                                            selected?.row === rIdx &&
+                                            selected?.col === cIdx
+                                                ? '2px solid #2e679a'
+                                                : '2px solid transparent',
+                                        outlineOffset: '-2px',
+                                        position: 'relative',
+                                        padding: '.5rem',
+                                        aspectRatio: '1',
+                                        display: 'grid',
+                                        placeItems: 'center',
+                                        backgroundColor: cell.egg?.twin
+                                            ? '#90EE90'
+                                            : 'transparent',
+                                    }}
+                                    onClick={() => handleCellClick(rIdx, cIdx)}
+                                >
+                                    {cell.egg ? (
+                                        <>
+                                            <img
+                                                loading="lazy"
+                                                height="50"
+                                                alt={`${cell.egg.name} Dragon Egg`}
+                                                src={`https://namethategg.com/eggs/${transformToEggName(
+                                                    cell.egg.name
+                                                )}.png`}
+                                                style={{
+                                                    cursor: 'pointer',
+                                                }}
+                                            />
+                                            <div
+                                                style={{
+                                                    width: '20px',
+                                                    height: '20px',
+                                                    position: 'absolute',
+                                                    top: '5px',
+                                                    right: '5px',
+                                                    display: 'grid',
+                                                    placeItems: 'center',
+                                                    lineHeight: '0',
+                                                    backgroundColor: '#e1e1e1',
+                                                    border: '2px solid #8e8f8b',
+                                                    borderRadius: '50%',
+                                                    fontSize: '14px',
+                                                    color: 'black',
+                                                    textShadow: 'none',
+                                                    userSelect: 'none',
+                                                }}
+                                            >
+                                                {cell.egg.level}
+                                            </div>
+                                            {cell.egg.twin && (
+                                                <div style={{ color: 'red' }}>
+                                                    Twin
+                                                </div>
+                                            )}
+                                        </>
+                                    ) : (
+                                        <div aria-label="No egg" />
+                                    )}
+                                    {cell.createsTwin && (
+                                        <div
+                                            style={{
+                                                position: 'absolute',
+                                                top: 0,
+                                                right: 0,
+                                                fontSize: '10px',
+                                            }}
+                                        >
+                                            CT
+                                        </div>
+                                    )}
+                                    {cell.extraPoints && (
+                                        <div
+                                            style={{
+                                                position: 'absolute',
+                                                bottom: 0,
+                                                right: 0,
+                                                fontSize: '10px',
+                                            }}
+                                        >
+                                            EP
+                                        </div>
+                                    )}
+                                </div>
+                            ))
+                        )}
+                    </div>
+                </div>
                 {selected && (
-                    <button
-                        onClick={() => {
-                            bankEgg()
-                        }}
-                    >
-                        Bank
-                    </button>
+                    <div className={styles.infobar}>
+                        <img
+                            loading="lazy"
+                            height="50"
+                            alt={`${
+                                board[selected.row][selected.col].egg?.name
+                            } Dragon Egg`}
+                            src={`https://namethategg.com/eggs/${transformToEggName(
+                                board[selected.row][selected.col].egg?.name
+                            )}.png`}
+                            style={{
+                                cursor: 'pointer',
+                            }}
+                        />
+                        <div
+                            style={{
+                                width: '20px',
+                                height: '20px',
+                                display: 'grid',
+                                placeItems: 'center',
+                                lineHeight: '0',
+                                backgroundColor: '#e1e1e1',
+                                border: '2px solid #8e8f8b',
+                                borderRadius: '50%',
+                                fontSize: '14px',
+                                color: 'black',
+                                textShadow: 'none',
+                                userSelect: 'none',
+                            }}
+                        >
+                            {board[selected.row][selected.col].egg?.level}
+                        </div>
+                        {board[selected.row][selected.col].egg?.basePoints}
+                        {' Points'}
+                    </div>
                 )}
+            </div>
+            <div className={styles.column}>
+                <h2>{currentGamePoints} Points</h2>
+                <div className={styles.board}>
+                    {bank &&
+                        bank.eggs.map((egg, index) => (
+                            <li key={index}>
+                                <img
+                                    loading="lazy"
+                                    height="50"
+                                    alt={`${egg.name} Dragon Egg`}
+                                    src={`https://namethategg.com/eggs/${transformToEggName(
+                                        egg.name
+                                    )}.png`}
+                                />
+                                {egg.basePoints}
+                            </li>
+                        ))}
+                </div>
+                <button
+                    className={styles.bankButton}
+                    disabled={!selected}
+                    onClick={() => {
+                        bankEgg()
+                    }}
+                >
+                    Bank
+                </button>
             </div>
         </div>
     )

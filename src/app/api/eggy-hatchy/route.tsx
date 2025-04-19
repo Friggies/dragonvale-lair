@@ -43,14 +43,15 @@ type Board = Cell[][]
 function createDefaultBoard(): Board {
     const boardSize = 4
     const randomEgg = (): Egg => {
+        const elementDragons = allDragons.filter((dragon) =>
+            dragon.elements.includes('Fire')
+        )
         const dragon: Dragon =
-            allDragons[Math.floor(Math.random() * allDragons.length)]
-        const level = 1
-        const income = Math.floor(Math.random() * 3) + 1 // 1 to 3
+            elementDragons[Math.floor(Math.random() * elementDragons.length)]
         return {
             name: dragon.name,
-            level,
-            basePoints: income,
+            level: 1,
+            basePoints: dragon.income![0],
         }
     }
 

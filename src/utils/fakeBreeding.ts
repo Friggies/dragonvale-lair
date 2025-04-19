@@ -56,6 +56,11 @@ export default function breedDragon(
         return null
     }
 
+    //for eggy hatchy
+    if (parentA === parentB) {
+        return parentA
+    }
+
     // Create sets of parent names and parent elements.
     const parentNames = new Set<string>([parentA.name, parentB.name])
     const parentElements = new Set<string>([
