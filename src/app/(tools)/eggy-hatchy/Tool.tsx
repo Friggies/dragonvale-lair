@@ -110,7 +110,8 @@ const Tool: React.FC = () => {
             }
         }
 
-        if (window.confirm(`Merge eggs?`)) {
+        if (window.confirm(`Merge dragons?`)) {
+            setLoading(true)
             fetch('/api/eggy-hatchy', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -129,6 +130,9 @@ const Tool: React.FC = () => {
                 .catch((err) => {
                     console.error(err)
                     alert('Merge failed on the server.')
+                })
+                .finally(() => {
+                    setLoading(false)
                 })
         } else {
             setSelected(null)
@@ -261,6 +265,10 @@ const Tool: React.FC = () => {
                                         cursor: cell.egg
                                             ? 'pointer'
                                             : 'not-allowed',
+                                        pointerEvents: loading
+                                            ? 'none'
+                                            : 'auto',
+                                        opacity: loading ? 0.5 : 1,
                                     }}
                                     onClick={() => handleCellClick(rIdx, cIdx)}
                                 >
