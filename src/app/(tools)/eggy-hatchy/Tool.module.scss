@@ -171,10 +171,11 @@
         &::after {
             content: '';
             position: absolute;
-            bottom: 0.25rem;
-            left: 1rem;
-            right: 1rem;
-            height: 0.75rem;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 10px;
+            transform: translate(-50%, calc(-50% + 25px));
             background-color: rgba(0, 0, 0, 0.1);
             border-radius: 80%;
             z-index: 0;
@@ -184,13 +185,5 @@
 @media (max-width: 600px) {
     .cell {
         padding: 0rem;
-        &:has(> img) {
-            &::after {
-                bottom: 0.1rem;
-                left: 0.75rem;
-                right: 0.75rem;
-                height: 1rem;
-            }
-        }
     }
 }
