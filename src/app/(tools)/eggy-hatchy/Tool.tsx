@@ -257,10 +257,10 @@ const Tool: React.FC = () => {
                                         outline:
                                             selected?.row === rIdx &&
                                             selected?.col === cIdx
-                                                ? '2px solid #2e679a'
+                                                ? '2px solid #107641'
                                                 : '2px solid transparent',
                                         background: cell.egg?.twin
-                                            ? 'radial-gradient(circle,rgb(0, 136, 255) 30%, transparent 70%)'
+                                            ? 'radial-gradient(circle, #0088ff 30%, transparent 70%)'
                                             : 'transparent',
                                         cursor: cell.egg
                                             ? 'pointer'

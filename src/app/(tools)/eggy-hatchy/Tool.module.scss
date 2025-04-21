@@ -168,6 +168,9 @@
     place-items: center;
     position: relative;
     &:has(> img) {
+        &:hover {
+            outline: 2px solid #2e9a62 !important;
+        }
         &::after {
             content: '';
             position: absolute;
