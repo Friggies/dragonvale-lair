@@ -177,7 +177,6 @@ const Tool: React.FC = () => {
     if (!board) {
         return (
             <div className={styles.column}>
-                <h2>Reay to bank some eggs?</h2>
                 <p>
                     Please input your Friend ID or press "Begin" to play
                     anonymously.{' '}
