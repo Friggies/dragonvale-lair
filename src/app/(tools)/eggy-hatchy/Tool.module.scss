@@ -25,10 +25,10 @@
     &:after,
     &:before {
         content: '';
-        height: 5px;
+        height: 7px;
         position: absolute;
-        left: 0;
-        right: 0;
+        left: -1px;
+        right: -1px;
         background-color: #272926;
         clip-path: polygon(
             0 0,
@@ -45,10 +45,10 @@
         );
     }
     &:before {
-        top: 0;
+        top: -0.5px;
     }
     &:after {
-        bottom: -0.4;
+        bottom: -0.5px;
         transform: rotate(180deg);
     }
 }
