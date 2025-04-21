@@ -437,12 +437,12 @@ const Tool: React.FC = () => {
                 </div>
                 <button
                     className={styles.bankButton}
-                    disabled={!selected}
+                    disabled={!selected || loading}
                     onClick={() => {
                         bankEgg()
                     }}
                 >
-                    Bank
+                    {loading ? 'Wait...' : 'Bank'}
                 </button>
             </div>
         </div>
