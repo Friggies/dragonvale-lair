@@ -110,7 +110,7 @@ const Tool: React.FC = () => {
             }
         }
 
-        if (window.confirm(`Merge dragons?`)) {
+        if (window.confirm(`Merge eggs?`)) {
             setLoading(true)
             fetch('/api/eggy-hatchy', {
                 method: 'POST',
