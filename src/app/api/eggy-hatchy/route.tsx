@@ -68,11 +68,14 @@ function createDefaultBoard(gameElement: string): Board {
             points *= 5
         } else if (rarity === 'Rare') {
             points *= 50
-        } else if (rarity === 'Gemstone' || rarity === 'Galaxy') {
+        } else if (
+            rarity === 'Gemstone' ||
+            rarity === 'Galaxy' ||
+            rarity === 'Epic'
+        ) {
             points *= 100
-        } else if (rarity === 'Epic') {
-            points *= 500
         }
+
         points = Math.floor(points)
 
         return {
