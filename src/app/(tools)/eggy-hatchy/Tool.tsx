@@ -171,25 +171,38 @@ const Tool: React.FC = () => {
         bank?.eggs.forEach((egg) => {
             points += egg.points
         })
-        console.log(points)
         setCurrentGamePoints(points)
     }, [bank])
 
     if (!board) {
         return (
-            <div>
-                <h2>Enter Friend ID to Start</h2>
-                <input
-                    type="text"
-                    placeholder="Friend ID"
-                    value={friendId}
-                    onChange={(e) => setFriendId(e.target.value)}
-                />
+            <div className={styles.column}>
+                <h2>Reay to bank some eggs?</h2>
+                <p>
+                    Please input your Friend ID or press "Begin" to play
+                    anonymously.{' '}
+                    <a
+                        href="#"
+                        className="link"
+                    >
+                        What is your Friend ID?
+                    </a>
+                </p>
+                <div className="selector">
+                    <input
+                        type="text"
+                        className={styles.friendId}
+                        placeholder="Friend ID"
+                        value={friendId}
+                        onChange={(e) => setFriendId(e.target.value)}
+                    />
+                </div>
                 <button
+                    className={styles.startButton}
                     onClick={startGame}
-                    disabled={loading || !friendId.trim()}
+                    disabled={loading}
                 >
-                    {loading ? 'Loading...' : 'PLAY'}
+                    {loading ? 'Generating board...' : 'Begin'}
                 </button>
             </div>
         )
@@ -352,18 +365,16 @@ const Tool: React.FC = () => {
                 </div>
                 {selected && (
                     <div className={styles.infobar}>
-                        <div>
-                            {board[selected.row][
-                                selected.col
-                            ].egg?.elements.map((element) => (
+                        {board[selected.row][selected.col].egg?.elements.map(
+                            (element) => (
                                 <img
                                     key={element}
-                                    height="50"
+                                    height="40"
                                     alt={element + ' Element Flag'}
-                                    src={`/flags/${element}.webp`}
+                                    src={`/flags/${element}_Flag.png`}
                                 />
-                            ))}
-                        </div>
+                            )
+                        )}
 
                         {board[selected.row][selected.col].egg?.points}
                         {' Points'}
