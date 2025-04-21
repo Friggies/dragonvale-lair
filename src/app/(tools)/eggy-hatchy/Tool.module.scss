@@ -148,14 +148,14 @@
     border-radius: 0.8rem 0.8rem 0.4rem 0.4rem;
     background-color: #2e679a;
     text-decoration: none;
-    box-shadow: inset 0 -6px #27468b, inset 4px 0 #27468b, inset -4px 0 #27468b,
+    box-shadow: inset 0 -3px #27468b, inset 2px 0 #27468b, inset -2px 0 #27468b,
         1px 1px #000, -1px -1px #000;
     &:disabled {
         font-weight: inherit;
         cursor: not-allowed;
         background-color: #878787;
-        box-shadow: inset 0 -6px #5f5f61, inset 4px 0 #5f5f61,
-            inset -4px 0 #5f5f61, 1px 1px #000, -1px -1px #000;
+        box-shadow: inset 0 -3px #5f5f61, inset 2px 0 #5f5f61,
+            inset -2px 0 #5f5f61, 1px 1px #000, -1px -1px #000;
     }
 }
 .bankedEgg {
@@ -214,8 +214,8 @@
         font-weight: inherit;
         cursor: not-allowed;
         background-color: #878787;
-        box-shadow: inset 0 -6px #5f5f61, inset 4px 0 #5f5f61,
-            inset -4px 0 #5f5f61, 1px 1px #000, -1px -1px #000;
+        box-shadow: inset 0 -3px #5f5f61, inset 2px 0 #5f5f61,
+            inset -2px 0 #5f5f61, 1px 1px #000, -1px -1px #000;
     }
 }
 
