@@ -67,7 +67,7 @@ function createDefaultBoard(gameElement: string): Board {
         if (rarity === 'Hybrid') {
             points *= 5
         } else if (rarity === 'Rare') {
-            points *= 50
+            points *= 10
         } else if (
             rarity === 'Gemstone' ||
             rarity === 'Galaxy' ||
@@ -98,15 +98,15 @@ function createDefaultGoals(gameElement: string) {
     return [
         {
             element: gameElement,
-            level: Math.floor(Math.random() * 2) + 4,
-            amount: Math.floor(Math.random() * 2) + 2,
+            level: Math.floor(Math.random() * 2) + 2,
+            amount: 2,
         },
         {
             element: regularElements.filter((e) => e !== gameElement)[
                 Math.floor(Math.random() * (regularElements.length - 1))
             ],
-            level: Math.floor(Math.random() * 2) + 2,
-            amount: Math.floor(Math.random() * 2) + 1,
+            level: 2,
+            amount: 1,
         },
     ]
 }
@@ -138,11 +138,13 @@ function fakeBreedingMerge(
     if (rarity === 'Hybrid') {
         points *= 5
     } else if (rarity === 'Rare') {
-        points *= 50
-    } else if (rarity === 'Gemstone' || rarity === 'Galaxy') {
+        points *= 10
+    } else if (
+        rarity === 'Gemstone' ||
+        rarity === 'Galaxy' ||
+        rarity === 'Epic'
+    ) {
         points *= 100
-    } else if (rarity === 'Epic') {
-        points *= 500
     }
 
     points = points * Math.pow(1.2, newLevel - 1)
