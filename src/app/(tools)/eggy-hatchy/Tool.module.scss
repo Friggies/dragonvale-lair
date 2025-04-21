@@ -228,9 +228,6 @@
     place-items: center;
     position: relative;
     &:has(> img) {
-        &:hover {
-            outline: 2px solid #2e9a62 !important;
-        }
         &::after {
             content: '';
             position: absolute;
@@ -242,6 +239,15 @@
             background-color: rgba(0, 0, 0, 0.1);
             border-radius: 80%;
             z-index: 0;
+        }
+    }
+}
+@media (hover: hover) {
+    .cell {
+        &:has(> img) {
+            &:hover {
+                outline: 2px solid #2e9a62 !important;
+            }
         }
     }
 }
