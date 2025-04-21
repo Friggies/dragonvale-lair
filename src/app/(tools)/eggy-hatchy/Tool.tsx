@@ -375,7 +375,10 @@ const Tool: React.FC = () => {
                 <div className={styles.board}>
                     {bank?.eggs.length ? (
                         bank.eggs.map((egg, index) => (
-                            <li key={index}>
+                            <li
+                                key={index}
+                                className={styles.bankedEgg}
+                            >
                                 <img
                                     loading="lazy"
                                     height="50"
@@ -384,7 +387,38 @@ const Tool: React.FC = () => {
                                         egg.name
                                     )}.png`}
                                 />
-                                {egg.points}
+                                <div
+                                    style={{
+                                        width: '20px',
+                                        height: '20px',
+                                        position: 'absolute',
+                                        top: '-5px',
+                                        right: '-5px',
+                                        display: 'grid',
+                                        placeItems: 'center',
+                                        lineHeight: '0',
+                                        background: '#e1e1e1',
+                                        color: 'black',
+                                        border: '2px solid #8e8f8b',
+                                        borderRadius: '50%',
+                                        fontSize: '14px',
+                                        textShadow: 'none',
+                                        userSelect: 'none',
+                                        zIndex: 1,
+                                    }}
+                                >
+                                    {egg.level}
+                                </div>
+                                <span
+                                    className={styles.bankedEggPoints}
+                                    style={{
+                                        background: egg.twin
+                                            ? 'radial-gradient(circle,rgb(59, 164, 255) 60%, #0088ff 100%)'
+                                            : 'radial-gradient(circle, #2e679a 60%, #27468b 100%)',
+                                    }}
+                                >
+                                    {egg.points}
+                                </span>
                             </li>
                         ))
                     ) : (
