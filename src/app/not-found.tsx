@@ -4,7 +4,7 @@ import Section from '@/components/Section/Section'
 
 export default function NotFound() {
     return (
-        <main>
+        <main className="main">
             <Section title="Page not found">
                 <p>
                     The page you are looking for does not seem to exist. It
