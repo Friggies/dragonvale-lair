@@ -48,16 +48,28 @@ interface Bank {
 
 type Board = Cell[][]
 
-function createDefaultBoard(gameElement: string): Board {
+function createDefaultBoard(
+    gameElementOne: string,
+    gameElementTwo: string
+): Board {
     const boardSize = 4
     const randomEgg = (): Egg => {
-        const elementDragons = allDragons.filter((dragon) =>
-            dragon.elements.includes(gameElement)
+        const elementDragonsOne = allDragons.filter((dragon) =>
+            dragon.elements.includes(gameElementOne)
+        )
+        const elementDragonsTwo = allDragons.filter((dragon) =>
+            dragon.elements.includes(gameElementTwo)
         )
 
-        const fromElementList = Math.random() < 0.5 // 50% chance
+        const fromElementList = Math.random() < 0.8 // 80%
 
-        const dragonList = fromElementList ? elementDragons : allDragons
+        const fromOne = Math.random() < 0.5 // 50%
+
+        const dragonList = fromElementList
+            ? fromOne
+                ? elementDragonsOne
+                : elementDragonsTwo
+            : allDragons
 
         const dragon: Dragon =
             dragonList[Math.floor(Math.random() * dragonList.length)]
@@ -67,13 +79,13 @@ function createDefaultBoard(gameElement: string): Board {
         if (rarity === 'Hybrid') {
             points *= 5
         } else if (rarity === 'Rare') {
-            points *= 10
+            points *= 20
         } else if (
             rarity === 'Gemstone' ||
             rarity === 'Galaxy' ||
             rarity === 'Epic'
         ) {
-            points *= 100
+            points *= 60
         }
 
         points = Math.floor(points)
@@ -94,18 +106,16 @@ function createDefaultBoard(gameElement: string): Board {
     )
 }
 
-function createDefaultGoals(gameElement: string) {
+function createDefaultGoals(gameElementOne: string, gameElementTwo: string) {
     return [
         {
-            element: gameElement,
-            level: Math.floor(Math.random() * 2) + 2,
-            amount: 2,
+            element: gameElementOne,
+            level: 3,
+            amount: 1,
         },
         {
-            element: regularElements.filter((e) => e !== gameElement)[
-                Math.floor(Math.random() * (regularElements.length - 1))
-            ],
-            level: 2,
+            element: gameElementTwo,
+            level: 3,
             amount: 1,
         },
     ]
@@ -122,9 +132,6 @@ function fakeBreedingMerge(
 
     let isTwin = twinTriggered || egg1.twin || egg2.twin
 
-    if (extraTriggered) {
-        //dubble level
-    }
     const bonus = egg1.name === egg2.name ? 1 : 0
 
     const newLevel =
@@ -138,13 +145,13 @@ function fakeBreedingMerge(
     if (rarity === 'Hybrid') {
         points *= 5
     } else if (rarity === 'Rare') {
-        points *= 10
+        points *= 20
     } else if (
         rarity === 'Gemstone' ||
         rarity === 'Galaxy' ||
         rarity === 'Epic'
     ) {
-        points *= 100
+        points *= 60
     }
 
     points = points * Math.pow(1.2, newLevel - 1)
@@ -165,15 +172,19 @@ export async function POST(request: Request) {
     const { action, friendId, gameId, source, target } = await request.json()
 
     if (action === 'create') {
-        const gameElement =
+        const gameElementOne =
             regularElements[Math.floor(Math.random() * regularElements.length)]
+        const gameElementTwo = regularElements.filter(
+            (e) => e !== gameElementOne
+        )[Math.floor(Math.random() * (regularElements.length - 1))]
+
         const { data: newGame, error: createError } = await supabase
             .from('eggy_hatchy_games')
             .insert({
                 friend_id: friendId,
-                board: createDefaultBoard(gameElement),
+                board: createDefaultBoard(gameElementOne, gameElementTwo),
                 bank: {
-                    goals: createDefaultGoals(gameElement),
+                    goals: createDefaultGoals(gameElementOne, gameElementTwo),
                     eggs: [],
                 },
             })
