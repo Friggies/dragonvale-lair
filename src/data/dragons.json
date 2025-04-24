@@ -2,6 +2,19 @@
     {
         "availability": "LIMITED",
         "quest": "N/A",
+        "rarity": "Rare",
+        "number": 899,
+        "name": "Fragolita",
+        "elements": ["Plant", "Water", "Light", "Earth"],
+        "released": "April 24, 2025",
+        "commemoration": "Kaleni in Candy Land",
+        "breedingTime": "17 H",
+        "income": [30],
+        "combo": ["Ichigo", "water", "light"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
         "rarity": "Epic",
         "number": 898,
         "name": "Mimicake",
