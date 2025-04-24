@@ -174,6 +174,10 @@ const Tool: React.FC = () => {
         setCurrentGamePoints(points)
     }, [bank])
 
+    const isEmpty =
+        board &&
+        board.every((innerArray) => innerArray.every((obj) => obj.egg === null))
+
     if (!board) {
         return (
             <div className={styles.column}>
@@ -258,110 +262,123 @@ const Tool: React.FC = () => {
                 </div>
             </div>
             <div className={styles.column + ' ' + styles.columnLarge}>
-                <div className={styles.paper}>
-                    <div className={styles.grid}>
-                        {board.map((row, rIdx) =>
-                            row.map((cell, cIdx) => (
-                                <div
-                                    key={`${rIdx}-${cIdx}`}
-                                    className={styles.cell}
-                                    style={{
-                                        outline:
-                                            selected?.row === rIdx &&
-                                            selected?.col === cIdx
-                                                ? '2px solid #107641'
-                                                : '2px solid transparent',
-                                        background: cell.egg?.twin
-                                            ? 'radial-gradient(circle, #0088ff 30%, transparent 70%)'
-                                            : 'transparent',
-                                        cursor: cell.egg
-                                            ? 'pointer'
-                                            : 'not-allowed',
-                                        pointerEvents: loading
-                                            ? 'none'
-                                            : 'auto',
-                                        opacity: loading ? 0.5 : 1,
-                                    }}
-                                    onClick={() => handleCellClick(rIdx, cIdx)}
-                                >
-                                    {cell.egg ? (
-                                        <>
-                                            <img
-                                                loading="lazy"
-                                                height="50"
-                                                alt={`${cell.egg.name} Dragon Egg`}
-                                                src={`https://namethategg.com/eggs/${transformToEggName(
-                                                    cell.egg.name
-                                                )}.png`}
-                                                style={{
-                                                    zIndex: 1,
-                                                }}
-                                            />
+                {isEmpty ? (
+                    <button
+                        className={styles.startButton}
+                        onClick={startGame}
+                        disabled={loading}
+                    >
+                        {loading ? 'Generating board...' : 'Play again'}
+                    </button>
+                ) : (
+                    <div className={styles.paper}>
+                        <div className={styles.grid}>
+                            {board.map((row, rIdx) =>
+                                row.map((cell, cIdx) => (
+                                    <div
+                                        key={`${rIdx}-${cIdx}`}
+                                        className={styles.cell}
+                                        style={{
+                                            outline:
+                                                selected?.row === rIdx &&
+                                                selected?.col === cIdx
+                                                    ? '2px solid #107641'
+                                                    : '2px solid transparent',
+                                            background: cell.egg?.twin
+                                                ? 'radial-gradient(circle, #0088ff 30%, transparent 70%)'
+                                                : 'transparent',
+                                            cursor: cell.egg
+                                                ? 'pointer'
+                                                : 'not-allowed',
+                                            pointerEvents: loading
+                                                ? 'none'
+                                                : 'auto',
+                                            opacity: loading ? 0.5 : 1,
+                                        }}
+                                        onClick={() =>
+                                            handleCellClick(rIdx, cIdx)
+                                        }
+                                    >
+                                        {cell.egg ? (
+                                            <>
+                                                <img
+                                                    loading="lazy"
+                                                    height="50"
+                                                    alt={`${cell.egg.name} Dragon Egg`}
+                                                    src={`https://namethategg.com/eggs/${transformToEggName(
+                                                        cell.egg.name
+                                                    )}.png`}
+                                                    style={{
+                                                        zIndex: 1,
+                                                    }}
+                                                />
+                                                <div
+                                                    style={{
+                                                        width: '20px',
+                                                        height: '20px',
+                                                        position: 'absolute',
+                                                        top: '5px',
+                                                        right: '5px',
+                                                        display: 'grid',
+                                                        placeItems: 'center',
+                                                        lineHeight: '0',
+                                                        backgroundColor:
+                                                            '#e1e1e1',
+                                                        border: '2px solid #8e8f8b',
+                                                        borderRadius: '50%',
+                                                        fontSize: '14px',
+                                                        color: 'black',
+                                                        textShadow: 'none',
+                                                        userSelect: 'none',
+                                                        zIndex: 1,
+                                                    }}
+                                                >
+                                                    {cell.egg.level}
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <div aria-label="No egg" />
+                                        )}
+                                        {cell.createsTwin && (
                                             <div
                                                 style={{
-                                                    width: '20px',
-                                                    height: '20px',
                                                     position: 'absolute',
-                                                    top: '5px',
-                                                    right: '5px',
-                                                    display: 'grid',
-                                                    placeItems: 'center',
-                                                    lineHeight: '0',
-                                                    backgroundColor: '#e1e1e1',
-                                                    border: '2px solid #8e8f8b',
-                                                    borderRadius: '50%',
-                                                    fontSize: '14px',
-                                                    color: 'black',
-                                                    textShadow: 'none',
-                                                    userSelect: 'none',
-                                                    zIndex: 1,
+                                                    top: '50%',
+                                                    left: '50%',
+                                                    transform:
+                                                        'translate(-50%, -50%)',
                                                 }}
                                             >
-                                                {cell.egg.level}
+                                                <img
+                                                    alt="Creates twin"
+                                                    src="/eggyHatchy/twin.png"
+                                                    height="30"
+                                                />
                                             </div>
-                                        </>
-                                    ) : (
-                                        <div aria-label="No egg" />
-                                    )}
-                                    {cell.createsTwin && (
-                                        <div
-                                            style={{
-                                                position: 'absolute',
-                                                top: '50%',
-                                                left: '50%',
-                                                transform:
-                                                    'translate(-50%, -50%)',
-                                            }}
-                                        >
-                                            <img
-                                                alt="Creates twin"
-                                                src="/eggyHatchy/twin.png"
-                                                height="30"
-                                            />
-                                        </div>
-                                    )}
-                                    {cell.extraPoints && (
-                                        <div
-                                            style={{
-                                                position: 'absolute',
-                                                top: '50%',
-                                                left: '50%',
-                                                transform:
-                                                    'translate(-50%, -50%)',
-                                            }}
-                                        >
-                                            <img
-                                                alt="Extra Points"
-                                                src="/eggyHatchy/food.png"
-                                                height="30"
-                                            />
-                                        </div>
-                                    )}
-                                </div>
-                            ))
-                        )}
+                                        )}
+                                        {cell.extraPoints && (
+                                            <div
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: '50%',
+                                                    left: '50%',
+                                                    transform:
+                                                        'translate(-50%, -50%)',
+                                                }}
+                                            >
+                                                <img
+                                                    alt="Extra Points"
+                                                    src="/eggyHatchy/food.png"
+                                                    height="30"
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                ))
+                            )}
+                        </div>
                     </div>
-                </div>
+                )}
                 {selected && (
                     <div className={styles.infobar}>
                         {board[selected.row][selected.col].egg?.elements.map(
