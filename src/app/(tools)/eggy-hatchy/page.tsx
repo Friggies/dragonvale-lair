@@ -17,6 +17,9 @@ export default function EggyHatchy() {
             >
                 <Tool />
             </Section>
+            <Section title="Leaderboard">
+                <p></p>
+            </Section>
             <Section title="Information">
                 <p></p>
             </Section>

@@ -174,6 +174,16 @@ const Tool: React.FC = () => {
         setCurrentGamePoints(points)
     }, [bank])
 
+    useEffect(() => {
+        const savedFriendId = localStorage.getItem('friendId')
+        if (savedFriendId) {
+            setFriendId(savedFriendId)
+        }
+    }, [])
+    useEffect(() => {
+        localStorage.setItem('friendId', friendId)
+    }, [friendId])
+
     const isEmpty =
         board &&
         board.every((innerArray) => innerArray.every((obj) => obj.egg === null))
@@ -223,16 +233,30 @@ const Tool: React.FC = () => {
                                 className={styles.goal}
                             >
                                 <p className={styles.goalText}>
-                                    {
-                                        bank.eggs.filter(
-                                            (egg) =>
-                                                egg.level >= goal.level &&
-                                                egg.elements.includes(
-                                                    goal.element
-                                                )
-                                        ).length
-                                    }{' '}
-                                    / {goal.amount} Eggs
+                                    {bank.eggs.filter(
+                                        (egg) =>
+                                            egg.level >= goal.level &&
+                                            egg.elements.includes(goal.element)
+                                    ).length === goal.amount ? (
+                                        <span style={{ color: '#36dc23' }}>
+                                            Completed
+                                        </span>
+                                    ) : (
+                                        <>
+                                            {
+                                                bank.eggs.filter(
+                                                    (egg) =>
+                                                        egg.level >=
+                                                            goal.level &&
+                                                        egg.elements.includes(
+                                                            goal.element
+                                                        )
+                                                ).length
+                                            }{' '}
+                                            / {goal.amount} Egg
+                                            {goal.amount === 1 ? '' : 's'}
+                                        </>
+                                    )}
                                 </p>
                                 <img
                                     height="50"
