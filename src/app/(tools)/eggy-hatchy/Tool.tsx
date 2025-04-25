@@ -237,7 +237,7 @@ const Tool: React.FC = () => {
                                         (egg) =>
                                             egg.level >= goal.level &&
                                             egg.elements.includes(goal.element)
-                                    ).length === goal.amount ? (
+                                    ).length >= goal.amount ? (
                                         <span style={{ color: '#36dc23' }}>
                                             Completed
                                         </span>
