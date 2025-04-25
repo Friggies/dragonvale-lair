@@ -110,33 +110,29 @@ const Tool: React.FC = () => {
             }
         }
 
-        if (window.confirm(`Merge eggs?`)) {
-            setLoading(true)
-            fetch('/api/eggy-hatchy', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    action: 'merge',
-                    gameId,
-                    source: { row: selected.row, col: selected.col },
-                    target: { row, col },
-                }),
+        setLoading(true)
+        fetch('/api/eggy-hatchy', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                action: 'merge',
+                gameId,
+                source: { row: selected.row, col: selected.col },
+                target: { row, col },
+            }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setBoard(data.board)
+                setSelected(null)
             })
-                .then((res) => res.json())
-                .then((data) => {
-                    setBoard(data.board)
-                    setSelected(null)
-                })
-                .catch((err) => {
-                    console.error(err)
-                    alert('Merge failed on the server.')
-                })
-                .finally(() => {
-                    setLoading(false)
-                })
-        } else {
-            setSelected(null)
-        }
+            .catch((err) => {
+                console.error(err)
+                alert('Merge failed on the server.')
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     const bankEgg = async () => {
