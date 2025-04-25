@@ -358,9 +358,38 @@ export async function POST(request: Request) {
         board[row][col].egg = null
         bank.eggs.push(eggToBank)
 
+        const gameOver = board.every((rowCells) =>
+            rowCells.every((cell) => cell.egg === null)
+        )
+
+        let totalPointsToUpdate = 0
+
+        if (gameOver) {
+            const goalsMet = bank.goals.every((goal) => {
+                const matchedCount = bank.eggs.filter(
+                    (egg) =>
+                        egg.level >= goal.level &&
+                        egg.elements.includes(goal.element)
+                ).length
+                return matchedCount >= goal.amount
+            })
+
+            if (goalsMet) {
+                totalPointsToUpdate = bank.eggs.reduce(
+                    (sum, egg) => sum + egg.points,
+                    0
+                )
+            }
+        }
+
+        const updates: Record<string, any> = { board, bank }
+        if (totalPointsToUpdate !== 0) {
+            updates.total_points = totalPointsToUpdate
+        }
+
         const { error: updateError } = await supabase
             .from('eggy_hatchy_games')
-            .update({ board, bank })
+            .update(updates)
             .eq('id', gameId)
 
         if (updateError) {
