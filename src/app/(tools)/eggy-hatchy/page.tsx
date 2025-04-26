@@ -22,7 +22,44 @@ export default async function EggyHatchy() {
                 <Leaderboard />
             </Section>
             <Section title="Information">
-                <p></p>
+                <p>
+                    Eggy Hatchy is a DragonVale event minigame. This replica
+                    tries to mimic most of the functionality of the minigame,
+                    but it does have a few discrepancies.
+                </p>
+                <p>
+                    <a
+                        href="https://dragonvale-tips.proboards.com/thread/1802/eggy-hatchy-guide"
+                        className="link"
+                        target="_blank"
+                    >
+                        You can find a guide to the real minigame here
+                    </a>
+                    , but this version does not have stages or towers with
+                    different difficulties. All the boards generate in the same
+                    way. It also does not require tickets, so enjoy playing as
+                    much as you want. The goal of the real minigame is to
+                    complete stages to obtain the event currently, but the goal
+                    of this replica is to score as many points as possible. You
+                    gain points by baking eggs.
+                </p>
+                <p>
+                    You must complete all the goals and bank all the eggs for
+                    your game to complete. Anonymous players won't see their
+                    game or score on the leaderboard, and users who play with
+                    their Friend ID will only see their best score.
+                </p>
+                <p>
+                    The merging and banking functions a lot like the real
+                    minigame. You can bank any egg, and you can merge any egg
+                    with the closest eggs to it on both axes. However, there is
+                    no level restriction and there is no way to redo merges.
+                </p>
+                <p>
+                    The merging does not use the compendium, and the breeding
+                    odds and results are therefore a bit skewed from the in-game
+                    breeding.
+                </p>{' '}
             </Section>
         </main>
     )
