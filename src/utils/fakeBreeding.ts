@@ -129,63 +129,51 @@ export default function breedDragon(
         }
     })
 
-    // Fixed chances per candidate type.
     const GEMSTONE_CHANCE = 1 // 1%
-    const EPIC_CHANCE = 0.5 // 0.5%
+    const EPIC_CHANCE = 1 // 5%
     const RARE_CHANCE = 5 // 5%
 
-    // Calculate total fixed chance.
-    const totalFixedChance =
-        gemstoneCount * GEMSTONE_CHANCE +
-        epicCount * EPIC_CHANCE +
-        rareCount * RARE_CHANCE
+    // How much to reserve for hybrids?
+    const HYBRID_RESERVE = hybridCount > 0 ? 1 : 0 // carve 1% only if there are hybrids
 
-    // Remaining chance to be split among hybrids.
-    const remainingChance = hybridCount > 0 ? 100 - totalFixedChance : 0
+    // Total % locked up in Epics + Rares
+    const sumRareEpic = epicCount * EPIC_CHANCE + rareCount * RARE_CHANCE
 
-    // Assign weights for candidates.
+    // Factor to shrink each Epic/Rare so that we free up exactly HYBRID_RESERVE
+    // (if hybridCount===0 this will just be 1.0, i.e. no change)
+    const shrinkFactor =
+        hybridCount > 0 ? (sumRareEpic - HYBRID_RESERVE) / sumRareEpic : 1
+
+    // The adjusted per‐candidate weights:
+    const adjEpicChance = EPIC_CHANCE * shrinkFactor
+    const adjRareChance = RARE_CHANCE * shrinkFactor
+
+    // Now build your weighted list:
     const candidatesWithWeight: { candidate: Dragon; weight: number }[] = []
-    validCandidates.forEach((candidate) => {
-        let weight = 0
-        const rarityLC = candidate.rarity.toLowerCase()
-        if (rarityLC === 'gemstone') {
+    for (const candidate of validCandidates) {
+        const rarity = candidate.rarity.toLowerCase()
+        let weight: number
+
+        if (rarity === 'gemstone') {
             weight = GEMSTONE_CHANCE
-        } else if (rarityLC === 'epic') {
-            weight = EPIC_CHANCE
-        } else if (rarityLC === 'rare') {
-            weight = RARE_CHANCE
+        } else if (rarity === 'epic') {
+            weight = adjEpicChance
+        } else if (rarity === 'rare') {
+            weight = adjRareChance
         } else {
-            // Hybrid candidate gets an equal share of the remaining chance.
-            weight = hybridCount > 0 ? remainingChance / hybridCount : 0
+            // Hybrid: split the HYBRID_RESERVE equally
+            weight = hybridCount > 0 ? HYBRID_RESERVE / hybridCount : 0
         }
+
         candidatesWithWeight.push({ candidate, weight })
-    })
+    }
 
-    // --- Log the breeding pool candidates with their computed weight and chance ---
-    // Here, the weight for each candidate is its fixed percentage value.
-    console.log('Breeding Pool:')
-    candidatesWithWeight.forEach(({ candidate, weight }) => {
-        console.log(
-            `- ${candidate.name} (rarity: ${candidate.rarity}, chance: ${weight}%)`
-        )
-    })
-    // --- End Logging ---
-
-    // For weightedRandom, we use the weights (which sum to 100 if valid).
     const selected = weightedRandom(
-        candidatesWithWeight.map((item) => ({
-            item: item.candidate,
-            weight: item.weight,
+        candidatesWithWeight.map(({ candidate, weight }) => ({
+            item: candidate,
+            weight,
         }))
     )
 
     return selected
 }
-
-// Example usage:
-// const result = breedDragon("Bakey", "Cupcake");
-// if (result) {
-//   console.log("Breeding outcome:", result.name);
-// } else {
-//   console.log("No valid breeding outcome.");
-// }
