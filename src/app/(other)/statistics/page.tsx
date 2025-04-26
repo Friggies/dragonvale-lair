@@ -1,17 +1,12 @@
-import { createClient } from '@supabase/supabase-js'
 import getMonthName from '@/utils/getMonthName'
 import { Metadata } from 'next'
+import supabase from '@/utils/supabaseClient'
 
 export const metadata: Metadata = {
     title: 'The DragonVale Lair Statistics',
     description:
         'Statistics for The DragonVale Lair. Watch how many monthly requests each endpoint has received since the launch of The DragonVale Lair.',
 }
-
-const supabaseUrl = 'https://evrjimpvbkritkiantsx.supabase.co'
-const supabaseKey =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2cmppbXB2YmtyaXRraWFudHN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTkyNjAxMDEsImV4cCI6MjAzNDgzNjEwMX0.kU029veAv9sk1klaML-e49jNAFq9US4bZHxCUPVcVKU'
-const supabase = createClient(supabaseUrl, supabaseKey)
 
 export default async function Page() {
     const [

@@ -169,7 +169,7 @@ function fakeBreedingMerge(
 
 // ---- Main API Endpoint ----
 export async function POST(request: Request) {
-    const { action, friendId, gameId, source, target } = await request.json()
+    const { action, friendID, gameId, source, target } = await request.json()
 
     if (action === 'create') {
         const gameElementOne =
@@ -181,7 +181,7 @@ export async function POST(request: Request) {
         const { data: newGame, error: createError } = await supabase
             .from('eggy_hatchy_games')
             .insert({
-                friend_id: friendId,
+                friend_id: friendID,
                 board: createDefaultBoard(gameElementOne, gameElementTwo),
                 bank: {
                     goals: createDefaultGoals(gameElementOne, gameElementTwo),

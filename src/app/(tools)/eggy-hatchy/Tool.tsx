@@ -2,6 +2,8 @@
 import transformToEggName from '@/utils/transformToEggName'
 import React, { useEffect, useState } from 'react'
 import styles from './Tool.module.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { setFriendID } from '@/store/friendSlice'
 
 // ---- Types and Fake Breeding Logic ----
 
@@ -35,7 +37,8 @@ interface Bank {
 // ---- Main Game Component ----
 
 const Tool: React.FC = () => {
-    const [friendId, setFriendId] = useState('')
+    const dispatch = useDispatch()
+    const friendID = useSelector((state: any) => state.friend.friendID)
     const [gameId, setGameId] = useState<string | null>(null)
     const [board, setBoard] = useState<Board | null>(null)
     const [bank, setBank] = useState<Bank | null>(null)
@@ -52,7 +55,7 @@ const Tool: React.FC = () => {
             const res = await fetch('/api/eggy-hatchy', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'create', friendId }),
+                body: JSON.stringify({ action: 'create', friendID }),
             })
             const data = await res.json()
             if (!res.ok) throw new Error(data.error || 'Failed to fetch game')
@@ -170,16 +173,6 @@ const Tool: React.FC = () => {
         setCurrentGamePoints(points)
     }, [bank])
 
-    useEffect(() => {
-        const savedFriendId = localStorage.getItem('friendId')
-        if (savedFriendId) {
-            setFriendId(savedFriendId)
-        }
-    }, [])
-    useEffect(() => {
-        localStorage.setItem('friendId', friendId)
-    }, [friendId])
-
     const isEmpty =
         board &&
         board.every((innerArray) => innerArray.every((obj) => obj.egg === null))
@@ -202,8 +195,8 @@ const Tool: React.FC = () => {
                         type="text"
                         className={styles.friendId}
                         placeholder="Friend ID"
-                        value={friendId}
-                        onChange={(e) => setFriendId(e.target.value)}
+                        value={friendID}
+                        onChange={(e) => dispatch(setFriendID(e.target.value))}
                     />
                 </div>
                 <button
