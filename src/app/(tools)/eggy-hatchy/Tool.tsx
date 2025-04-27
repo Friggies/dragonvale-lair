@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './Tool.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFriendID } from '@/store/friendSlice'
+import eggWords from './eggWords'
 
 // ---- Types and Fake Breeding Logic ----
 
@@ -173,9 +174,20 @@ const Tool: React.FC = () => {
         setCurrentGamePoints(points)
     }, [bank])
 
-    const isEmpty =
-        board &&
-        board.every((innerArray) => innerArray.every((obj) => obj.egg === null))
+    const isEmpty = board?.every((row) =>
+        row.every((cell) => cell.egg === null)
+    )
+
+    const allGoalsMet = bank
+        ? bank.goals.every(
+              (goal) =>
+                  bank.eggs.filter(
+                      (egg) =>
+                          egg.level >= goal.level &&
+                          egg.elements.includes(goal.element)
+                  ).length >= goal.amount
+          )
+        : false
 
     if (!board) {
         return (
@@ -276,13 +288,46 @@ const Tool: React.FC = () => {
             </div>
             <div className={styles.column + ' ' + styles.columnLarge}>
                 {isEmpty ? (
-                    <button
-                        className={styles.startButton}
-                        onClick={startGame}
-                        disabled={loading}
-                    >
-                        {loading ? 'Generating board...' : 'Play again'}
-                    </button>
+                    <>
+                        <>
+                            <br />
+                            <br />
+                            <br />
+                            {allGoalsMet ? (
+                                <>
+                                    <h3>
+                                        {
+                                            eggWords[
+                                                Math.floor(
+                                                    Math.random() *
+                                                        eggWords.length
+                                                )
+                                            ]
+                                        }
+                                        !
+                                    </h3>
+                                    <p>
+                                        Your game with {currentGamePoints}{' '}
+                                        points has been added to the
+                                        leaderboard. You can only see your best
+                                        game.
+                                    </p>
+                                </>
+                            ) : (
+                                <>
+                                    <h3>Eggh!</h3>
+                                    <p>Not all goals were met.</p>
+                                </>
+                            )}
+                        </>
+                        <button
+                            className={styles.startButton}
+                            onClick={startGame}
+                            disabled={loading}
+                        >
+                            {loading ? 'Generating board...' : 'Play again'}
+                        </button>
+                    </>
                 ) : (
                     <div className={styles.paper}>
                         <div className={styles.grid}>
