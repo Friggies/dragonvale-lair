@@ -184,7 +184,7 @@ const Tool: React.FC = () => {
                     Please input your Friend ID or press "Begin" to play
                     anonymously.{' '}
                     <a
-                        href="#"
+                        href="#friendIdText"
                         className="link"
                     >
                         What is your Friend ID?

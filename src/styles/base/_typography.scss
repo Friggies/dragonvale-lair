@@ -18,6 +18,12 @@ h5,
 h6 {
     font-weight: 700;
 }
+p:target {
+    background-color: black;
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
 
 /* oswald-regular - latin */
 @font-face {

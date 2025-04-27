@@ -49,6 +49,12 @@ export default async function EggyHatchy() {
                     game or score on the leaderboard, and users who play with
                     their Friend ID will only see their best score.
                 </p>
+                <p id="friendIdText">
+                    You can find you Friend ID in the DragonVale app if you
+                    press the Social button and then open your profile card.
+                    Copy it by pressing the "Copy ID" button and paste it in the
+                    input field above.
+                </p>
                 <p>
                     The merging and banking functions a lot like the real
                     minigame. You can bank any egg, and you can merge any egg

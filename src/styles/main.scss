@@ -51,26 +51,3 @@
         display: none;
     }
 }
-
-/*
-    background-color: $color--card;
-    border-top: 3px solid $color--border-highlight;
-    &:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: -7.5px;
-        height: 5px;
-        background-color: $color--dark;
-    }
-    &:after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        height: 7.5px;
-        background-color: $color--light;
-    }
-*/
