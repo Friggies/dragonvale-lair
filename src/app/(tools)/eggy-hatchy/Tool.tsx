@@ -289,37 +289,32 @@ const Tool: React.FC = () => {
             <div className={styles.column + ' ' + styles.columnLarge}>
                 {isEmpty ? (
                     <>
-                        <>
-                            <br />
-                            <br />
-                            <br />
-                            {allGoalsMet ? (
-                                <>
-                                    <h3>
-                                        {
-                                            eggWords[
-                                                Math.floor(
-                                                    Math.random() *
-                                                        eggWords.length
-                                                )
-                                            ]
-                                        }
-                                        !
-                                    </h3>
-                                    <p>
-                                        Your game with {currentGamePoints}{' '}
-                                        points has been added to the
-                                        leaderboard. You can only see your best
-                                        game.
-                                    </p>
-                                </>
-                            ) : (
-                                <>
-                                    <h3>Eggh!</h3>
-                                    <p>Not all goals were met.</p>
-                                </>
-                            )}
-                        </>
+                        <br />
+                        <br />
+                        {allGoalsMet ? (
+                            <>
+                                <h3>
+                                    {
+                                        eggWords[
+                                            Math.floor(
+                                                Math.random() * eggWords.length
+                                            )
+                                        ]
+                                    }
+                                    !
+                                </h3>
+                                <p>
+                                    Your game with {currentGamePoints} points
+                                    has been added to the leaderboard. You can
+                                    only see your best game.
+                                </p>
+                            </>
+                        ) : (
+                            <>
+                                <h3>Eggh!</h3>
+                                <p>Not all goals were met.</p>
+                            </>
+                        )}
                         <button
                             className={styles.startButton}
                             onClick={startGame}
@@ -327,6 +322,8 @@ const Tool: React.FC = () => {
                         >
                             {loading ? 'Generating board...' : 'Play again'}
                         </button>
+                        <br />
+                        <br />
                     </>
                 ) : (
                     <div className={styles.paper}>
