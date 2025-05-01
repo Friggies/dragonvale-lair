@@ -111,7 +111,7 @@ function createDefaultGoals(gameElementOne: string, gameElementTwo: string) {
         {
             element: gameElementOne,
             level: 3,
-            amount: 1,
+            amount: 3,
         },
         {
             element: gameElementTwo,

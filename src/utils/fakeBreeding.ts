@@ -47,7 +47,6 @@ export default function breedDragon(
     parentNameA: string,
     parentNameB: string
 ): Dragon | null {
-    // Find parent dragons by their names.
     const parentA = DRAGONS.find((d) => d.name === parentNameA)
     const parentB = DRAGONS.find((d) => d.name === parentNameB)
 
@@ -56,45 +55,38 @@ export default function breedDragon(
         return null
     }
 
-    //for eggy hatchy
     if (parentA === parentB) {
         return parentA
     }
 
-    // Create sets of parent names and parent elements.
     const parentNames = new Set<string>([parentA.name, parentB.name])
     const parentElements = new Set<string>([
         ...parentA.elements,
         ...parentB.elements,
     ])
 
-    // If either parent has "Rainbow", add all rainbow elements.
     if (parentElements.has('Rainbow')) {
         for (const elem of RAINBOW_ELEMENTS) {
             parentElements.add(elem)
         }
     }
 
-    // Filter candidate dragons.
     const validCandidates: Dragon[] = DRAGONS.filter((candidate) => {
-        // Must have a defined and non-empty combo array.
         if (!candidate.combo || candidate.combo.length === 0) return false
-
-        // If a candidate is LIMITED, it must be in the currentlyAvailable list.
         if (
             candidate.availability === 'LIMITED' &&
             !currentlyAvailable.includes(candidate.name)
         ) {
             return false
         }
-
-        // Exclude outcomes of rarity "Legendary" or "Primary" (case-insensitive).
         const rarityLC = candidate.rarity.toLowerCase()
-        if (rarityLC === 'legendary' || rarityLC === 'primary') return false
+        if (
+            rarityLC === 'legendary' ||
+            rarityLC === 'primary' ||
+            rarityLC === 'mythic'
+        )
+            return false
 
-        // A candidate is valid if:
-        // 1. One of the parent's name matches candidate name (self-breeding allowed), or
-        // 2. Every requirement in candidate.combo is fulfilled by the parents.
         if (parentNames.has(candidate.name)) return true
         if (
             candidate.combo.every((req) =>
@@ -111,59 +103,65 @@ export default function breedDragon(
         return null
     }
 
-    // First, count candidates by rarity.
-    let gemstoneCount = 0,
-        epicCount = 0,
-        rareCount = 0,
-        hybridCount = 0
-    validCandidates.forEach((candidate) => {
-        const rarityLC = candidate.rarity.toLowerCase()
-        if (rarityLC === 'gemstone') {
-            gemstoneCount++
-        } else if (rarityLC === 'epic') {
-            epicCount++
-        } else if (rarityLC === 'rare') {
-            rareCount++
-        } else {
-            hybridCount++
-        }
+    // Count rarity types
+    let gemstoneCount = 0
+    let epicCount = 0
+    let galaxyCount = 0
+    let rareCount = 0
+    let otherCount = 0
+
+    validCandidates.forEach((c) => {
+        const rarity = c.rarity.toLowerCase()
+        if (rarity === 'gemstone') gemstoneCount++
+        else if (rarity === 'epic') epicCount++
+        else if (rarity === 'galaxy') galaxyCount++
+        else if (rarity === 'rare') rareCount++
+        else otherCount++
     })
 
-    const GEMSTONE_CHANCE = 1 // 1%
-    const EPIC_CHANCE = 1 // 5%
-    const RARE_CHANCE = 5 // 5%
+    // Assign base weights
+    const GEMSTONE_WEIGHT = 1
+    const EPIC_WEIGHT = 1
+    const GALAXY_WEIGHT = 1
+    const RARE_WEIGHT = 5
 
-    // How much to reserve for hybrids?
-    const HYBRID_RESERVE = hybridCount > 0 ? 1 : 0 // carve 1% only if there are hybrids
+    const fixedTotal =
+        gemstoneCount * GEMSTONE_WEIGHT +
+        epicCount * EPIC_WEIGHT +
+        galaxyCount * GALAXY_WEIGHT +
+        rareCount * RARE_WEIGHT
 
-    // Total % locked up in Epics + Rares
-    const sumRareEpic = epicCount * EPIC_CHANCE + rareCount * RARE_CHANCE
+    const MIN_REMAINING = 1 // 1% reserved for others
 
-    // Factor to shrink each Epic/Rare so that we free up exactly HYBRID_RESERVE
-    // (if hybridCount===0 this will just be 1.0, i.e. no change)
-    const shrinkFactor =
-        hybridCount > 0 ? (sumRareEpic - HYBRID_RESERVE) / sumRareEpic : 1
+    // If fixed exceeds 99%, scale it down to leave at least 1% left
+    const availableForFixed = 100 - MIN_REMAINING
+    const scaleFactor =
+        fixedTotal + MIN_REMAINING > 100 ? availableForFixed / fixedTotal : 1
 
-    // The adjusted per‐candidate weights:
-    const adjEpicChance = EPIC_CHANCE * shrinkFactor
-    const adjRareChance = RARE_CHANCE * shrinkFactor
+    const adjGem = GEMSTONE_WEIGHT * scaleFactor
+    const adjEpic = EPIC_WEIGHT * scaleFactor
+    const adjGalaxy = GALAXY_WEIGHT * scaleFactor
+    const adjRare = RARE_WEIGHT * scaleFactor
 
-    // Now build your weighted list:
+    const totalUsed =
+        gemstoneCount * adjGem +
+        epicCount * adjEpic +
+        galaxyCount * adjGalaxy +
+        rareCount * adjRare
+
+    const leftover = Math.max(0, 100 - totalUsed)
+    const perOther = otherCount > 0 ? leftover / otherCount : 0
+
+    // Build weighted candidate list
     const candidatesWithWeight: { candidate: Dragon; weight: number }[] = []
     for (const candidate of validCandidates) {
         const rarity = candidate.rarity.toLowerCase()
-        let weight: number
-
-        if (rarity === 'gemstone') {
-            weight = GEMSTONE_CHANCE
-        } else if (rarity === 'epic') {
-            weight = adjEpicChance
-        } else if (rarity === 'rare') {
-            weight = adjRareChance
-        } else {
-            // Hybrid: split the HYBRID_RESERVE equally
-            weight = hybridCount > 0 ? HYBRID_RESERVE / hybridCount : 0
-        }
+        let weight = 0
+        if (rarity === 'gemstone') weight = adjGem
+        else if (rarity === 'epic') weight = adjEpic
+        else if (rarity === 'galaxy') weight = adjGalaxy
+        else if (rarity === 'rare') weight = adjRare
+        else weight = perOther
 
         candidatesWithWeight.push({ candidate, weight })
     }
