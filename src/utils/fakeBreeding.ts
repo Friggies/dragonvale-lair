@@ -73,6 +73,7 @@ export default function breedDragon(
 
     const validCandidates: Dragon[] = DRAGONS.filter((candidate) => {
         if (!candidate.combo || candidate.combo.length === 0) return false
+        if (parentNames.has(candidate.name)) return true
         if (
             candidate.availability === 'LIMITED' &&
             !currentlyAvailable.includes(candidate.name)
@@ -87,7 +88,6 @@ export default function breedDragon(
         )
             return false
 
-        if (parentNames.has(candidate.name)) return true
         if (
             candidate.combo.every((req) =>
                 isRequirementFulfilled(req, parentNames, parentElements)
@@ -172,6 +172,24 @@ export default function breedDragon(
             weight,
         }))
     )
+
+    /* Optional: Debug log
+     */
+    const totalWeight = candidatesWithWeight.reduce(
+        (sum, cw) => sum + cw.weight,
+        0
+    )
+
+    /*
+    let debugTotal = 0
+    console.log('Dragon selection percentages:')
+    candidatesWithWeight.forEach(({ candidate, weight }) => {
+        const percentage = (weight / totalWeight) * 100
+        debugTotal += percentage
+        console.log(`${candidate.name}: ${percentage.toFixed(2)}%`)
+    })
+    console.log(`Total: ${debugTotal.toFixed(2)}%`)
+    */
 
     return selected
 }
