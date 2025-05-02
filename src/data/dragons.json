@@ -1,7 +1,23 @@
 [
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "The Moon's Presence",
+        "rarity": "Epic",
+        "number": 900,
+        "name": "Novem",
+        "elements": ["Apocalypse", "Cold", "Dark", "Lightning"],
+        "released": "April 29, 2025",
+        "commemoration": "900 Dragon Milestone",
+        "breedingTime": "19 H",
+        "income": [
+            61, 97, 133, 170, 206, 242, 279, 315, 352, 388, 424, 461, 497, 533,
+            570, 606, 642, 679, 715, 752
+        ],
+        "combo": ["Void", "lightning"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Berry With Straws",
         "rarity": "Rare",
         "number": 899,
         "name": "Fragolita",
@@ -9,12 +25,15 @@
         "released": "April 24, 2025",
         "commemoration": "Kaleni in Candy Land",
         "breedingTime": "17 H",
-        "income": [30],
+        "income": [
+            30, 48, 66, 84, 102, 120, 138, 156, 174, 192, 210, 228, 246, 264,
+            282, 300, 318, 336, 354, 372
+        ],
         "combo": ["Ichigo", "water", "light"]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Not a Lie",
         "rarity": "Epic",
         "number": 898,
         "name": "Mimicake",
@@ -22,12 +41,15 @@
         "released": "April 17, 2025",
         "commemoration": "Kaleni in Candy Land",
         "breedingTime": "21 H",
-        "income": [32],
+        "income": [
+            32, 51, 69, 88, 107, 126, 145, 164, 183, 202, 221, 240, 259, 278,
+            297, 316, 335, 354, 373, 392
+        ],
         "combo": ["Ivy", "hidden"]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Eggs and Bakey",
         "rarity": "Rare",
         "number": 897,
         "name": "Bakey",
@@ -43,7 +65,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Cake in a Cup",
         "rarity": "Rare",
         "number": 896,
         "name": "Cupcake",
@@ -75,7 +97,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Jelly On, Jelly Strong",
         "rarity": "Rare",
         "number": 894,
         "name": "Jiggly",
@@ -83,7 +105,10 @@
         "released": "March 27, 2025",
         "commemoration": "Kaleni in Candy Land",
         "breedingTime": "14 H",
-        "income": [26],
+        "income": [
+            26, 42, 57, 73, 89, 104, 120, 136, 151, 167, 183, 198, 214, 230,
+            245, 261, 277, 292, 308, 323
+        ],
         "combo": ["Ooze", "plant", "cold"]
     },
     {
@@ -96,7 +121,10 @@
         "released": "March 20, 2025",
         "commemoration": "Kaleni in Candy Land",
         "breedingTime": "16 H",
-        "income": [24],
+        "income": [
+            24, 38, 53, 67, 82, 96, 110, 125, 139, 154, 168, 182, 197, 211, 226,
+            240, 254, 269, 283, 298
+        ],
         "combo": ["Cotton", "fire"]
     },
     {
@@ -109,7 +137,10 @@
         "released": "March 20, 2025",
         "commemoration": "Kaleni in Candy Land",
         "breedingTime": "17 H",
-        "income": [21],
+        "income": [
+            21, 34, 47, 60, 73, 86, 99, 111, 124, 137, 150, 163, 176, 189, 201,
+            214, 227, 240, 253, 266
+        ],
         "combo": ["Swallowtail", "fire", "plant"]
     },
     {
@@ -122,7 +153,10 @@
         "released": "March 20, 2025",
         "commemoration": "Kaleni in Candy Land",
         "breedingTime": "14 H",
-        "income": [20],
+        "income": [
+            20, 32, 44, 56, 68, 80, 92, 104, 116, 128, 140, 152, 164, 176, 188,
+            200, 212, 224, 236, 248
+        ],
         "combo": ["fire", "water", "light"]
     },
     {
