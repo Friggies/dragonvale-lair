@@ -1,6 +1,8 @@
 const currentlyAvailable = [
-    'Diamond',
+    'Wavelyte',
     'Lapis',
+    'Emerald',
+    'Novem',
     'Spring',
     'Ghostly Kringle',
     'Ghostly Krampus',
