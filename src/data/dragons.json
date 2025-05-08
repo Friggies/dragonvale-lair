@@ -1,6 +1,42 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 903,
+        "name": "Lucee",
+        "elements": ["Water", "Dark", "Light", "Plant"],
+        "released": "May 8, 2025",
+        "commemoration": "Deepest Depths II",
+        "breedingTime": "13 H",
+        "income": [23]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 902,
+        "name": "Redbelly",
+        "elements": ["Water", "Fire", "Dark"],
+        "released": "May 8, 2025",
+        "commemoration": "Deepest Depths II",
+        "breedingTime": "12 H",
+        "income": [33]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 901,
+        "name": "Dousa",
+        "elements": ["Water", "Light", "Dark"],
+        "released": "May 8, 2025",
+        "commemoration": "Deepest Depths II",
+        "breedingTime": "14 H",
+        "income": [21]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "The Moon's Presence",
         "rarity": "Epic",
         "number": 900,
