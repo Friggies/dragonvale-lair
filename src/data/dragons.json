@@ -3,13 +3,27 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 904,
+        "name": "Maelstrom",
+        "elements": ["Water", "Cold", "Plant", "Lightning"],
+        "released": "May 15, 2025",
+        "commemoration": "Deepest Depths II",
+        "breedingTime": "19 H",
+        "income": [26],
+        "combo": ["Storm", "Liveloch"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
         "number": 903,
         "name": "Lucee",
         "elements": ["Water", "Dark", "Light", "Plant"],
         "released": "May 8, 2025",
         "commemoration": "Deepest Depths II",
         "breedingTime": "13 H",
-        "income": [23]
+        "income": [23],
+        "combo": ["Mylio", "Luminous"]
     },
     {
         "availability": "LIMITED",
@@ -21,7 +35,8 @@
         "released": "May 8, 2025",
         "commemoration": "Deepest Depths II",
         "breedingTime": "12 H",
-        "income": [33]
+        "income": [33],
+        "combo": ["Redfrill", "Abyss"]
     },
     {
         "availability": "LIMITED",
@@ -33,7 +48,8 @@
         "released": "May 8, 2025",
         "commemoration": "Deepest Depths II",
         "breedingTime": "14 H",
-        "income": [21]
+        "income": [21],
+        "combo": ["Euryale", "water", "dark"]
     },
     {
         "availability": "LIMITED",

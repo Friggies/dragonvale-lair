@@ -294,14 +294,14 @@ const Tool: React.FC = () => {
                         {allGoalsMet ? (
                             <>
                                 <h3>
-                                    {
-                                        eggWords[
-                                            Math.floor(
-                                                Math.random() * eggWords.length
-                                            )
-                                        ]
-                                    }
-                                    !
+                                    {loading
+                                        ? 'Loading...'
+                                        : eggWords[
+                                              Math.floor(
+                                                  Math.random() *
+                                                      eggWords.length
+                                              ) + '!'
+                                          ]}
                                 </h3>
                                 <p>
                                     Your game with {currentGamePoints} points
