@@ -3,18 +3,34 @@
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
+        "number": 905,
+        "name": "Blobert",
+        "elements": ["Water", "Cold", "Dark"],
+        "released": "May 22, 2025",
+        "commemoration": "Deepest Depths II",
+        "breedingTime": "23 H",
+        "income": [25],
+        "combo": ["Spinky", "dark"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Beware, Beware",
+        "rarity": "Rare",
         "number": 904,
         "name": "Maelstrom",
         "elements": ["Water", "Cold", "Plant", "Lightning"],
         "released": "May 15, 2025",
         "commemoration": "Deepest Depths II",
         "breedingTime": "19 H",
-        "income": [26],
+        "income": [
+            26, 42, 57, 73, 89, 104, 120, 136, 151, 167, 183, 198, 214, 230,
+            245, 261, 277, 292, 308, 323
+        ],
         "combo": ["Storm", "Liveloch"]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Flash and Bulbous",
         "rarity": "Rare",
         "number": 903,
         "name": "Lucee",
@@ -22,12 +38,15 @@
         "released": "May 8, 2025",
         "commemoration": "Deepest Depths II",
         "breedingTime": "13 H",
-        "income": [23],
+        "income": [
+            23, 37, 51, 66, 78, 92, 106, 120, 134, 148, 162, 175, 189, 203, 217,
+            231, 245, 258, 272, 286
+        ],
         "combo": ["Mylio", "Luminous"]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Jelly Belly",
         "rarity": "Rare",
         "number": 902,
         "name": "Redbelly",
@@ -35,12 +54,15 @@
         "released": "May 8, 2025",
         "commemoration": "Deepest Depths II",
         "breedingTime": "12 H",
-        "income": [33],
+        "income": [
+            33, 53, 73, 93, 113, 133, 153, 173, 193, 213, 233, 253, 273, 293,
+            313, 333, 353, 373, 393, 413
+        ],
         "combo": ["Redfrill", "Abyss"]
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Let Down Your Tentacles",
         "rarity": "Rare",
         "number": 901,
         "name": "Dousa",
@@ -48,7 +70,10 @@
         "released": "May 8, 2025",
         "commemoration": "Deepest Depths II",
         "breedingTime": "14 H",
-        "income": [21],
+        "income": [
+            21, 34, 47, 60, 73, 86, 99, 111, 124, 137, 150, 163, 176, 189, 201,
+            214, 227, 240, 253, 266
+        ],
         "combo": ["Euryale", "water", "dark"]
     },
     {
