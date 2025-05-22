@@ -219,6 +219,30 @@
     }
 }
 
+.formula {
+    font-size: 1.5rem;
+}
+.bonus {
+    position: relative;
+    color: goldenrod;
+    font-weight: 700;
+    &::after {
+        position: absolute;
+        content: '';
+        bottom: 2px;
+        left: -2px;
+        right: -2px;
+        height: 2px;
+        background-color: goldenrod;
+        box-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+            1px 1px 0 #000;
+    }
+}
+.gold {
+    color: goldenrod;
+    font-weight: 700;
+}
+
 .cell {
     outline-offset: -2px;
     position: relative;

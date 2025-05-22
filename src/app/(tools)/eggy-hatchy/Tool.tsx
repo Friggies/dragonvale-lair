@@ -43,12 +43,14 @@ const Tool: React.FC = () => {
     const [gameId, setGameId] = useState<string | null>(null)
     const [board, setBoard] = useState<Board | null>(null)
     const [bank, setBank] = useState<Bank | null>(null)
+    const [gameScore, setGameScore] = useState<Number | null>(null)
     const [currentGamePoints, setCurrentGamePoints] = useState<number>(0)
     const [selected, setSelected] = useState<{
         row: number
         col: number
     } | null>(null)
     const [loading, setLoading] = useState(false)
+    const pointGoal = 2000
 
     const startGame = async () => {
         setLoading(true)
@@ -150,6 +152,7 @@ const Tool: React.FC = () => {
                 body: JSON.stringify({
                     action: 'bank',
                     gameId,
+                    friendID,
                     source: { row: selected.row, col: selected.col },
                 }),
             })
@@ -157,6 +160,7 @@ const Tool: React.FC = () => {
             if (!res.ok) throw new Error(data.error || 'Failed to bank egg')
             setBoard(data.board)
             setBank(data.bank)
+            setGameScore(data.gameScore || null)
         } catch (err) {
             alert('Failed to bank egg')
             console.error(err)
@@ -186,7 +190,7 @@ const Tool: React.FC = () => {
                           egg.level >= goal.level &&
                           egg.elements.includes(goal.element)
                   ).length >= goal.amount
-          )
+          ) && currentGamePoints >= pointGoal
         : false
 
     if (!board) {
@@ -284,6 +288,24 @@ const Tool: React.FC = () => {
                                 </div>
                             </li>
                         ))}
+                    <li className={styles.goal}>
+                        <p className={styles.goalText}>
+                            {currentGamePoints >= pointGoal ? (
+                                <span style={{ color: '#36dc23' }}>
+                                    Completed
+                                </span>
+                            ) : (
+                                <>
+                                    {currentGamePoints} / {pointGoal} Points
+                                </>
+                            )}
+                        </p>
+                        <img
+                            height="30"
+                            alt={''}
+                            src={`/eggyHatchy/chest.webp`}
+                        />
+                    </li>
                 </div>
             </div>
             <div className={styles.column + ' ' + styles.columnLarge}>
@@ -300,14 +322,50 @@ const Tool: React.FC = () => {
                                               Math.floor(
                                                   Math.random() *
                                                       eggWords.length
-                                              ) + '!'
-                                          ]}
+                                              )
+                                          ] + '!'}
                                 </h3>
-                                <p>
-                                    Your game with {currentGamePoints} points
-                                    has been added to the leaderboard. You can
-                                    only see your best game.
-                                </p>
+                                {friendID ? (
+                                    <>
+                                        <p className={styles.formula}>
+                                            {currentGamePoints} +{' '}
+                                            <span
+                                                className={styles.bonus}
+                                                title="Bonus"
+                                            >
+                                                {Math.round(
+                                                    (((gameScore as number) -
+                                                        currentGamePoints) /
+                                                        currentGamePoints) *
+                                                        100
+                                                )}
+                                                %
+                                            </span>{' '}
+                                            = {gameScore as number}
+                                        </p>
+                                        <p>
+                                            You can increase your{' '}
+                                            <span className={styles.gold}>
+                                                BONUS
+                                            </span>{' '}
+                                            by completing more boards. Each
+                                            competed game gives you +1%.
+                                        </p>
+                                        <p>
+                                            Your game with a score of{' '}
+                                            {gameScore as number} has been added
+                                            to the leaderboard. You can only see
+                                            your best game.
+                                        </p>
+                                    </>
+                                ) : (
+                                    <p>
+                                        This game, which had a score of{' '}
+                                        {currentGamePoints} , was played by an
+                                        anonymous player. Therefore, it will not
+                                        be added to the leaderboard.
+                                    </p>
+                                )}
                             </>
                         ) : (
                             <>
@@ -322,6 +380,12 @@ const Tool: React.FC = () => {
                         >
                             {loading ? 'Generating board...' : 'Play again'}
                         </button>
+                        {!friendID && (
+                            <p>
+                                You can refresh this window to input your Friend
+                                ID and see your best score on the leaderboard.
+                            </p>
+                        )}
                         <br />
                         <br />
                     </>

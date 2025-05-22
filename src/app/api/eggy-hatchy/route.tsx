@@ -362,7 +362,7 @@ export async function POST(request: Request) {
             rowCells.every((cell) => cell.egg === null)
         )
 
-        let totalPointsToUpdate = 0
+        let gameScore: number | null = null
 
         if (gameOver) {
             const goalsMet = bank.goals.every((goal) => {
@@ -374,18 +374,44 @@ export async function POST(request: Request) {
                 return matchedCount >= goal.amount
             })
 
-            if (goalsMet) {
-                totalPointsToUpdate = bank.eggs.reduce(
-                    (sum, egg) => sum + egg.points,
-                    0
-                )
+            const gamePoints = bank.eggs.reduce(
+                (sum, egg) => sum + egg.points,
+                0
+            )
+            const pointGoalMet = gamePoints >= 2000
+
+            if (goalsMet && pointGoalMet) {
+                console.log(friendID)
+                if (!friendID) {
+                    gameScore = gamePoints
+                    console.log('No FriendID')
+                } else {
+                    const { count, error } = await supabase
+                        .from('eggy_hatchy_games')
+                        .select('*', { count: 'exact', head: true })
+                        .eq('friend_id', friendID)
+                        .not('score', 'is', null)
+
+                    if (error) {
+                        return NextResponse.json(
+                            { error: 'Failed to add game score.' },
+                            { status: 500 }
+                        )
+                    }
+                    gameScore = Math.round(
+                        gamePoints * (1 + (count! + 1) / 100)
+                    )
+                    console.log(gameScore)
+                }
             }
         }
 
         const updates: Record<string, any> = { board, bank }
-        if (totalPointsToUpdate !== 0) {
-            updates.total_points = totalPointsToUpdate
+        if (gameScore) {
+            updates.score = gameScore
         }
+
+        console.log(updates)
 
         const { error: updateError } = await supabase
             .from('eggy_hatchy_games')
@@ -398,7 +424,7 @@ export async function POST(request: Request) {
                 { status: 500 }
             )
         }
-        return NextResponse.json({ board, bank })
+        return NextResponse.json({ board, bank, gameScore })
     } else {
         return NextResponse.json({ error: 'Unknown action' }, { status: 400 })
     }
