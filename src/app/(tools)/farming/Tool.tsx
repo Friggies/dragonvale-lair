@@ -26,6 +26,8 @@ export default function Tool({
         Lightning: 0,
         Plant: 0,
         Fire: 0,
+        Metal: 0,
+        Dark: 0,
     })
     // Reactive list of dragons (initially provided by page)
     const [dragonsList, setDragonsList] = useState<Dragon[]>(initialDragons)
