@@ -301,7 +301,7 @@ const Tool: React.FC = () => {
                             )}
                         </p>
                         <img
-                            height="30"
+                            height="50"
                             alt={''}
                             src={`/eggyHatchy/chest.webp`}
                         />
