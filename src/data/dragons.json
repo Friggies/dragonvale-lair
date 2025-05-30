@@ -2,6 +2,19 @@
     {
         "availability": "LIMITED",
         "quest": "N/A",
+        "rarity": "Epic",
+        "number": 906,
+        "name": "Bounty",
+        "elements": ["Treasure", "Water", "Plant"],
+        "released": "May 29, 2025",
+        "commemoration": "Deepest Depths II",
+        "breedingTime": "19 H",
+        "income": [35],
+        "combo": ["Gold", "Tidepool"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
         "rarity": "Rare",
         "number": 905,
         "name": "Blobert",
