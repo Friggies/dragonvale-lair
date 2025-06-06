@@ -1,6 +1,19 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Bigger Submarine",
+        "rarity": "Rare",
+        "number": 907,
+        "name": "Aykula",
+        "elements": ["Water", "Dark", "Cold"],
+        "released": "June 5, 2025",
+        "commemoration": "Deepest Depths II",
+        "breedingTime": "18 H",
+        "income": [30],
+        "combo": ["Valeodon", "Manomano"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Epic",
         "number": 906,
