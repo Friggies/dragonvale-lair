@@ -1,6 +1,32 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 909,
+        "name": "Piggy Bank",
+        "elements": ["Treasure", "Metal", "Fire", "Cold"],
+        "released": "June 16, 2025",
+        "commemoration": "Deepest Depths II",
+        "breedingTime": "19 H",
+        "income": [60],
+        "combo": ["Gold", "Mine"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Sea-through",
+        "rarity": "Epic",
+        "number": 908,
+        "name": "Sea Angel",
+        "elements": ["Treasure", "Water", "Air"],
+        "released": "June 12, 2025",
+        "commemoration": "Deepest Depths II",
+        "breedingTime": "22 H",
+        "income": [38],
+        "combo": ["Djinni", "water"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Bigger Submarine",
         "rarity": "Rare",
         "number": 907,
