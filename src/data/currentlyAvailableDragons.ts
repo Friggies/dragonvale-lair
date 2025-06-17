@@ -1,7 +1,8 @@
 const currentlyAvailable = [
-    'Butterfly',
-    'Azurite',
-    'Spring',
+    'Kite',
+    'Bearded',
+    'Pearl',
+    'Labradorite',
     'Jade',
     'Ghostly Kringle',
     'Ghostly Krampus',
