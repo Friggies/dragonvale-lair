@@ -2,14 +2,12 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-// ESM __dirname shim
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 /** @type {import('next').NextConfig} */
 export default {
     reactStrictMode: true,
-
     async headers() {
         const eggDir = path.join(__dirname, 'public', 'eggs')
         const files = fs.existsSync(eggDir)
@@ -18,7 +16,8 @@ export default {
                   .filter((f) => f.toLowerCase().endsWith('.png'))
             : []
 
-        // 1) One rule per existing PNG → long, immutable cache
+        console.log('> eggs:', files) // ← for debugging
+
         const exactRules = files.map((file) => ({
             source: `/eggs/${file}`,
             headers: [
@@ -29,7 +28,6 @@ export default {
             ],
         }))
 
-        // 2) Fallback for any other /eggs/*.png → short, revalidating cache
         exactRules.push({
             source: '/eggs/(.*)\\.png',
             headers: [
@@ -39,6 +37,8 @@ export default {
                 },
             ],
         })
+
+        console.log(exactRules)
 
         return exactRules
     },
