@@ -1,9 +1,15 @@
-/** @type {import('next').NextConfig} */
 import fs from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 
-const nextConfig = {
+// ESM __dirname shim
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+/** @type {import('next').NextConfig} */
+export default {
     reactStrictMode: true,
+
     async headers() {
         const eggDir = path.join(__dirname, 'public', 'eggs')
         const files = fs.existsSync(eggDir)
@@ -12,7 +18,7 @@ const nextConfig = {
                   .filter((f) => f.toLowerCase().endsWith('.png'))
             : []
 
-        // Exact-file rules for existing PNGs → long, immutable cache
+        // 1) One rule per existing PNG → long, immutable cache
         const exactRules = files.map((file) => ({
             source: `/eggs/${file}`,
             headers: [
@@ -23,7 +29,7 @@ const nextConfig = {
             ],
         }))
 
-        // Fallback for any other /eggs/*.png → short, revalidating cache
+        // 2) Fallback for any other /eggs/*.png → short, revalidating cache
         exactRules.push({
             source: '/eggs/(.*)\\.png',
             headers: [
@@ -37,5 +43,3 @@ const nextConfig = {
         return exactRules
     },
 }
-
-export default nextConfig
