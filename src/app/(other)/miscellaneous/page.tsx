@@ -23,6 +23,11 @@ export default async function Page() {
                         imageName="buildingButton"
                     />
                     <LabelButton
+                        label="Feedback & Ideas"
+                        link="/feedback"
+                        imageName="starButton"
+                    />
+                    <LabelButton
                         label="Soundtrack"
                         link="https://aubreyhodges.bandcamp.com/album/dragonvale-soundtrack-collection"
                         imageName="soundtrackButton"
