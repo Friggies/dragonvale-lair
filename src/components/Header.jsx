@@ -34,7 +34,7 @@ export default function Header() {
                 <li>
                     <LabelButton
                         label="Name That Egg"
-                        link="https://namethategg.com/"
+                        link="/name-that-egg"
                         imageName="eggButton"
                     />
                 </li>

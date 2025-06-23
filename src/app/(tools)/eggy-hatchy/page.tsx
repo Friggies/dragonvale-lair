@@ -5,7 +5,8 @@ import Leaderboard from './Leaderboard'
 
 export const metadata: Metadata = {
     title: 'Eggy Hatchy - The DragonVale Lair',
-    description: '',
+    description:
+        'Enjoy Eggy Hatchy, a free DragonVale event minigame replica with a global leaderboard. Merge and bake eggs, track high scores, and compete with friends using your Friend ID.',
 }
 
 export default async function EggyHatchy() {
@@ -13,7 +14,6 @@ export default async function EggyHatchy() {
         <main className="main">
             <Section
                 title="Eggy Hatchy"
-                className="game"
                 isH1
             >
                 <Tool />

@@ -19,14 +19,11 @@ function filterAndSortDragons() {
         if (dragon.rarity.includes('Legendary')) return false
         if (dragon.rarity.includes('Mythic')) return false
         if (dragon.rarity.includes('Gemstone')) return false
-        if (dragon.rarity.includes('Gemstone')) return false
         if (dragon.elements.includes('Crystalline')) return false
-        if (!Array.isArray(dragon.income)) return false
-        if (dragon.income.length === 0) return false
-        if (typeof dragon.income[0] !== 'number') return false
+        if (!dragon.income) return false
         return true
     })
-    allDragons.sort((a, b) => b.income![0] - a.income![0])
+    allDragons.sort((a, b) => a.income! - b.income!)
     return allDragons
 }
 

@@ -1,3 +1,6 @@
+@use "../abstracts/colors";
+@use "../abstracts/variables";
+
 .dragonarium {
     display: flex;
     flex-direction: row !important;
@@ -31,7 +34,7 @@
         cursor: pointer;
         user-select: none;
         &--breedable {
-            color: $color--green;
+            color: colors.$color--green;
         }
         &--hidden {
             display: none;
@@ -64,7 +67,7 @@
     }
 }
 
-@media (max-width: $breakpoint--sm) {
+@media (max-width: variables.$breakpoint--sm) {
     .dragonarium {
         padding-inline: 0.75rem !important;
         column-gap: 0.5rem !important;

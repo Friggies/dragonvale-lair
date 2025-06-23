@@ -23,14 +23,21 @@ export default async function Page() {
                         imageName="buildingButton"
                     />
                     <LabelButton
-                        label="Name That Egg"
-                        link="https://namethategg.com/"
-                        imageName="eggButton"
+                        label="Soundtrack"
+                        link="https://aubreyhodges.bandcamp.com/album/dragonvale-soundtrack-collection"
+                        imageName="soundtrackButton"
                     />
+                </Row>
+                <Row>
                     <LabelButton
                         label="DC Farming"
                         link="/farming"
                         imageName="farmingButton"
+                    />
+                    <LabelButton
+                        label="Name That Egg"
+                        link="/name-that-egg"
+                        imageName="eggButton"
                     />
                 </Row>
                 <Row>

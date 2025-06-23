@@ -1,8 +1,11 @@
+@use "../abstracts/colors";
+@use "../abstracts/variables";
+
 .dialog {
-    background-color: $color--card;
+    background-color: colors.$color--card;
     padding: 1.5rem;
     padding-top: 2rem;
-    border: 2.5px solid $color--border-highlight;
+    border: 2.5px solid colors.$color--border-highlight;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -11,11 +14,11 @@
     max-height: 80vh;
     max-height: 80dvh;
     transform: translate(-50%, -50%);
-    border-radius: $borderradius;
-    box-shadow: inset 5px 5px $color--light, inset -5px -5px $color--light,
-        inset 5px -5px $color--light, inset -5px 5px $color--light,
-        5px 5px $color--dark, -5px -5px $color--dark, 5px -5px $color--dark,
-        -5px 5px $color--dark;
+    border-radius: variables.$borderradius;
+    box-shadow: inset 5px 5px colors.$color--light, inset -5px -5px colors.$color--light,
+        inset 5px -5px colors.$color--light, inset -5px 5px colors.$color--light,
+        5px 5px colors.$color--dark, -5px -5px colors.$color--dark, 5px -5px colors.$color--dark,
+        -5px 5px colors.$color--dark;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -45,7 +48,7 @@
         background-color: rgba(0, 0, 0, 0.5);
     }
 }
-@media (max-width: $breakpoint--sm) {
+@media (max-width: variables.$breakpoint--sm) {
     .dialog {
         width: 95%;
     }

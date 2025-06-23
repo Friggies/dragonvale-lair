@@ -1,0 +1,14 @@
+@use "../abstracts/mixins";
+
+.statistic {
+    @include mixins.paperBackground;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 100%;
+    &__number {
+        font-size: 2em;
+        font-weight: 700;
+    }
+}

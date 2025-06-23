@@ -1,31 +1,33 @@
-@import 'abstracts/colors';
-@import 'abstracts/mixins';
-@import 'abstracts/variables';
+@use 'abstracts/colors';
+@use 'abstracts/mixins';
+@use 'abstracts/variables';
 
-@import 'base/resets';
-@import 'base/typography';
+@use 'base/resets';
+@use 'base/typography';
 
-@import 'components/button';
-@import 'components/card';
-@import 'components/column';
-@import 'components/dialog';
-@import 'components/downloadImage';
-@import 'components/dragonGrid';
-@import 'components/dragonParents';
-@import 'components/dragonPreview';
-@import 'components/dropdown';
-@import 'components/header';
-@import 'components/labelButton';
-@import 'components/labelInput';
-@import 'components/link';
-@import 'components/loadAnimation';
-@import 'components/main';
-@import 'components/row';
-@import 'components/selector';
-@import 'components/table';
+@use 'components/button';
+@use 'components/card';
+@use 'components/column';
+@use 'components/dialog';
+@use 'components/downloadImage';
+@use 'components/dragonGrid';
+@use 'components/dragonParents';
+@use 'components/dragonPreview';
+@use 'components/dropdown';
+@use 'components/header';
+@use 'components/labelButton';
+@use 'components/labelInput';
+@use 'components/link';
+@use 'components/loadAnimation';
+@use 'components/main';
+@use 'components/row';
+@use 'components/selector';
+@use 'components/statistic';
+@use 'components/table';
+@use 'components/checkbox';
 
-@import 'pages/dragonarium';
-@import 'pages/farming';
+@use 'pages/dragonarium';
+@use 'pages/farming';
 
 .mobileNavigation {
     position: fixed;
@@ -46,8 +48,44 @@
         word-break: break-all;
     }
 }
-@media (min-width: $breakpoint--sm) {
+@media (min-width: variables.$breakpoint--sm) {
     .mobileNavigation {
         display: none;
+    }
+}
+
+.game {
+    border-radius: 0 !important;
+    border: 6px solid #4b250b !important;
+    box-shadow: 0 0 0 6px #633317, 0 0 0 8px #241005, inset 0 0 0 2px #241005;
+
+    background: linear-gradient(
+        to right,
+        #45d0e1 10%,
+        #2b86b0 10%,
+        #2b86b0 20%,
+        #45d0e1 20%,
+        #45d0e1 30%,
+        #2b86b0 30%,
+        #2b86b0 40%,
+        #45d0e1 40%,
+        #45d0e1 50%,
+        #2b86b0 50%,
+        #2b86b0 60%,
+        #45d0e1 60%,
+        #45d0e1 70%,
+        #2b86b0 70%,
+        #2b86b0 80%,
+        #45d0e1 80%,
+        #45d0e1 90%,
+        #2b86b0 90%,
+        #2b86b0 100%,
+        #45d0e1 100%
+    );
+    &:before {
+        display: none !important;
+    }
+    &:after {
+        display: none !important;
     }
 }

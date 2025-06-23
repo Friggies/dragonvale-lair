@@ -1,15 +1,17 @@
+@use "../abstracts/colors";
+
 .dropdown {
     padding: 0rem 1rem;
     margin: 5px;
-    box-shadow: inset 2px 2px $color--light, inset -2px -2px $color--light,
-        inset 2px -2px $color--light, inset -2px 2px $color--light,
-        2px 2px $color--dark, -2px -2px $color--dark, 2px -2px $color--dark,
-        -2px 2px $color--dark;
+    box-shadow: inset 2px 2px colors.$color--light, inset -2px -2px colors.$color--light,
+        inset 2px -2px colors.$color--light, inset -2px 2px colors.$color--light,
+        2px 2px colors.$color--dark, -2px -2px colors.$color--dark, 2px -2px colors.$color--dark,
+        -2px 2px colors.$color--dark;
     border-radius: 1rem;
-    border: 1px solid $color--border-highlight;
+    border: 1px solid colors.$color--border-highlight;
     position: relative;
     min-width: 125px;
-    background-color: $color--card;
+    background-color: colors.$color--card;
     color: white;
     font-family: inherit;
     font-size: inherit;

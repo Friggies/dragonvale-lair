@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js'
 import Dragon from '@/types/dragon'
 import breedDragon from '@/utils/fakeBreeding'
 import regularElements from '@/data/regularElements'
+import elementPoints from './elementPoints'
 
 const supabaseUrl = process.env.SUPABASE_URL!
 const supabaseKey = process.env.SUPABASE_KEY!
@@ -74,18 +75,19 @@ function createDefaultBoard(
         const dragon: Dragon =
             dragonList[Math.floor(Math.random() * dragonList.length)]
 
-        let points = dragon.income![0]
-        let { rarity } = dragon
-        if (rarity === 'Hybrid') {
-            points *= 5
-        } else if (rarity === 'Rare') {
-            points *= 20
-        } else if (
-            rarity === 'Gemstone' ||
-            rarity === 'Galaxy' ||
-            rarity === 'Epic'
-        ) {
-            points *= 60
+        let points = dragon.elements.reduce((sum, el) => {
+            return sum + (elementPoints[el] || 0)
+        }, 0)
+
+        switch (dragon.rarity) {
+            case 'Rare':
+                points += 5000
+                break
+            case 'Gemstone':
+            case 'Galaxy':
+            case 'Epic':
+                points += 30000
+                break
         }
 
         points = Math.floor(points)
@@ -139,22 +141,22 @@ function fakeBreedingMerge(
             ? (egg1.level + egg2.level) * 2
             : egg1.level + egg2.level) + bonus
 
-    let points = newEgg.income![0]
+    let points = newEgg.elements.reduce((sum, el) => {
+        return sum + (elementPoints[el] || 0)
+    }, 0)
 
-    let { rarity } = newEgg
-    if (rarity === 'Hybrid') {
-        points *= 5
-    } else if (rarity === 'Rare') {
-        points *= 20
-    } else if (
-        rarity === 'Gemstone' ||
-        rarity === 'Galaxy' ||
-        rarity === 'Epic'
-    ) {
-        points *= 60
+    switch (newEgg.rarity) {
+        case 'Rare':
+            points += 5000
+            break
+        case 'Gemstone':
+        case 'Galaxy':
+        case 'Epic':
+            points += 30000
+            break
     }
 
-    points = points * Math.pow(1.2, newLevel - 1)
+    points = points * Math.pow(1.1, newLevel - 1)
     if (isTwin) points = points * 2
     points = Math.floor(points)
 
@@ -378,7 +380,7 @@ export async function POST(request: Request) {
                 (sum, egg) => sum + egg.points,
                 0
             )
-            const pointGoalMet = gamePoints >= 2000
+            const pointGoalMet = gamePoints >= 20000
 
             if (goalsMet && pointGoalMet) {
                 console.log(friendID)

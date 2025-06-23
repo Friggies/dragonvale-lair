@@ -241,9 +241,7 @@ export default function Tool({ dragons }: ToolProps) {
                                         loading="lazy"
                                         height="50"
                                         alt={`${row[0]} Dragon Egg`}
-                                        src={`https://namethategg.com/eggs/${transformToEggName(
-                                            row[0]
-                                        )}.png`}
+                                        src={transformToEggName(row[0])}
                                     />
                                 </td>
                                 <td>{row[0]}</td>

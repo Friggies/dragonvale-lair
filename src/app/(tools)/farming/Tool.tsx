@@ -70,7 +70,7 @@ export default function Tool({
                 ) * 1e12
             ) / 1e12
 
-        const s = Math.round(6000 / dragon.income![0])
+        const s = dragon.income!
         const boost =
             Math.round((1 + 0.3 * elementBoosts + generatorBoosts) * 1e12) /
             1e12
@@ -237,7 +237,6 @@ export default function Tool({
                                 <td>{dragon.name}</td>
                                 <td className="farmingTable__elements">
                                     {dragon.elements.map((element) => {
-                                        if (element === 'Rift') return null
                                         return (
                                             <img
                                                 key={element}
@@ -284,7 +283,7 @@ export default function Tool({
                 <div className="dialog__content">
                     <p>Filter dragons by elements:</p>
                     <ul className="farming__list">
-                        {[...regularElements, ...epicElements].map(
+                        {[...regularElements, ...epicElements, 'Rift'].map(
                             (element) => (
                                 <li key={element}>
                                     <button

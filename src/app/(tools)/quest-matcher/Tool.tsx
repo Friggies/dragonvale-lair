@@ -80,9 +80,7 @@ export default function Tool({ options, dragons }: ToolProps) {
                         loading="lazy"
                         height="50"
                         alt={`${data.name} Dragon Egg`}
-                        src={`https://namethategg.com/eggs/${transformToEggName(
-                            data.name
-                        )}.png`}
+                        src={transformToEggName(data.name)}
                     />
                     {data.name}
                 </>

@@ -235,9 +235,9 @@ export default function Tool(): JSX.Element {
                                             alt={`${
                                                 row[0].split('+')[0]
                                             } Dragon Egg`}
-                                            src={`https://namethategg.com/eggs/${transformToEggName(
+                                            src={transformToEggName(
                                                 row[0].split('+')[0]
-                                            )}.png`}
+                                            )}
                                         />
                                         <img
                                             loading="lazy"
@@ -245,9 +245,9 @@ export default function Tool(): JSX.Element {
                                             alt={`${
                                                 row[0].split('+')[1]
                                             } Dragon Egg`}
-                                            src={`https://namethategg.com/eggs/${transformToEggName(
+                                            src={transformToEggName(
                                                 row[0].split('+')[1]
-                                            )}.png`}
+                                            )}
                                         />
                                     </td>
                                     <td>{row[0].replace('+', ' + ')}</td>

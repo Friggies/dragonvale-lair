@@ -50,7 +50,7 @@ const Tool: React.FC = () => {
         col: number
     } | null>(null)
     const [loading, setLoading] = useState(false)
-    const pointGoal = 2000
+    const pointGoal = 20000
 
     const startGame = async () => {
         setLoading(true)
@@ -424,9 +424,9 @@ const Tool: React.FC = () => {
                                                     loading="lazy"
                                                     height="50"
                                                     alt={`${cell.egg.name} Dragon Egg`}
-                                                    src={`https://namethategg.com/eggs/${transformToEggName(
+                                                    src={transformToEggName(
                                                         cell.egg.name
-                                                    )}.png`}
+                                                    )}
                                                     style={{
                                                         zIndex: 1,
                                                     }}
@@ -529,9 +529,7 @@ const Tool: React.FC = () => {
                                     loading="lazy"
                                     height="50"
                                     alt={`${egg.name} Dragon Egg`}
-                                    src={`https://namethategg.com/eggs/${transformToEggName(
-                                        egg.name
-                                    )}.png`}
+                                    src={transformToEggName(egg.name)}
                                 />
                                 <div
                                     style={{

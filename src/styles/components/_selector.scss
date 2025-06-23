@@ -1,12 +1,15 @@
+@use "../abstracts/colors";
+@use "../abstracts/variables";
+
 .selector {
     padding: 0 1rem;
     margin: 5px;
-    box-shadow: inset 2px 2px $color--light, inset -2px -2px $color--light,
-        inset 2px -2px $color--light, inset -2px 2px $color--light,
-        2px 2px $color--dark, -2px -2px $color--dark, 2px -2px $color--dark,
-        -2px 2px $color--dark;
+    box-shadow: inset 2px 2px colors.$color--light, inset -2px -2px colors.$color--light,
+        inset 2px -2px colors.$color--light, inset -2px 2px colors.$color--light,
+        2px 2px colors.$color--dark, -2px -2px colors.$color--dark, 2px -2px colors.$color--dark,
+        -2px 2px colors.$color--dark;
     border-radius: 1rem;
-    border: 1px solid $color--border-highlight;
+    border: 1px solid colors.$color--border-highlight;
     position: relative;
     min-width: 125px;
     &__menu {
@@ -14,11 +17,11 @@
         top: 0;
         left: 50%;
         transform: translateX(-50%);
-        background-color: $color--card;
-        box-shadow: inset 2px 2px $color--light, inset -2px -2px $color--light,
-            inset 2px -2px $color--light, inset -2px 2px $color--light,
-            2px 2px $color--dark, -2px -2px $color--dark, 2px -2px $color--dark,
-            -2px 2px $color--dark;
+        background-color: colors.$color--card;
+        box-shadow: inset 2px 2px colors.$color--light, inset -2px -2px colors.$color--light,
+            inset 2px -2px colors.$color--light, inset -2px 2px colors.$color--light,
+            2px 2px colors.$color--dark, -2px -2px colors.$color--dark, 2px -2px colors.$color--dark,
+            -2px 2px colors.$color--dark;
         padding: 0.5rem;
         max-width: 75%;
         border-radius: 1rem;
@@ -30,11 +33,11 @@
         cursor: pointer !important;
         &--is-focused {
             border-radius: 0.5rem;
-            background-color: $color--dark;
+            background-color: colors.$color--dark;
         }
     }
 }
-@media (max-width: $breakpoint--sm) {
+@media (max-width: variables.$breakpoint--sm) {
     .selector {
         &__menu {
             max-width: 100%;

@@ -8,7 +8,7 @@ function transformToEggName(string) {
     //for monolith and snowflake, remove number following a dash as they have the same egg image
     string = string.replace(/-\d+/g, '')
 
-    //return final string
-    return string
+    //return final string as url
+    return `/eggs/${string}.png`
 }
 export default transformToEggName

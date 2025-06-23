@@ -49,9 +49,7 @@ export default function InformationString({ string }) {
                                         key={index}
                                         height="60"
                                         alt={img + ' Dragon Egg'}
-                                        src={`https://namethategg.com/eggs/${transformToEggName(
-                                            img
-                                        )}.png`}
+                                        src={transformToEggName(img)}
                                     />
                                 )
                             } else if (
@@ -74,9 +72,7 @@ export default function InformationString({ string }) {
                                         key={index}
                                         height="60"
                                         alt={img + ' Dragon Egg'}
-                                        src={`https://namethategg.com/eggs/${transformToEggName(
-                                            img
-                                        )}.png`}
+                                        src={transformToEggName(img)}
                                     />
                                 )
                             }

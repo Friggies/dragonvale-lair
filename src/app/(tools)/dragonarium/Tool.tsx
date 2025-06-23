@@ -295,9 +295,7 @@ export default function Tool({ dragons }: ToolProps) {
                                 loading="lazy"
                                 height="50"
                                 alt={`${dragon.name} Dragon Egg`}
-                                src={`https://namethategg.com/eggs/${transformToEggName(
-                                    dragon.name
-                                )}.png`}
+                                src={transformToEggName(dragon.name)}
                             />
                             {dragon.name}
                         </li>
@@ -332,9 +330,7 @@ export default function Tool({ dragons }: ToolProps) {
                                 loading="lazy"
                                 height="50"
                                 alt={`${dragon.name} Dragon Egg`}
-                                src={`https://namethategg.com/eggs/${transformToEggName(
-                                    dragon.name
-                                )}.png`}
+                                src={transformToEggName(dragon.name)}
                             />
                             {dragon.name}
                         </li>

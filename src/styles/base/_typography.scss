@@ -1,3 +1,5 @@
+@use "../abstracts/colors";
+
 :root {
     font-size: 16px;
 }
@@ -23,6 +25,12 @@ p:target {
     color: white;
     border-radius: 0.5rem;
     padding: 0.5rem;
+}
+.red {
+    color: red;
+}
+.green {
+    color: colors.$color--green;
 }
 
 /* oswald-regular - latin */

@@ -1,3 +1,5 @@
+@use "../abstracts/variables";
+
 .header {
     display: flex;
     flex-direction: column;
@@ -16,7 +18,7 @@
         flex-wrap: wrap;
     }
 }
-@media (max-width: $breakpoint--sm) {
+@media (max-width: variables.$breakpoint--sm) {
     .header {
         display: none;
         padding: 1.5rem 0.5rem;

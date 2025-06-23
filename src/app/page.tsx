@@ -46,11 +46,13 @@ export default function Index() {
                     graphics that I blatantly steal and reuse on this website.
                 </p>
                 <p>
-                    Use the buttons at the top of every page to navigate between
-                    the available tools. Each tool has a dedicated "Help"
-                    section if you need further guidance on how to use the tool.
-                    All tools are free to use and you can always return to this
-                    page by pressing "The DragonVale Lair". Enjoy.
+                    Use the buttons at the top (or bottom on mobile) of every
+                    page to navigate between the available tools. Each tool has
+                    a dedicated "Help" section if you need further guidance on
+                    how to use the tool. All tools are free to use and you can
+                    always return to this page by pressing "The DragonVale Lair"
+                    or by going to "Miscellaneous" &amp; "Homepage" on mobile.
+                    Enjoy.
                 </p>
                 <ShareButton />
             </section>

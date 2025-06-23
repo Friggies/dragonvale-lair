@@ -4,8 +4,9 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "generate-vercel-json": "node src/scripts/generate-vercel-json.js",
         "dev": "next dev --turbopack",
-        "build": "next build",
+        "build": "npm run generate-vercel-json && next build",
         "start": "next start",
         "lint": "next lint"
     },

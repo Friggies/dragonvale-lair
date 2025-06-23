@@ -8,7 +8,7 @@ interface Dragon {
     released: string
     commemoration: string
     breedingTime: string
-    income?: number[]
+    income?: number
     combo?: string[]
 }
 

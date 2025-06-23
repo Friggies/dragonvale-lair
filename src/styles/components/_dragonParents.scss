@@ -1,3 +1,5 @@
+@use "../abstracts/variables";
+
 .dragonParents {
     display: flex;
     flex-direction: column;
@@ -9,7 +11,7 @@
     }
 }
 
-@media (max-width: $breakpoint--sm) {
+@media (max-width: variables.$breakpoint--sm) {
     .dragonParents {
         width: 50%;
     }

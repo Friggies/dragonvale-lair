@@ -1,3 +1,5 @@
+@use "../abstracts/variables";
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -27,7 +29,7 @@ body {
     margin-inline: auto;
     padding-block: 2rem;
 }
-@media (max-width: $breakpoint--sm) {
+@media (max-width: variables.$breakpoint--sm) {
     body {
         width: 95%;
         padding-block: 0rem;

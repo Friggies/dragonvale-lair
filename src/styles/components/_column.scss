@@ -1,3 +1,5 @@
+@use "../abstracts/variables";
+
 .column {
     display: flex;
     flex-direction: column;
@@ -5,7 +7,7 @@
     width: 100%;
     list-style-type: none;
 }
-@media (max-width: $breakpoint--sm) {
+@media (max-width: variables.$breakpoint--sm) {
     .column {
         &--toRow {
             flex-direction: row;

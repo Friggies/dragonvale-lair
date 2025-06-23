@@ -1,13 +1,16 @@
+@use "colors";
+@use "variables";
+
 @mixin borders($size) {
     position: relative;
-    background-color: $color--card;
-    border: $size solid $color--border-highlight;
-    border-radius: calc($borderradius * 0.7);
+    background-color: colors.$color--card;
+    border: $size solid colors.$color--border-highlight;
+    border-radius: calc(variables.$borderradius * 0.7);
     &::before {
         content: "";
         position: absolute;
         inset: calc($size * -1 + 1px);
-        outline: $size solid $color--dark;
+        outline: $size solid colors.$color--dark;
         border-radius: inherit;
         pointer-events: none;
     }
@@ -15,8 +18,8 @@
         content: "";
         position: absolute;
         inset: calc($size - 1px);
-        outline: $size solid $color--light;
-        border-radius: calc($borderradius * 0.5);
+        outline: $size solid colors.$color--light;
+        border-radius: calc(variables.$borderradius * 0.5);
         pointer-events: none;
     }
 }
