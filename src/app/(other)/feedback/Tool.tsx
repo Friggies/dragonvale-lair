@@ -51,7 +51,12 @@ export default function Tool() {
     }
 
     return (
-        <form className={styles.form}>
+        <form
+            className={styles.form}
+            onSubmit={(e) => {
+                e.preventDefault()
+            }}
+        >
             <div className={styles.paper}>
                 <textarea
                     value={content}
