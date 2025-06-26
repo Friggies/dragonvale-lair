@@ -1872,7 +1872,7 @@
         "combo": ["plant", "earth", "light", "air"]
     },
     {
-        "availability": "LIMITED",
+        "availability": "PERMANENT",
         "quest": "A Thorn in the Side",
         "rarity": "Rare",
         "number": 767,
@@ -8762,7 +8762,7 @@
         "combo": ["plant", "earth", "fire", "lightning"]
     },
     {
-        "availability": "LIMITED",
+        "availability": "PERMANENT",
         "quest": "The Bolts of Faridat",
         "rarity": "Rare",
         "number": 235,
