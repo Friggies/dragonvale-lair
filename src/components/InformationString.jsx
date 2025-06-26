@@ -1,7 +1,37 @@
 import transformToEggName from '@/utils/transformToEggName'
 import { useState, useEffect } from 'react'
+import dragons from '@/data/dragons.json'
 
-export default function InformationString({ string }) {
+function reduceTimeString(timeStr, percent) {
+    let hours = 0,
+        minutes = 0,
+        seconds = 0
+
+    const hourMatch = timeStr.match(/(\d+)\s*H/i)
+    const minuteMatch = timeStr.match(/(\d+)\s*M/i)
+    const secondMatch = timeStr.match(/(\d+)\s*S/i)
+
+    if (hourMatch) hours = parseInt(hourMatch[1])
+    if (minuteMatch) minutes = parseInt(minuteMatch[1])
+    if (secondMatch) seconds = parseInt(secondMatch[1])
+
+    // Convert to total seconds
+    let totalSeconds = hours * 3600 + minutes * 60 + seconds
+
+    // Reduce by given percent
+    totalSeconds = Math.floor(totalSeconds * (1 - percent / 100))
+
+    // Convert back to H M S
+    const h = Math.floor(totalSeconds / 3600)
+    const m = Math.floor((totalSeconds % 3600) / 60)
+    const s = totalSeconds % 60
+
+    return `${h > 0 ? h + ' H ' : ''}${m > 0 ? m + ' M ' : ''}${
+        s > 0 ? s + ' S' : ''
+    }`.trim()
+}
+
+export default function InformationString({ string, dragon }) {
     const [showEggColumn, setShowEggColumn] = useState(false)
     const [generalTipImages, setGeneralTipImages] = useState([])
 
@@ -30,6 +60,8 @@ export default function InformationString({ string }) {
     useEffect(() => {
         setGeneralTipImages(generalTip.split('+').map((img) => img.trim()))
     }, [generalTip])
+
+    const currentDragon = dragons.find((obj) => obj.name === dragon)
 
     return (
         <div className="row row--toColumn">
@@ -85,6 +117,10 @@ export default function InformationString({ string }) {
                             .replace(']', ')')
                             .replaceAll('Evolve', 'Evolves')}
                     </p>
+                    {currentDragon.breedingTime +
+                        ' (' +
+                        reduceTimeString(currentDragon.breedingTime, 20) +
+                        ')'}
                 </div>
             )}
             <div className="column">

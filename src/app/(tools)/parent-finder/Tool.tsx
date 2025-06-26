@@ -216,7 +216,14 @@ export default function Tool(): JSX.Element {
                     {data === 'NODATA' && (
                         <strong>Not breedable with selected options!</strong>
                     )}
-                    <InformationString string={informationString} />
+                    <InformationString
+                        string={informationString}
+                        dragon={
+                            document.querySelectorAll(
+                                '.selector__single-value'
+                            )[0].innerHTML
+                        }
+                    />
                 </>
             )}
             <table className="dragonGrid">
