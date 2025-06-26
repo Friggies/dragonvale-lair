@@ -1,7 +1,7 @@
 [
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Greed is Good",
         "rarity": "Epic",
         "number": 909,
         "name": "Piggy Bank",
@@ -40,7 +40,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Their Precious",
         "rarity": "Epic",
         "number": 906,
         "name": "Bounty",
@@ -53,7 +53,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Blob to the Bone",
         "rarity": "Rare",
         "number": 905,
         "name": "Blobert",
