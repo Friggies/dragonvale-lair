@@ -99,7 +99,7 @@ export default function Tool({ options, dragons }: ToolProps) {
                 </div>
                 <div className="row">
                     <LabelButton
-                        label="Submit"
+                        label="Get Result"
                         imageName="dragonButton"
                         tag="button"
                         type="submit"
