@@ -37,10 +37,11 @@ export default function QuestMatcher() {
                     quest.
                 </p>
                 <p>
-                    Select your target quest and press the "Match" button. The
-                    DragonVale Quest Matcher then gives you the optimal dragon
-                    for the quest. This ensures that you always send the right
-                    dragon, maximizing your chances of great quest rewards.
+                    Select your target quest and press the "Get Result" button.
+                    The DragonVale Quest Matcher then gives you the optimal
+                    dragon for the quest. This ensures that you always send the
+                    right dragon, maximizing your chances of great quest
+                    rewards.
                 </p>
                 <p>
                     The DragonVale Quest Matcher is continually updated to

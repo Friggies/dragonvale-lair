@@ -132,7 +132,7 @@ export default function Tool({ options, dragons }: ToolProps) {
                         </p>
                     )
                 ) : (
-                    <p>Please select an option and click "Submit".</p>
+                    <p>Please select an option and click "Get Result".</p>
                 )}
             </div>
 
