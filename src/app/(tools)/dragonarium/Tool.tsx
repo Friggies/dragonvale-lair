@@ -18,6 +18,7 @@ export default function Tool({ dragons }: ToolProps) {
         if (dragon.rarity.includes('Mythic')) return false
         return true
     })
+    allDragons.sort((a, b) => a.name.localeCompare(b.name))
     const [userDragons, setUserDragons] = useState<Dragon[]>([])
     const [missingDragons, setMissingDragons] = useState<Dragon[]>(allDragons)
     const [isLoaded, setIsLoaded] = useState(false)
