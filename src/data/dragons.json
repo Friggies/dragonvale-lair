@@ -1,6 +1,45 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Brick by Brick",
+        "rarity": "Rare",
+        "number": 912,
+        "name": "Tulong",
+        "elements": ["Earth", "Water", "Plant"],
+        "released": "July 7, 2025",
+        "commemoration": "A Voyage Beyond",
+        "breedingTime": "16 H",
+        "income": 210,
+        "combo": ["Plateau", "Panlong"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Warpath",
+        "rarity": "Epic",
+        "number": 911,
+        "name": "Guerrero",
+        "elements": ["Apocalypse", "Earth", "Lightning"],
+        "released": "July 7, 2025",
+        "commemoration": "A Voyage Beyond",
+        "breedingTime": "19 H",
+        "income": 180,
+        "combo": ["Ouroboros", "earth"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Prevailing Wind",
+        "rarity": "Rare",
+        "number": 910,
+        "name": "Zephyr",
+        "elements": ["Air", "Light", "Lightning", "Cold"],
+        "released": "July 7, 2025",
+        "commemoration": "A Voyage Beyond",
+        "breedingTime": "14 H",
+        "income": 250,
+        "combo": ["Wind", "Herald"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Greed is Good",
         "rarity": "Epic",
         "number": 909,
