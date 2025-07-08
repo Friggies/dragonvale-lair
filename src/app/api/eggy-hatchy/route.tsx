@@ -62,15 +62,24 @@ function createDefaultBoard(
             dragon.elements.includes(gameElementTwo)
         )
 
-        const fromElementList = Math.random() < 0.8 // 80%
+        const fromElementList = Math.random() < 0.7
 
-        const fromOne = Math.random() < 0.5 // 50%
+        const fromOne = Math.random() < 0.8
 
-        const dragonList = fromElementList
+        let dragonList = fromElementList
             ? fromOne
                 ? elementDragonsOne
                 : elementDragonsTwo
             : allDragons
+
+        //remove non-game primaries
+        dragonList = dragonList.filter((dragon) => {
+            if (dragon.rarity !== 'Primary') return true
+            return (
+                dragon.elements.includes(gameElementOne) ||
+                dragon.elements.includes(gameElementTwo)
+            )
+        })
 
         const dragon: Dragon =
             dragonList[Math.floor(Math.random() * dragonList.length)]

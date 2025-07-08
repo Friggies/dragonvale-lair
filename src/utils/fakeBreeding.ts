@@ -72,8 +72,14 @@ export default function breedDragon(
     }
 
     const validCandidates: Dragon[] = DRAGONS.filter((candidate) => {
-        if (!candidate.combo || candidate.combo.length === 0) return false
+        if (
+            !candidate.combo ||
+            candidate.combo.length === 0 ||
+            candidate.combo.length === 1
+        )
+            return false
         if (candidate.combo.includes('rift')) return false
+        if (candidate.name.includes('Ghostly ')) return false
         if (parentNames.has(candidate.name)) return true
         if (
             candidate.availability === 'LIMITED' &&
