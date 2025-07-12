@@ -1,6 +1,19 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "A Dark Spark",
+        "rarity": "Rare",
+        "number": 913,
+        "name": "Primal Hidden Bolt",
+        "elements": ["Dark", "Lightning"],
+        "released": "July 10, 2025",
+        "commemoration": "A Voyage Beyond",
+        "breedingTime": "21 H",
+        "income": 250,
+        "combo": ["Hidden Bolt", "Midnight"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Brick by Brick",
         "rarity": "Rare",
         "number": 912,
