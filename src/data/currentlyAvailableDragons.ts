@@ -1,6 +1,7 @@
 const currentlyAvailable = [
-    'Labradorite',
-    'Firework',
+    'Leaf',
+    'Ruby',
+    'Jasper',
     'Jade',
     'Summer',
     'Ghostly Kringle',
