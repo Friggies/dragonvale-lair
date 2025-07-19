@@ -1,6 +1,19 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Feathers and Folly",
+        "rarity": "Rare",
+        "number": 914,
+        "name": "Pavonini",
+        "elements": ["Air", "Water", "Light"],
+        "released": "July 17, 2025",
+        "commemoration": "A Voyage Beyond",
+        "breedingTime": "18 H",
+        "income": 220,
+        "combo": ["Regal", "air", "water"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "A Dark Spark",
         "rarity": "Rare",
         "number": 913,
