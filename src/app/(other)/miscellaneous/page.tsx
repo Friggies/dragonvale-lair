@@ -4,9 +4,8 @@ import Section from '@/components/Section/Section'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'The DragonVale Lair Statistics',
-    description:
-        'Statistics for The DragonVale Lair. Watch how many monthly requests each endpoint has received since the launch of The DragonVale Lair.',
+    title: 'The DragonVale Lair Miscellaneous',
+    description: 'More features and tools to ease your DragonVale experience.',
 }
 
 export default async function Page() {
