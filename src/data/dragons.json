@@ -1,6 +1,19 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 915,
+        "name": "Glimmer",
+        "elements": ["Light", "Earth", "Metal"],
+        "released": "July 24, 2025",
+        "commemoration": "A Voyage Beyond",
+        "breedingTime": "17 H",
+        "income": 200,
+        "combo": ["light", "earth", "metal"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Feathers and Folly",
         "rarity": "Rare",
         "number": 914,
