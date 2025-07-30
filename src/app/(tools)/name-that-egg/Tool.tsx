@@ -18,7 +18,15 @@ function selectAtRandom(array: (object | string)[], numberOfElements: number) {
     return randomElements as (string | object)[] | string | object
 }
 
-const allDragonNames = allDragons.map((dragon) => dragon.name)
+const allDragonNames = allDragons
+    .filter(
+        (dragon) =>
+            dragon.rarity !== 'Legendary' &&
+            dragon.rarity !== 'Mythic' &&
+            !/\d/.test(dragon.name) &&
+            dragon.name !== 'Dark Rift'
+    )
+    .map((dragon) => dragon.name)
 
 export default function Tool({
     optionHardMode,
