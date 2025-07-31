@@ -6,6 +6,7 @@ import contestants from '@/data/previous-tournaments/13-anniversary/contestants.
 import hardestEggs from '@/data/previous-tournaments/13-anniversary/hardest-eggs.js'
 import mostGames from '@/data/previous-tournaments/13-anniversary/mostGames.js'
 import Details from '@/components/Details/Details'
+import List from '@/components/List/List'
 
 export function AC14() {
     const [numberOfEggsToShow, setNumberOfEggsToShow] = useState(5)
@@ -25,12 +26,12 @@ export function AC14() {
                 ) : (
                     <>
                         <h3>Contestants</h3>
-                        <ol className="list list--contestants">
+                        <List>
                             {contestants
                                 .slice(0, numberOfContestantsToShow)
                                 .map((contestant, index) => {
                                     return (
-                                        <li key={contestant.friendID}>
+                                        <>
                                             {index >= 0 && index <= 4 ? (
                                                 <>
                                                     <Image
@@ -59,10 +60,10 @@ export function AC14() {
                                                     </span>
                                                 </>
                                             )}
-                                        </li>
+                                        </>
                                     )
                                 })}
-                        </ol>
+                        </List>
                         <button
                             className="link"
                             onClick={() => {

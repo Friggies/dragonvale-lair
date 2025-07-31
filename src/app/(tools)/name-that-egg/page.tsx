@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Section from '@/components/Section/Section'
 import Row from '@/components/Row/Row'
 import Tool from './Tool'
+import Link from 'next/link'
 
 export default function NameThatEggPage() {
     // — mounted flag to detect “this is now running on the client” —
@@ -118,7 +119,6 @@ export default function NameThatEggPage() {
                     updateStatTotal={() => updateStatTotal('increment')}
                 />
             </Section>
-
             <Section title="Practice Options">
                 <form className="form">
                     <Row>
@@ -155,7 +155,6 @@ export default function NameThatEggPage() {
                     </Row>
                 </form>
             </Section>
-
             <Section title="Practice Statistics">
                 <Row>
                     <div className="statistic">
@@ -178,13 +177,21 @@ export default function NameThatEggPage() {
                     Reset statistics
                 </button>
             </Section>
-
             <Section title="Information">
                 <p>
                     Name That Egg is a DragonVale event minigame. Correctly
                     guess an egg to get event currency. You can practice with
-                    this replica as much as you want.
+                    this replica as much as you want. Toggle between the hard
+                    mode, a chest countdown timer and saving your score locally
+                    in the browser.
                 </p>
+                <Link
+                    className="link"
+                    href={'./previous-tournaments'}
+                >
+                    You can see results from previously held community
+                    tournaments here.
+                </Link>
             </Section>
         </main>
     )
