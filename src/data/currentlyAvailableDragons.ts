@@ -1,6 +1,4 @@
 const currentlyAvailable = [
-    'Leaf',
-    'Ruby',
     'Jasper',
     'Jade',
     'Summer',
