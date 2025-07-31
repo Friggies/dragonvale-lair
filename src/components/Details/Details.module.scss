@@ -1,0 +1,19 @@
+@use '../../styles/abstracts/mixins';
+
+.details {
+    width: 100%;
+}
+
+.details[open] .summary {
+    margin-bottom: 2rem;
+    text-decoration: underline;
+}
+.summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1rem;
+    @include mixins.paperBackground;
+    &:hover {
+        text-decoration: underline;
+    }
+}
