@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import Image from '@/components/Image/Image'
 import { useState } from 'react'
 import contestants from '@/data/previous-tournaments/13-anniversary/contestants.js'
 import hardestEggs from '@/data/previous-tournaments/13-anniversary/hardest-eggs.js'
@@ -233,9 +233,9 @@ export function AC13() {
                 <br />
                 <h3>Thank you so much!</h3>
                 <Image
+                    variant="large"
                     src="/fanart/stalker111121-fanart-low.png"
                     height="500"
-                    className="image"
                     width="500"
                     alt="Fanart of the Fire Dragon celebrating the 13th anniversary"
                 />
