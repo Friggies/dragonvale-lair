@@ -2,6 +2,19 @@
     {
         "availability": "LIMITED",
         "quest": "N/A",
+        "rarity": "Epic",
+        "number": 917,
+        "name": "Keraunos",
+        "elements": ["Olympus", "Lightning", "Air"],
+        "released": "August 7, 2025",
+        "commemoration": "A Voyage Beyond",
+        "breedingTime": "26 H",
+        "income": 130,
+        "combo": ["Tempest", "Thunderbolt"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Cliffhanger",
         "rarity": "Rare",
         "number": 916,
         "name": "Primal Mountain Sun",
@@ -14,7 +27,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Shiny Shiny Pretty Pretty",
         "rarity": "Rare",
         "number": 915,
         "name": "Glimmer",

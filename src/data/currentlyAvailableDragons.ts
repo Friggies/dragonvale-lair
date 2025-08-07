@@ -1,6 +1,7 @@
 const currentlyAvailable = [
     'Jasper',
     'Jade',
+    'Peridot',
     'Summer',
     'Ghostly Kringle',
     'Ghostly Krampus',
