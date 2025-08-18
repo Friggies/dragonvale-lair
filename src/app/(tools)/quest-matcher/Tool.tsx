@@ -2,7 +2,7 @@
 import { useState, FormEvent } from 'react'
 import LabelInput from '@/components/LabelInput'
 import LabelButton from '@/components/LabelButton'
-import Select, { GroupBase, SingleValue } from 'react-select'
+import Select, { GroupBase } from 'react-select'
 import transformToEggName from '@/utils/transformToEggName'
 import Dragon from '@/types/dragon'
 import Option from '@/types/option'
@@ -67,6 +67,12 @@ export default function Tool({ options, dragons }: ToolProps) {
                 setResult(null)
             }
         }
+        fetch('/api/quest-matcher', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
     }
 
     const toggleHelpDialog = () => {
