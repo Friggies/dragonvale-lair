@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>
+            Dragonarium Video Parser - Number First & Name Nearby Grid
+        </title>
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1"
+        />
+        <style>
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                background: #f2f2f2;
+            }
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .container {
+                max-width: 520px;
+                width: 100%;
+                background: #fff;
+                padding: 28px 22px 32px 22px;
+                border-radius: 12px;
+                box-shadow: 0 4px 18px #0002;
+                font-family: sans-serif;
+            }
+            h1 {
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin-bottom: 18px;
+                letter-spacing: 0.03em;
+            }
+            label {
+                display: block;
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+            input[type='file'],
+            input[type='number'] {
+                border: none;
+                background: #eee;
+                padding: 10px;
+                width: 100%;
+                border-radius: 4px;
+                outline: none;
+                margin-bottom: 16px;
+                font-size: 1rem;
+            }
+            .progress {
+                width: 100%;
+                background: #e0e0e0;
+                border-radius: 5px;
+                margin: 18px 0 4px 0;
+            }
+            .progress-bar {
+                width: 0;
+                height: 12px;
+                background: #2582e9;
+                border-radius: 5px;
+                transition: width 0.18s;
+            }
+            .timer {
+                font-size: 0.92em;
+                min-height: 20px;
+                margin-bottom: 8px;
+                color: #444;
+            }
+            .error {
+                font-size: 0.95em;
+                color: #c31a1a;
+                margin-bottom: 6px;
+                min-height: 18px;
+            }
+            ul#dragon-list {
+                margin: 12px 0 10px 0;
+                padding: 0;
+                list-style: none;
+                font-size: 1.03em;
+                color: #247;
+                max-height: 230px;
+                overflow-y: auto;
+            }
+            ul#dragon-list li {
+                background: #f6fafd;
+                border-radius: 3px;
+                padding: 4px 8px;
+                margin-bottom: 4px;
+                font-weight: bold;
+            }
+            button {
+                border: none;
+                background: #2582e9;
+                color: #fff;
+                border-radius: 4px;
+                font-size: 1em;
+                padding: 10px 18px;
+                cursor: pointer;
+                transition: background 0.18s;
+                margin-top: 8px;
+                width: 100%;
+            }
+            button:disabled {
+                background: #93b9e4;
+                cursor: not-allowed;
+            }
+            #video-preview {
+                display: none;
+                margin-top: 12px;
+                max-width: 100%;
+                border-radius: 6px;
+                box-shadow: 0 0 8px #0002;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Dragonarium Video Parser</h1>
+            <label for="video-input">Upload Dragonarium MP4:</label>
+            <input
+                type="file"
+                id="video-input"
+                accept="video/mp4"
+            />
+            <div class="progress">
+                <div
+                    class="progress-bar"
+                    id="progress-bar"
+                ></div>
+            </div>
+            <div
+                class="timer"
+                id="timer"
+            ></div>
+            <div
+                class="error"
+                id="error"
+            ></div>
+            <ul id="dragon-list"></ul>
+            <button
+                id="copy-btn"
+                disabled
+            >
+                Copy Owned Dragons
+            </button>
+            <video
+                id="video-preview"
+                crossorigin="anonymous"
+            ></video>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+        <script>
+            const videoInput = document.getElementById('video-input')
+            const progressBar = document.getElementById('progress-bar')
+            const timerEl = document.getElementById('timer')
+            const errorEl = document.getElementById('error')
+            const dragonList = document.getElementById('dragon-list')
+            const copyBtn = document.getElementById('copy-btn')
+            const video = document.getElementById('video-preview')
+
+            let startTime = null
+            let intervalTimer = null
+
+            function resetUI() {
+                progressBar.style.width = '0%'
+                timerEl.textContent = ''
+                errorEl.textContent = ''
+                dragonList.innerHTML = ''
+                copyBtn.disabled = true
+            }
+            function setError(msg) {
+                errorEl.textContent = msg
+            }
+            function setProgress(current, total) {
+                const p = total ? Math.floor((current / total) * 100) : 0
+                progressBar.style.width = p + '%'
+            }
+            function startTimer() {
+                startTime = Date.now()
+                intervalTimer = setInterval(() => {
+                    const seconds = Math.floor((Date.now() - startTime) / 1000)
+                    timerEl.textContent = `Processing: ${seconds}s`
+                }, 300)
+            }
+            function stopTimer() {
+                clearInterval(intervalTimer)
+                const seconds = Math.floor((Date.now() - startTime) / 1000)
+                timerEl.textContent = `Done in ${seconds}s`
+            }
+            function copyNames(names) {
+                navigator.clipboard
+                    .writeText(names.join('\n'))
+                    .catch(() => alert('Could not copy to clipboard!'))
+            }
+
+            async function ocrCanvas(worker, canvas) {
+                try {
+                    const {
+                        data: { text },
+                    } = await worker.recognize(canvas)
+                    return text.replace(/\n/g, ' ').trim()
+                } catch {
+                    return ''
+                }
+            }
+
+            function ownsDragon(numberText) {
+                const nums = numberText.replace(/\D/g, '')
+                return nums.length > 0 && parseInt(nums, 10) > 0
+            }
+
+            videoInput.addEventListener('change', async () => {
+                resetUI()
+                setError('')
+
+                if (!videoInput.files || !videoInput.files[0]) return
+                const file = videoInput.files[0]
+
+                video.src = URL.createObjectURL(file)
+                video.load()
+                video.style.display = 'none'
+
+                await new Promise((resolve) => {
+                    video.onloadedmetadata = () => resolve()
+                })
+
+                if (video.duration === Infinity || isNaN(video.duration)) {
+                    setError(
+                        'Cannot determine video duration. Try a different video.'
+                    )
+                    return
+                }
+
+                startTimer()
+
+                const worker = await Tesseract.createWorker()
+                await worker.load()
+                await worker.loadLanguage('eng')
+                await worker.initialize('eng')
+
+                const frameCount = Math.floor(video.duration)
+                const videoWidth = video.videoWidth
+                const videoHeight = video.videoHeight
+
+                const frameCanvas = document.createElement('canvas')
+                const frameCtx = frameCanvas.getContext('2d')
+                frameCanvas.width = videoWidth
+                frameCanvas.height = videoHeight
+
+                const numberGridSize = 10 // size of grid for scanning numbers
+                const nameCellSize = 300 // size of name cell (width and height)
+                const nameCellOffsetX = 0 // horizontal offset for name cell relative to number top-left
+                const nameCellOffsetY = -nameCellSize // vertical offset (above) so name cell upper right corner matches number cell upper right
+
+                const numberCanvas = document.createElement('canvas')
+                const numberCtx = numberCanvas.getContext('2d')
+                numberCanvas.width = numberGridSize
+                numberCanvas.height = numberGridSize
+
+                const nameCanvas = document.createElement('canvas')
+                const nameCtx = nameCanvas.getContext('2d')
+                nameCanvas.width = nameCellSize
+                nameCanvas.height = nameCellSize
+
+                let processedCells = 0
+                let totalCells =
+                    frameCount *
+                    Math.ceil(videoWidth / numberGridSize) *
+                    Math.ceil(videoHeight / numberGridSize)
+                const ownedDragonNames = []
+
+                for (let sec = 0; sec < frameCount; sec++) {
+                    video.currentTime = sec
+                    await new Promise((res) => {
+                        video.onseeked = res
+                    })
+
+                    frameCtx.drawImage(video, 0, 0, videoWidth, videoHeight)
+
+                    for (
+                        let y = 0;
+                        y <= videoHeight - numberGridSize;
+                        y += numberGridSize
+                    ) {
+                        for (
+                            let x = 0;
+                            x <= videoWidth - numberGridSize;
+                            x += numberGridSize
+                        ) {
+                            // Crop number cell (40x40)
+                            numberCtx.clearRect(
+                                0,
+                                0,
+                                numberGridSize,
+                                numberGridSize
+                            )
+                            numberCtx.drawImage(
+                                frameCanvas,
+                                x,
+                                y,
+                                numberGridSize,
+                                numberGridSize,
+                                0,
+                                0,
+                                numberGridSize,
+                                numberGridSize
+                            )
+
+                            const numberText = await ocrCanvas(
+                                worker,
+                                numberCanvas
+                            )
+
+                            if (ownsDragon(numberText)) {
+                                // Calculate top-left corner for the name cell based on upper-right corner match with number cell
+                                const nameX =
+                                    x +
+                                    numberGridSize -
+                                    nameCellSize +
+                                    nameCellOffsetX
+                                const nameY = y + nameCellOffsetY
+
+                                if (
+                                    nameX < 0 ||
+                                    nameY < 0 ||
+                                    nameX + nameCellSize > videoWidth ||
+                                    nameY + nameCellSize > videoHeight
+                                ) {
+                                    // Out of bounds, skip
+                                    processedCells++
+                                    setProgress(processedCells, totalCells)
+                                    continue
+                                }
+
+                                // Crop name cell (200x200) at calculated position
+                                nameCtx.clearRect(
+                                    0,
+                                    0,
+                                    nameCellSize,
+                                    nameCellSize
+                                )
+                                nameCtx.drawImage(
+                                    frameCanvas,
+                                    nameX,
+                                    nameY,
+                                    nameCellSize,
+                                    nameCellSize,
+                                    0,
+                                    0,
+                                    nameCellSize,
+                                    nameCellSize
+                                )
+
+                                const nameText = await ocrCanvas(
+                                    worker,
+                                    nameCanvas
+                                )
+                                if (nameText && nameText.length > 0) {
+                                    ownedDragonNames.push(nameText)
+                                }
+                            }
+                            processedCells++
+                            setProgress(processedCells, totalCells)
+                        }
+                    }
+                }
+
+                stopTimer()
+                await worker.terminate()
+
+                const uniqueNames = [
+                    ...new Set(ownedDragonNames.map((n) => n.trim())),
+                ]
+                    .filter((n) => n.length > 0)
+                    .sort()
+
+                dragonList.innerHTML = uniqueNames.length
+                    ? uniqueNames.map((name) => `<li>${name}</li>`).join('')
+                    : '<li style="color:#c31a1a;">No owned dragons detected.</li>'
+
+                copyBtn.disabled = uniqueNames.length === 0
+                copyBtn.onclick = () => copyNames(uniqueNames)
+            })
+        </script>
+    </body>
+</html>

@@ -89,3 +89,17 @@
         display: none !important;
     }
 }
+.make_a_match_game {
+    border: 6px solid #bfced0 !important;
+    box-shadow: 0 0 0 6px #9eadaf;
+    background-color: #dee6e7 !important;
+    background-image: url('../../public/make-a-match/snow-background.png');
+    background-size: cover;
+    padding-top: 2rem !important;
+    &:before {
+        display: none !important;
+    }
+    &:after {
+        display: none !important;
+    }
+}

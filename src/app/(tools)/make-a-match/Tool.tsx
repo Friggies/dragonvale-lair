@@ -93,7 +93,7 @@ const MakeAMatch: React.FC = () => {
                         )
                     )
                     resetTurn()
-                }, 2000)
+                }, 3000)
             }
         }
     }, [firstChoice, secondChoice])
@@ -108,6 +108,7 @@ const MakeAMatch: React.FC = () => {
         <>
             {!board.length ? (
                 <>
+                    <br />
                     <p>
                         Please input your Friend ID or press "Begin" to play
                         anonymously.{' '}

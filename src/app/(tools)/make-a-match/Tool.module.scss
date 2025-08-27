@@ -43,8 +43,6 @@
     grid-template-columns: repeat(4, 1fr);
     width: 100%;
     gap: 0px;
-    background-image: url('../../../../public/make-a-match/snow-background.png');
-    background-size: cover;
 }
 .square {
     height: 80px;
@@ -63,36 +61,34 @@
     max-width: 50px;
     width: 50%;
     height: auto;
-    animation: revealEggAnimation 1000ms linear forwards;
+    animation: revealEggAnimation 1000ms ease-in-out forwards;
 }
 @keyframes revealEggAnimation {
     0% {
         opacity: 0;
-        transform: scale(0.8) translateY(20px);
+        transform: scale(0.75) translateY(0);
     }
     50% {
-        opacity: 0;
+        opacity: 1;
     }
     100% {
-        opacity: 1;
         transform: scale(1) translateY(-20px);
     }
 }
 .dragonImage {
     width: 100%;
     height: auto;
-    animation: revealDragonAnimation 1000ms linear forwards;
+    animation: revealDragonAnimation 1000ms ease-in-out forwards;
 }
 @keyframes revealDragonAnimation {
     0% {
         opacity: 0;
-        transform: translateY(40) scale(0.8) rotate(90deg);
+        transform: translateY(10px) scale(0.75) rotate(-45deg);
     }
     50% {
-        opacity: 0;
+        opacity: 1;
     }
     100% {
-        opacity: 1;
         transform: translateY(-10px) scale(1) rotate(0deg);
     }
 }
@@ -100,7 +96,7 @@
 .snowPatch {
     display: block;
     position: absolute;
-    bottom: 5px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 0;

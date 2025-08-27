@@ -14,6 +14,7 @@ export default async function EggyHatchy() {
         <main className="main">
             <Section
                 title="Make a Match"
+                className="make_a_match_game"
                 isH1
             >
                 <Tool />
