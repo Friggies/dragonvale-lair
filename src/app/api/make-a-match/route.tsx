@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { v4 as uuidv4 } from 'uuid'
-import dragons from '@/data/dragons.json'
+import { dragonsWithImages } from './dragonsWithImages'
 
 const getRandomObjects = (arr, count = 10) => {
     if (count > arr.length) {
@@ -22,19 +22,19 @@ export async function POST(req: Request) {
 
         if (action === 'create') {
             // Create 10 pairs (dragon + egg)
-            const pairs = getRandomObjects(dragons, 10)
+            const pairs = getRandomObjects(dragonsWithImages, 10)
                 .map((dragon) => [
                     {
                         id: uuidv4(),
                         type: 'dragon',
-                        name: dragon.name,
+                        name: dragon,
                         revealed: false,
                         matched: false,
                     },
                     {
                         id: uuidv4(),
                         type: 'egg',
-                        name: dragon.name,
+                        name: dragon,
                         revealed: false,
                         matched: false,
                     },

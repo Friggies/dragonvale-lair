@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import Section from '@/components/Section/Section'
 import Tool from './Tool'
-import Leaderboard from './Leaderboard'
 
 export const metadata: Metadata = {
     title: 'Make a Match - The DragonVale Lair',
@@ -18,9 +17,6 @@ export default async function EggyHatchy() {
                 isH1
             >
                 <Tool />
-            </Section>
-            <Section title="Leaderboard">
-                <Leaderboard />
             </Section>
             <Section title="Information">
                 <p>

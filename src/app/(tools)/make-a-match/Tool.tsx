@@ -152,7 +152,7 @@ const MakeAMatch: React.FC = () => {
                                         <Image
                                             className={styles.dragonImage}
                                             alt={card.name}
-                                            src={`/dragons/cold_baby_day_base.png`}
+                                            src={`https://evrjimpvbkritkiantsx.supabase.co/storage/v1/object/public/dragons/${card.name}_baby_day_base.png`}
                                             width={300}
                                             height={200}
                                         />
@@ -170,7 +170,7 @@ const MakeAMatch: React.FC = () => {
                             <Image
                                 className={styles.snowPatch}
                                 alt=""
-                                src="/make-a-match/snow-patch.webp"
+                                src="/make-a-match/sand-patch.webp"
                                 width={150}
                                 height={100}
                             />
