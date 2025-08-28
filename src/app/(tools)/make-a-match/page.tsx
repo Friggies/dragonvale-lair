@@ -20,17 +20,23 @@ export default async function EggyHatchy() {
             </Section>
             <Section title="Information">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Tempore distinctio, pariatur vero rerum accusantium
-                    laboriosam? Delectus excepturi recusandae quae
-                    exercitationem inventore? Dolores fugit iste vero nam ut
-                    illum totam explicabo!
+                    Click on any sand patch to reveal what's under it. Match
+                    each <strong>dragon</strong> to its corresponding{' '}
+                    <strong>egg</strong>.
                 </p>
-                <p id="friendIdText">
-                    You can find you Friend ID in the DragonVale app if you
-                    press the Social button and then open your profile card.
-                    Copy it by pressing the "Copy ID" button and paste it in the
-                    input field above.
+                <p>
+                    Each time you reveal two dunes, your guess counter increases
+                    by one. If the two revealed cards don't match, they'll flip
+                    back after a short delay.
+                </p>
+                <p>
+                    When all pairs are matched, you'll see your total guesses
+                    and can try again.
+                </p>
+                <p>
+                    Images of dragons are from the player Moose, who has been
+                    kind enough to share them. Say thanks whenever you get to
+                    meet them.
                 </p>
             </Section>
         </main>

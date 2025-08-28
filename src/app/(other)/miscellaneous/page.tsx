@@ -53,6 +53,18 @@ export default async function Page() {
                 </Row>
                 <Row>
                     <LabelButton
+                        label="Make a Match"
+                        link="/make-a-match"
+                        imageName="makeAmatchButton"
+                    />
+                    <LabelButton
+                        label="Previous Tournaments"
+                        link="/previous-tournaments"
+                        imageName="crownButton"
+                    />
+                </Row>
+                <Row>
+                    <LabelButton
                         label="Reddit"
                         link="https://www.reddit.com/r/dragonvale/"
                         imageName="redditButton"

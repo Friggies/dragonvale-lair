@@ -33,13 +33,6 @@ export default function Header() {
                 </li>
                 <li>
                     <LabelButton
-                        label="Anniversary Contest"
-                        link="/eggy-hatchy"
-                        imageName="eggyHatchyButton"
-                    />
-                </li>
-                <li>
-                    <LabelButton
                         label="Dragonarium"
                         link="/dragonarium"
                         imageName="dragonariumButton"
@@ -47,9 +40,9 @@ export default function Header() {
                 </li>
                 <li>
                     <LabelButton
-                        label="DC Farming"
-                        link="/farming"
-                        imageName="farmingButton"
+                        label="Miscellaneous"
+                        link="/miscellaneous"
+                        imageName="bookButton"
                     />
                 </li>
             </ul>
