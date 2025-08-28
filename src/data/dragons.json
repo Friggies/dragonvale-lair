@@ -2,6 +2,19 @@
     {
         "availability": "LIMITED",
         "quest": "N/A",
+        "rarity": "Rare",
+        "number": 921,
+        "name": "Jasmine",
+        "elements": ["Light", "Plant", "Air"],
+        "released": "August 28, 2025",
+        "commemoration": "Gardenia's Garden",
+        "breedingTime": "17 H",
+        "income": 240,
+        "combo": ["Pollen", "light"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Plotted and Potted",
         "rarity": "Epic",
         "number": 920,
         "name": "Rooty",
@@ -10,12 +23,11 @@
         "commemoration": "Gardenia's Garden",
         "breedingTime": "26 H",
         "income": 225,
-        "combo": []
+        "combo": ["Root", "water", "plant"]
     },
-
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Floral Fuss",
         "rarity": "Rare",
         "number": 919,
         "name": "Snapsnap",
