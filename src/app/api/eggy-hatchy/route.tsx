@@ -183,6 +183,23 @@ export async function POST(request: Request) {
     const { action, friendID, gameId, source, target } = await request.json()
 
     if (action === 'create') {
+        if (new Date() < new Date('2025-09-11T14:00:00Z')) {
+            return NextResponse.json(
+                {
+                    error: 'Game creation is not allowed before September 11, 2025.',
+                },
+                { status: 403 }
+            )
+        }
+        if (new Date() > new Date('2025-09-15T14:00:00Z')) {
+            return NextResponse.json(
+                {
+                    error: 'Game creation is not allowed after September 15, 2025.',
+                },
+                { status: 403 }
+            )
+        }
+
         const gameElementOne =
             regularElements[Math.floor(Math.random() * regularElements.length)]
         const gameElementTwo = regularElements.filter(
