@@ -170,6 +170,9 @@ const Tool: React.FC = () => {
         }
     }
 
+    const isBeforeEvent = new Date() < new Date('2025-09-11T14:00:00Z')
+    const isAfterEvent = new Date() > new Date('2025-09-15T14:00:00Z')
+
     useEffect(() => {
         let points = 0
         bank?.eggs.forEach((egg) => {
@@ -218,9 +221,15 @@ const Tool: React.FC = () => {
                 <button
                     className={styles.startButton}
                     onClick={startGame}
-                    disabled={loading}
+                    disabled={loading || isBeforeEvent || isAfterEvent}
                 >
-                    {loading ? 'Generating board...' : 'Begin'}
+                    {isBeforeEvent
+                        ? 'Event starts September 11, 2025'
+                        : isAfterEvent
+                        ? 'Event ended September 15, 2025'
+                        : loading
+                        ? 'Generating board...'
+                        : 'Begin'}
                 </button>
             </div>
         )
