@@ -33,9 +33,9 @@ export default function Header() {
                 </li>
                 <li>
                     <LabelButton
-                        label="Name That Egg"
-                        link="/name-that-egg"
-                        imageName="eggButton"
+                        label="Anniversary Contest"
+                        link="/eggy-hatchy"
+                        imageName="eggyHatchyButton"
                     />
                 </li>
                 <li>

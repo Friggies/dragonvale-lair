@@ -2,6 +2,8 @@ import LabelButton from '@/components/LabelButton'
 import Row from '@/components/Row/Row'
 import Section from '@/components/Section/Section'
 import { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
     title: 'The DragonVale Lair Miscellaneous',
@@ -37,6 +39,11 @@ export default async function Page() {
                         label="DC Farming"
                         link="/farming"
                         imageName="farmingButton"
+                    />
+                    <LabelButton
+                        label="Anniversary Contest"
+                        link="/eggy-hatchy"
+                        imageName="eggyHatchyButton"
                     />
                     <LabelButton
                         label="Name That Egg"
