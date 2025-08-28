@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import Image from '@/components/Image/Image'
 import { useState } from 'react'
 import contestants from '@/data/previous-tournaments/13-anniversary/contestants.js'
 import hardestEggs from '@/data/previous-tournaments/13-anniversary/hardest-eggs.js'
@@ -159,6 +159,16 @@ export function AC14() {
                             Show more...
                         </button>
                         <h3>Thank you so much!</h3>
+                        <Image
+                            variant="large"
+                            src="/fanart/wiplian-fanart-low.webp"
+                            height="500"
+                            width="500"
+                            alt="Fanart of a Weaver Dragon who wove a Woven Dragon by Wiplian"
+                        />
+                        <p>
+                            Illustration by <em>Wiplian</em>
+                        </p>
                     </>
                 )}
             </Details>
