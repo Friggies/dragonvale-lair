@@ -1,7 +1,6 @@
 'use client'
 
-import React, { useEffect, useMemo, useState } from 'react'
-import Image from 'next/image'
+import React, { useEffect, useState } from 'react'
 import styles from './Tool.module.scss'
 import { v4 as uuidv4 } from 'uuid'
 import transformToEggName from '@/utils/transformToEggName'
@@ -162,7 +161,7 @@ const MakeAMatch: React.FC = () => {
                         {(card.revealed || card.matched) && (
                             <>
                                 {card.type === 'dragon' ? (
-                                    <Image
+                                    <img
                                         className={styles.dragonImage}
                                         alt={card.name}
                                         src={`https://evrjimpvbkritkiantsx.supabase.co/storage/v1/object/public/dragons/${card.name}_baby_day_base.png`}
@@ -170,7 +169,7 @@ const MakeAMatch: React.FC = () => {
                                         height={200}
                                     />
                                 ) : (
-                                    <Image
+                                    <img
                                         className={styles.eggImage}
                                         alt={`${card.name} Egg`}
                                         src={transformToEggName(card.name)}
@@ -180,7 +179,7 @@ const MakeAMatch: React.FC = () => {
                                 )}
                             </>
                         )}
-                        <Image
+                        <img
                             className={styles.sandPatch}
                             alt=""
                             src="/make-a-match/sand-patch.webp"
