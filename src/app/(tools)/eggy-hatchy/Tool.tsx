@@ -170,8 +170,8 @@ const Tool: React.FC = () => {
         }
     }
 
-    const isBeforeEvent = new Date() < new Date('2025-09-11T14:00:00Z')
-    const isAfterEvent = new Date() > new Date('2025-09-15T14:00:00Z')
+    const isBeforeEvent = new Date() < new Date('2025-09-12T14:00:00Z')
+    const isAfterEvent = new Date() > new Date('2025-09-18T14:00:00Z')
 
     useEffect(() => {
         let points = 0
@@ -224,9 +224,9 @@ const Tool: React.FC = () => {
                     disabled={loading || isBeforeEvent || isAfterEvent}
                 >
                     {isBeforeEvent
-                        ? 'Event starts September 11, 2025'
+                        ? 'Event starts September 12, 2025'
                         : isAfterEvent
-                        ? 'Event ended September 15, 2025'
+                        ? 'Event ended September 18, 2025'
                         : loading
                         ? 'Generating board...'
                         : 'Begin'}
