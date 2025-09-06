@@ -85,9 +85,7 @@ export function AC14() {
                                             <img
                                                 width="25"
                                                 height="30"
-                                                src={`/eggs/${egg.title
-                                                    .toLowerCase()
-                                                    .replaceAll(' ', '-')}.png`}
+                                                src={egg.title}
                                             />
                                             {`${egg.title}: ${egg.count}`}
                                         </li>

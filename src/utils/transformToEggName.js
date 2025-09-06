@@ -9,6 +9,6 @@ function transformToEggName(string) {
     string = string.replace(/-\d+/g, '')
 
     //return final string as url
-    return `/eggs/${string}.png`
+    return `https://evrjimpvbkritkiantsx.supabase.co/storage/v1/object/public/eggs/${string}.png`
 }
 export default transformToEggName
