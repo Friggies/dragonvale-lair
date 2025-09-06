@@ -8,6 +8,7 @@ import longesGames from '@/data/previous-tournaments/13-anniversary/longestGames
 import mostGames from '@/data/previous-tournaments/13-anniversary/mostGames.js'
 import Details from '@/components/Details/Details'
 import List from '@/components/List/List'
+import transformToEggName from '@/utils/transformToEggName'
 
 export function AC13() {
     const [numberOfEggsToShow, setNumberOfEggsToShow] = useState(5)
@@ -75,7 +76,7 @@ export function AC13() {
                                 <img
                                     width="25"
                                     height="30"
-                                    src={egg.title}
+                                    src={transformToEggName(egg.title)}
                                 />
                                 <p>{`${egg.title}: ${egg.count}`}</p>
                             </>

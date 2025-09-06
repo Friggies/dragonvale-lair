@@ -7,6 +7,7 @@ import hardestEggs from '@/data/previous-tournaments/13-anniversary/hardest-eggs
 import mostGames from '@/data/previous-tournaments/13-anniversary/mostGames.js'
 import Details from '@/components/Details/Details'
 import List from '@/components/List/List'
+import transformToEggName from '@/utils/transformToEggName'
 
 export function AC14() {
     const [numberOfEggsToShow, setNumberOfEggsToShow] = useState(5)
@@ -85,7 +86,9 @@ export function AC14() {
                                             <img
                                                 width="25"
                                                 height="30"
-                                                src={egg.title}
+                                                src={transformToEggName(
+                                                    egg.title
+                                                )}
                                             />
                                             {`${egg.title}: ${egg.count}`}
                                         </li>
