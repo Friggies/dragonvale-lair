@@ -231,6 +231,10 @@ const Tool: React.FC = () => {
                         ? 'Generating board...'
                         : 'Begin'}
                 </button>
+                <p>
+                    The top five players will each receive their gem reward on
+                    September 23.
+                </p>
             </div>
         )
     }
