@@ -1,8 +1,9 @@
 const currentlyAvailable = [
-    'Peridot',
+    'Lunar Eclipse',
     'Tourmaline',
     'Virgonian',
     'Summer',
+    'Sapphire',
     'Amber',
     'Ghostly Kringle',
     'Ghostly Krampus',
