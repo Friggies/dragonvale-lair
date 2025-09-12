@@ -2,6 +2,19 @@
     {
         "availability": "LIMITED",
         "quest": "N/A",
+        "rarity": "Epic",
+        "number": 923,
+        "name": "Greenhouse",
+        "elements": ["Hidden", "Plant", "Water", "Light"],
+        "released": "September 11, 2025",
+        "commemoration": "Gardenia's Garden",
+        "breedingTime": "24 H",
+        "income": 170,
+        "combo": ["hidden", "plant", "water", "light"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
         "rarity": "Rare",
         "number": 922,
         "name": "Nectavira",
