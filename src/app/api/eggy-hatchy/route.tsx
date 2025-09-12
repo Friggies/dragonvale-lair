@@ -183,7 +183,7 @@ export async function POST(request: Request) {
     const { action, friendID, gameId, source, target } = await request.json()
 
     if (action === 'create') {
-        if (new Date() < new Date('2025-09-12T14:00:00Z')) {
+        if (new Date() < new Date('2025-09-12T12:00:00Z')) {
             return NextResponse.json(
                 {
                     error: 'Game creation is not allowed before September 12, 2025.',

@@ -170,7 +170,7 @@ const Tool: React.FC = () => {
         }
     }
 
-    const isBeforeEvent = new Date() < new Date('2025-09-12T14:00:00Z')
+    const isBeforeEvent = new Date() < new Date('2025-09-12T12:00:00Z')
     const isAfterEvent = new Date() > new Date('2025-09-18T14:00:00Z')
 
     useEffect(() => {
