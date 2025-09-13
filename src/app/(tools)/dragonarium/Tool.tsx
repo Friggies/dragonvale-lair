@@ -95,6 +95,8 @@ export default function Tool({ dragons }: ToolProps) {
             return userElements.size >= 4
         }
 
+        dragon.combo = dragon.combo?.filter((item) => item !== 'rift')
+
         // Check dragon combo
         return (
             dragon.combo &&
