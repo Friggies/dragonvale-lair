@@ -2,6 +2,19 @@
     {
         "availability": "LIMITED",
         "quest": "N/A",
+        "rarity": "Rare",
+        "number": 924,
+        "name": "Ivory",
+        "elements": ["Metal", "Fire", "Light", "Earth"],
+        "released": "September 12, 2025",
+        "commemoration": "Fourteenth Anniversary of DragonVale",
+        "breedingTime": "14 H",
+        "income": 140,
+        "combo": ["metal", "fire", "light", "earth"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
         "rarity": "Epic",
         "number": 923,
         "name": "Greenhouse",
