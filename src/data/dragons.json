@@ -1,6 +1,19 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Fan the Flames",
+        "rarity": "Rare",
+        "number": 925,
+        "name": "Firevine",
+        "elements": ["Fire", "Plant", "Lightning"],
+        "released": "September 18, 2025",
+        "commemoration": "Gardenia's Garden",
+        "breedingTime": "20 H",
+        "income": 230,
+        "combo": ["Ivy", "plant", "fire"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Rare",
         "number": 924,
