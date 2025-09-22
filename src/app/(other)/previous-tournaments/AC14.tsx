@@ -21,7 +21,7 @@ export function AC14() {
             <Details title="14 Anniversary Contest">
                 {true ? (
                     <>
-                        <p>Currently planning event...</p>
+                        <p>Crunching numbers...</p>
                         <br />
                     </>
                 ) : (
