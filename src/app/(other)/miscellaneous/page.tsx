@@ -41,7 +41,7 @@ export default async function Page() {
                         imageName="farmingButton"
                     />
                     <LabelButton
-                        label="Anniversary Contest"
+                        label="Eggy Hatchy"
                         link="/eggy-hatchy"
                         imageName="eggyHatchyButton"
                     />
