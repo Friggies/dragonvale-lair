@@ -1,0 +1,82 @@
+[
+    {
+        "id": 19060,
+        "player": "timefire#3620",
+        "egg_name": "Coral",
+        "egg_level": 107,
+        "egg_points": 8544618,
+        "created_at": "2025-09-15 20:33:25.126648+00"
+    },
+    {
+        "id": 26814,
+        "player": "Alden#6673",
+        "egg_name": "Bramble",
+        "egg_level": 70,
+        "egg_points": 7717981,
+        "created_at": "2025-09-18 10:45:32.44177+00"
+    },
+    {
+        "id": 24465,
+        "player": "Alden#6673",
+        "egg_name": "Bronze",
+        "egg_level": 42,
+        "egg_points": 1739992,
+        "created_at": "2025-09-17 15:02:16.201357+00"
+    },
+    {
+        "id": 23695,
+        "player": "Alden#6673",
+        "egg_name": "Silverline",
+        "egg_level": 60,
+        "egg_points": 1501648,
+        "created_at": "2025-09-17 10:48:03.982837+00"
+    },
+    {
+        "id": 23510,
+        "player": "Alden#6673",
+        "egg_name": "Verdigris",
+        "egg_level": 52,
+        "egg_points": 1420429,
+        "created_at": "2025-09-17 09:44:02.913873+00"
+    },
+    {
+        "id": 24573,
+        "player": "Alden#6673",
+        "egg_name": "Ivy",
+        "egg_level": 58,
+        "egg_points": 1218155,
+        "created_at": "2025-09-17 15:21:47.885089+00"
+    },
+    {
+        "id": 23536,
+        "player": "Alden#6673",
+        "egg_name": "Sandstorm",
+        "egg_level": 54,
+        "egg_points": 843735,
+        "created_at": "2025-09-17 09:54:10.128018+00"
+    },
+    {
+        "id": 22873,
+        "player": "Alden#6673",
+        "egg_name": "Snootroot",
+        "egg_level": 44,
+        "egg_points": 638544,
+        "created_at": "2025-09-16 22:08:01.761202+00"
+    },
+    {
+        "id": 9521,
+        "player": "Marilyn#1781",
+        "egg_name": "Blue Moon",
+        "egg_level": 24,
+        "egg_points": 599938,
+        "created_at": "2025-09-13 19:10:30.233383+00"
+    },
+    {
+        "id": 19132,
+        "player": "Alden#6673",
+        "egg_name": "Coldforge",
+        "egg_level": 50,
+        "egg_points": 578950,
+        "created_at": "2025-09-15 20:43:59.206857+00"
+    }
+]

@@ -1,0 +1,110 @@
+[
+    {
+        "id": 24667,
+        "created_at": "2025-09-17 15:40:10.479029+00",
+        "friend_id": "Alden#6673",
+        "board": [
+            [
+                {
+                    "egg": null
+                },
+                {
+                    "egg": null
+                },
+                {
+                    "egg": null
+                },
+                {
+                    "egg": null
+                }
+            ],
+            [
+                {
+                    "egg": null
+                },
+                {
+                    "egg": null
+                },
+                {
+                    "egg": null
+                },
+                {
+                    "egg": null
+                }
+            ],
+            [
+                {
+                    "egg": null
+                },
+                {
+                    "egg": null
+                },
+                {
+                    "egg": null
+                },
+                {
+                    "egg": null
+                }
+            ],
+            [
+                {
+                    "egg": null
+                },
+                {
+                    "egg": null
+                },
+                {
+                    "egg": null
+                },
+                {
+                    "egg": null
+                }
+            ]
+        ],
+        "bank": {
+            "eggs": [
+                {
+                    "name": "Acid",
+                    "twin": false,
+                    "level": 3,
+                    "points": 635,
+                    "elements": ["Dark", "Metal"]
+                },
+                {
+                    "name": "Watch",
+                    "twin": false,
+                    "level": 3,
+                    "points": 484,
+                    "elements": ["Fire", "Dark"]
+                },
+                {
+                    "name": "Watch",
+                    "twin": false,
+                    "level": 3,
+                    "points": 484,
+                    "elements": ["Fire", "Dark"]
+                },
+                {
+                    "name": "Darcowl",
+                    "twin": false,
+                    "level": 48,
+                    "points": 502725,
+                    "elements": ["Dark", "Earth", "Metal"]
+                }
+            ],
+            "goals": [
+                {
+                    "level": 3,
+                    "amount": 3,
+                    "element": "Dark"
+                },
+                {
+                    "level": 3,
+                    "amount": 1,
+                    "element": "Metal"
+                }
+            ]
+        },
+        "score": 6657130
+    }
+]
