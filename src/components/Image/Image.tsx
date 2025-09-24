@@ -13,6 +13,7 @@ export default function Image({
         <NextImage
             {...props}
             className={`${styles.image} ${styles[variant]}`}
+            unoptimized
         />
     )
 }
