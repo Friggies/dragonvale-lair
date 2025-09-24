@@ -172,7 +172,7 @@ export function AC14() {
             </button>
             <br />
             <br />
-            <h3>Best 25 completed games (without bonus boost multiplier)</h3>
+            <h3>Best 25 completed games (without BONUS multiplier)</h3>
             <List>
                 {top_games
                     .slice(0, numberOfBestCompletedGamesToShow)
