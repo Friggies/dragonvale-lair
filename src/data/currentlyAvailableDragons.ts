@@ -1,7 +1,8 @@
 const currentlyAvailable = [
-    'Equinox',
-    'Sapphire',
     'Bismuth',
+    'Librian',
+    'Stygian',
+    'Opal',
     'Amber',
     'Greenhouse',
     'Virgonian',
