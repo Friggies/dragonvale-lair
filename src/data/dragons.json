@@ -1,6 +1,19 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Root Awakening",
+        "rarity": "Rare",
+        "number": 926,
+        "name": "Rootwyrm",
+        "elements": ["Earth", "Plant", "Fire"],
+        "released": "September 25, 2025",
+        "commemoration": "Gardenia's Garden",
+        "breedingTime": "24 H",
+        "income": 210,
+        "combo": ["Wyrmwood", "earth"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Fan the Flames",
         "rarity": "Rare",
         "number": 925,
@@ -14,7 +27,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Ivory Tower",
         "rarity": "Rare",
         "number": 924,
         "name": "Ivory",
@@ -27,7 +40,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Glass Act",
         "rarity": "Epic",
         "number": 923,
         "name": "Greenhouse",
@@ -40,7 +53,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Sting Operation",
         "rarity": "Rare",
         "number": 922,
         "name": "Nectavira",
@@ -53,7 +66,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Eau de Pollen",
         "rarity": "Rare",
         "number": 921,
         "name": "Jasmine",
@@ -92,7 +105,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Garden Guardian",
         "rarity": "Rare",
         "number": 918,
         "name": "Luciflora",
@@ -105,7 +118,7 @@
     },
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Ride the Lightning",
         "rarity": "Epic",
         "number": 917,
         "name": "Keraunos",
