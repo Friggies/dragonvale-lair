@@ -1,6 +1,19 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Lost and Unfound",
+        "rarity": "Epic",
+        "number": 932,
+        "name": "Tartarus",
+        "elements": ["Olympus", "Earth", "Dark", "Fire"],
+        "released": "October 16, 2025",
+        "commemoration": "Whitbee's Candy Bash XII: Glimpses of the Otherworld",
+        "breedingTime": "18 H",
+        "income": 210,
+        "combo": ["Stygian", "Cave"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "On the Flip Side",
         "rarity": "Rare",
         "number": 931,
