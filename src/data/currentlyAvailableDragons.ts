@@ -1,10 +1,9 @@
 const currentlyAvailable = [
-    'Bismuth',
-    'Librian',
-    'Stygian',
-    'Opal',
     'Autumn',
+    'Sanguinite',
     'Amber',
+    'Scorpionian',
+    'Squall',
     'Ghostly Kringle',
     'Ghostly Krampus',
     'Ghostly Trinket',
