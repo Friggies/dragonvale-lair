@@ -1,6 +1,45 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 936,
+        "name": "Reaper",
+        "elements": ["Apocalypse", "Dark", "Cold"],
+        "released": "November 13, 2025",
+        "commemoration": "Whitbee's Candy Bash XII: Glimpses of the Otherworld",
+        "breedingTime": "24 H",
+        "income": 240,
+        "combo": ["Macabre", "Scourge"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "On the Bright Side",
+        "rarity": "Rare",
+        "number": 935,
+        "name": "Righteous",
+        "elements": ["Sun", "Light", "Fire"],
+        "released": "November 6, 2025",
+        "commemoration": "Whitbee's Candy Bash XII: Glimpses of the Otherworld",
+        "breedingTime": "24 H",
+        "income": 240,
+        "combo": ["Sun", "light", "fire"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Drain of Thought",
+        "rarity": "Rare",
+        "number": 934,
+        "name": "Brainiac",
+        "elements": ["Water", "Dark", "Light"],
+        "released": "October 30, 2025",
+        "commemoration": "Whitbee's Candy Bash XII: Glimpses of the Otherworld",
+        "breedingTime": "20 H",
+        "income": 220,
+        "combo": ["Kwall", "water", "dark"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Surface Tension",
         "rarity": "Rare",
         "number": 933,
