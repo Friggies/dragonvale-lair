@@ -1,26 +1,26 @@
 {
-    "name": "dv-breeding-simulator",
-    "version": "0.1.0",
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "dev": "next dev --turbopack",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint"
-    },
-    "dependencies": {
-        "@reduxjs/toolkit": "^2.7.0",
-        "@supabase/supabase-js": "^2.49.3",
-        "googleapis": "^148.0.0",
-        "next": "^15.2.4",
-        "react": "^19",
-        "react-dom": "^19",
-        "react-redux": "^9.2.0",
-        "react-select": "^5.10.1",
-        "sass": "^1.86.0"
-    },
-    "devDependencies": {
-        "typescript": "5.8.2"
-    }
+  "name": "dv-breeding-simulator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.7.0",
+    "@supabase/supabase-js": "^2.49.3",
+    "googleapis": "^148.0.0",
+    "next": "15.2.6",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-redux": "^9.2.0",
+    "react-select": "^5.10.1",
+    "sass": "^1.86.0"
+  },
+  "devDependencies": {
+    "typescript": "5.8.2"
+  }
 }
