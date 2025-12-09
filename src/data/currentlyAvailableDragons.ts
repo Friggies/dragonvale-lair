@@ -3,6 +3,7 @@ const currentlyAvailable = [
     'Autumn',
     'Sagittarian',
     'Seraph',
+    'Turquoise',
     'Jet',
     'Ghostly Kringle',
     'Ghostly Krampus',
