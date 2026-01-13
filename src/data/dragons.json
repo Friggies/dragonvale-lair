@@ -1,6 +1,32 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Clean, Clean, Clean",
+        "rarity": "Rare",
+        "number": 943,
+        "name": "Kitse",
+        "elements": ["Cold", "Air"],
+        "released": "January 8, 2026",
+        "commemoration": "Winter Wizort",
+        "breedingTime": "26 H",
+        "income": 240,
+        "combo": ["Ribbon", "Snow"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Axe a Question",
+        "rarity": "Epic",
+        "number": 942,
+        "name": "Jawny",
+        "elements": ["Apocalypse", "Cold", "Dark"],
+        "released": "January 1, 2026",
+        "commemoration": "Winter Wizort",
+        "breedingTime": "20 H",
+        "income": 230,
+        "combo": ["Yeti", "dark"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Quick Dip",
         "rarity": "Rare",
         "number": 941,
