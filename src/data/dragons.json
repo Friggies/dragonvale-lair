@@ -1,6 +1,19 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Double Bubble",
+        "rarity": "Epic",
+        "number": 944,
+        "name": "Iceere",
+        "elements": ["Ornamental", "Air", "Cold"],
+        "released": "January 15, 2026",
+        "commemoration": "Winter Wizort",
+        "breedingTime": "28 H",
+        "income": 230,
+        "combo": ["Verglace", "air"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Clean, Clean, Clean",
         "rarity": "Rare",
         "number": 943,
