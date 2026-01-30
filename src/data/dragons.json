@@ -1,6 +1,32 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Singing in the Wind",
+        "rarity": "Epic",
+        "number": 946,
+        "name": "Chime",
+        "elements": ["Melody", "Plant", "Air"],
+        "released": "January 29, 2026",
+        "commemoration": "Teas and Tales from Nipong",
+        "breedingTime": "16 H",
+        "income": 230,
+        "combo": ["Ironwood", "melody"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Light the Way",
+        "rarity": "Rare",
+        "number": 945,
+        "name": "Chochin",
+        "elements": ["Fire", "Air", "Light"],
+        "released": "January 29, 2026",
+        "commemoration": "Teas and Tales from Nipong",
+        "breedingTime": "17 H",
+        "income": 240,
+        "combo": ["Paper", "Wick"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Double Bubble",
         "rarity": "Epic",
         "number": 944,
