@@ -1,6 +1,32 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Hot Leaf Juice",
+        "rarity": "Rare",
+        "number": 948,
+        "name": "Greenty",
+        "elements": ["Plant", "Water"],
+        "released": "February 12, 2026",
+        "commemoration": "Teas and Tales from Nipong",
+        "breedingTime": "17 H",
+        "income": 220,
+        "combo": ["Nightbloom", "plant", "water"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Missed the Mist",
+        "rarity": "Epic",
+        "number": 947,
+        "name": "Spirit Mist",
+        "elements": ["Moon", "Water", "Air"],
+        "released": "February 5, 2026",
+        "commemoration": "Teas and Tales from Nipong",
+        "breedingTime": "18 H",
+        "income": 210,
+        "combo": ["Lunis", "Steam"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Singing in the Wind",
         "rarity": "Epic",
         "number": 946,
