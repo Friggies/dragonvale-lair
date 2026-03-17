@@ -1,5 +1,44 @@
 [
     {
+        "availability": "PERMANENT",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 951,
+        "name": "Kyrken",
+        "elements": ["Light", "Earth"],
+        "released": "March 16, 2016",
+        "commemoration": "Arcadia of Burcadia",
+        "breedingTime": "14 H",
+        "income": 230,
+        "combo": ["Quake", "Glasswing"]
+    },
+    {
+        "availability": "PERMANENT",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 950,
+        "name": "Agran",
+        "elements": ["Earth", "Plant", "Water"],
+        "released": "March 16, 2016",
+        "commemoration": "Arcadia of Burcadia",
+        "breedingTime": "12 H",
+        "income": 230,
+        "combo": ["Century", "Mosser"]
+    },
+    {
+        "availability": "PERMANENT",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 949,
+        "name": "Monolith 7",
+        "elements": ["Monolith"],
+        "released": "March 16, 2016",
+        "commemoration": "Arcadia of Burcadia",
+        "breedingTime": "24 H",
+        "income": 500,
+        "combo": ["monolith", "monolith"]
+    },
+    {
         "availability": "LIMITED",
         "quest": "Hot Leaf Juice",
         "rarity": "Rare",
