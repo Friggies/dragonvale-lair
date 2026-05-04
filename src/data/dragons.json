@@ -1,6 +1,58 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Wishy-Washy",
+        "rarity": "Rare",
+        "number": 960,
+        "name": "Scrubby",
+        "elements": ["Water", "Air", "Dark", "Light"],
+        "released": "April 30, 2026",
+        "commemoration": "Refresh-o-Vale",
+        "breedingTime": "11 H",
+        "income": 230,
+        "combo": ["Moppey", "light"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Dustruction",
+        "rarity": "Rare",
+        "number": 959,
+        "name": "Dustroyer",
+        "elements": ["Cold", "Earth", "Wind"],
+        "released": "April 30, 2026",
+        "commemoration": "Refresh-o-Vale",
+        "breedingTime": "19 H",
+        "income": 210,
+        "combo": ["Lyuba", "air"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Dust to Dust",
+        "rarity": "Rare",
+        "number": 958,
+        "name": "Dusty",
+        "elements": ["Earth", "Air"],
+        "released": "April 30, 2026",
+        "commemoration": "Refresh-o-Vale",
+        "breedingTime": "12 H",
+        "income": 220,
+        "combo": ["earth", "air"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Nest Quest",
+        "rarity": "Rare",
+        "number": 957,
+        "name": "Protegg",
+        "elements": ["Plant", "Light", "Earth"],
+        "released": "April 16, 2026",
+        "commemoration": "Arcadia of Burcadia",
+        "breedingTime": "18 H",
+        "income": 250,
+        "combo": ["Bellflower", "Forest"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Pine Soul",
         "rarity": "Epic",
         "number": 956,
