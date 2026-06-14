@@ -1,6 +1,45 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Burning Sensation",
+        "rarity": "Epic",
+        "number": 965,
+        "name": "Naja",
+        "elements": ["Sun", "Treasure"],
+        "released": "June 11, 2026",
+        "commemoration": "Dunes of Magic II",
+        "breedingTime": "16 H",
+        "income": 220,
+        "combo": ["treasure", "sun"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Lurk n Skulk",
+        "rarity": "Rare",
+        "number": 964,
+        "name": "Venator",
+        "elements": ["Dark", "Water", "Fire", "Plant"],
+        "released": "June 11, 2026",
+        "commemoration": "Dunes of Magic II",
+        "breedingTime": "12 H",
+        "income": 240,
+        "combo": ["Valeodon", "plant"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Rolling, Rolling",
+        "rarity": "Rare",
+        "number": 963,
+        "name": "Sobek",
+        "elements": ["Water", "Plant", "Dark"],
+        "released": "June 11, 2026",
+        "commemoration": "Dunes of Magic II",
+        "breedingTime": "13 H",
+        "income": 250,
+        "combo": ["water", "plant", "dark"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "One Dragon's Trash",
         "rarity": "Epic",
         "number": 962,
