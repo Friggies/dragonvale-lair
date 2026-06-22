@@ -58,9 +58,9 @@ export default async function Page() {
                         imageName="makeAmatchButton"
                     />
                     <LabelButton
-                        label="Gaia Plushie"
-                        link="https://www.makeship.com/petitions/hatchling-of-magic-plushie"
-                        imageName="gaiaButton"
+                        label="Island Planner"
+                        link="/island-planner"
+                        imageName="islandButton"
                     />
                     <LabelButton
                         label="Previous Tournaments"

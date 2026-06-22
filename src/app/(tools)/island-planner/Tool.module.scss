@@ -1,0 +1,273 @@
+.tool {
+    display: grid;
+    grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+    gap: 1rem;
+    width: 100%;
+}
+
+.sidebar,
+.workspace {
+    min-width: 0;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.fieldGroup,
+.customPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.customPanel:not([open]) {
+    display: block;
+}
+
+.label,
+.panelTitle {
+    margin: 0;
+    font-weight: 700;
+}
+
+.panelTitle {
+    cursor: pointer;
+}
+
+.input,
+.select {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 0.55rem 0.65rem;
+    background-color: rgba(255, 255, 255, 0.12);
+    color: inherit;
+    font: inherit;
+    text-shadow: inherit;
+}
+
+.select option {
+    color: #111;
+}
+
+.presetList {
+    display: grid;
+    gap: 0.35rem;
+    max-height: 420px;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+}
+
+.presetButton {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.5rem;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding: 0.45rem 0.55rem;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: inherit;
+    font: inherit;
+    text-shadow: inherit;
+    cursor: grab;
+    text-align: left;
+}
+
+.presetButton:active {
+    cursor: grabbing;
+}
+
+.presetButtonActive {
+    border-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+.presetName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.presetMeta {
+    opacity: 0.85;
+    font-size: 0.85em;
+    white-space: nowrap;
+}
+
+.customSizeRow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.workspace {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.toolbarActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.secondaryButton,
+.dangerButton {
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 0.65rem;
+    color: inherit;
+    font: inherit;
+    text-shadow: inherit;
+    cursor: pointer;
+}
+
+.secondaryButton {
+    background-color: rgba(255, 255, 255, 0.14);
+}
+
+.dangerButton {
+    background-color: rgba(160, 32, 32, 0.7);
+}
+
+.secondaryButton:disabled,
+.dangerButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.boardScroller {
+    width: 100%;
+    max-height: min(78vh, 980px);
+    overflow: auto;
+    padding: 0.75rem;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.grid {
+    position: relative;
+    width: calc(var(--columns) * var(--cell-size));
+    height: calc(var(--rows) * var(--cell-size));
+    min-width: calc(var(--columns) * var(--cell-size));
+    min-height: calc(var(--rows) * var(--cell-size));
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    background-color: rgba(31, 123, 94, 0.35);
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: var(--cell-size) var(--cell-size);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.screenBottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    border-top: 3px dashed rgba(255, 236, 128, 0.95);
+    pointer-events: none;
+}
+
+.screenBottom span {
+    position: absolute;
+    left: 0.25rem;
+    top: -1.6rem;
+    padding: 0.15rem 0.35rem;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffec80;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.blockedCell {
+    position: absolute;
+    z-index: 1;
+    border: 1px solid rgba(0, 0, 0, 0.35);
+    background-color: rgba(80, 80, 80, 0.65);
+    background-image: linear-gradient(
+        135deg,
+        transparent 42%,
+        rgba(255, 255, 255, 0.35) 42%,
+        rgba(255, 255, 255, 0.35) 58%,
+        transparent 58%
+    );
+    pointer-events: none;
+}
+
+.placedItem {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.65);
+    border-radius: 5px;
+    padding: 0.1rem;
+    background-color: var(--item-color);
+    color: white;
+    font: inherit;
+    font-size: 0.72rem;
+    line-height: 1.1;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+    cursor: grab;
+    touch-action: none;
+}
+
+.placedItem span {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.placedItem small {
+    font-size: 0.72em;
+    opacity: 0.9;
+}
+
+.placedItem:active {
+    cursor: grabbing;
+}
+
+.placedItemSelected {
+    outline: 3px solid rgba(255, 236, 128, 0.95);
+    z-index: 3;
+}
+
+.placedItemCollision {
+    border-color: #ff6262;
+    box-shadow: inset 0 0 0 2px rgba(255, 98, 98, 0.8);
+}
+
+@media (max-width: 800px) {
+    .tool {
+        grid-template-columns: 1fr;
+    }
+
+    .presetList {
+        max-height: 260px;
+    }
+
+    .boardScroller {
+        max-height: 70vh;
+    }
+}
