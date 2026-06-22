@@ -10,6 +10,16 @@ interface ToolProps {
     epicElements: string[]
 }
 
+const generatorBoostRates: Record<string, number> = {
+    Zodiac: 0.2,
+    Chrysalis: 0.3,
+}
+
+const generatorLimits: Record<string, number> = {
+    Zodiac: 1,
+    Chrysalis: 1,
+}
+
 export default function Tool({
     initialDragons,
     regularElements,
@@ -29,6 +39,8 @@ export default function Tool({
         Metal: 0,
         Dark: 0,
         Light: 0,
+        Zodiac: 0,
+        Chrysalis: 0,
     })
     // Reactive list of dragons (initially provided by page)
     const [dragonsList, setDragonsList] = useState<Dragon[]>(initialDragons)
@@ -66,7 +78,9 @@ export default function Tool({
             Math.round(
                 dragon.elements.reduce(
                     (totalBoost, element) =>
-                        totalBoost + (generators[element] || 0) * 0.02,
+                        totalBoost +
+                        (generators[element] || 0) *
+                            (generatorBoostRates[element] || 0.02),
                     0
                 ) * 1e12
             ) / 1e12
@@ -107,9 +121,11 @@ export default function Tool({
     }
 
     const updateGeneratorCount = (element: string, count: number) => {
+        const limit = generatorLimits[element] ?? Infinity
+
         setGenerators((prev) => ({
             ...prev,
-            [element]: count,
+            [element]: Math.min(limit, Math.max(0, count)),
         }))
     }
 
@@ -184,7 +200,7 @@ export default function Tool({
                                     onClick={() =>
                                         updateGeneratorCount(
                                             element,
-                                            Math.max(0, generators[element] - 1)
+                                            generators[element] - 1
                                         )
                                     }
                                     className="farming__generator-button farming__generator-button--left"
@@ -197,6 +213,7 @@ export default function Tool({
                                     inputMode="numeric"
                                     value={generators[element]}
                                     min="0"
+                                    max={generatorLimits[element]}
                                     onFocus={(e) => e.target.select()}
                                     onChange={(e) =>
                                         updateGeneratorCount(
