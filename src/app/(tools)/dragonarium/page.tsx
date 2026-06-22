@@ -51,11 +51,9 @@ export default function Dragonarium() {
                 <p>
                     The data is saved in the browser's local storage. Therefore,
                     the data will be "stored" even if you close/refresh the tab
-                    or restart the computer. The only way to lose the data, as
-                    far as I'm aware, is if you clear your cookies or switch to
-                    another browser. This way of storage also means it is
-                    unfortunately impossible to share data between browsers or
-                    devices (desktop/mobile).
+                    or restart the computer. You can also use the copy/paste
+                    import and export tools in the options menu to transfer
+                    your acquired dragons between browsers or devices.
                 </p>
                 <p>
                     Click on the "Help" button for detailed instructions on how

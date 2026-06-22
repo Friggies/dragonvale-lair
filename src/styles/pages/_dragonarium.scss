@@ -1,5 +1,6 @@
-@use "../abstracts/colors";
-@use "../abstracts/variables";
+@use '../abstracts/colors';
+@use '../abstracts/variables';
+@use '../../styles/abstracts/mixins';
 
 .dragonarium {
     display: flex;
@@ -64,6 +65,31 @@
         font-size: 16px;
         border: none;
         text-align: center;
+    }
+    &__transfer-paper {
+        width: 100%;
+        @include mixins.paperBackground;
+    }
+    &__transfer-input {
+        width: 100%;
+        max-width: 100%;
+        min-height: 200px;
+        height: 200px;
+        resize: none;
+        color: black;
+        background-color: transparent;
+        border: 0;
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+        font-size: 16px;
+        font-family: inherit;
+        &::placeholder {
+            color: black;
+            font-style: italic;
+        }
+    }
+    &__transfer-message {
+        margin-top: 0.5rem;
     }
 }
 

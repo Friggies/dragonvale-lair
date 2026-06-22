@@ -1,5 +1,5 @@
-@use "colors";
-@use "variables";
+@use 'colors';
+@use 'variables';
 
 @mixin borders($size) {
     position: relative;
@@ -7,7 +7,7 @@
     border: $size solid colors.$color--border-highlight;
     border-radius: calc(variables.$borderradius * 0.7);
     &::before {
-        content: "";
+        content: '';
         position: absolute;
         inset: calc($size * -1 + 1px);
         outline: $size solid colors.$color--dark;
@@ -15,7 +15,7 @@
         pointer-events: none;
     }
     &::after {
-        content: "";
+        content: '';
         position: absolute;
         inset: calc($size - 1px);
         outline: $size solid colors.$color--light;
@@ -34,7 +34,7 @@
     );
     &::before,
     &::after {
-        content: "";
+        content: '';
         height: 2px;
         position: absolute;
         left: 0;

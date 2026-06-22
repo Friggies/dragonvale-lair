@@ -12,6 +12,53 @@ interface ToolProps {
     dragons: Dragon[]
 }
 
+const getNamesFromList = (items: unknown[]) =>
+    items
+        .map((item) => {
+            if (typeof item === 'string') {
+                return item
+            }
+
+            if (item && typeof item === 'object') {
+                const name = (item as { name?: unknown }).name
+                return typeof name === 'string' ? name : null
+            }
+
+            return null
+        })
+        .filter((name): name is string => name !== null)
+
+const getDragonNamesFromImport = (importedData: unknown) => {
+    let importedDragons: unknown[] | null = null
+
+    if (Array.isArray(importedData)) {
+        importedDragons = importedData
+    } else if (importedData && typeof importedData === 'object') {
+        const importObject = importedData as {
+            dragons?: unknown
+            userDragons?: unknown
+        }
+
+        if (Array.isArray(importObject.dragons)) {
+            importedDragons = importObject.dragons
+        } else if (Array.isArray(importObject.userDragons)) {
+            importedDragons = importObject.userDragons
+        }
+    }
+
+    if (!importedDragons) {
+        return null
+    }
+
+    const dragonNames = getNamesFromList(importedDragons)
+
+    if (importedDragons.length > 0 && dragonNames.length === 0) {
+        return null
+    }
+
+    return dragonNames
+}
+
 export default function Tool({ dragons }: ToolProps) {
     const allDragons = dragons.filter((dragon) => {
         if (dragon.rarity.includes('Legendary')) return false
@@ -24,6 +71,9 @@ export default function Tool({ dragons }: ToolProps) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [userDragonsSearch, setUserDragonsSearch] = useState('')
     const [missingDragonsSearch, setMissingDragonsSearch] = useState('')
+    const [importText, setImportText] = useState('')
+    const [importExportMessage, setImportExportMessage] = useState('')
+    const [manualExportText, setManualExportText] = useState('')
 
     // On component mount, load data from localStorage
     useEffect(() => {
@@ -146,6 +196,102 @@ export default function Tool({ dragons }: ToolProps) {
             dialog.close()
         } else {
             dialog.showModal()
+        }
+    }
+
+    const toggleManualExportDialog = () => {
+        const dialog = document.querySelector(
+            '#manualExportDialog'
+        ) as HTMLDialogElement
+        const dialogIsOpen = dialog.open
+        if (dialogIsOpen) {
+            dialog.close()
+        } else {
+            dialog.showModal()
+        }
+    }
+
+    const showManualExportDialog = (exportText: string) => {
+        setManualExportText(exportText)
+        const dialog = document.querySelector(
+            '#manualExportDialog'
+        ) as HTMLDialogElement
+        dialog.showModal()
+    }
+
+    const getExportText = () =>
+        JSON.stringify(
+            userDragons.map((dragon) => dragon.name),
+            null,
+            2
+        )
+
+    const exportDragonarium = async () => {
+        const exportText = getExportText()
+
+        if (!navigator.clipboard?.writeText) {
+            window.alert(
+                'Clipboard API is not available. Copy the array from the next popup instead.'
+            )
+            showManualExportDialog(exportText)
+            return
+        }
+
+        try {
+            await navigator.clipboard.writeText(exportText)
+            setImportExportMessage(`Copied ${userDragons.length} dragons.`)
+        } catch {
+            window.alert(
+                'The array could not be copied automatically. Copy it from the next popup instead.'
+            )
+            showManualExportDialog(exportText)
+        }
+    }
+
+    const importDragonarium = () => {
+        try {
+            const importedData = JSON.parse(importText.trim().replace(/;$/, ''))
+            const importedDragonNames = getDragonNamesFromImport(importedData)
+
+            if (!importedDragonNames) {
+                setImportExportMessage(
+                    'Import failed. Paste a Dragonarium array first.'
+                )
+                return
+            }
+
+            const uniqueImportedDragonNames = [...new Set(importedDragonNames)]
+            const importedDragonNameSet = new Set(uniqueImportedDragonNames)
+            const allDragonNames = new Set(
+                allDragons.map((dragon) => dragon.name)
+            )
+            const importedUserDragons = allDragons
+                .filter((dragon) => importedDragonNameSet.has(dragon.name))
+                .sort((a, b) => collator.compare(a.name, b.name))
+            const unknownDragonCount = uniqueImportedDragonNames.filter(
+                (dragonName) => !allDragonNames.has(dragonName)
+            ).length
+
+            setUserDragons(importedUserDragons)
+            setMissingDragons(
+                allDragons.filter(
+                    (dragon) => !importedDragonNameSet.has(dragon.name)
+                )
+            )
+            setUserDragonsSearch('')
+            setMissingDragonsSearch('')
+            setImportText('')
+            setImportExportMessage(
+                `Imported ${importedUserDragons.length} dragons${
+                    unknownDragonCount
+                        ? ` and skipped ${unknownDragonCount} unknown dragons`
+                        : ''
+                }.`
+            )
+        } catch {
+            setImportExportMessage(
+                'Import failed. Paste the copied JavaScript array and try again.'
+            )
         }
     }
 
@@ -418,6 +564,62 @@ export default function Tool({ dragons }: ToolProps) {
                             </button>
                         ))}
                     </div>
+                    <p>Transfer your acquired dragons between browsers</p>
+                    <button
+                        onClick={exportDragonarium}
+                        className="button button--wide"
+                    >
+                        Copy export array
+                    </button>
+                    <div className="dragonarium__transfer-paper">
+                        <textarea
+                            className="dragonarium__transfer-input"
+                            value={importText}
+                            onChange={(event) =>
+                                setImportText(event.target.value)
+                            }
+                            placeholder='Paste your exported array here, for example ["Plant", "Fire"]'
+                            rows={7}
+                        />
+                    </div>
+                    <button
+                        onClick={importDragonarium}
+                        className="button button--wide"
+                    >
+                        Import pasted array
+                    </button>
+                    {importExportMessage && (
+                        <p className="dragonarium__transfer-message">
+                            {importExportMessage}
+                        </p>
+                    )}
+                </div>
+            </dialog>
+            <dialog
+                id="manualExportDialog"
+                className="dialog"
+            >
+                <button
+                    aria-label="Close dialog"
+                    className="dialog__closeButton"
+                    type="button"
+                    onClick={toggleManualExportDialog}
+                >
+                    <img
+                        width="60"
+                        height="60"
+                        src="/buttons/xButton.png"
+                    />
+                </button>
+                <div className="dialog__content">
+                    <p>Copy this array manually.</p>
+                    <textarea
+                        className="dragonarium__transfer-input"
+                        value={manualExportText}
+                        readOnly
+                        rows={10}
+                        onFocus={(event) => event.target.select()}
+                    />
                 </div>
             </dialog>
             <dialog
@@ -445,6 +647,11 @@ export default function Tool({ dragons }: ToolProps) {
                         If you want to move multiple eggs, open the options menu
                         and press either the add buttons, the remove button or
                         the elements to add dragons by element.
+                    </p>
+                    <p>
+                        To transfer your acquired dragons to another browser,
+                        copy the export array from the options menu, then paste
+                        it into the import field in the other browser.
                     </p>
                     <p>
                         If you need to add or remove a specific dragon from a
