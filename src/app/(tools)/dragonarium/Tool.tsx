@@ -74,6 +74,8 @@ export default function Tool({ dragons }: ToolProps) {
     const [importText, setImportText] = useState('')
     const [importExportMessage, setImportExportMessage] = useState('')
     const [manualExportText, setManualExportText] = useState('')
+    const [showAvailableLimitedOnly, setShowAvailableLimitedOnly] =
+        useState(false)
 
     // On component mount, load data from localStorage
     useEffect(() => {
@@ -396,6 +398,14 @@ export default function Tool({ dragons }: ToolProps) {
         }
     }, [userDragonsSearch])
 
+    const displayedMissingDragons = showAvailableLimitedOnly
+        ? missingDragons.filter(
+              (dragon) =>
+                  dragon.availability === 'LIMITED' &&
+                  currentlyAvailable.includes(dragon.name)
+          )
+        : missingDragons
+
     return (
         <>
             <div className="dragonarium__info">
@@ -407,6 +417,17 @@ export default function Tool({ dragons }: ToolProps) {
                     onClick={toggleOptionsDialog}
                 />
                 <LabelButton
+                    label={showAvailableLimitedOnly ? 'Limited' : 'All Dragons'}
+                    imageName={
+                        showAvailableLimitedOnly
+                            ? 'limitedButton'
+                            : 'dragonsButton'
+                    }
+                    tag="button"
+                    type="button"
+                    onClick={() => setShowAvailableLimitedOnly((prev) => !prev)}
+                />
+                <LabelButton
                     label="Help"
                     imageName="questionmarkButton"
                     tag="button"
@@ -415,7 +436,10 @@ export default function Tool({ dragons }: ToolProps) {
                 />
             </div>
             <div className="dragonarium__column">
-                <h2>Missing {missingDragons.length}</h2>
+                <h2>
+                    {showAvailableLimitedOnly ? 'Available Limited' : 'Missing'}{' '}
+                    {displayedMissingDragons.length}
+                </h2>
                 <div className="selector">
                     <input
                         className="dragonarium__search"
@@ -428,27 +452,29 @@ export default function Tool({ dragons }: ToolProps) {
                     />
                 </div>
                 <ul className="dragonarium__list">
-                    {missingDragons.map((dragon: DragonariumDragon) => (
-                        <li
-                            className={`dragonarium__dragon ${
-                                dragon.userCanBreed &&
-                                'dragonarium__dragon--breedable'
-                            } ${
-                                dragon.hiddenBySearch &&
-                                'dragonarium__dragon--hidden'
-                            }`}
-                            key={dragon.name}
-                            onClick={() => addDragon(dragon)}
-                        >
-                            <img
-                                loading="lazy"
-                                height="50"
-                                alt={`${dragon.name} Dragon Egg`}
-                                src={transformToEggName(dragon.name)}
-                            />
-                            {dragon.name}
-                        </li>
-                    ))}
+                    {displayedMissingDragons.map(
+                        (dragon: DragonariumDragon) => (
+                            <li
+                                className={`dragonarium__dragon ${
+                                    dragon.userCanBreed &&
+                                    'dragonarium__dragon--breedable'
+                                } ${
+                                    dragon.hiddenBySearch &&
+                                    'dragonarium__dragon--hidden'
+                                }`}
+                                key={dragon.name}
+                                onClick={() => addDragon(dragon)}
+                            >
+                                <img
+                                    loading="lazy"
+                                    height="50"
+                                    alt={`${dragon.name} Dragon Egg`}
+                                    src={transformToEggName(dragon.name)}
+                                />
+                                {dragon.name}
+                            </li>
+                        )
+                    )}
                 </ul>
             </div>
             <div className="dragonarium__column">
@@ -656,6 +682,10 @@ export default function Tool({ dragons }: ToolProps) {
                     <p>
                         If you need to add or remove a specific dragon from a
                         list, you can use the search functionality.
+                    </p>
+                    <p>
+                        Use the Available toggle to show only missing limited
+                        dragons that are currently available.
                     </p>
                     <p>
                         The eggs in the missing category that has green names
