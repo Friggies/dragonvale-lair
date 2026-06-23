@@ -2,9 +2,8 @@
 
 import { DragEvent, MouseEvent, useMemo, useState } from 'react'
 import type { CSSProperties } from 'react'
+import LabelInput from '@/components/LabelInput'
 import styles from './Tool.module.scss'
-
-const CELL_SIZE = 24
 
 type IslandType = 'standard' | 'gargantuan'
 type PresetCategory = 'Habitat' | 'Building' | 'Custom'
@@ -98,52 +97,124 @@ const islandConfigs: Record<IslandType, IslandConfig> = {
 }
 
 const habitatPresets: HabitatPreset[] = [
-    { name: 'Air', sizes: sizes(['Regular', 4, 4], ['Large', 5, 5], ['Giant', 6, 6]) },
+    {
+        name: 'Air',
+        sizes: sizes(['Regular', 4, 4], ['Large', 5, 5], ['Giant', 6, 6]),
+    },
     { name: 'Apocalypse', sizes: sizes(['Regular', 5, 5], ['Large', 7, 7]) },
     { name: 'Aura', sizes: sizes(['Regular', 6, 6], ['Large', 7, 7]) },
     { name: 'Aquarium', sizes: sizes(['Regular', 15, 15]) },
     { name: "Bahamut's Basilica", sizes: sizes(['Regular', 7, 7]) },
     { name: 'Celestial', sizes: sizes(['Regular', 6, 6]) },
-    { name: 'Chrysalis', sizes: sizes(['Regular', 5, 5], ['Large', 7, 7], ['Giant', 8, 8]) },
-    { name: 'Cold', sizes: sizes(['Regular', 5, 5], ['Large', 6, 6], ['Giant', 7, 7]) },
+    {
+        name: 'Chrysalis',
+        sizes: sizes(['Regular', 5, 5], ['Large', 7, 7], ['Giant', 8, 8]),
+    },
+    {
+        name: 'Cold',
+        sizes: sizes(['Regular', 5, 5], ['Large', 6, 6], ['Giant', 7, 7]),
+    },
     { name: 'Crystalline', sizes: sizes(['Regular', 5, 5]) },
-    { name: 'Dark', sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 6, 6]) },
-    { name: 'Dark Reward', sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 5, 5]) },
+    {
+        name: 'Dark',
+        sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 6, 6]),
+    },
+    {
+        name: 'Dark Reward',
+        sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 5, 5]),
+    },
     { name: 'Dream', sizes: sizes(['Regular', 5, 5], ['Large', 6, 6]) },
-    { name: 'Earth', sizes: sizes(['Regular', 5, 5], ['Large', 6, 6], ['Giant', 7, 7]) },
-    { name: 'Fire', sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 6, 6]) },
+    {
+        name: 'Earth',
+        sizes: sizes(['Regular', 5, 5], ['Large', 6, 6], ['Giant', 7, 7]),
+    },
+    {
+        name: 'Fire',
+        sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 6, 6]),
+    },
     { name: 'Gemstone', sizes: sizes(['Regular', 4, 4]) },
     { name: 'Harmonious', sizes: sizes(['Regular', 6, 6]) },
     { name: 'Hidden', sizes: sizes(['Regular', 6, 6]) },
-    { name: 'Light', sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 6, 6]) },
-    { name: 'Light Reward', sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 5, 5]) },
-    { name: 'Lightning', sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 6, 5]) },
-    { name: 'Melody', sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 6, 6]) },
+    {
+        name: 'Light',
+        sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 6, 6]),
+    },
+    {
+        name: 'Light Reward',
+        sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 5, 5]),
+    },
+    {
+        name: 'Lightning',
+        sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 6, 5]),
+    },
+    {
+        name: 'Melody',
+        sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 6, 6]),
+    },
     { name: 'Meridiem', sizes: sizes(['Regular', 6, 6]) },
-    { name: 'Metal', sizes: sizes(['Regular', 4, 4], ['Large', 6, 6], ['Giant', 7, 7]) },
+    {
+        name: 'Metal',
+        sizes: sizes(['Regular', 4, 4], ['Large', 6, 6], ['Giant', 7, 7]),
+    },
     { name: 'Monolith', sizes: sizes(['Regular', 6, 6], ['Large', 7, 7]) },
-    { name: 'Monolith Reward', sizes: sizes(['Regular', 6, 6], ['Large', 7, 7]) },
-    { name: 'Moon', sizes: sizes(['Regular', 3, 3], ['Large', 6, 6], ['Giant', 8, 8]) },
-    { name: 'Olympus', sizes: sizes(['Regular', 5, 5], ['Large', 7, 7], ['Giant', 8, 8]) },
+    {
+        name: 'Monolith Reward',
+        sizes: sizes(['Regular', 6, 6], ['Large', 7, 7]),
+    },
+    {
+        name: 'Moon',
+        sizes: sizes(['Regular', 3, 3], ['Large', 6, 6], ['Giant', 8, 8]),
+    },
+    {
+        name: 'Olympus',
+        sizes: sizes(['Regular', 5, 5], ['Large', 7, 7], ['Giant', 8, 8]),
+    },
     { name: 'Olympus Reward', sizes: sizes(['Regular', 8, 8]) },
     { name: 'Omnitat', sizes: sizes(['Regular', 5, 5], ['Large', 6, 6]) },
     { name: 'Omnitat: Tower', sizes: sizes(['Regular', 6, 6]) },
     { name: 'Ornamental', sizes: sizes(['Regular', 6, 6]) },
-    { name: 'Paradise', sizes: sizes(['Regular', 5, 5], ['Large', 5, 5], ['Giant', 6, 6]) },
-    { name: 'Plant', sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 6, 6]) },
-    { name: 'Rainbow', sizes: sizes(['Regular', 2, 2], ['Large', 6, 6], ['Giant', 7, 7]) },
-    { name: 'Rift', sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 6, 6]) },
+    {
+        name: 'Paradise',
+        sizes: sizes(['Regular', 5, 5], ['Large', 5, 5], ['Giant', 6, 6]),
+    },
+    {
+        name: 'Plant',
+        sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 6, 6]),
+    },
+    {
+        name: 'Rainbow',
+        sizes: sizes(['Regular', 2, 2], ['Large', 6, 6], ['Giant', 7, 7]),
+    },
+    {
+        name: 'Rift',
+        sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 6, 6]),
+    },
     { name: 'Seasonal', sizes: sizes(['Regular', 5, 5], ['Large', 8, 8]) },
     { name: 'Snowflake', sizes: sizes(['Regular', 6, 6], ['Large', 7, 7]) },
-    { name: 'Snowflake Reward', sizes: sizes(['Regular', 6, 6], ['Large', 7, 7]) },
+    {
+        name: 'Snowflake Reward',
+        sizes: sizes(['Regular', 6, 6], ['Large', 7, 7]),
+    },
     { name: 'Spooky', sizes: sizes(['Regular', 5, 5]) },
-    { name: 'Sun', sizes: sizes(['Regular', 3, 3], ['Large', 6, 6], ['Giant', 8, 8]) },
+    {
+        name: 'Sun',
+        sizes: sizes(['Regular', 3, 3], ['Large', 6, 6], ['Giant', 8, 8]),
+    },
     { name: 'Surface', sizes: sizes(['Regular', 5, 5]) },
     { name: "Tiamat's Lair", sizes: sizes(['Regular', 7, 7]) },
-    { name: 'Treasure', sizes: sizes(['Regular', 6, 6], ['Large', 7, 7], ['Giant', 8, 8]) },
+    {
+        name: 'Treasure',
+        sizes: sizes(['Regular', 6, 6], ['Large', 7, 7], ['Giant', 8, 8]),
+    },
     { name: 'Vault of Abundance', sizes: sizes(['Regular', 6, 6]) },
-    { name: 'Water', sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 7, 7]) },
-    { name: 'Zodiac', sizes: sizes(['Regular', 6, 6], ['Large', 7, 7], ['Giant', 8, 8]) },
+    {
+        name: 'Water',
+        sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 7, 7]),
+    },
+    {
+        name: 'Zodiac',
+        sizes: sizes(['Regular', 6, 6], ['Large', 7, 7], ['Giant', 8, 8]),
+    },
 ]
 
 const buildingPresets: Preset[] = [
@@ -180,7 +251,11 @@ const presets = [
 ]
 
 function sizes(...values: [string, number, number][]): HabitatSize[] {
-    return values.map(([variant, width, height]) => ({ variant, width, height }))
+    return values.map(([variant, width, height]) => ({
+        variant,
+        width,
+        height,
+    }))
 }
 
 function makeCellKey(x: number, y: number) {
@@ -253,7 +328,12 @@ function createInstanceId() {
     return crypto.randomUUID?.() ?? `${Date.now()}-${Math.random()}`
 }
 
-function canPlaceAt(preset: Preset, x: number, y: number, island: IslandConfig) {
+function canPlaceAt(
+    preset: Preset,
+    x: number,
+    y: number,
+    island: IslandConfig
+) {
     if (
         x < 0 ||
         y < 0 ||
@@ -380,10 +460,22 @@ export default function Tool() {
     const getGridPosition = (event: MouseEvent | DragEvent) => {
         const grid = event.currentTarget as HTMLDivElement
         const rect = grid.getBoundingClientRect()
-        const x = Math.floor((event.clientX - rect.left) / CELL_SIZE)
-        const y = Math.floor((event.clientY - rect.top) / CELL_SIZE)
+        const gridStyles = window.getComputedStyle(grid)
+        const borderLeft = Number.parseFloat(gridStyles.borderLeftWidth) || 0
+        const borderTop = Number.parseFloat(gridStyles.borderTopWidth) || 0
+        const cellWidth = grid.clientWidth / island.columns
+        const cellHeight = grid.clientHeight / island.rows
+        const x = Math.floor(
+            (event.clientX - rect.left - borderLeft) / cellWidth
+        )
+        const y = Math.floor(
+            (event.clientY - rect.top - borderTop) / cellHeight
+        )
 
-        return { x, y }
+        return {
+            x: clamp(x, 0, island.columns - 1),
+            y: clamp(y, 0, island.rows - 1),
+        }
     }
 
     const getClampedPosition = (preset: Preset, x: number, y: number) => ({
@@ -464,7 +556,11 @@ export default function Tool() {
                 : presets.find((currentPreset) => currentPreset.id === presetId)
 
         if (preset) {
-            placePreset(preset, position.x - dragOffset.x, position.y - dragOffset.y)
+            placePreset(
+                preset,
+                position.x - dragOffset.x,
+                position.y - dragOffset.y
+            )
         }
     }
 
@@ -524,16 +620,10 @@ export default function Tool() {
     return (
         <div className={styles.tool}>
             <aside className={styles.sidebar}>
-                <div className={styles.fieldGroup}>
-                    <label
-                        className={styles.label}
-                        htmlFor="islandType"
-                    >
-                        Island
-                    </label>
+                <LabelInput label="Island">
                     <select
                         id="islandType"
-                        className={styles.select}
+                        className="dropdown"
                         value={islandType}
                         onChange={(event) => {
                             const nextIslandType = event.target
@@ -567,30 +657,26 @@ export default function Tool() {
                             </option>
                         ))}
                     </select>
-                </div>
+                </LabelInput>
 
-                <div className={styles.fieldGroup}>
-                    <label
-                        className={styles.label}
-                        htmlFor="presetSearch"
-                    >
-                        Search presets
-                    </label>
-                    <input
-                        id="presetSearch"
-                        className={styles.input}
-                        value={search}
-                        onChange={(event) => setSearch(event.target.value)}
-                        placeholder="Plant, Large, Portal, 5x5..."
-                        type="search"
-                    />
-                </div>
+                <LabelInput label="Draggable presets">
+                    <div className="selector">
+                        <input
+                            id="presetSearch"
+                            className={styles.textInput}
+                            value={search}
+                            onChange={(event) => setSearch(event.target.value)}
+                            placeholder="Plant, Large, Portal, 5x5..."
+                            type="search"
+                        />
+                    </div>
+                </LabelInput>
 
                 <div className={styles.presetList}>
                     {filteredPresets.map((preset) => (
                         <button
                             key={preset.id}
-                            className={`${styles.presetButton} ${
+                            className={`selector ${styles.presetButton} ${
                                 selectedPresetId === preset.id
                                     ? styles.presetButtonActive
                                     : ''
@@ -603,15 +689,18 @@ export default function Tool() {
                                     'preset-id',
                                     preset.id
                                 )
-                                setDragOffset(event, preset.width, preset.height)
+                                setDragOffset(
+                                    event,
+                                    preset.width,
+                                    preset.height
+                                )
                             }}
                         >
                             <span className={styles.presetName}>
                                 {preset.name}
                             </span>
                             <span className={styles.presetMeta}>
-                                {preset.variant} {preset.width}x
-                                {preset.height}
+                                {preset.variant} {preset.width}x{preset.height}
                             </span>
                         </button>
                     ))}
@@ -619,39 +708,51 @@ export default function Tool() {
 
                 <details className={styles.customPanel}>
                     <summary className={styles.panelTitle}>Custom size</summary>
-                    <input
-                        className={styles.input}
-                        value={customName}
-                        onChange={(event) => setCustomName(event.target.value)}
-                        aria-label="Custom item name"
-                    />
-                    <div className={styles.customSizeRow}>
+                    <div className="selector">
                         <input
-                            className={styles.input}
-                            value={customWidth}
-                            min="1"
-                            max={island.columns}
+                            className={styles.textInput}
+                            value={customName}
                             onChange={(event) =>
-                                setCustomWidth(Number(event.target.value) || 1)
+                                setCustomName(event.target.value)
                             }
-                            aria-label="Custom width"
-                            type="number"
-                        />
-                        <span>x</span>
-                        <input
-                            className={styles.input}
-                            value={customHeight}
-                            min="1"
-                            max={island.rows}
-                            onChange={(event) =>
-                                setCustomHeight(Number(event.target.value) || 1)
-                            }
-                            aria-label="Custom height"
-                            type="number"
+                            aria-label="Custom item name"
                         />
                     </div>
+                    <div className={styles.customSizeRow}>
+                        <div className="selector">
+                            <input
+                                className={styles.textInput}
+                                value={customWidth}
+                                min="1"
+                                max={island.columns}
+                                onChange={(event) =>
+                                    setCustomWidth(
+                                        Number(event.target.value) || 1
+                                    )
+                                }
+                                aria-label="Custom width"
+                                type="number"
+                            />
+                        </div>
+                        <span>x</span>
+                        <div className="selector">
+                            <input
+                                className={styles.textInput}
+                                value={customHeight}
+                                min="1"
+                                max={island.rows}
+                                onChange={(event) =>
+                                    setCustomHeight(
+                                        Number(event.target.value) || 1
+                                    )
+                                }
+                                aria-label="Custom height"
+                                type="number"
+                            />
+                        </div>
+                    </div>
                     <button
-                        className={styles.secondaryButton}
+                        className={`button button--wide ${styles.actionButton}`}
                         type="button"
                         draggable
                         onClick={selectCustomPreset}
@@ -684,7 +785,7 @@ export default function Tool() {
                     </div>
                     <div className={styles.toolbarActions}>
                         <button
-                            className={styles.secondaryButton}
+                            className={`button ${styles.actionButton}`}
                             type="button"
                             disabled={!selectedItem}
                             onClick={duplicateSelectedItem}
@@ -692,7 +793,7 @@ export default function Tool() {
                             Duplicate
                         </button>
                         <button
-                            className={styles.dangerButton}
+                            className={`button button--red ${styles.actionButton}`}
                             type="button"
                             disabled={!selectedItem}
                             onClick={deleteSelectedItem}
@@ -700,7 +801,7 @@ export default function Tool() {
                             Delete
                         </button>
                         <button
-                            className={styles.dangerButton}
+                            className={`button button--red ${styles.actionButton}`}
                             type="button"
                             disabled={placedItems.length === 0}
                             onClick={clearPlanner}
@@ -720,14 +821,13 @@ export default function Tool() {
                             {
                                 '--columns': island.columns,
                                 '--rows': island.rows,
-                                '--cell-size': `${CELL_SIZE}px`,
                             } as CSSProperties
                         }
                     >
                         <div
                             className={styles.screenBottom}
                             style={{
-                                top: island.bottomScreenRow * CELL_SIZE - 2,
+                                top: `calc(${island.bottomScreenRow} * var(--cell-size) - 2px)`,
                             }}
                         >
                             <span>Bottom of screen</span>
@@ -737,10 +837,10 @@ export default function Tool() {
                                 key={`${cell.x}-${cell.y}`}
                                 className={styles.blockedCell}
                                 style={{
-                                    left: cell.x * CELL_SIZE,
-                                    top: cell.y * CELL_SIZE,
-                                    width: CELL_SIZE,
-                                    height: CELL_SIZE,
+                                    left: `calc(${cell.x} * var(--cell-size))`,
+                                    top: `calc(${cell.y} * var(--cell-size))`,
+                                    width: 'var(--cell-size)',
+                                    height: 'var(--cell-size)',
                                 }}
                             />
                         ))}
@@ -767,14 +867,18 @@ export default function Tool() {
                                         'item-id',
                                         item.instanceId
                                     )
-                                    setDragOffset(event, item.width, item.height)
+                                    setDragOffset(
+                                        event,
+                                        item.width,
+                                        item.height
+                                    )
                                 }}
                                 style={
                                     {
-                                        left: item.x * CELL_SIZE,
-                                        top: item.y * CELL_SIZE,
-                                        width: item.width * CELL_SIZE,
-                                        height: item.height * CELL_SIZE,
+                                        left: `calc(${item.x} * var(--cell-size))`,
+                                        top: `calc(${item.y} * var(--cell-size))`,
+                                        width: `calc(${item.width} * var(--cell-size))`,
+                                        height: `calc(${item.height} * var(--cell-size))`,
                                         '--item-color': item.color,
                                     } as CSSProperties
                                 }

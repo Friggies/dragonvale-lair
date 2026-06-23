@@ -1,3 +1,6 @@
+@use '../../../styles/abstracts/colors';
+@use '../../../styles/abstracts/variables';
+
 .tool {
     display: grid;
     grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
@@ -16,7 +19,6 @@
     gap: 0.75rem;
 }
 
-.fieldGroup,
 .customPanel {
     display: flex;
     flex-direction: column;
@@ -27,30 +29,36 @@
     display: block;
 }
 
-.label,
 .panelTitle {
+    cursor: pointer;
     margin: 0;
     font-weight: 700;
 }
 
-.panelTitle {
-    cursor: pointer;
+.sidebar :global(.labelInput) {
+    gap: 0.35rem;
 }
 
-.input,
-.select {
+.sidebar :global(.dropdown),
+.sidebar :global(.selector) {
+    width: 100%;
+    margin: 5px 0;
+}
+
+.sidebar :global(.dropdown) {
+    text-align: left;
+}
+
+.textInput {
     width: 100%;
     border: none;
-    border-radius: 5px;
-    padding: 0.55rem 0.65rem;
-    background-color: rgba(255, 255, 255, 0.12);
+    padding-block: 0.5rem;
+    background-color: transparent;
     color: inherit;
-    font: inherit;
+    font-family: inherit;
+    font-size: 16px;
+    text-align: center;
     text-shadow: inherit;
-}
-
-.select option {
-    color: #111;
 }
 
 .presetList {
@@ -66,10 +74,10 @@
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.5rem;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    padding: 0.45rem 0.55rem;
-    background-color: rgba(255, 255, 255, 0.08);
+    min-width: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0.45rem 0.75rem;
     color: inherit;
     font: inherit;
     text-shadow: inherit;
@@ -82,7 +90,7 @@
 }
 
 .presetButtonActive {
-    border-color: rgba(255, 255, 255, 0.8);
+    border-color: #ffec80;
     background-color: rgba(255, 255, 255, 0.18);
 }
 
@@ -125,29 +133,13 @@
     gap: 0.35rem;
 }
 
-.secondaryButton,
-.dangerButton {
-    border: none;
-    border-radius: 5px;
-    padding: 0.5rem 0.65rem;
-    color: inherit;
-    font: inherit;
-    text-shadow: inherit;
-    cursor: pointer;
-}
-
-.secondaryButton {
-    background-color: rgba(255, 255, 255, 0.14);
-}
-
-.dangerButton {
-    background-color: rgba(160, 32, 32, 0.7);
-}
-
-.secondaryButton:disabled,
-.dangerButton:disabled {
+.actionButton:disabled {
     cursor: not-allowed;
     opacity: 0.45;
+}
+
+.customPanel .actionButton {
+    width: 100%;
 }
 
 .boardScroller {
@@ -155,11 +147,19 @@
     max-height: min(78vh, 980px);
     overflow: auto;
     padding: 0.75rem;
-    border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid colors.$color--border-highlight;
+    border-radius: variables.$borderradius;
+    background-color: colors.$color--card;
+    box-shadow: inset 2px 2px colors.$color--light,
+        inset -2px -2px colors.$color--light,
+        inset 2px -2px colors.$color--light, inset -2px 2px colors.$color--light,
+        2px 2px colors.$color--dark, -2px -2px colors.$color--dark,
+        2px -2px colors.$color--dark, -2px 2px colors.$color--dark;
 }
 
 .grid {
+    --cell-size: 18px;
+
     position: relative;
     width: calc(var(--columns) * var(--cell-size));
     height: calc(var(--rows) * var(--cell-size));
@@ -258,7 +258,7 @@
     box-shadow: inset 0 0 0 2px rgba(255, 98, 98, 0.8);
 }
 
-@media (max-width: 800px) {
+@media (max-width: variables.$breakpoint--md) {
     .tool {
         grid-template-columns: 1fr;
     }
@@ -269,5 +269,11 @@
 
     .boardScroller {
         max-height: 70vh;
+    }
+}
+
+@media (max-width: variables.$breakpoint--sm) {
+    .grid {
+        --cell-size: 14px;
     }
 }
