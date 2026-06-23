@@ -59,6 +59,34 @@ const getDragonNamesFromImport = (importedData: unknown) => {
     return dragonNames
 }
 
+const breedingComboLabels: Record<string, string> = {
+    'elements-4': 'Any 4 elements',
+    rift: 'Rift',
+}
+
+const formatBreedingComboItem = (item: string) => {
+    const normalizedItem = item.toLowerCase()
+    const breedingComboLabel = breedingComboLabels[normalizedItem]
+
+    if (breedingComboLabel) {
+        return breedingComboLabel
+    }
+
+    if (item === normalizedItem) {
+        return item.charAt(0).toUpperCase() + item.slice(1)
+    }
+
+    return item
+}
+
+const getBreedingComboText = (combo?: string[]) => {
+    if (!combo?.length) {
+        return null
+    }
+
+    return combo.map(formatBreedingComboItem).join(' + ')
+}
+
 export default function Tool({ dragons }: ToolProps) {
     const allDragons = dragons.filter((dragon) => {
         if (dragon.rarity.includes('Legendary')) return false
@@ -453,27 +481,39 @@ export default function Tool({ dragons }: ToolProps) {
                 </div>
                 <ul className="dragonarium__list">
                     {displayedMissingDragons.map(
-                        (dragon: DragonariumDragon) => (
-                            <li
-                                className={`dragonarium__dragon ${
-                                    dragon.userCanBreed &&
-                                    'dragonarium__dragon--breedable'
-                                } ${
-                                    dragon.hiddenBySearch &&
-                                    'dragonarium__dragon--hidden'
-                                }`}
-                                key={dragon.name}
-                                onClick={() => addDragon(dragon)}
-                            >
-                                <img
-                                    loading="lazy"
-                                    height="50"
-                                    alt={`${dragon.name} Dragon Egg`}
-                                    src={transformToEggName(dragon.name)}
-                                />
-                                {dragon.name}
-                            </li>
-                        )
+                        (dragon: DragonariumDragon) => {
+                            const breedingComboText = getBreedingComboText(
+                                dragon.combo
+                            )
+
+                            return (
+                                <li
+                                    className={`dragonarium__dragon ${
+                                        dragon.userCanBreed &&
+                                        'dragonarium__dragon--breedable'
+                                    } ${
+                                        dragon.hiddenBySearch &&
+                                        'dragonarium__dragon--hidden'
+                                    }`}
+                                    key={dragon.name}
+                                    onClick={() => addDragon(dragon)}
+                                >
+                                    <img
+                                        loading="lazy"
+                                        height="50"
+                                        alt={`${dragon.name} Dragon Egg`}
+                                        src={transformToEggName(dragon.name)}
+                                    />
+                                    <span>{dragon.name}</span>
+                                    {showAvailableLimitedOnly &&
+                                        breedingComboText && (
+                                            <span className="dragonarium__dragon-combo">
+                                                ({breedingComboText})
+                                            </span>
+                                        )}
+                                </li>
+                            )
+                        }
                     )}
                 </ul>
             </div>

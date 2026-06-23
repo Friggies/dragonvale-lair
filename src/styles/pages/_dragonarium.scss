@@ -34,6 +34,15 @@
         align-items: center;
         cursor: pointer;
         user-select: none;
+        text-align: center;
+        line-height: 1.2;
+        &-combo {
+            max-width: 100%;
+            padding-inline: 0.25rem;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            overflow-wrap: anywhere;
+        }
         &--breedable {
             color: colors.$color--green;
         }
