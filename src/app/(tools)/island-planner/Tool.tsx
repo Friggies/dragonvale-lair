@@ -5,15 +5,33 @@ import type { CSSProperties } from 'react'
 import LabelInput from '@/components/LabelInput'
 import styles from './Tool.module.scss'
 
-type IslandType = 'standard' | 'gargantuan'
+type IslandType = 'standard' | 'gargantuan' | 'lost' | 'rift'
 type PresetCategory = 'Habitat' | 'Building' | 'Custom'
+type CurrencyType = 'dc' | 'etherium' | 'gem' | 'treats' | 'dynamic'
+type HabitatSizeData = [
+    variant: string,
+    width: number,
+    height: number,
+    dragonCapacity: number,
+    currencyCapacity?: number,
+    currencyType?: CurrencyType,
+]
 
 interface IslandConfig {
     name: string
     columns: number
     rows: number
-    bottomScreenRow: number
+    bottomScreenRow?: number
     blockedCells: Set<string>
+    regions?: IslandRegion[]
+}
+
+interface IslandRegion {
+    name: string
+    x: number
+    y: number
+    width: number
+    height: number
 }
 
 interface Preset {
@@ -24,6 +42,9 @@ interface Preset {
     width: number
     height: number
     color: string
+    dragonCapacity?: number
+    currencyCapacity?: number
+    currencyType?: CurrencyType
 }
 
 interface PlacedItem extends Preset {
@@ -41,6 +62,9 @@ interface HabitatSize {
     variant: string
     width: number
     height: number
+    dragonCapacity: number
+    currencyCapacity?: number
+    currencyType?: CurrencyType
 }
 
 interface HabitatPreset {
@@ -79,6 +103,16 @@ const standardBlockedCells = makeBlockedCells(26, [
     [6, 7],
 ])
 
+const riftOriginalGridSize = 60
+const riftInactiveStripSize = 2
+const riftExpansionStripSize = 28
+const riftExpansionStart = riftOriginalGridSize + riftInactiveStripSize
+const riftExpandedGridSize = riftExpansionStart + riftExpansionStripSize
+const riftBlockedCells = makeRiftBlockedCells(
+    riftOriginalGridSize,
+    riftInactiveStripSize
+)
+
 const islandConfigs: Record<IslandType, IslandConfig> = {
     standard: {
         name: 'Standard Island',
@@ -94,126 +128,346 @@ const islandConfigs: Record<IslandType, IslandConfig> = {
         bottomScreenRow: 40,
         blockedCells: new Set(),
     },
+    lost: {
+        name: 'Lost Island',
+        columns: 15,
+        rows: 15,
+        bottomScreenRow: 15,
+        blockedCells: new Set(),
+    },
+    rift: {
+        name: 'Rift Dimension',
+        columns: riftExpandedGridSize,
+        rows: riftExpandedGridSize,
+        blockedCells: riftBlockedCells,
+        regions: [
+            {
+                name: 'Original Rift Grid',
+                x: 0,
+                y: 0,
+                width: riftOriginalGridSize,
+                height: riftOriginalGridSize,
+            },
+            {
+                name: 'Expanded Strip',
+                x: riftExpansionStart,
+                y: 0,
+                width: riftExpansionStripSize,
+                height: riftExpansionStart,
+            },
+            {
+                name: 'Expanded Strip',
+                x: 0,
+                y: riftExpansionStart,
+                width: riftExpansionStart,
+                height: riftExpansionStripSize,
+            },
+            {
+                name: 'Expanded Corner',
+                x: riftExpansionStart,
+                y: riftExpansionStart,
+                width: riftExpansionStripSize,
+                height: riftExpansionStripSize,
+            },
+        ],
+    },
 }
 
 const habitatPresets: HabitatPreset[] = [
     {
         name: 'Air',
-        sizes: sizes(['Regular', 4, 4], ['Large', 5, 5], ['Giant', 6, 6]),
+        sizes: sizes(
+            ['Regular', 4, 4, 2, 6000],
+            ['Large', 5, 5, 4, 10000],
+            ['Giant', 6, 6, 5, 100000]
+        ),
     },
-    { name: 'Apocalypse', sizes: sizes(['Regular', 5, 5], ['Large', 7, 7]) },
-    { name: 'Aura', sizes: sizes(['Regular', 6, 6], ['Large', 7, 7]) },
-    { name: 'Aquarium', sizes: sizes(['Regular', 15, 15]) },
-    { name: "Bahamut's Basilica", sizes: sizes(['Regular', 7, 7]) },
-    { name: 'Celestial', sizes: sizes(['Regular', 6, 6]) },
+    {
+        name: 'Apocalypse',
+        sizes: sizes(
+            ['Regular', 5, 5, 2, 750000],
+            ['Large', 7, 7, 4, 1250000],
+            ['Giant', 8, 8, 6, 3000000]
+        ),
+    },
+    {
+        name: 'Aura',
+        sizes: sizes(
+            ['Regular', 6, 6, 5, 1250000],
+            ['Large', 7, 7, 6, 1500000],
+            ['Giant', 8, 8, 8, 2000000]
+        ),
+    },
+    { name: 'Aquarium', sizes: sizes(['Regular', 15, 15, 9, 5000000]) },
+    {
+        name: "Bahamut's Basilica",
+        sizes: sizes(['Regular', 7, 7, 1, 25000, 'treats']),
+    },
+    { name: 'Celestial', sizes: sizes(['Regular', 6, 6, 6, 2750000]) },
     {
         name: 'Chrysalis',
-        sizes: sizes(['Regular', 5, 5], ['Large', 7, 7], ['Giant', 8, 8]),
+        sizes: sizes(
+            ['Regular', 5, 5, 5, 1000000],
+            ['Large', 7, 7, 6, 1500000],
+            ['Giant', 8, 8, 7, 2000000]
+        ),
     },
     {
         name: 'Cold',
-        sizes: sizes(['Regular', 5, 5], ['Large', 6, 6], ['Giant', 7, 7]),
+        sizes: sizes(
+            ['Regular', 5, 5, 1, 15000],
+            ['Large', 6, 6, 3, 50000],
+            ['Giant', 7, 7, 5, 100000]
+        ),
     },
-    { name: 'Crystalline', sizes: sizes(['Regular', 5, 5]) },
+    { name: 'Crystalline', sizes: sizes(['Regular', 5, 5, 4, 4, 'gem']) },
     {
         name: 'Dark',
-        sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 6, 6]),
+        sizes: sizes(
+            ['Regular', 3, 3, 2, 50000],
+            ['Large', 5, 5, 4, 100000],
+            ['Giant', 6, 6, 5, 175000]
+        ),
     },
     {
         name: 'Dark Reward',
-        sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 5, 5]),
+        sizes: sizes(
+            ['Regular', 3, 3, 1, 100000],
+            ['Large', 4, 4, 3, 200000],
+            ['Giant', 5, 5, 5, 350000]
+        ),
     },
-    { name: 'Dream', sizes: sizes(['Regular', 5, 5], ['Large', 6, 6]) },
+    {
+        name: 'Dream',
+        sizes: sizes(
+            ['Regular', 5, 5, 2, 1250000],
+            ['Large', 6, 6, 4, 1500000]
+        ),
+    },
     {
         name: 'Earth',
-        sizes: sizes(['Regular', 5, 5], ['Large', 6, 6], ['Giant', 7, 7]),
+        sizes: sizes(
+            ['Regular', 5, 5, 1, 10000],
+            ['Large', 6, 6, 3, 75000],
+            ['Giant', 7, 7, 5, 150000]
+        ),
     },
     {
         name: 'Fire',
-        sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 6, 6]),
+        sizes: sizes(
+            ['Regular', 3, 3, 2, 7500],
+            ['Large', 5, 5, 4, 15000],
+            ['Giant', 6, 6, 5, 75000]
+        ),
     },
-    { name: 'Gemstone', sizes: sizes(['Regular', 4, 4]) },
-    { name: 'Harmonious', sizes: sizes(['Regular', 6, 6]) },
-    { name: 'Hidden', sizes: sizes(['Regular', 6, 6]) },
+    { name: 'Gemstone', sizes: sizes(['Regular', 4, 4, 2, 3, 'gem']) },
+    {
+        name: 'Gemstone Reward',
+        sizes: sizes(['Regular', 4, 4, 2, 3, 'gem']),
+    },
+    { name: 'Harmonious', sizes: sizes(['Regular', 6, 6, 6, 1750000]) },
+    { name: 'Hidden', sizes: sizes(['Regular', 6, 6, 6, 1250000]) },
     {
         name: 'Light',
-        sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 6, 6]),
+        sizes: sizes(
+            ['Regular', 3, 3, 2, 35000],
+            ['Large', 5, 5, 4, 75000],
+            ['Giant', 6, 6, 5, 125000]
+        ),
     },
     {
         name: 'Light Reward',
-        sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 5, 5]),
+        sizes: sizes(
+            ['Regular', 3, 3, 1, 75000],
+            ['Large', 4, 4, 3, 150000],
+            ['Giant', 5, 5, 5, 250000]
+        ),
     },
     {
         name: 'Lightning',
-        sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 6, 5]),
+        sizes: sizes(
+            ['Regular', 3, 3, 2, 1250],
+            ['Large', 5, 5, 4, 2500],
+            ['Giant', 6, 5, 5, 50000]
+        ),
     },
     {
         name: 'Melody',
-        sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 6, 6]),
+        sizes: sizes(
+            ['Regular', 3, 3, 3, 1250000],
+            ['Large', 4, 4, 4, 1500000],
+            ['Giant', 6, 6, 6, 1750000]
+        ),
     },
-    { name: 'Meridiem', sizes: sizes(['Regular', 6, 6]) },
+    { name: 'Meridiem', sizes: sizes(['Regular', 6, 6, 6, 2750000]) },
     {
         name: 'Metal',
-        sizes: sizes(['Regular', 4, 4], ['Large', 6, 6], ['Giant', 7, 7]),
+        sizes: sizes(
+            ['Regular', 4, 4, 2, 25000],
+            ['Large', 6, 6, 4, 125000],
+            ['Giant', 7, 7, 5, 200000]
+        ),
     },
-    { name: 'Monolith', sizes: sizes(['Regular', 6, 6], ['Large', 7, 7]) },
+    {
+        name: 'Monolith',
+        sizes: sizes(
+            ['Regular', 6, 6, 4, 1250000],
+            ['Large', 7, 7, 5, 1750000]
+        ),
+    },
     {
         name: 'Monolith Reward',
-        sizes: sizes(['Regular', 6, 6], ['Large', 7, 7]),
+        sizes: sizes(
+            ['Regular', 6, 6, 4, 1250000],
+            ['Large', 7, 7, 5, 1750000]
+        ),
     },
     {
         name: 'Moon',
-        sizes: sizes(['Regular', 3, 3], ['Large', 6, 6], ['Giant', 8, 8]),
+        sizes: sizes(
+            ['Regular', 3, 3, 1, 750000],
+            ['Large', 6, 6, 3, 1250000],
+            ['Giant', 8, 8, 5, 1250000]
+        ),
     },
     {
         name: 'Olympus',
-        sizes: sizes(['Regular', 5, 5], ['Large', 7, 7], ['Giant', 8, 8]),
+        sizes: sizes(
+            ['Regular', 5, 5, 3, 500000],
+            ['Large', 7, 7, 4, 1250000],
+            ['Giant', 8, 8, 5, 2000000]
+        ),
     },
-    { name: 'Olympus Reward', sizes: sizes(['Regular', 8, 8]) },
-    { name: 'Omnitat', sizes: sizes(['Regular', 5, 5], ['Large', 6, 6]) },
-    { name: 'Omnitat: Tower', sizes: sizes(['Regular', 6, 6]) },
-    { name: 'Ornamental', sizes: sizes(['Regular', 6, 6]) },
+    {
+        name: 'Olympus Reward',
+        sizes: sizes(['Regular', 8, 8, 6, 2750000]),
+    },
+    {
+        name: 'Omnitat',
+        sizes: sizes(
+            ['Regular', 5, 5, 5, 1750000],
+            ['Large', 6, 6, 7, 2650000]
+        ),
+    },
+    { name: 'Omnitat: Tower', sizes: sizes(['Regular', 6, 6, 4, 1250000]) },
+    { name: 'Ornamental', sizes: sizes(['Regular', 6, 6, 5, 1000000]) },
     {
         name: 'Paradise',
-        sizes: sizes(['Regular', 5, 5], ['Large', 5, 5], ['Giant', 6, 6]),
+        sizes: sizes(
+            ['Regular', 5, 5, 4, 125000],
+            ['Large', 5, 5, 5, 250000],
+            ['Giant', 6, 6, 6, 500000]
+        ),
     },
     {
         name: 'Plant',
-        sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 6, 6]),
+        sizes: sizes(
+            ['Regular', 3, 3, 2, 200],
+            ['Large', 4, 4, 4, 500],
+            ['Giant', 6, 6, 5, 50000]
+        ),
     },
     {
         name: 'Rainbow',
-        sizes: sizes(['Regular', 2, 2], ['Large', 6, 6], ['Giant', 7, 7]),
+        sizes: sizes(
+            ['Regular', 2, 2, 1, 1000000],
+            ['Large', 6, 6, 2, 1500000],
+            ['Giant', 7, 7, 3, 2000000]
+        ),
     },
     {
         name: 'Rift',
-        sizes: sizes(['Regular', 3, 3], ['Large', 4, 4], ['Giant', 6, 6]),
+        sizes: sizes(
+            ['Regular', 3, 3, 2, 6000],
+            ['Large', 4, 4, 4, 10000],
+            ['Giant', 6, 6, 5, 100000]
+        ),
     },
-    { name: 'Seasonal', sizes: sizes(['Regular', 5, 5], ['Large', 8, 8]) },
-    { name: 'Snowflake', sizes: sizes(['Regular', 6, 6], ['Large', 7, 7]) },
+    {
+        name: 'Rift Habitat',
+        sizes: sizes(
+            ['Regular', 2, 2, 1, 30, 'etherium'],
+            ['Reputable', 3, 3, 2, 65, 'etherium'],
+            ['Revitalized', 4, 4, 3, 100, 'etherium'],
+            ['Refined', 5, 5, 4, 135, 'etherium'],
+            ['Regal', 6, 6, 5, 200, 'etherium']
+        ),
+    },
+    {
+        name: 'Seasonal',
+        sizes: sizes(['Regular', 5, 5, 3, 750000], ['Large', 8, 8, 5, 1250000]),
+    },
+    {
+        name: 'Snowflake',
+        sizes: sizes(
+            ['Regular', 6, 6, 4, 1000000],
+            ['Large', 7, 7, 5, 1500000]
+        ),
+    },
     {
         name: 'Snowflake Reward',
-        sizes: sizes(['Regular', 6, 6], ['Large', 7, 7]),
+        sizes: sizes(
+            ['Regular', 6, 6, 4, 1000000],
+            ['Large', 7, 7, 5, 1500000]
+        ),
     },
-    { name: 'Spooky', sizes: sizes(['Regular', 5, 5]) },
+    { name: 'Spooky', sizes: sizes(['Regular', 5, 5, 4, 500000]) },
     {
         name: 'Sun',
-        sizes: sizes(['Regular', 3, 3], ['Large', 6, 6], ['Giant', 8, 8]),
+        sizes: sizes(
+            ['Regular', 3, 3, 1, 750000],
+            ['Large', 6, 6, 3, 1250000],
+            ['Giant', 8, 8, 5, 2500000]
+        ),
     },
-    { name: 'Surface', sizes: sizes(['Regular', 5, 5]) },
-    { name: "Tiamat's Lair", sizes: sizes(['Regular', 7, 7]) },
+    {
+        name: 'Surface',
+        sizes: sizes(
+            ['Regular', 5, 5, 3, 1000000],
+            ['Large', 5, 5, 4, 1750000],
+            ['Giant', 6, 6, 6, 2000000]
+        ),
+    },
+    {
+        name: "Tiamat's Lair",
+        sizes: sizes(['Regular', 7, 7, 1, 25000, 'treats']),
+    },
     {
         name: 'Treasure',
-        sizes: sizes(['Regular', 6, 6], ['Large', 7, 7], ['Giant', 8, 8]),
+        sizes: sizes(
+            ['Regular', 6, 6, 2, 1000000],
+            ['Large', 7, 7, 4, 2000000],
+            ['Giant', 8, 8, 5, 3500000]
+        ),
     },
-    { name: 'Vault of Abundance', sizes: sizes(['Regular', 6, 6]) },
+    {
+        name: 'Valedrasil',
+        sizes: sizes(
+            ['Regular', 3, 3, 3, 750000],
+            ['Large', 4, 4, 4, 1100000],
+            ['Giant', 5, 5, 6, 1500000]
+        ),
+    },
+    {
+        name: 'Vault of Abundance',
+        sizes: sizes(['Regular', 6, 6, 1, undefined, 'dynamic']),
+    },
     {
         name: 'Water',
-        sizes: sizes(['Regular', 3, 3], ['Large', 5, 5], ['Giant', 7, 7]),
+        sizes: sizes(
+            ['Regular', 3, 3, 2, 15000],
+            ['Large', 5, 5, 4, 30000],
+            ['Giant', 7, 7, 5, 100000]
+        ),
     },
+    { name: 'Wonderland', sizes: sizes(['Regular', 6, 6, 5, 4000000]) },
     {
         name: 'Zodiac',
-        sizes: sizes(['Regular', 6, 6], ['Large', 7, 7], ['Giant', 8, 8]),
+        sizes: sizes(
+            ['Regular', 6, 6, 3, 1250000],
+            ['Large', 7, 7, 4, 1500000],
+            ['Giant', 8, 8, 6, 1750000]
+        ),
     },
 ]
 
@@ -243,19 +497,30 @@ const presets = [
                 size.variant,
                 'Habitat',
                 size.width,
-                size.height
+                size.height,
+                {
+                    dragonCapacity: size.dragonCapacity,
+                    currencyCapacity: size.currencyCapacity,
+                    currencyType: size.currencyType,
+                }
             )
         )
     ),
     ...buildingPresets,
 ]
 
-function sizes(...values: [string, number, number][]): HabitatSize[] {
-    return values.map(([variant, width, height]) => ({
-        variant,
-        width,
-        height,
-    }))
+function sizes(...values: HabitatSizeData[]): HabitatSize[] {
+    return values.map(
+        ([variant, width, height, dragonCapacity, currencyCapacity, type]) => ({
+            variant,
+            width,
+            height,
+            dragonCapacity,
+            currencyCapacity,
+            currencyType:
+                type ?? (currencyCapacity === undefined ? undefined : 'dc'),
+        })
+    )
 }
 
 function makeCellKey(x: number, y: number) {
@@ -284,14 +549,43 @@ function makeBlockedCells(columns: number, rowBlockedEdges: number[][]) {
     return blockedCells
 }
 
+function makeRiftBlockedCells(
+    originalGridSize: number,
+    inactiveStripSize: number
+) {
+    const blockedCells = new Set<string>()
+    const inactiveEnd = originalGridSize + inactiveStripSize
+
+    for (let y = 0; y < inactiveEnd; y++) {
+        for (let x = originalGridSize; x < inactiveEnd; x++) {
+            blockedCells.add(makeCellKey(x, y))
+        }
+    }
+
+    for (let y = originalGridSize; y < inactiveEnd; y++) {
+        for (let x = 0; x < inactiveEnd; x++) {
+            blockedCells.add(makeCellKey(x, y))
+        }
+    }
+
+    return blockedCells
+}
+
 function makePreset(
     name: string,
     variant: string,
     category: PresetCategory,
     width: number,
-    height: number
+    height: number,
+    metrics: Pick<
+        Preset,
+        'dragonCapacity' | 'currencyCapacity' | 'currencyType'
+    > = {}
 ): Preset {
-    const color = category === 'Habitat' ? '#2d8f72' : '#8f6b2d'
+    const color =
+        category === 'Habitat'
+            ? getHabitatColor(metrics.currencyType)
+            : '#8f6b2d'
 
     return {
         id: slugify(`${name}-${variant}-${width}x${height}`),
@@ -301,7 +595,50 @@ function makePreset(
         width,
         height,
         color,
+        ...metrics,
     }
+}
+
+function getHabitatColor(currencyType?: CurrencyType) {
+    if (currencyType === 'etherium') return '#7d4fc8'
+    if (currencyType === 'gem') return '#2a8aa0'
+    if (currencyType === 'treats') return '#a0622a'
+    if (currencyType === 'dynamic') return '#4f75c8'
+
+    return '#2d8f72'
+}
+
+function getCurrencyLabel(currencyType?: CurrencyType) {
+    if (currencyType === 'etherium') return 'Etherium'
+    if (currencyType === 'gem') return 'Gems'
+    if (currencyType === 'treats') return 'Treats'
+    if (currencyType === 'dynamic') return 'Varies'
+
+    return 'DC'
+}
+
+function formatNumber(value: number) {
+    return value.toLocaleString('en-US')
+}
+
+function formatPresetStats(preset: Preset) {
+    const stats: string[] = []
+
+    if (preset.dragonCapacity !== undefined) {
+        stats.push(`${preset.dragonCapacity} dragons`)
+    }
+
+    if (preset.currencyCapacity !== undefined) {
+        stats.push(
+            `${formatNumber(preset.currencyCapacity)} ${getCurrencyLabel(
+                preset.currencyType
+            )}`
+        )
+    } else if (preset.currencyType === 'dynamic') {
+        stats.push(getCurrencyLabel(preset.currencyType))
+    }
+
+    return stats.join(' / ')
 }
 
 function slugify(value: string) {
@@ -393,6 +730,27 @@ function findNearestValidPosition(
     return nearestPosition
 }
 
+function getPlacedTotals(placedItems: PlacedItem[]) {
+    return placedItems.reduce(
+        (totals, item) => {
+            totals.dragonCapacity += item.dragonCapacity ?? 0
+
+            if (item.currencyType === 'etherium') {
+                totals.etheriumCapacity += item.currencyCapacity ?? 0
+            } else if (item.currencyType === 'dc' || !item.currencyType) {
+                totals.dcCapacity += item.currencyCapacity ?? 0
+            }
+
+            return totals
+        },
+        {
+            dragonCapacity: 0,
+            dcCapacity: 0,
+            etheriumCapacity: 0,
+        }
+    )
+}
+
 export default function Tool() {
     const [islandType, setIslandType] = useState<IslandType>('standard')
     const [selectedPresetId, setSelectedPresetId] = useState(presets[0].id)
@@ -408,6 +766,12 @@ export default function Tool() {
         presets.find((preset) => preset.id === selectedPresetId) ?? presets[0]
     const selectedItem = placedItems.find(
         (item) => item.instanceId === selectedItemId
+    )
+    const displayedSelection = selectedItem ?? selectedPreset
+    const displayedSelectionStats = formatPresetStats(displayedSelection)
+    const placedTotals = useMemo(
+        () => getPlacedTotals(placedItems),
+        [placedItems]
     )
 
     const customPreset: Preset = {
@@ -431,6 +795,9 @@ export default function Tool() {
                 preset.variant,
                 preset.category,
                 `${preset.width}x${preset.height}`,
+                String(preset.dragonCapacity ?? ''),
+                String(preset.currencyCapacity ?? ''),
+                getCurrencyLabel(preset.currencyType),
             ]
                 .join(' ')
                 .toLowerCase()
@@ -701,6 +1068,9 @@ export default function Tool() {
                             </span>
                             <span className={styles.presetMeta}>
                                 {preset.variant} {preset.width}x{preset.height}
+                                {preset.dragonCapacity !== undefined
+                                    ? ` - ${preset.dragonCapacity} dragons`
+                                    : ''}
                             </span>
                         </button>
                     ))}
@@ -778,10 +1148,14 @@ export default function Tool() {
                     <div>
                         Selected:{' '}
                         <strong>
-                            {selectedItem
-                                ? `${selectedItem.name} ${selectedItem.width}x${selectedItem.height}`
-                                : `${selectedPreset.name} ${selectedPreset.variant} ${selectedPreset.width}x${selectedPreset.height}`}
+                            {`${displayedSelection.name} ${displayedSelection.variant} ${displayedSelection.width}x${displayedSelection.height}`}
                         </strong>
+                        {displayedSelectionStats ? (
+                            <span className={styles.selectedStats}>
+                                {' '}
+                                ({displayedSelectionStats})
+                            </span>
+                        ) : null}
                     </div>
                     <div className={styles.toolbarActions}>
                         <button
@@ -811,6 +1185,25 @@ export default function Tool() {
                     </div>
                 </div>
 
+                <div className={styles.totals}>
+                    <span>
+                        <strong>
+                            {formatNumber(placedTotals.dragonCapacity)}
+                        </strong>{' '}
+                        dragon slots
+                    </span>
+                    <span>
+                        <strong>{formatNumber(placedTotals.dcCapacity)}</strong>{' '}
+                        DC cap
+                    </span>
+                    <span>
+                        <strong>
+                            {formatNumber(placedTotals.etheriumCapacity)}
+                        </strong>{' '}
+                        Etherium cap
+                    </span>
+                </div>
+
                 <div className={styles.boardScroller}>
                     <div
                         className={styles.grid}
@@ -824,14 +1217,30 @@ export default function Tool() {
                             } as CSSProperties
                         }
                     >
-                        <div
-                            className={styles.screenBottom}
-                            style={{
-                                top: `calc(${island.bottomScreenRow} * var(--cell-size) - 2px)`,
-                            }}
-                        >
-                            <span>Bottom of screen</span>
-                        </div>
+                        {island.regions?.map((region) => (
+                            <div
+                                key={`${region.name}-${region.x}-${region.y}`}
+                                className={styles.region}
+                                style={{
+                                    left: `calc(${region.x} * var(--cell-size))`,
+                                    top: `calc(${region.y} * var(--cell-size))`,
+                                    width: `calc(${region.width} * var(--cell-size))`,
+                                    height: `calc(${region.height} * var(--cell-size))`,
+                                }}
+                            >
+                                <span>{region.name}</span>
+                            </div>
+                        ))}
+                        {island.bottomScreenRow !== undefined ? (
+                            <div
+                                className={styles.screenBottom}
+                                style={{
+                                    top: `calc(${island.bottomScreenRow} * var(--cell-size) - 2px)`,
+                                }}
+                            >
+                                <span>Bottom of screen</span>
+                            </div>
+                        ) : null}
                         {blockedCells.map((cell) => (
                             <div
                                 key={`${cell.x}-${cell.y}`}
@@ -844,52 +1253,60 @@ export default function Tool() {
                                 }}
                             />
                         ))}
-                        {placedItems.map((item) => (
-                            <button
-                                key={item.instanceId}
-                                className={`${styles.placedItem} ${
-                                    selectedItemId === item.instanceId
-                                        ? styles.placedItemSelected
-                                        : ''
-                                } ${
-                                    collidingItemIds.has(item.instanceId)
-                                        ? styles.placedItemCollision
-                                        : ''
-                                }`}
-                                draggable
-                                type="button"
-                                onClick={(event) => {
-                                    event.stopPropagation()
-                                    setSelectedItemId(item.instanceId)
-                                }}
-                                onDragStart={(event) => {
-                                    event.dataTransfer.setData(
-                                        'item-id',
-                                        item.instanceId
-                                    )
-                                    setDragOffset(
-                                        event,
-                                        item.width,
-                                        item.height
-                                    )
-                                }}
-                                style={
-                                    {
-                                        left: `calc(${item.x} * var(--cell-size))`,
-                                        top: `calc(${item.y} * var(--cell-size))`,
-                                        width: `calc(${item.width} * var(--cell-size))`,
-                                        height: `calc(${item.height} * var(--cell-size))`,
-                                        '--item-color': item.color,
-                                    } as CSSProperties
-                                }
-                                title={`${item.name} ${item.variant} ${item.width}x${item.height}`}
-                            >
-                                <span>{item.name}</span>
-                                <small>
-                                    {item.width}x{item.height}
-                                </small>
-                            </button>
-                        ))}
+                        {placedItems.map((item) => {
+                            const itemStats = formatPresetStats(item)
+
+                            return (
+                                <button
+                                    key={item.instanceId}
+                                    className={`${styles.placedItem} ${
+                                        selectedItemId === item.instanceId
+                                            ? styles.placedItemSelected
+                                            : ''
+                                    } ${
+                                        collidingItemIds.has(item.instanceId)
+                                            ? styles.placedItemCollision
+                                            : ''
+                                    }`}
+                                    draggable
+                                    type="button"
+                                    onClick={(event) => {
+                                        event.stopPropagation()
+                                        setSelectedItemId(item.instanceId)
+                                    }}
+                                    onDragStart={(event) => {
+                                        event.dataTransfer.setData(
+                                            'item-id',
+                                            item.instanceId
+                                        )
+                                        setDragOffset(
+                                            event,
+                                            item.width,
+                                            item.height
+                                        )
+                                    }}
+                                    style={
+                                        {
+                                            left: `calc(${item.x} * var(--cell-size))`,
+                                            top: `calc(${item.y} * var(--cell-size))`,
+                                            width: `calc(${item.width} * var(--cell-size))`,
+                                            height: `calc(${item.height} * var(--cell-size))`,
+                                            '--item-color': item.color,
+                                        } as CSSProperties
+                                    }
+                                    title={`${item.name} ${item.variant} ${
+                                        item.width
+                                    }x${item.height}${
+                                        itemStats ? ` - ${itemStats}` : ''
+                                    }`}
+                                >
+                                    <span>{item.name}</span>
+                                    <small>
+                                        {item.width}x{item.height}
+                                    </small>
+                                </button>
+                            )
+                        })}
                     </div>
                 </div>
             </section>

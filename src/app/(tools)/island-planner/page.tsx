@@ -5,7 +5,7 @@ import Tool from './Tool'
 export const metadata: Metadata = {
     title: 'Island Planner - The DragonVale Lair',
     description:
-        'Plan DragonVale island layouts with searchable habitat and building size presets.',
+        'Plan DragonVale island layouts with searchable habitat and building size presets, including capacity totals.',
 }
 
 export default function IslandPlanner() {
@@ -21,13 +21,13 @@ export default function IslandPlanner() {
             <Section title="Information">
                 <p>
                     Use the Island Planner to sketch habitat and building
-                    layouts on either a standard island grid or a Gargantuan
-                    Island grid. Select a preset and click the grid to place it,
-                    or drag a preset from the list onto the grid.
+                    layouts on standard, Gargantuan, Lost Island, and Rift
+                    Dimension grids. Select a preset and click the grid to place
+                    it, or drag a preset from the list onto the grid.
                 </p>
                 <p>
                     The standard grid, Gargantuan grid, bottom-of-screen marker,
-                    and habitat sizes are based on the{' '}
+                    habitat sizes, and capacity data are based on the{' '}
                     <a
                         className="link"
                         href="https://dragonvale.fandom.com/wiki/Standard_Islands"
@@ -40,6 +40,20 @@ export default function IslandPlanner() {
                         href="https://dragonvale.fandom.com/wiki/Gargantuan_Island"
                     >
                         Gargantuan Island
+                    </a>
+                    {', '}
+                    <a
+                        className="link"
+                        href="https://dragonvale.fandom.com/wiki/Habitats"
+                    >
+                        Habitats
+                    </a>{' '}
+                    and{' '}
+                    <a
+                        className="link"
+                        href="https://dragonvale.fandom.com/wiki/Miasmic_Ether"
+                    >
+                        Miasmic Ether
                     </a>{' '}
                     pages on the DragonVale Wiki.
                 </p>

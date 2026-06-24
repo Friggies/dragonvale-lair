@@ -1,4 +1,5 @@
 @use '../../../styles/abstracts/colors';
+@use '../../../styles/abstracts/mixins';
 @use '../../../styles/abstracts/variables';
 
 .tool {
@@ -133,6 +134,30 @@
     gap: 0.35rem;
 }
 
+.selectedStats {
+    opacity: 0.85;
+}
+
+.totals {
+    @include mixins.paperBackground;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    padding: 0.85rem;
+    color: white;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+.totals span {
+    min-width: 0;
+    text-align: center;
+}
+
 .actionButton:disabled {
     cursor: not-allowed;
     opacity: 0.45;
@@ -150,11 +175,15 @@
     border: 1px solid colors.$color--border-highlight;
     border-radius: variables.$borderradius;
     background-color: colors.$color--card;
-    box-shadow: inset 2px 2px colors.$color--light,
+    box-shadow:
+        inset 2px 2px colors.$color--light,
         inset -2px -2px colors.$color--light,
-        inset 2px -2px colors.$color--light, inset -2px 2px colors.$color--light,
-        2px 2px colors.$color--dark, -2px -2px colors.$color--dark,
-        2px -2px colors.$color--dark, -2px 2px colors.$color--dark;
+        inset 2px -2px colors.$color--light,
+        inset -2px 2px colors.$color--light,
+        2px 2px colors.$color--dark,
+        -2px -2px colors.$color--dark,
+        2px -2px colors.$color--dark,
+        -2px 2px colors.$color--dark;
 }
 
 .grid {
@@ -196,9 +225,32 @@
     white-space: nowrap;
 }
 
-.blockedCell {
+.region {
     position: absolute;
     z-index: 1;
+    border: 2px dashed rgba(255, 236, 128, 0.5);
+    background-color: rgba(255, 236, 128, 0.06);
+    pointer-events: none;
+}
+
+.region span {
+    position: absolute;
+    left: 0.25rem;
+    top: 0.25rem;
+    max-width: calc(100% - 0.5rem);
+    overflow: hidden;
+    padding: 0.15rem 0.35rem;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffec80;
+    font-size: 0.72rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.blockedCell {
+    position: absolute;
+    z-index: 2;
     border: 1px solid rgba(0, 0, 0, 0.35);
     background-color: rgba(80, 80, 80, 0.65);
     background-image: linear-gradient(
@@ -213,7 +265,7 @@
 
 .placedItem {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -250,7 +302,7 @@
 
 .placedItemSelected {
     outline: 3px solid rgba(255, 236, 128, 0.95);
-    z-index: 3;
+    z-index: 4;
 }
 
 .placedItemCollision {
@@ -269,6 +321,10 @@
 
     .boardScroller {
         max-height: 70vh;
+    }
+
+    .totals {
+        grid-template-columns: 1fr;
     }
 }
 
