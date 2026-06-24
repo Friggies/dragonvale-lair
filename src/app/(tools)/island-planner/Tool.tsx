@@ -1192,16 +1192,21 @@ export default function Tool() {
                         </strong>{' '}
                         dragon slots
                     </span>
-                    <span>
-                        <strong>{formatNumber(placedTotals.dcCapacity)}</strong>{' '}
-                        DC cap
-                    </span>
-                    <span>
-                        <strong>
-                            {formatNumber(placedTotals.etheriumCapacity)}
-                        </strong>{' '}
-                        Etherium cap
-                    </span>
+                    {islandType === 'rift' ? (
+                        <span>
+                            <strong>
+                                {formatNumber(placedTotals.etheriumCapacity)}
+                            </strong>{' '}
+                            Etherium cap
+                        </span>
+                    ) : (
+                        <span>
+                            <strong>
+                                {formatNumber(placedTotals.dcCapacity)}
+                            </strong>{' '}
+                            DC cap
+                        </span>
+                    )}
                 </div>
 
                 <div className={styles.boardScroller}>
