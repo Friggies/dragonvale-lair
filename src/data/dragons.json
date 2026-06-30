@@ -1,6 +1,32 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Opulence Manifest",
+        "rarity": "Epic",
+        "number": 967,
+        "name": "Pharrox",
+        "elements": ["Sun", "Treasure", "Air"],
+        "released": "June 25, 2026",
+        "commemoration": "Dunes of Magic II",
+        "breedingTime": "24 H",
+        "income": 200,
+        "combo": ["Pharaoh", "Gawk"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Tremors",
+        "rarity": "Rare",
+        "number": 966,
+        "name": "Sandshifter",
+        "elements": ["Earth", "Water", "Dark"],
+        "released": "June 18, 2026",
+        "commemoration": "Dunes of Magic II",
+        "breedingTime": "12 H",
+        "income": 250,
+        "combo": ["Subterranean", "Quicksand"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Burning Sensation",
         "rarity": "Epic",
         "number": 965,
