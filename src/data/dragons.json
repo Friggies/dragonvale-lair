@@ -1,6 +1,45 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Lone Grain Of Sand",
+        "rarity": "Epic",
+        "number": 970,
+        "name": "Nomad",
+        "elements": ["Moon", "Sun", "Air", "Fire"],
+        "released": "July 16, 2026",
+        "commemoration": "Dunes of Magic II",
+        "breedingTime": "15 H",
+        "income": 205,
+        "combo": ["Monte", "fire"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Woe, plague be upon ye",
+        "rarity": "Epic",
+        "number": 969,
+        "name": "Plagues",
+        "elements": ["Apocalypse", "Treasure", "Fire", "Plant"],
+        "released": "July 9, 2026",
+        "commemoration": "Dunes of Magic II",
+        "breedingTime": "17 H",
+        "income": 210,
+        "combo": ["Misfortune", "Poison"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Advanced Origami",
+        "rarity": "Epic",
+        "number": 968,
+        "name": "Tetra",
+        "elements": ["Sun", "Metal", "Light"],
+        "released": "July 2, 2026",
+        "commemoration": "Dunes of Magic II",
+        "breedingTime": "24 H",
+        "income": 190,
+        "combo": ["Tutan", "metal", "light"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Opulence Manifest",
         "rarity": "Epic",
         "number": 967,
