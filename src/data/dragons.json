@@ -1,6 +1,45 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "Eternal Flame",
+        "rarity": "Rare",
+        "number": 973,
+        "name": "Emburn",
+        "elements": ["Fire", "Plant", "Air"],
+        "released": "July 30, 2026",
+        "commemoration": "Path to Draggalachia",
+        "breedingTime": "20 H",
+        "income": 190,
+        "combo": ["Ember", "Plant", "air"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Care Not",
+        "rarity": "Rare",
+        "number": 972,
+        "name": "Cairn",
+        "elements": ["Earth", "Plant"],
+        "released": "July 30, 2026",
+        "commemoration": "Path to Draggalachia",
+        "breedingTime": "20 H",
+        "income": 200,
+        "combo": ["Snootroot", "Stoneshell"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Never Lost",
+        "rarity": "Rare",
+        "number": 971,
+        "name": "Pathfinder",
+        "elements": ["Earth", "Water", "Lightning", "Metal"],
+        "released": "July 30, 2026",
+        "commemoration": "Path to Draggalachia",
+        "breedingTime": "24 H",
+        "income": 195,
+        "combo": ["Magnetic", "earth", "water"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Lone Grain Of Sand",
         "rarity": "Epic",
         "number": 970,
