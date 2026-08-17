@@ -1,9 +1,48 @@
 [
     {
         "availability": "LIMITED",
-        "quest": "Eternal Flame",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 975,
+        "name": "Morrax",
+        "elements": ["Fire", "Metal", "Cold"],
+        "released": "August 13, 2026",
+        "commemoration": "Path to Draggalachia",
+        "breedingTime": "15 H",
+        "income": 210,
+        "combo": ["Hooded", "Bonescale"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Fairly Fair Fairy",
+        "rarity": "Epic",
+        "number": 974,
+        "name": "Fairyoak",
+        "elements": ["Hidden", "Plant", "Earth"],
+        "released": "August 6, 2026",
+        "commemoration": "Path to Draggalachia",
+        "breedingTime": "23 H",
+        "income": 200,
+        "combo": ["Tansy", "Tree"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Never Lost",
         "rarity": "Rare",
         "number": 973,
+        "name": "Pathfinder",
+        "elements": ["Earth", "Water", "Lightning", "Metal"],
+        "released": "July 30, 2026",
+        "commemoration": "Path to Draggalachia",
+        "breedingTime": "24 H",
+        "income": 195,
+        "combo": ["Magnetic", "earth", "water"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Eternal Flame",
+        "rarity": "Rare",
+        "number": 972,
         "name": "Emburn",
         "elements": ["Fire", "Plant", "Air"],
         "released": "July 30, 2026",
@@ -16,7 +55,7 @@
         "availability": "LIMITED",
         "quest": "Care Not",
         "rarity": "Rare",
-        "number": 972,
+        "number": 971,
         "name": "Cairn",
         "elements": ["Earth", "Plant"],
         "released": "July 30, 2026",
@@ -24,19 +63,6 @@
         "breedingTime": "20 H",
         "income": 200,
         "combo": ["Snootroot", "Stoneshell"]
-    },
-    {
-        "availability": "LIMITED",
-        "quest": "Never Lost",
-        "rarity": "Rare",
-        "number": 971,
-        "name": "Pathfinder",
-        "elements": ["Earth", "Water", "Lightning", "Metal"],
-        "released": "July 30, 2026",
-        "commemoration": "Path to Draggalachia",
-        "breedingTime": "24 H",
-        "income": 195,
-        "combo": ["Magnetic", "earth", "water"]
     },
     {
         "availability": "LIMITED",

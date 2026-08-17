@@ -1,7 +1,5 @@
 const currentlyAvailable = [
-    'Emburn',
-    'Jasper',
-    'Jade',
+    'Solar Eclipse',
     'Leonian',
     'Bicentennial',
     'Peridot',
