@@ -1,9 +1,10 @@
 const currentlyAvailable = [
+    'Tourmaline',
     'Solar Eclipse',
-    'Leonian',
-    'Bicentennial',
-    'Peridot',
     'Summer',
+    'Virgonian',
+    'Sapphire',
+    'Amber',
     'Ghostly Kringle',
     'Ghostly Krampus',
     'Ghostly Trinket',

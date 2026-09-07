@@ -1,7 +1,46 @@
 [
     {
         "availability": "LIMITED",
-        "quest": "N/A",
+        "quest": "Eyes on the Skies",
+        "rarity": "Epic",
+        "number": 978,
+        "name": "Triastra",
+        "elements": ["Moon", "Dark", "Water", "Light"],
+        "released": "September 3, 2026",
+        "commemoration": "Path to Draggalachia",
+        "breedingTime": "33 H",
+        "income": 170,
+        "combo": ["Ooze", "zodiac"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Scopophobia",
+        "rarity": "Rare",
+        "number": 977,
+        "name": "Darcoil",
+        "elements": ["Dark", "Water", "Air"],
+        "released": "August 27, 2026",
+        "commemoration": "Path to Draggalachia",
+        "breedingTime": "13 H 30 M",
+        "income": 190,
+        "combo": ["Shadow", "Fog"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Oh, Hi Fever",
+        "rarity": "Rare",
+        "number": 976,
+        "name": "Achu",
+        "elements": ["Plant", "Dark", "Water", "Fire"],
+        "released": "August 20, 2026",
+        "commemoration": "Path to Draggalachia",
+        "breedingTime": "17 H 30 M",
+        "income": 200,
+        "combo": ["Ogre", "Fungus"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Strange Vanity",
         "rarity": "Rare",
         "number": 975,
         "name": "Morrax",
