@@ -1,6 +1,45 @@
 [
     {
         "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 981,
+        "name": "Sungazer",
+        "elements": ["Sun", "Seasonal", "Plant"],
+        "released": "September 17, 2026",
+        "commemoration": "Om of Noms: Country Roads II",
+        "breedingTime": "22 H",
+        "income": 190,
+        "combo": ["sun", "seasonal"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 980,
+        "name": "Haystack",
+        "elements": ["Dream", "Plant"],
+        "released": "September 17, 2026",
+        "commemoration": "Om of Noms: Country Roads II",
+        "breedingTime": "23 H",
+        "income": 180,
+        "combo": ["Daydream", "Country"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 979,
+        "name": "Furrow",
+        "elements": ["Earth", "Metal"],
+        "released": "September 17, 2026",
+        "commemoration": "Om of Noms: Country Roads II",
+        "breedingTime": "20 H",
+        "income": 190,
+        "combo": ["Razortail", "Iron"]
+    },
+    {
+        "availability": "LIMITED",
         "quest": "Eyes on the Skies",
         "rarity": "Epic",
         "number": 978,
