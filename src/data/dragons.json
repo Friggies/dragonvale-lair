@@ -2,21 +2,73 @@
     {
         "availability": "LIMITED",
         "quest": "N/A",
-        "rarity": "Epic",
-        "number": 981,
-        "name": "Sungazer",
-        "elements": ["Sun", "Seasonal", "Plant"],
-        "released": "September 17, 2026",
-        "commemoration": "Om of Noms: Country Roads II",
+        "rarity": "Rare",
+        "number": 986,
+        "name": "Torment",
+        "elements": ["Metal", "Water", "Dark", "Fire"],
+        "released": "October 8, 2026",
+        "commemoration": "Whitbee's Candy Bash XIII: Frightful Encounters & Arcane Rituals",
         "breedingTime": "22 H",
-        "income": 190,
-        "combo": ["sun", "seasonal"]
+        "income": 220,
+        "combo": ["Rust", "dark", "fire"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Rare",
+        "number": 985,
+        "name": "Eggony",
+        "elements": ["Fire", "Earth", "Dark"],
+        "released": "October 8, 2026",
+        "commemoration": "Whitbee's Candy Bash XIII: Frightful Encounters & Arcane Rituals",
+        "breedingTime": "10 H",
+        "income": 230,
+        "combo": ["fire", "earth", "dark"]
     },
     {
         "availability": "LIMITED",
         "quest": "N/A",
         "rarity": "Epic",
-        "number": 980,
+        "number": 984,
+        "name": "Hollowjaw",
+        "elements": ["Dark", "Earth", "Plant"],
+        "released": "October 8, 2026",
+        "commemoration": "Whitbee's Candy Bash XIII: Frightful Encounters & Arcane Rituals",
+        "breedingTime": "15 H",
+        "income": 210,
+        "combo": ["Nightshade", "Spooker"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Poke A Dot",
+        "rarity": "Epic",
+        "number": 983,
+        "name": "Dotty",
+        "elements": ["Chrysalis"],
+        "released": "October 1, 2026",
+        "commemoration": "Om of Noms: Country Roads II",
+        "breedingTime": "22 H",
+        "income": 220,
+        "combo": ["Chrysalis", "Firefly"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "Seed Weed",
+        "rarity": "Rare",
+        "number": 982,
+        "name": "Tumble",
+        "elements": ["Plant", "Earth", "Rift", "Dark"],
+        "released": "September 24, 2026",
+        "commemoration": "Om of Noms: Country Roads II",
+        "breedingTime": "Instant",
+        "income": 210,
+        "combo": ["Bushwhack", "Tumblethorn"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 981,
         "name": "Haystack",
         "elements": ["Dream", "Plant"],
         "released": "September 17, 2026",
@@ -24,6 +76,19 @@
         "breedingTime": "23 H",
         "income": 180,
         "combo": ["Daydream", "Country"]
+    },
+    {
+        "availability": "LIMITED",
+        "quest": "N/A",
+        "rarity": "Epic",
+        "number": 980,
+        "name": "Sungazer",
+        "elements": ["Sun", "Seasonal", "Plant"],
+        "released": "September 17, 2026",
+        "commemoration": "Om of Noms: Country Roads II",
+        "breedingTime": "22 H",
+        "income": 190,
+        "combo": ["sun", "seasonal"]
     },
     {
         "availability": "LIMITED",
@@ -8141,7 +8206,7 @@
         "combo": ["plant", "fire", "earth", "air"]
     },
     {
-        "availability": "LIMITED",
+        "availability": "PERMANENT",
         "quest": "Philosopher's Dragon",
         "rarity": "Epic",
         "number": 354,
@@ -8180,7 +8245,7 @@
         "combo": ["Monolith 2", "Rain"]
     },
     {
-        "availability": "LIMITED",
+        "availability": "PERMANENT",
         "quest": "Standing Egg Rock",
         "rarity": "Epic",
         "number": 351,
